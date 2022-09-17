@@ -1,6 +1,6 @@
 <template>
     <div>
-        hacemos por ti
+        test
     </div>
 </template>
 <script>

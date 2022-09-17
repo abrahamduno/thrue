@@ -5,32 +5,40 @@ export default {
     
     loadTexts() {
       const textloader = new THREE.FontLoader();
+      const textmaterialsr = [
+        new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // front
+        new THREE.MeshStandardMaterial({ color: 0x222222 }), // side
+      ];
       const textmaterials = [
-        new THREE.MeshBasicMaterial({ color: 0xffffff }), // front
-        new THREE.MeshBasicMaterial({ color: 0x020226 }), // side
+        new THREE.MeshStandardMaterial({ color: 0x222222 }), // front
+        new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // side
       ];
       textloader.load(
-        "./res/style/fonts/Montserrat ExtraBold_Regular.json",
+        "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("SOMOS UN ", {
+            const geometry = new THREE.TextGeometry("ABRAHAM ", {
               font: font,
               size: 1,
               height: 1,
             });
-            const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-            textMesh1.position.set(-4, 1.5, 10);
-            this.scene.add(textMesh1);
+            this.textabraham = new THREE.Mesh(geometry, textmaterialsr);
+            this.textabraham.position.set(-4, 2, 15);
+            this.textabraham.castShadow = true
+            this.textabraham.receiveShadow = true
+            this.scene.add(this.textabraham);
           }
           {
-            const geometry = new THREE.TextGeometry("UNIVERSO CREATIVO", {
+            const geometry = new THREE.TextGeometry("DUNO", {
               font: font,
               size: 2,
               height: 1,
             });
-            const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-            textMesh1.position.set(-16, -0.7, 9);
-            this.scene.add(textMesh1);
+            this.textduno = new THREE.Mesh(geometry, textmaterialsr);
+            this.textduno.position.set(-2, -2, 14);
+            this.textduno.castShadow = true
+            this.textduno.receiveShadow = true
+            this.scene.add(this.textduno);
           }
           {
             const geometry = new THREE.TextGeometry("¿Qué hacemos por ti?", {
