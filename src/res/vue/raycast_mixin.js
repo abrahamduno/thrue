@@ -16,7 +16,7 @@ methods: {
       {
         this.connectWalletOrb()
         // alert("scroll down")
-        console.log(intersects.length,intersects)
+        // console.log(intersects.length,intersects)
       }
     },
     updateRaycaster()

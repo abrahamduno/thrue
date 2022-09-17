@@ -19,6 +19,7 @@
 
         <div v-if="hasStarted">
             <theblock h="10" />
+            <lotto v-if="accs_length" />
             <aboutUs />
             <theblock h="10" />
 
@@ -85,6 +86,7 @@
     // import lottoBottomMenu from "./lotto/lotto-bottom-menu.vue";
     // import lottoMyAccount from "./lotto/lotto-my-account.vue";
     // import lottoCurrentTicket from "./lotto/lotto-current-ticket.vue";
+    import lotto from "./lotto.vue";
     
     import theblock from "../res/vue/block.vue";
     import aboutUs from "../res/vue/about-us.vue";
@@ -96,8 +98,9 @@
 
 
     export default {
-        name: 'lotto',     
+        name: 'thrue',     
         components: {
+            lotto,
             theblock,
 
             aboutUs,
@@ -122,12 +125,12 @@
             };
         }, 
         computed: {
-            // LANG()                  { return this.$store.getters.LANG },
-            // accs_length()           { return this.$store.getters.accs_length },
-            // first_acc()             { return this.$store.getters.first_acc },
-            // dark_mode()             { return this.$store.getters.dark_mode },
-            // pro_mode()              { return this.$store.getters.pro_mode },
-            // current_sub_page()      { return this.$store.getters.current_sub_page },
+            LANG()                  { return this.$store.getters.LANG },
+            accs_length()           { return this.$store.getters.accs_length },
+            first_acc()             { return this.$store.getters.first_acc },
+            dark_mode()             { return this.$store.getters.dark_mode },
+            pro_mode()              { return this.$store.getters.pro_mode },
+            current_sub_page()      { return this.$store.getters.current_sub_page },
 
         },
         async mounted()

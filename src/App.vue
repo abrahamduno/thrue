@@ -10,7 +10,7 @@
 
         <div class="show-xs_md block py-8"></div>
     </div> -->
-    <div>
+    <div :class="!!dark_mode ? 'dark-theme' : 'light-theme'" class="main-body n-bg n-tx w-100">
         <connect />
         <thrue @animate="animate" />
         <my-scene ref="scene" />
