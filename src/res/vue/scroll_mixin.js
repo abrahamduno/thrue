@@ -1,12 +1,8 @@
 const X = 0, Y = 1, Z = 2
 export default {
 created: function () {
-    this.hello()
 },
 methods: {
-    hello: function () {
-    console.log('hello from mixin!')
-    },
 
     updateScrollPosition(e) {
         this.scrollPosition = window.scrollY;
@@ -22,10 +18,10 @@ methods: {
 
         if (t < -this.sceneBreakpoints.default[0]) {
           // EXCEPT SCENE 1
-          this.camera.position.z = this.sceneVariables.camera.pos[Z] + (-this.sceneBreakpoints.default[0] * -0.01);
+          this.camera.position.z = this.sceneVariables.camera.pos[Z] + (-this.sceneBreakpoints.default[0] * 0.01);
         } else {
           // ONLY SCENE 1
-          this.camera.position.z = this.sceneVariables.camera.pos[Z] + t * -0.01;
+          this.camera.position.z = this.sceneVariables.camera.pos[Z] + t * 0.01;
           // console.log(this.sceneVariables.camera.pos[Z],t,t * -0.01)
         }
   

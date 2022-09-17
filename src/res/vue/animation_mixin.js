@@ -6,7 +6,13 @@ data () {
 		counter: 0,
 	}
 },
+        computed: {
+            accs_length()           { return this.$store.getters.accs_length },
+        },
 methods: {
+	lerp(min, max, value) {
+	  return (max - min) * value + min;
+	},
     updateAnimations(e) {
 		this.counter++
 		// console.log(this.pointer)
@@ -20,6 +26,11 @@ methods: {
 		this.rocketMesh.rotation.z = -Math.sin(this.counter*0.02)*0.35
 		this.rocketMesh.rotation.x = Math.sin(this.counter*0.05)*0.15
 		this.rocketMesh.rotation.y += 0.006
+
+		if (this.accs_length)
+		{
+      		this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.1)
+		}
     },
 }
 
