@@ -12,6 +12,11 @@ methods: {
     onPointerClick(e)
     {
       console.log(this.INTERSECTED)
+      if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
+      {
+        alert("scroll down")
+        console.log(intersects.length,intersects)
+      }
     },
     updateRaycaster()
     {
@@ -23,7 +28,6 @@ methods: {
           if ( this.INTERSECTED != intersects[ 0 ].object )
           {
               this.INTERSECTED = intersects[ 0 ].object
-              // console.log(intersects.length,intersects)
           }
         } else {
           this.INTERSECTED = null

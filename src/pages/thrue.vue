@@ -11,9 +11,9 @@
      -->
     <div class="pos-absolute" style="color: white; z-index: 999;">
 
-        <div class="hidden block grid-column-12" style="height: 3800px;"> . </div>
-
+        <theblock h="10" />
         <aboutUs />
+        <theblock h="10" />
 
         <liftOff />
 
@@ -78,6 +78,7 @@
     // import lottoMyAccount from "./lotto/lotto-my-account.vue";
     // import lottoCurrentTicket from "./lotto/lotto-current-ticket.vue";
     
+    import theblock from "../res/vue/block.vue";
     import aboutUs from "../res/vue/about-us.vue";
     import liftOff from "../res/vue/lift-off.vue";
     import ourCeo from "../res/vue/our-ceo.vue";
@@ -89,6 +90,8 @@
     export default {
         name: 'lotto',     
         components: {
+            theblock,
+
             aboutUs,
             liftOff,
             ourCeo,

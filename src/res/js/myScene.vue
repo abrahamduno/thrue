@@ -176,11 +176,16 @@ export default {
 
 
         //Create a DirectionalLight and turn on shadows for the light
-    const light = new THREE.DirectionalLight( 0xffffff, 1 );
+    const light = new THREE.DirectionalLight( 0xffffff, 0.2 );
     // const light = new THREE.DirectionalLight( 0xffffff, 1 );
     light.position.set( 3,5,3 ); //default; light shining from top
     light.castShadow = true; // default false
-    this.scene.add( light );
+
+    const light2 = new THREE.DirectionalLight( 0xFFA859, 1.5 );
+    light2.position.set( 1,3,25 ); //default; light shining from top
+    light2.castShadow = true; // default false
+    // this.scene.add( light );
+    this.scene.add( light2 );
 
     //Set up shadow properties for the light
     light.shadow.mapSize.width = 512; // default
@@ -235,12 +240,13 @@ sphere.position.z = 2
 // this.scene.add( sphere );
 
       //Create a sphere that cast shadows (but does not receive them)
-const boxGeometry = new THREE.BoxGeometry(1,1,1);
-const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+const boxGeometry = new THREE.SphereGeometry(1, 4,4 );
+const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
 this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
 this.rocketMesh.castShadow = true; //default is false
-this.rocketMesh.receiveShadow = false; //default
+this.rocketMesh.receiveShadow = true; //default
 this.rocketMesh.position.y = 4
+this.rocketMesh.position.x = 2
 this.rocketMesh.position.z = 5
 this.scene.add( this.rocketMesh );
 
@@ -268,7 +274,7 @@ plane.receiveShadow = true;
 //       this.scene.add(this.rocketMesh);
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "ready land.obj",
+        "c4dcity.obj",
         (object) => {
 
           object.traverse( function ( child ) {
