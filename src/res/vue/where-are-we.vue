@@ -1,6 +1,6 @@
 <template>
     <div>
-        nuestra sede
+        world
     </div>
 </template>
 <script>

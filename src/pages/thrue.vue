@@ -12,22 +12,25 @@
     <div class=" w-100 " style="min-height: 100vh">
 
         <h1 @click="start" v-if="!hasStarted"
-            class="tx-center clickable opacity-hover-50 tx-xl mt-100"
+            class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-absolute w-100"
         >
             Start ({{timelefttostart}})
         </h1>
 
-        <div v-if="hasStarted">
-            <theblock h="20" />
+        <div v-if="hasStarted ">
+            <theblock v-if="accs_length"  h="20" />
             <lotto v-if="accs_length" />
             <!-- <aboutUs /> -->
-            <theblock h="10" />
+            <div v-if="hasStarted && accs_length">
+                <theblock h="10" />
 
-            <liftOff />
+                <liftOff />
 
-            <ourCeo />
+                <ourCeo />
 
-            <ourTeam />
+                <ourTeam />
+
+            </div>
 
             <ourWork />
 

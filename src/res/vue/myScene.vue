@@ -20,6 +20,7 @@ import scrollmixin from "./scroll_mixin.js";
 import raycastmixin from "./raycast_mixin.js";
 import animationmixin from "./animation_mixin.js";
 import connectOrb from "./connect-orb.js";
+import levelOne from "./level-one.js";
 import texts from "./texts.js";
 
 //No se si es necesario
@@ -31,7 +32,7 @@ const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
-  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, texts],
+  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, levelOne, texts],
   data()
   {
     return {
@@ -64,6 +65,12 @@ export default {
       // },
     };
   },
+        computed: {
+            LANG()                  { return this.$store.getters.LANG },
+            accs_length()           { return this.$store.getters.accs_length },
+            first_acc()             { return this.$store.getters.first_acc },
+            dark_mode()             { return this.$store.getters.dark_mode },
+        },
   mounted()
   {
     this.init()
@@ -96,13 +103,13 @@ export default {
       
       this.sceneBreakpoints = {
         default: [],
-        mobile: [1900, 4500, 8500, 9000, 16500],
-        desktop: [1500, 2500, 2900, 3100, 4400],
+        mobile: [3000, 8500, 9900, 13100, 14400],
+        desktop: [3000, 8500, 9900, 13100, 14400],
       }
       this.sceneVariables = {
         camera: {
-          pos: [0, 1, 9],
-          rot: [0.25, 0, 0],
+          pos: [0, -1, 9],
+          rot: [0, 0, 0],
           fov: 75,
           fovSettings: {
             mobile: 120,
@@ -130,7 +137,7 @@ export default {
         .forEach(() => {
           this.loadAStar();
         });
-      this.loadTexts();
+      // this.loadTexts();
       this.loadSpaceObjects();
 
       this.setRenderer();
@@ -184,8 +191,12 @@ export default {
     light.position.set( 3,5,3 ); //default; light shining from top
     light.castShadow = true; // default false
 
-    this.sunlight = new THREE.DirectionalLight( 0xFFA859, 1.5 );
-    this.sunlight.position.set( 15,3,25 ); //default; light shining from top
+    // let ambientintensity = 0x404040
+    let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
+    let sunintensity = this.dark_mode ? 1.6 : 2
+
+    this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
+    this.sunlight.position.set( 10,2,6 ); //default; light shining from top
     this.sunlight.castShadow = true; // default false
     this.sunlight.shadow.camera.near = 0.5; // default
     this.sunlight.shadow.camera.far = 500; // default
@@ -199,7 +210,7 @@ export default {
     light.shadow.camera.far = 500; // default
       // this.scene.add(new THREE.CameraHelper(light.shadow.camera)) 
 
-const amlight = new THREE.AmbientLight( 0x404040 ); // soft white light
+const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
 this.scene.add( amlight );
 
     },
@@ -275,14 +286,19 @@ plane.receiveShadow = true;
         (object) => {
 
           object.traverse( function ( child ) {
-
              if ( child instanceof THREE.Mesh ) {
 
-                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
+                  // side:THREE.DoubleSide 
+                } );
+                child.castShadow = true;
                 child.castShadow = true;
                 child.receiveShadow = true;
 
             }
+          // if( child.material ) {
+          //         child.material.side = THREE.DoubleSide;
+          //     }
 
          } );
 
@@ -306,6 +322,30 @@ plane.receiveShadow = true;
           // object.scale.set(3, 3, 3);
           this.myobject = object
           this.scene.add(this.myobject);
+        },
+        this.onLoadProgress
+      );
+
+
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "sign.obj",
+        (object) => {
+
+          object.traverse( function ( child ) {
+             if ( child instanceof THREE.Mesh ) {
+                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
+                  // side:THREE.DoubleSide 
+                } );
+                child.castShadow = true;
+                child.castShadow = true;
+                child.receiveShadow = true;
+
+            }
+         } );
+
+          object.position.set(0, -2, 0);
+          this.mysign = object
+          this.scene.add(this.mysign);
         },
         this.onLoadProgress
       );
