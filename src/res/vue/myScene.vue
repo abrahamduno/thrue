@@ -11,17 +11,19 @@
 <script>
 import * as THREE from "three";
 import { OBJLoader } from "../loaders/OBJLoader.js";
-import { getInitialState } from "./get_initial_state.js";
-import { loadStar } from "./load_stars.js";
-import { newtorus, newring } from "./load_space_objects.js";
-import scrollmixin from "../vue/scroll_mixin.js";
-import raycastmixin from "../vue/raycast_mixin.js";
-import animationmixin from "../vue/animation_mixin.js";
-import connectOrb from "../vue/connect-orb.js";
-import texts from "../vue/texts.js";
+
+import { getInitialState } from "../../res/js/get_initial_state.js";
+import { loadStar } from "../../res/js/load_stars.js";
+import { newtorus, newring } from "../../res/js/load_space_objects.js";
+
+import scrollmixin from "./scroll_mixin.js";
+import raycastmixin from "./raycast_mixin.js";
+import animationmixin from "./animation_mixin.js";
+import connectOrb from "./connect-orb.js";
+import texts from "./texts.js";
 
 //No se si es necesario
-import { MTLLoader } from "../loaders/MTLLoader.js";
+import { MTLLoader } from "../../res/loaders/MTLLoader.js";
 // const textloader = new THREE.FontLoader();
 
 const BASE_URL = "http://localhost:3000/";
@@ -177,16 +179,18 @@ export default {
 
 
         //Create a DirectionalLight and turn on shadows for the light
-    const light = new THREE.DirectionalLight( 0xffffff, 0.2 );
+    let light = new THREE.DirectionalLight( 0xffffff, 0.2 );
     // const light = new THREE.DirectionalLight( 0xffffff, 1 );
     light.position.set( 3,5,3 ); //default; light shining from top
     light.castShadow = true; // default false
 
-    const light2 = new THREE.DirectionalLight( 0xFFA859, 1.5 );
-    light2.position.set( 1,3,25 ); //default; light shining from top
-    light2.castShadow = true; // default false
+    this.sunlight = new THREE.DirectionalLight( 0xFFA859, 1.5 );
+    this.sunlight.position.set( 15,3,25 ); //default; light shining from top
+    this.sunlight.castShadow = true; // default false
+    this.sunlight.shadow.camera.near = 0.5; // default
+    this.sunlight.shadow.camera.far = 500; // default
     // this.scene.add( light );
-    this.scene.add( light2 );
+    this.scene.add( this.sunlight );
 
     //Set up shadow properties for the light
     light.shadow.mapSize.width = 512; // default
@@ -267,7 +271,7 @@ plane.receiveShadow = true;
 //       this.scene.add(this.rocketMesh);
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "c4dcity.obj",
+        "test.obj",
         (object) => {
 
           object.traverse( function ( child ) {
@@ -299,8 +303,9 @@ plane.receiveShadow = true;
           // });
           object.position.set(0, -2, 0);
           // object.scale.set(15, 15, 15);
-          object.scale.set(3, 3, 3);
-          this.scene.add(object);
+          // object.scale.set(3, 3, 3);
+          this.myobject = object
+          this.scene.add(this.myobject);
         },
         this.onLoadProgress
       );
@@ -347,6 +352,7 @@ plane.receiveShadow = true;
       // console.log(canvasElement)
       this.renderer = new THREE.WebGLRenderer({
         // antialias: true,
+        alpha: true,
         canvas: this.$refs.canvas,
         // canvas: canvasElement,
       });

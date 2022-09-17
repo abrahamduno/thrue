@@ -3,10 +3,13 @@ body {
   padding: 0;
   font-size: x-large;
   font-family: Arial, Helvetica, sans-serif;
+  /*background: #999999;*/
+  min-height: 100vh;
 }
 
 .main-body {
-  min-height: 100vh;
+  /*height: 100%;*/
+  /*display: block;*/
 }
 
 :root {

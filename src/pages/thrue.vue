@@ -9,10 +9,10 @@
         enahnce conditionals component s
         putt my account on menu
      -->
-    <div class="pos-absolute w-100" style="color: white; z-index: 999;">
+    <div class=" w-100 " style="min-height: 100vh">
 
         <h1 @click="start" v-if="!hasStarted"
-            class="tx-center clickable opacity-hover-50 tx-xl "
+            class="tx-center clickable opacity-hover-50 tx-xl mt-100"
         >
             Start ({{timelefttostart}})
         </h1>
