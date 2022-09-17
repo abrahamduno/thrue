@@ -134,7 +134,7 @@ export default {
       this.setRaycaster();
         
 
-      this._animate()
+      // this._animate()
       // this.renderer.render(this.scene, this.camera);
       this.updateScrollPosition()
     },

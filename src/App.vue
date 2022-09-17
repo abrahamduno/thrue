@@ -11,8 +11,8 @@
         <div class="show-xs_md block py-8"></div>
     </div> -->
     <div>
-        <thrue />
-        <my-scene />
+        <thrue @animate="animate" />
+        <my-scene ref="scene" />
     </div>
 </template>
 <script>
@@ -38,6 +38,12 @@
         computed: {
             dark_mode()     { return this.$store.getters.dark_mode },
             is_metaMask()   { return this.$store.getters.is_metaMask },
+        }, 
+        methods: {
+            animate()
+            {
+                this.$refs.scene._animate()
+            },
         }, 
     }
 </script>

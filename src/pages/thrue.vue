@@ -9,53 +9,61 @@
         enahnce conditionals component s
         putt my account on menu
      -->
-    <div class="pos-absolute" style="color: white; z-index: 999;">
+    <div class="pos-absolute w-100" style="color: white; z-index: 999;">
 
-        <theblock h="10" />
-        <aboutUs />
-        <theblock h="10" />
-
-        <liftOff />
-
-        <ourCeo />
-
-        <ourTeam />
-
-        <ourWork />
-
-        <whereAreWe />
-        
-        <h1>
-            Test
-        </h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Harum modi consectetur animi hic dolore officiis ea nostrum
-            exercitationem perferendis minima, consequatur fuga praesentium
-            veritatis deserunt et suscipit incidunt nam error.
-        </p>
-
-        <h1>
-            Test 2
+        <h1 @click="start" v-if="!hasStarted"
+            class="tx-center clickable opacity-hover-50 tx-xl "
+        >
+            Start
         </h1>
 
-        <h1 style="height: 900px">
-            Test 2
-        </h1>
-        <ol>
-            <li class="pa-4 clickable" @click="setKey(1)">one</li>
-            <li class="pa-4 clickable" @click="setKey(2)">two</li>
-            <li class="pa-4 clickable" @click="setKey(3)">thre</li>
-            <li class="pa-4 clickable" @click="setKey(4)">four</li>
-        </ol>
-        <h1>
-            {{selectedKey}}
-        </h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Harum modi consectetur animi hic dolore officiis ea nostrum
-            exercitationem perferendis minima, consequatur fuga praesentium
-            veritatis deserunt et suscipit incidunt nam error.
-        </p>
+        <div v-if="hasStarted">
+            <theblock h="10" />
+            <aboutUs />
+            <theblock h="10" />
 
+            <liftOff />
+
+            <ourCeo />
+
+            <ourTeam />
+
+            <ourWork />
+
+            <whereAreWe />
+            
+            <h1>
+                Test
+            </h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Harum modi consectetur animi hic dolore officiis ea nostrum
+                exercitationem perferendis minima, consequatur fuga praesentium
+                veritatis deserunt et suscipit incidunt nam error.
+            </p>
+
+            <h1>
+                Test 2
+            </h1>
+
+            <h1 style="height: 900px">
+                Test 2
+            </h1>
+            <ol>
+                <li class="pa-4 clickable" @click="setKey(1)">one</li>
+                <li class="pa-4 clickable" @click="setKey(2)">two</li>
+                <li class="pa-4 clickable" @click="setKey(3)">thre</li>
+                <li class="pa-4 clickable" @click="setKey(4)">four</li>
+            </ol>
+            <h1>
+                {{selectedKey}}
+            </h1>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Harum modi consectetur animi hic dolore officiis ea nostrum
+                exercitationem perferendis minima, consequatur fuga praesentium
+                veritatis deserunt et suscipit incidunt nam error.
+            </p>
+
+        </div>
 
     </div>
 </template>
@@ -108,6 +116,7 @@
         },
         data() {
             return {
+                hasStarted: false,
                 selectedKey: null,
             };
         }, 
@@ -129,6 +138,11 @@
             // console.log(c);
         },
         methods: {
+            start()
+            {
+                this.$emit('animate')
+                this.hasStarted = true
+            },
             setKey(newKey)
             {
                 this.selectedKey = newKey
