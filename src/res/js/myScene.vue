@@ -17,6 +17,7 @@ import { newtorus, newring } from "./load_space_objects.js";
 import scrollmixin from "../vue/scroll_mixin.js";
 import raycastmixin from "../vue/raycast_mixin.js";
 import animationmixin from "../vue/animation_mixin.js";
+import connectOrb from "../vue/connect-orb.js";
 import texts from "../vue/texts.js";
 
 //No se si es necesario
@@ -28,7 +29,7 @@ const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
-  mixins: [scrollmixin, raycastmixin, animationmixin, texts],
+  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, texts],
   data()
   {
     return {
@@ -240,15 +241,7 @@ sphere.position.z = 2
 // this.scene.add( sphere );
 
       //Create a sphere that cast shadows (but does not receive them)
-const boxGeometry = new THREE.SphereGeometry(1, 4,4 );
-const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
-this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
-this.rocketMesh.castShadow = true; //default is false
-this.rocketMesh.receiveShadow = true; //default
-this.rocketMesh.position.y = 4
-this.rocketMesh.position.x = 2
-this.rocketMesh.position.z = 5
-this.scene.add( this.rocketMesh );
+      this.addConnectOrb()
 
 //Create a plane that receives shadows (but does not cast them)
 const planeGeometry = new THREE.PlaneGeometry( 20, 20, 32, 32 );

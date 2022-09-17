@@ -14,7 +14,8 @@ methods: {
       console.log(this.INTERSECTED)
       if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
       {
-        alert("scroll down")
+        this.connectWalletOrb()
+        // alert("scroll down")
         console.log(intersects.length,intersects)
       }
     },

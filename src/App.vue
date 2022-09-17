@@ -11,12 +11,14 @@
         <div class="show-xs_md block py-8"></div>
     </div> -->
     <div>
+        <connect />
         <thrue @animate="animate" />
         <my-scene ref="scene" />
     </div>
 </template>
 <script>
     import thrue from "./pages/thrue.vue";
+    import connect from "./pages/connect-orb.vue";
     import MyScene from "./res/js/myScene.vue";
     // import homePage from "./pages/home-page.vue";
     
@@ -26,7 +28,7 @@
     export default {
         name: 'App',    
         components: {
-            // homePage,
+            connect,
             // homePage,
 
             // mainMenu,

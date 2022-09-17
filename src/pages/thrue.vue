@@ -14,7 +14,7 @@
         <h1 @click="start" v-if="!hasStarted"
             class="tx-center clickable opacity-hover-50 tx-xl "
         >
-            Start
+            Start ({{timelefttostart}})
         </h1>
 
         <div v-if="hasStarted">
@@ -116,6 +116,7 @@
         },
         data() {
             return {
+                timelefttostart: 3,
                 hasStarted: false,
                 selectedKey: null,
             };
@@ -136,6 +137,13 @@
             // console.log(url_string, url);
             // var c = url.searchParams.get("round");
             // console.log(c);
+            setTimeout(() => {
+                this.timelefttostart--
+                setTimeout(() => {
+                    this.timelefttostart--
+                    this.start()
+                },1000)
+            },1000)
         },
         methods: {
             start()
