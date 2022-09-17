@@ -18,10 +18,11 @@ methods: {
 
         if (t < -this.sceneBreakpoints.default[0]) {
           // EXCEPT SCENE 1
-          this.camera.position.z = this.sceneVariables.camera.pos[Z] + (-this.sceneBreakpoints.default[0] * 0.01);
-          this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + (-this.sceneBreakpoints.default[0] * 0.01);
+          this.camera.position.z = this.sceneVariables.camera.pos[Z] + -this.sceneBreakpoints.default[0] * 0.015;
+          this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + -this.sceneBreakpoints.default[0] * 0.015;
         } else {
           // ONLY SCENE 1
+          console.log(t)
           this.camera.position.z = this.sceneVariables.camera.pos[Z] + t * 0.015;
           this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + t * 0.015;
           // console.log(this.sceneVariables.camera.pos[Z],t,t * -0.01)
@@ -29,32 +30,32 @@ methods: {
   
 
   
-        if (t < -this.sceneBreakpoints.default[4]) {
-          // ONLY SCENE 4
-          this.camera.position.y = this.sceneVariables.camera.pos[1] + 1;
-        } else {
-          // EXCEPT SCENE 4
+        // if (t < -this.sceneBreakpoints.default[4]) {
+        //   // ONLY SCENE 4
+        //   this.camera.position.y = this.sceneVariables.camera.pos[1] + 1;
+        // } else {
+        //   // EXCEPT SCENE 4
   
-          if (t < -this.sceneBreakpoints.default[0]) {
-            // FROM SCENE 2
-            if (t > -this.sceneBreakpoints.default[2]) {
-              // TO SCENE 3
-              this.camera.position.y =
-                this.sceneVariables.camera.pos[1] -
-                (t + this.sceneBreakpoints.default[0]) * 0.0065;
-            } else {
-            // ONLY SCENE 2
-              this.camera.position.y =
-                this.sceneVariables.camera.pos[1] -
-                (-this.sceneBreakpoints.default[2] +
-                  this.sceneBreakpoints.default[0]) *
-                  0.0065;
-            }
-          } else {
-            // EXCEPT SCENE 2
-            this.camera.position.y = this.sceneVariables.camera.pos[1];
-          }
-        }
+        //   if (t < -this.sceneBreakpoints.default[0]) {
+        //     // FROM SCENE 2
+        //     if (t > -this.sceneBreakpoints.default[2]) {
+        //       // TO SCENE 3
+        //       this.camera.position.y =
+        //         this.sceneVariables.camera.pos[1] -
+        //         (t + this.sceneBreakpoints.default[0]) * 0.0065;
+        //     } else {
+        //     // ONLY SCENE 2
+        //       this.camera.position.y =
+        //         this.sceneVariables.camera.pos[1] -
+        //         (-this.sceneBreakpoints.default[2] +
+        //           this.sceneBreakpoints.default[0]) *
+        //           0.0065;
+        //     }
+        //   } else {
+        //     // EXCEPT SCENE 2
+        //     this.camera.position.y = this.sceneVariables.camera.pos[1];
+        //   }
+        // }
 
 
 

@@ -44,8 +44,8 @@ methods: {
 
       	if (this.accs_length)
       	{
-	        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.02)
-	        this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.02)
+	        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
+	        this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.07)
         }
 
 		this.animate_levelone()

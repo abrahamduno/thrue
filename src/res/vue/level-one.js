@@ -20,7 +20,7 @@ methods: {
             // this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.02)
         if (this.mylevelone)
         {
-              this.mylevelone.position.z = this.lerp(this.mylevelone.position.z,0,0.1)
+              this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
         }
       }
     },
@@ -75,7 +75,7 @@ methods: {
           //     });
           //   }
           // });
-          object.position.set(0, -2, 50);
+          object.position.set(0, -50, 0);
           // object.scale.set(15, 15, 15);
           // object.scale.set(3, 3, 3);
           this.mylevelone = object

@@ -18,8 +18,9 @@
         </h1>
 
         <div v-if="hasStarted ">
-            <theblock v-if="accs_length"  h="20" />
+            <!-- <theblock v-if="accs_length"  h="7" style="height:100vh"/> -->
             <lotto v-if="accs_length" />
+            <theblock v-if="accs_length"  h="20" />
             <!-- <aboutUs /> -->
             <div v-if="hasStarted && accs_length">
                 <theblock h="10" />
