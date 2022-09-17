@@ -37,7 +37,7 @@ methods: {
       this.signMesh.castShadow = true; //default is false
       this.signMesh.receiveShadow = true; //default
       this.signMesh.position.y = 4
-      this.signMesh.position.x = 2
+      this.signMesh.position.x = -8
       this.signMesh.position.z = 15
       this.scene.add( this.signMesh );
 

@@ -18,9 +18,9 @@
         </h1>
 
         <div v-if="hasStarted">
-            <theblock h="10" />
+            <theblock h="20" />
             <lotto v-if="accs_length" />
-            <aboutUs />
+            <!-- <aboutUs /> -->
             <theblock h="10" />
 
             <liftOff />
@@ -33,7 +33,7 @@
 
             <whereAreWe />
             
-            <h1>
+            <!-- <h1>
                 Test
             </h1>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -62,7 +62,7 @@
                 Harum modi consectetur animi hic dolore officiis ea nostrum
                 exercitationem perferendis minima, consequatur fuga praesentium
                 veritatis deserunt et suscipit incidunt nam error.
-            </p>
+            </p> -->
 
         </div>
 
@@ -119,7 +119,7 @@
         },
         data() {
             return {
-                timelefttostart: 3,
+                timelefttostart: 2,
                 hasStarted: false,
                 selectedKey: null,
             };
@@ -145,7 +145,7 @@
                 setTimeout(() => {
                     this.timelefttostart--
                     this.start()
-                },1000)
+                },500)
             },1000)
         },
         methods: {

@@ -95,12 +95,12 @@ export default {
       this.sceneBreakpoints = {
         default: [],
         mobile: [1900, 4500, 8500, 9000, 16500],
-        desktop: [2400, 3500, 7500, 11000, 14000],
+        desktop: [1500, 2500, 2900, 3100, 4400],
       }
       this.sceneVariables = {
         camera: {
-          pos: [0, 3, 9],
-          rot: [0, 0, 0],
+          pos: [0, 1, 9],
+          rot: [0.25, 0, 0],
           fov: 75,
           fovSettings: {
             mobile: 120,
