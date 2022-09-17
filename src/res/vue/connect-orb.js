@@ -25,9 +25,7 @@ methods: {
       this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
       this.rocketMesh.castShadow = true; //default is false
       this.rocketMesh.receiveShadow = true; //default
-      this.rocketMesh.position.x = -1
-      this.rocketMesh.position.y = 0
-      this.rocketMesh.position.z = 5
+      this.rocketMesh.position.set(-1,0,5)
       this.scene.add( this.rocketMesh );
 
       },

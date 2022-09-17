@@ -185,6 +185,12 @@ export default {
       this.camera.rotation.set(...this.sceneVariables.camera.rot);
 
 
+        this.light4 = new THREE.PointLight( 0xFFB442, 2, 8 );
+        // light4.castShadow= true
+        // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
+        this.light4.position.set(-1,-1.5,6)
+        this.scene.add( this.light4 );
+
         //Create a DirectionalLight and turn on shadows for the light
     let light = new THREE.DirectionalLight( 0xffffff, 0.2 );
     // const light = new THREE.DirectionalLight( 0xffffff, 1 );
