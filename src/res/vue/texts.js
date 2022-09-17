@@ -13,23 +13,23 @@ export default {
         "./res/style/fonts/Montserrat ExtraBold_Regular.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("SOMOS UN ", {
+            const geometry = new THREE.TextGeometry("Abraham ", {
               font: font,
               size: 1,
               height: 1,
             });
             const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-            textMesh1.position.set(-4, 1.5, 10);
+            textMesh1.position.set(-4, 1.5, 8);
             this.scene.add(textMesh1);
           }
           {
-            const geometry = new THREE.TextGeometry("UNIVERSO CREATIVO", {
+            const geometry = new THREE.TextGeometry("Duno", {
               font: font,
               size: 2,
               height: 1,
             });
             const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-            textMesh1.position.set(-16, -0.7, 9);
+            textMesh1.position.set(-2, -0.7, 9);
             this.scene.add(textMesh1);
           }
           {

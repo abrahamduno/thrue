@@ -14,7 +14,9 @@ import { OBJLoader } from "../loaders/OBJLoader.js";
 import { getInitialState } from "./get_initial_state.js";
 import { loadStar } from "./load_stars.js";
 import { newtorus, newring } from "./load_space_objects.js";
-import amixin from "../vue/mixin.js";
+import scrollmixin from "../vue/scroll_mixin.js";
+import raycastmixin from "../vue/raycast_mixin.js";
+import animationmixin from "../vue/animation_mixin.js";
 import texts from "../vue/texts.js";
 
 //No se si es necesario
@@ -26,7 +28,7 @@ const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
-  mixins: [amixin, texts],
+  mixins: [scrollmixin, raycastmixin, animationmixin, texts],
   data()
   {
     return {
@@ -64,16 +66,22 @@ export default {
     this.init()
 
     window.addEventListener("scroll", this.updateScrollPosition);
-
+    document.addEventListener( 'mousemove', this.onPointerMove );
+    document.addEventListener( 'click', this.onPointerClick );
   },
   beforeDestroy() {
     // remove listener again
     window.removeEventListener("scroll", this.updateScrollPosition);
+    document.removeEventListener("mousemove", this.onPointerMove);
+    document.removeEventListener("click", this.onPointerClick);
   },
   methods: {
     _animate() {
       // this.scrollPosition = window.scrollY;
       // console.log("qwe")
+      this.raycaster.setFromCamera( this.pointer, this.camera );
+      this.updateAnimations()
+      this.updateRaycaster()
       this.renderer.render(this.scene, this.camera);
       requestAnimationFrame(this._animate);
     },
@@ -90,8 +98,8 @@ export default {
       }
       this.sceneVariables = {
         camera: {
-          pos: [0, 0, 9],
-          rot: [0.5, 0, 0],
+          pos: [0, 3, 9],
+          rot: [0, 0, 0],
           fov: 75,
           fovSettings: {
             mobile: 120,
@@ -123,6 +131,9 @@ export default {
       this.loadSpaceObjects();
 
       this.setRenderer();
+      this.setRaycaster();
+        
+
       this._animate()
       // this.renderer.render(this.scene, this.camera);
       this.updateScrollPosition()
@@ -162,31 +173,140 @@ export default {
       this.camera = camera;
       this.camera.position.set(...this.sceneVariables.camera.pos);
       this.camera.rotation.set(...this.sceneVariables.camera.rot);
+
+
+        //Create a DirectionalLight and turn on shadows for the light
+    const light = new THREE.DirectionalLight( 0xffffff, 1 );
+    // const light = new THREE.DirectionalLight( 0xffffff, 1 );
+    light.position.set( 3,5,3 ); //default; light shining from top
+    light.castShadow = true; // default false
+    this.scene.add( light );
+
+    //Set up shadow properties for the light
+    light.shadow.mapSize.width = 512; // default
+    light.shadow.mapSize.height = 512; // default
+    light.shadow.camera.near = 0.5; // default
+    light.shadow.camera.far = 500; // default
+      // this.scene.add(new THREE.CameraHelper(light.shadow.camera)) 
+
+const amlight = new THREE.AmbientLight( 0x404040 ); // soft white light
+this.scene.add( amlight );
+
     },
+    // orbit controls
+    // controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+    //     controls.dampingFactor = 0.05;
+    //     controls.screenSpacePanning = true;
+    //     controls.minDistance = 100;
+    //     controls.maxDistance = 500;
+    //     controls.maxPolarAngle = Math.PI / 1.5;
+    //     controls.target.set( 0, 100, 0 );
     loadSkeletonObjects()
     {
 
     },
     loadWireframeObjects()
     {
+//       var planeGeometry = new THREE.PlaneGeometry(60,20); 
+// var planeMaterial = new THREE.MeshLambertMaterial({color: 
+//    0xffffff}); 
+// var plane = new THREE.Mesh(planeGeometry, planeMaterial); 
+// var cubeGeometry = new THREE.BoxGeometry(4,4,4); 
+// var cubeMaterial = new THREE.MeshLambertMaterial({color: 
+//    0xff0000}); 
+// var cube = new THREE.Mesh(cubeGeometry, cubeMaterial); 
+// var sphereGeometry = new THREE.SphereGeometry(2,8,8); 
+// var sphereMaterial = new THREE.MeshLambertMaterial({color: 
+//    0x7777ff}); 
+// var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial); 
+
+//       this.scene.add(plane);
+//       this.scene.add(cube);
+      // this.scene.add(sphere);
+
+      //Create a sphere that cast shadows (but does not receive them)
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32 );
+const sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff9000 } );
+const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+sphere.castShadow = true; //default is false
+sphere.receiveShadow = true; //default
+sphere.position.x = -2.4
+sphere.position.z = 2
+// this.scene.add( sphere );
+
+      //Create a sphere that cast shadows (but does not receive them)
+const boxGeometry = new THREE.BoxGeometry(1,1,1);
+const boxMaterial = new THREE.MeshStandardMaterial( { color: 0xff0000 } );
+this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
+this.rocketMesh.castShadow = true; //default is false
+this.rocketMesh.receiveShadow = false; //default
+this.rocketMesh.position.y = 4
+this.rocketMesh.position.z = 5
+this.scene.add( this.rocketMesh );
+
+//Create a plane that receives shadows (but does not cast them)
+const planeGeometry = new THREE.PlaneGeometry( 20, 20, 32, 32 );
+const planeMaterial = new THREE.MeshStandardMaterial( { color: 0x00ff00 } )
+const plane = new THREE.Mesh( planeGeometry, planeMaterial );
+plane.receiveShadow = true;
+// this.scene.add( plane );
+
+// return
+//       // this.rocketpivot = new THREE.Group();
+//       const rocketgeometry = new THREE.BoxGeometry(1,1,1);
+//       this.rocketMesh = new THREE.Mesh(
+//         rocketgeometry,
+//         new THREE.MeshStandardMaterial({ color: 0x777777 })
+//       );
+//       this.rocketMesh.castshadow = true
+//       this.rocketMesh.receiveshadow = true
+
+//       // rocketgeometry.castshadow = true
+//       // rocketgeometry.receiveshadow = true
+//       this.rocketMesh.position.set(0, 2, 4)
+//       this.rocketMesh.rotation.set(0.25, -0.4, 0)
+//       this.scene.add(this.rocketMesh);
+
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "ready land.obj",
         (object) => {
-          object.traverse(function (child) {
-            if (child.isMesh) {
-              child.material = new THREE.MeshBasicMaterial({
-                color: 0xffffff,
-                wireframe: true,
-                linewidth: 3,
-              });
+
+          object.traverse( function ( child ) {
+
+             if ( child instanceof THREE.Mesh ) {
+
+                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+                child.castShadow = true;
+                child.receiveShadow = true;
+
             }
-          });
-          object.position.set(0, -0.85, -35);
-          object.scale.set(15, 15, 15);
+
+         } );
+
+          object.castshadow = true
+          object.receiveShadow = true
+          // object.traverse(function (child) {
+          //   if (child.isMesh) {
+          //     child.castshadow = true
+          //     child.receiveshadow = true
+          //     child.material = new THREE.MeshStandardMaterial({
+          //       color: 0xffffff,
+          //       // wireframe: true,
+          //       // castshadow: 3,
+          //       // receiveShadow: 3,
+          //       // linewidth: 3,
+          //     });
+          //   }
+          // });
+          object.position.set(0, -2, 0);
+          // object.scale.set(15, 15, 15);
+          object.scale.set(3, 3, 3);
           this.scene.add(object);
         },
         this.onLoadProgress
       );
+
+      return
 
       new OBJLoader()
         // .setMaterials( materials )
@@ -232,6 +352,11 @@ export default {
         // canvas: canvasElement,
       });
 
+      // this.renderer.shadowMapEnabled = true;
+      // this.renderer.shadowMap.Enabled = true; 
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMapSoft = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     },
