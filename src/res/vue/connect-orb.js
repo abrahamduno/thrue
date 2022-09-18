@@ -17,7 +17,9 @@ methods: {
       // this.rocketMesh.visible = false
       // this.addSignOrb()
       if (!this.mylevelone)
-      { this.addLevelOne() }
+      {
+        this.addLevelOne()
+      }
     },
     addConnectOrb(  ) {
 
@@ -26,7 +28,7 @@ methods: {
       this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
       this.rocketMesh.castShadow = true; //default is false
       this.rocketMesh.receiveShadow = true; //default
-      this.rocketMesh.position.set(-1,0,5)
+      this.rocketMesh.position.set(-0.5,0,5)
       this.scene.add( this.rocketMesh );
 
       },

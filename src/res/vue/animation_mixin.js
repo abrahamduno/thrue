@@ -9,6 +9,7 @@ data () {
         computed: {
             pro_mode()             { return this.$store.getters.pro_mode },
             accs_length()           { return this.$store.getters.accs_length },
+            valuesBlock()             { return this.$store.getters.getBlock("values") },
         },
 methods: {
 	lerp(min, max, value) {
@@ -36,11 +37,11 @@ methods: {
 		// if (this.camera && (this.pointer.x < -0.75 || this.pointer.x > 0.75))
 		if (this.camera && this.pro_mode &&
 			/*(this.pointer.y < 0.5)*/ true && 
-			(this.pointer.x < -0.33 || this.pointer.x > 0.33)
+			(this.pointer.x < -0.15 || this.pointer.x > 0.15)
 			)
 		{
 			// this.sunlight.position.x = this.lerp(this.sunlight.position.x,this.pointer.x*15+15,0.07)
-			this.camera.rotation.y = this.lerp(this.camera.rotation.y,-this.pointer.x*1.1,0.07)
+			this.camera.rotation.y = this.lerp(this.camera.rotation.y,-this.pointer.x*1.3,0.07)
 			// this.camera.rotation.x = this.lerp(this.camera.rotation.y,-1-this.pointer.x,0.07)
 			// if (this.camera.rotation.y)
 
@@ -54,7 +55,7 @@ methods: {
 
 
 	        // this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,50,0.007)
-		this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,Math.sin(this.counter*0.03)*0.15+(this.accs_length ? 25 : 1),0.01)
+		this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,Math.sin(this.counter*0.03)*0.15+(this.accs_length ? 25 : 2),0.01)
 		this.rocketMesh.rotation.z = -Math.sin(this.counter*0.02)*0.35
 		this.rocketMesh.rotation.x = Math.sin(this.counter*0.05)*0.15
 		this.rocketMesh.rotation.y += 0.006+this.pointer.x*0.03
@@ -63,9 +64,14 @@ methods: {
       	{
 	        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
 	        this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.07)
+        	if (this.textabraham && this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
+        	{
+	        	this.textabraham.position.y = this.lerp(this.textabraham.position.y,-1.5,0.05)
+        	}
         }
 
 		this.animate_levelone()
+		this.animate_ticketer()
     },
 }
 

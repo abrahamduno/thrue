@@ -46,7 +46,7 @@
 
             <whereAreWe />
             <lotto ref="lotto" v-if="accs_length" />
-                <theblock h="2" />
+                <theblock h="1" />
             
             <!-- <h1>
                 Test

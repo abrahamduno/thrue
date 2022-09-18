@@ -10,29 +10,27 @@ export default {
   methods: {
     
     loadTexts() {
-    let bgintensity = this.dark_mode ? 0xB49B85 : 0x909090
+    let bgintensity = this.dark_mode ? 0x603923 : 0x603923
+    let textintensity = this.dark_mode ? 0xFFDEBA : 0xFFA859
       const textloader = new THREE.FontLoader();
-      const textmaterialsr = [
-        new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // front
+      const qqq = [
+        new THREE.MeshLambertMaterial({ color: textintensity }), // front
         new THREE.MeshStandardMaterial({ color: bgintensity }), // side
-      ];
-      const textmaterials = [
-        new THREE.MeshStandardMaterial({ color: bgintensity }), // front
-        new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // side
       ];
       textloader.load(
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("Metamask", {
+            const geometry = new THREE.TextGeometry("Buy Here", {
               font: font,
-              size: 1,
-              height: 1,
+              size: 0.35,
+              height: 0.1,
             });
-            this.textabraham = new THREE.Mesh(geometry, textmaterialsr);
-            this.textabraham.rotation.set(0, -1.6, 0);
-            this.textabraham.position.set(6, -2, 5);
+            this.textabraham = new THREE.Mesh(geometry, qqq);
+            this.textabraham.rotation.set(0, -0.8, 0);
+            this.textabraham.position.set(5, 50, 4);
             this.textabraham.castShadow = true
+            this.textabraham.visible = true
             this.textabraham.receiveShadow = true
             this.scene.add(this.textabraham);
           }

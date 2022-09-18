@@ -13,7 +13,8 @@ methods: {
     {
         const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
         if ( intersects.length > 0 ) {
-          // console.log(intersects[ 0 ])
+          // console.log(intersects[ 0 ].object, this.ticketer)
+
           // if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto) { console.log(intersects[ 0 ].object) }
           // if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto) { console.log(this.$parent.$refs.thrue.$refs.lotto.textsignup) }
           // if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto) { console.log(this.$parent.$refs.thrue.$refs.lotto.textsignup.children) }
@@ -39,6 +40,12 @@ methods: {
       {
         this.connectWalletOrb()
         // alert("scroll down")
+        // console.log(intersects.length,intersects)
+      }
+      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
+      {
+        // alert("scroll down")
+        this.clickTicketer()
         // console.log(intersects.length,intersects)
       }
     },

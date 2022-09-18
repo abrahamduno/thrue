@@ -55,7 +55,7 @@
         </template>
     </div>
 
-    <div id="award" style="position: absolute; top: 0; left: 0"></div>
+    <div id="award" style=""></div>
     <div class="py-8" > </div>
 
     
@@ -282,6 +282,8 @@
                     this.loadTextSignup()
                 } else {
                     this.loadTextWelcome()
+                    this.$parent.$parent.$refs.scene.addTicketer();
+                    // this.loadTextWelcome()
                 }
             },
             async update_currentRound(msg)

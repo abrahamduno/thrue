@@ -21,6 +21,7 @@ import raycastmixin from "./raycast_mixin.js";
 import animationmixin from "./animation_mixin.js";
 import connectOrb from "./connect-orb.js";
 import levelOne from "./level-one.js";
+import ticketer from "./ticketer.js";
 import texts from "./texts.js";
 // import textPrize from "./text-prize.js";
 
@@ -33,7 +34,7 @@ const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
-  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, levelOne, texts],
+  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, levelOne, texts, ticketer],
   data()
   {
     return {
@@ -209,7 +210,7 @@ export default {
 
     this.sunlight = new THREE.SpotLight( suncolor );
     // this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
-    this.sunlight.position.set( 10,6,6 ); //default; light shining from top
+    this.sunlight.position.set( 10,6,10 ); //default; light shining from top
     this.sunlight.castShadow = true; // default false
     // this.sunlight.shadow.camera.near = 0.5; // default
     // this.sunlight.shadow.camera.far = 500; // default

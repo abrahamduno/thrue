@@ -50,11 +50,11 @@
 
                 <tx-card v-show="pro_mode" class=" flex-column  mb-5" ref="lastTicketNumber" :props="forms.amountOfVotes" />
             </div>
+        </div>
         <a  href="#store" class="n-flat pos-relative  n-tx px-4 py-2 border-r-15 flex-column tx-sm nodeco"  style="z-index: 2000">
             <i class="fa fa-store"></i>
             <small class="pt-1 tx-xs nodeco">{{LANG.buyTicket}}</small>
         </a>
-        </div>
 
         <div class="w-100 flex-between tx-lg   " >
             <div></div>
