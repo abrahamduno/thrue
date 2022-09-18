@@ -282,7 +282,8 @@
                 this.values.deadline = msg.data.deadline
 
                 // console.log(this.$parent.$parent.$refs.scene)
-              this.loadTextPrize(this.values.prize_pool)
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values})
+                this.loadTextPrize()
 
             },
             async update_currentTicket(msg)

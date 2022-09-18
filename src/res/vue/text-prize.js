@@ -6,10 +6,11 @@ export default {
             accs_length()           { return this.$store.getters.accs_length },
             first_acc()             { return this.$store.getters.first_acc },
             dark_mode()             { return this.$store.getters.dark_mode },
+            valuesBlock()             { return this.$store.getters.getBlock("values") },
         },
   methods: {
     
-    loadTextPrize(prize) {
+    loadTextPrize() {
     let bgintensity = this.dark_mode ? 0xB49B85 : 0x909090
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [
@@ -24,18 +25,19 @@ export default {
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("$"+prize*0.8, {
+            const geometry = new THREE.TextGeometry("$"+this.valuesBlock.prize_pool*0.8, {
               font: font,
               size: 3,
               height: 1,
             });
             this.textprize = new THREE.Mesh(geometry, textmaterialsr);
-            this.textprize.rotation.set(0, 1.6, 0);
-            this.textprize.position.set(-6, -2, -5);
+            this.textprize.rotation.set(0, 0.8, 0);
+            this.textprize.position.set(-8, -2, -7);
             this.textprize.castShadow = true
             this.textprize.receiveShadow = true
             // this.$parent.$parent.$refs.scene.add(this.textprize);
-            console.log(this.$parent.$parent.$refs.scene)
+            // console.log(this.$parent.$parent.$refs.scene)
+            console.log("valuesBlock", this.valuesBlock)
             this.$parent.$parent.$refs.scene.addToScene(this.textprize);
           }
           // {

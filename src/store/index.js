@@ -25,6 +25,7 @@ const store = createStore({
       isMetaMaskInstalled: isMetaMaskInstalled(),
 
       accounts: {},
+      block: {},
     };
   },
   mutations: {
@@ -42,6 +43,12 @@ const store = createStore({
       state.englishMode = mode
     },
 
+    addBlockchainObject(state, blockData) {
+      const newBlock = {
+        [blockData.key]: blockData, 
+      }
+      state.block = {...state.block, ...newBlock}
+    },
     addAccount(state, accountData) {
       const newAccounts = {
         [accountData]: {
@@ -65,6 +72,9 @@ const store = createStore({
     },
     setEnglishMode(context, mode) {
       context.commit('setEnglishMode', mode);
+    },
+    setNewBlock(context, blockData) {
+      context.commit('addBlockchainObject', blockData);
     },
 
     connectWallet: async (context) => {
@@ -129,6 +139,11 @@ const store = createStore({
     account(state) {
       return (address) => {
         return state.accounts[address];
+      };
+    },
+    getBlock(state) {
+      return (key) => {
+        return state.block[key];
       };
     },
 

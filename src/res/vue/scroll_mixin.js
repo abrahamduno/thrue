@@ -22,7 +22,7 @@ methods: {
           // this.sunlight.position.z = this.sceneVariables.camera.pos[Z]+36 + -this.sceneBreakpoints.default[0] * 0.015;
         } else {
           // ONLY SCENE 1
-          console.log(t)
+          // console.log(t)
           this.camera.position.z = this.sceneVariables.camera.pos[Z] + t * 0.015;
           this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + t * 0.015;
           // console.log(this.sceneVariables.camera.pos[Z],t,t * -0.01)
