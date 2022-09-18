@@ -122,6 +122,8 @@
                         
 
 <script>
+    import textPrize from "../res/vue/text-prize.js";
+
     import {
       Multicall,
     } from 'ethereum-multicall';
@@ -140,6 +142,7 @@
 
     export default {
         name: 'lotto',     
+        mixins: [textPrize],
         components: {
             txCard,
 
@@ -277,6 +280,10 @@
                 this.values.prize_pool = msg.data.prize_pool
                 this.values.val_randomResultBlock = msg.data.val_randomResultBlock
                 this.values.deadline = msg.data.deadline
+
+                // console.log(this.$parent.$parent.$refs.scene)
+              this.loadTextPrize(this.values.prize_pool)
+
             },
             async update_currentTicket(msg)
             {

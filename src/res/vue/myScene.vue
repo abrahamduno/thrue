@@ -22,6 +22,7 @@ import animationmixin from "./animation_mixin.js";
 import connectOrb from "./connect-orb.js";
 import levelOne from "./level-one.js";
 import texts from "./texts.js";
+// import textPrize from "./text-prize.js";
 
 //No se si es necesario
 import { MTLLoader } from "../../res/loaders/MTLLoader.js";
@@ -86,6 +87,10 @@ export default {
     document.removeEventListener("click", this.onPointerClick);
   },
   methods: {
+      addToScene(element)
+      {
+          this.scene.add(element)
+      },
     _animate() {
       // this.scrollPosition = window.scrollY;
       // console.log("qwe")
