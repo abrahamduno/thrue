@@ -198,10 +198,11 @@ export default {
     // light.castShadow = true; // default false
 
     // let ambientintensity = 0x404040
+    let suncolor = this.dark_mode ? 0xFFA859 : 0xFFCB91
     let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
     let sunintensity = this.dark_mode ? 1.6 : 2
 
-    this.sunlight = new THREE.SpotLight( 0xFFA859 );
+    this.sunlight = new THREE.SpotLight( suncolor );
     // this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
     this.sunlight.position.set( 10,6,6 ); //default; light shining from top
     this.sunlight.castShadow = true; // default false
