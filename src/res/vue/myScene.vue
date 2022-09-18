@@ -185,7 +185,7 @@ export default {
       this.camera.rotation.set(...this.sceneVariables.camera.rot);
 
 
-        this.light4 = new THREE.PointLight( 0xFFB442, 2, 8 );
+        this.light4 = new THREE.PointLight( 0xFFB442, 0.22, 8 );
         // light4.castShadow= true
         // light4.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xffaa00 } ) ) );
         this.light4.position.set(-1,-1.5,6)

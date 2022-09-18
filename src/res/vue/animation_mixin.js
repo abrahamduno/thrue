@@ -36,6 +36,8 @@ methods: {
 		}
 		// this.sunlight.position.x = Math.cos(this.counter*0.001)*3
 		// this.sunlight.position.z = Math.sin(this.counter*0.001)*15
+		this.sunlight.position.x = this.lerp(this.sunlight.position.x,this.pointer.x*15+15,0.07)
+
 
 		this.rocketMesh.position.y = Math.sin(this.counter*0.03)*0.15+1
 		this.rocketMesh.rotation.z = -Math.sin(this.counter*0.02)*0.35
