@@ -46,8 +46,8 @@
 
 <script>
     import lotto from "./lotto.vue";
+    import theblock from "../components/block.vue";
     
-    import theblock from "../res/vue/block.vue";
     import ourTeam from "../res/vue/our-team.vue";
     import whereAreWe from "../res/vue/where-are-we.vue";
 
@@ -94,10 +94,6 @@
             {
                 this.$emit('animate')
                 this.hasStarted = true
-            },
-            setKey(newKey)
-            {
-                this.selectedKey = newKey
             },
         },
     }
