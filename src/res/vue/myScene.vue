@@ -7,8 +7,6 @@
 import * as THREE from "three";
 import { OBJLoader } from "../loaders/OBJLoader.js";
 
-// import { BloomEffect, EffectComposer, EffectPass, RenderPass } from "postprocessing";
-// three\examples\jsm\postprocessing\UnrealBloomPass.js
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
@@ -280,6 +278,7 @@ export default {
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       // this.renderer.toneMapping = THREE.ReinhardToneMapping;
+      
       if (this.current_sub_page != "bloom") return
         this.renderer.setClearColor(0xff0000, 0);
       let params = {}
@@ -299,7 +298,6 @@ export default {
           bloomRadius: 0
         };
       }
-      
 
       let bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
       bloomPass.threshold = params.bloomThreshold;
@@ -310,31 +308,6 @@ export default {
       this.composer = new EffectComposer( this.renderer );
       this.composer.addPass( renderScene );
       this.composer.addPass( bloomPass );
-
-
-
-      return
-
-
-      // const bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-      // bloomPass.threshold = params.bloomThreshold;
-      // bloomPass.strength = params.bloomStrength;
-      // bloomPass.radius = params.bloomRadius;
-
-      this.composer.addPass( renderScene );
-      this.composer.addPass( bloomPass );
-      this.composer.setSize(window.innerWidth, window.innerHeight);
-
-
-      // const composer = new EffectComposer(this.renderer)
-      // effectPass.renderToScreen = true;
-
-      // composer.addPass(effectPass);
-      // composer.addPass(new RenderPass(this.scene, this.camera));
-      // effectPass.renderToScreen = true
-
-      // in loop
-      // composer.render();
     },
   },
 };
