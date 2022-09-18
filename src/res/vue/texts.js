@@ -38,46 +38,6 @@ export default {
           }
         }
       );
-      textloader.load(
-        "./res/style/fonts/TT Norms Pro Medium_Regular.json",
-        (font) => {
-          {
-            const geometry = new THREE.TextGeometry("signup", {
-              font: font,
-              size: 2,
-              height: 1,
-            });
-            this.textsignup = new THREE.Mesh(geometry, textmaterialsr);
-            this.textsignup.rotation.set(0, 1.6, 0);
-            this.textsignup.position.set(-5, -2, -24);
-            this.textsignup.castShadow = true
-            this.textsignup.receiveShadow = true
-            this.scene.add(this.textsignup);
-          }
-          // {
-          //   const geometry = new THREE.TextGeometry("¿Qué hacemos por ti?", {
-          //     font: font,
-          //     size: 12,
-          //     height: 1,
-          //   });
-          //   const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-          //   textMesh1.rotation.x = 0.6;
-          //   textMesh1.position.set(180, 80, 30);
-          //   this.scene.add(textMesh1);
-          // }
-          // {
-          //   const geometry = new THREE.TextGeometry("Archenautas", {
-          //     font: font,
-          //     size: 22,
-          //     height: 5,
-          //   });
-          //   const textMesh1 = new THREE.Mesh(geometry, textmaterials);
-          //   textMesh1.rotation.x = 0.5;
-          //   textMesh1.position.set(1200, 67, 55);
-          //   this.scene.add(textMesh1);
-          // }
-        }
-      );
     }
     
   }

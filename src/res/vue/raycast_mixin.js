@@ -12,9 +12,11 @@ methods: {
     onPointerClick(e)
     {
       console.log(this.INTERSECTED)
+      if (this.$parent.$refs.thrue.$refs.lotto)
+        { console.log("this.$parent.$refs.thrue.$refs.lotto.textsignup", this.$parent.$refs.thrue.$refs.lotto.textsignup) }
       if(this.INTERSECTED && this.$parent.$refs.thrue.$refs.lotto && this.INTERSECTED == this.$parent.$refs.thrue.$refs.lotto.textsignup)
       {
-        // alert()
+        alert()
         this.$parent.$refs.thrue.$refs.lotto.execute_addFullTargetAllowance();
         // this.l
       }

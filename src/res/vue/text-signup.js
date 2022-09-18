@@ -28,19 +28,48 @@ export default {
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("siGnup", {
+            const geometry = new THREE.TextGeometry("signup", {
               font: font,
-              size: 2,
-              height: 1,
+              size: 1,
+              height: 0.1,
             });
-            this.textsignup = new THREE.Mesh(geometry, textmaterialsr);
-            // this.textsignup.rotation.set(0, 0.8, 0);
-            this.textsignup.position.set(-4, -2, -3);
-            this.textsignup.castShadow = true
-            this.textsignup.receiveShadow = true
+
+
+
+            this.textsignup = new THREE.Group();
+            console.log("1")
+            let textmesh = new THREE.Mesh(geometry, textmaterialsr)
+            console.log("2")
+            var cubeGeometry = new THREE.BoxGeometry(5,3,0.2) 
+            var cubeMaterial = new THREE.MeshLambertMaterial({color: bgintensity ,wireframe:false})
+            let boxmesh = new THREE.Mesh(cubeGeometry, cubeMaterial) 
+
+
+
+            boxmesh.position.set(0, 0.33, -3.05)
+
+            // textmesh.rotation.set(0, 0.8, 0);
+            textmesh.position.set(-2, 0, -3);
+            textmesh.castShadow = true
+            textmesh.receiveShadow = true
+
+            this.textsignup.add(textmesh)
+            this.textsignup.add(boxmesh)
+
+
+
+
+            // this.textsignup = new THREE.Mesh(geometry, textmaterialsr);
+            // this.textsignup.position.set(-2, 0, -3);
+            // this.textsignup.castShadow = true
+            // this.textsignup.receiveShadow = true
+
+
             // this.$parent.$parent.$refs.scene.add(this.textsignup);
             // console.log(this.$parent.$parent.$refs.scene)
             console.log("valuesBlock", this.valuesBlock)
+
+
             this.$parent.$parent.$refs.scene.addToScene(this.textsignup);
           }
           // {
