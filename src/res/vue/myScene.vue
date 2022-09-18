@@ -215,6 +215,8 @@ export default {
     // this.sunlight.shadow.camera.near = 0.5; // default
     // this.sunlight.shadow.camera.far = 500; // default
     // this.scene.add( light );
+    this.sunlight.shadow.mapSize.width = 2048; // default
+    this.sunlight.shadow.mapSize.height = 2048; // default
     this.scene.add( this.sunlight );
 
     //Set up shadow properties for the light

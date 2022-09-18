@@ -27,6 +27,13 @@
                         l<i class="tx-xs fas fa-circle-notch spin-nback"></i>ading...
                     </h1>
                 </div>
+                <div v-if="valuesBlock.buyTicket">
+                    <h1
+                        class="tx-center clickable opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
+                    >
+                        l<i class="tx-xs fas fa-circle-notch spin-nback"></i>ading...
+                    </h1>
+                </div>
             </div>
             <theblock h="1" v-if="accs_length" class="show-xs_sm"/>
             <theblock v-if="accs_length"  h="20" />
@@ -156,13 +163,13 @@
             // console.log(url_string, url);
             // var c = url.searchParams.get("round");
             // console.log(c);
-            setTimeout(() => {
+            // setTimeout(() => {
                 this.timelefttostart--
                 setTimeout(() => {
                     this.timelefttostart--
                     this.start()
                 },500)
-            },1000)
+            // },1000)
         },
         methods: {
             start()

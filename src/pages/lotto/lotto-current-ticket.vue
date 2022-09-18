@@ -259,6 +259,7 @@
             {
                 if (this.loadings.buyTicket) return
                 this.loadings.buyTicket = true
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
 
                 try {
                     console.log("this.forms.form_buyTicketAmount, this.forms.form_buyTicketRef")

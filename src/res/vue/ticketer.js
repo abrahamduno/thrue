@@ -36,9 +36,15 @@ methods: {
     // },
     clickTicketer(  ) {
       // alert()
-      window.scrollTo(0,document.body.scrollHeight*0.9);
-      // if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textsignup) 
+      let input = prompt("Amount",1)
+
+      // window.scrollTo(0,document.body.scrollHeight*0.9);
+      if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && input) 
       {
+        this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
+        
+        // currentTicket
+        this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.execute_buyTicket()
 
       }
     },

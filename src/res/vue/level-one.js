@@ -33,17 +33,6 @@ methods: {
     // },
     addLevelOne(  ) {
 
-      // const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
-      // const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
-      // this.levelOne = new THREE.Mesh( boxGeometry, boxMaterial );
-      // this.levelOne.castShadow = true; //default is false
-      // this.levelOne.receiveShadow = true; //default
-      // this.levelOne.position.x = -4
-      // this.levelOne.position.y = 0
-      // this.levelOne.position.z = 5
-      // this.scene.add( this.levelOne );
-
-
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelone.obj",
         (object) => {
@@ -79,6 +68,38 @@ methods: {
           // object.scale.set(15, 15, 15);
           // object.scale.set(3, 3, 3);
           this.mylevelone = object
+
+          {
+            const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+            const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
+            let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
+            boxx.castShadow = true; //default is false
+            boxx.receiveShadow = true; //default
+            boxx.position.set(0,0,-20)
+            this.mylevelone.add( boxx );
+          }
+
+          {
+            const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+            const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
+            let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
+            boxx.castShadow = true; //default is false
+            boxx.receiveShadow = true; //default
+            boxx.position.set(4,0,-20)
+            this.mylevelone.add( boxx );
+          }
+
+          {
+            const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+            const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
+            let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
+            boxx.castShadow = true; //default is false
+            boxx.receiveShadow = true; //default
+            boxx.position.set(-4,0,-20)
+            this.mylevelone.add( boxx );
+          }
+
+
           this.scene.add(this.mylevelone);
         },
         this.onLoadProgress
