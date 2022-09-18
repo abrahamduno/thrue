@@ -124,6 +124,7 @@
 <script>
     import loadTextPrize from "../res/vue/text-prize.js";
     import loadTextSignup from "../res/vue/text-signup.js";
+    import loadTextWelcome from "../res/vue/text-welcome.js";
 
     import {
       Multicall,
@@ -143,7 +144,7 @@
 
     export default {
         name: 'lotto',     
-        mixins: [loadTextPrize, loadTextSignup],
+        mixins: [loadTextPrize, loadTextSignup, loadTextWelcome],
         components: {
             txCard,
 
@@ -161,6 +162,7 @@
 
                 loading: false,
                 values: {
+                    loadings: null,
                     dai_balance_of: null,
                     dai_dao_allowance: null,
                     current_round: null,
@@ -274,10 +276,12 @@
             {
                 this.values.dai_balance_of = msg.data.dai_balance_of
                 this.values.dai_dao_allowance = msg.data.dai_dao_allowance
-                this.$store.dispatch("setNewBlock", {key:"values",...this.values})
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
                 if (this.values.dai_dao_allowance == 0)
                 {
                     this.loadTextSignup()
+                } else {
+                    this.loadTextWelcome()
                 }
             },
             async update_currentRound(msg)
@@ -288,7 +292,7 @@
                 this.values.deadline = msg.data.deadline
 
                 // console.log(this.$parent.$parent.$refs.scene)
-                this.$store.dispatch("setNewBlock", {key:"values",...this.values})
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
                 this.loadTextPrize()
 
             },
@@ -307,6 +311,7 @@
             {
                 if (this.loadings.signup) return
                 this.loadings.signup = true
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
 
                 try {
                     let tx = await this.$refs.addFullTargetAllowance.execute()
@@ -317,6 +322,7 @@
                 }
 
                 this.loadings.signup = false
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
             },
 
             async makeMultiCall()

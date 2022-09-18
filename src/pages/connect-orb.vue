@@ -57,8 +57,10 @@
         methods: {
             async connectWallet() {
                 this.loading = true
+                // this.$store.dispatch("setNewBlock", {key:"values",...newnew})
                 await this.$store.dispatch("connectWallet")
                 this.loading = false
+                // let newnew = {signup:true}
             },
             start()
             {

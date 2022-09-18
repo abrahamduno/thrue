@@ -131,14 +131,15 @@
         },
         created() {
             let proMode = JSON.parse(localStorage.getItem("proMode"))
-            console.log(proMode)
+            // console.log(proMode)
             let darkMode = JSON.parse(localStorage.getItem("darkMode"))
-            console.log(darkMode)
+            // console.log(darkMode)
             let englishMode = JSON.parse(localStorage.getItem("englishMode"))
-            console.log(englishMode)
+            // console.log(englishMode)
             if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
             if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
             if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
+            console.table({englishMode,proMode,darkMode})
         },
         methods: {
             toggleMenu() {

@@ -216,7 +216,7 @@
             await this.trigger_currentRoundAndLastTicket()
 
             this.$nextTick(() => {
-                console.log("update_currentRound")
+                // console.log("update_currentRound")
                 this.$emit("update_currentRound", { data: {
                     current_round: this.values.current_round,
                     prize_pool: this.values.prize_pool,
@@ -238,7 +238,7 @@
                     this.$emit("update_loading", {key: "currentRoundAndLastTicket", value: true, })
 
                     await this.$refs.currentRound.execute()
-                    console.log("this.values.current_round",this.$refs.currentRound._parsedResult)
+                    // console.log("this.values.current_round",this.$refs.currentRound._parsedResult)
                     this.values.current_round = this.$refs.currentRound._parsedResult
 
                     if (this.values.current_round == 0) 

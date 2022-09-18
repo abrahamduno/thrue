@@ -19,6 +19,15 @@
 
         <div v-if="hasStarted ">
             <!-- <theblock v-if="accs_length"  h="7" style="height:100vh"/> -->
+            <div v-if="valuesBlock">
+                <div v-if="valuesBlock.signup">
+                    <h1
+                        class="tx-center clickable opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
+                    >
+                        l<i class="tx-xs fas fa-circle-notch spin-nback"></i>ading...
+                    </h1>
+                </div>
+            </div>
             <theblock h="1" v-if="accs_length" class="show-xs_sm"/>
             <theblock v-if="accs_length"  h="20" />
             <!-- <aboutUs /> -->
@@ -138,6 +147,7 @@
             pro_mode()              { return this.$store.getters.pro_mode },
             current_sub_page()      { return this.$store.getters.current_sub_page },
 
+            valuesBlock()             { return this.$store.getters.getBlock("values") },
         },
         async mounted()
         {

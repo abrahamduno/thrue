@@ -113,7 +113,7 @@ export default {
       }
       this.sceneVariables = {
         camera: {
-          pos: [0, -1, 9],
+          pos: [0, 0, 9],
           rot: [0, 0, 0],
           fov: 75,
           fovSettings: {
@@ -170,7 +170,7 @@ export default {
         document.documentElement.scrollHeight,
         document.documentElement.offsetHeight
       );
-      console.log("full height",this.DOM.height)
+      // console.log("full height",this.DOM.height)
     },
     setScene()
     {

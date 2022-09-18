@@ -319,7 +319,7 @@
                         // this.forms.form_getVoteScratchedNumberMulticall["0"].value = (parseInt(this.values.current_round) - 1)+""
                         resolve(true)
                     } catch (error) {
-                        console.log("no vote found")
+                        // console.log("no vote found")
                         this.values.accountVoteIndex = 0
                     }
 

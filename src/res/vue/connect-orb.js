@@ -14,9 +14,10 @@ methods: {
     {
       // this.loading = true
       await this.$store.dispatch("connectWallet")
-      this.rocketMesh.visible = false
+      // this.rocketMesh.visible = false
       // this.addSignOrb()
-      this.addLevelOne()
+      if (!this.mylevelone)
+      { this.addLevelOne() }
     },
     addConnectOrb(  ) {
 

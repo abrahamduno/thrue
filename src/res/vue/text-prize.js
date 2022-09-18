@@ -31,13 +31,13 @@ export default {
               height: 1,
             });
             this.textprize = new THREE.Mesh(geometry, textmaterialsr);
-            this.textprize.rotation.set(0, 0.8, 0);
-            this.textprize.position.set(-8, -2, -7);
+            this.textprize.rotation.set(0, -0.8, 0);
+            this.textprize.position.set(5, -2, -9);
             this.textprize.castShadow = true
             this.textprize.receiveShadow = true
             // this.$parent.$parent.$refs.scene.add(this.textprize);
             // console.log(this.$parent.$parent.$refs.scene)
-            console.log("valuesBlock", this.valuesBlock)
+            // console.log("valuesBlock", this.valuesBlock)
             this.$parent.$parent.$refs.scene.addToScene(this.textprize);
           }
           // {

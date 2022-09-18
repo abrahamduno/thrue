@@ -10,10 +10,10 @@ export default {
         },
   methods: {
     
-    clickTextSignup() {
-      alert()
-    },
-    loadTextSignup() {
+    // clickTextSignup() {
+    //   alert()
+    // },
+    loadTextWelcome() {
     let bgintensity = this.dark_mode ? 0x603923 : 0x603923
     let textintensity = this.dark_mode ? 0xE7A356 : 0xFFA859
       const textloader = new THREE.FontLoader();
@@ -25,19 +25,19 @@ export default {
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("Sign Up", {
+            const geometry = new THREE.TextGeometry("hello!", {
               font: font,
               size: 0.9,
-              height: 0.03,
+              height: 0.15,
             });
 
 
 
-            // this.textsignup = new THREE.Group();
+            // this.textwelcome = new THREE.Group();
             // console.log("1")
             let textmesh = new THREE.Mesh(geometry, textmaterialsr)
             // console.log("2")
-            var cubeGeometry = new THREE.BoxGeometry(5.2,2.8,0.2) 
+            var cubeGeometry = new THREE.BoxGeometry(3.6,1.8,0.2) 
             var cubeGeometry2 = new THREE.BoxGeometry(0.1,4,0.1) 
             var cubeMaterial = new THREE.MeshStandardMaterial({color: 0xFFDEBA ,wireframe:false})
             let boxmesh = new THREE.Mesh(cubeGeometry, cubeMaterial) 
@@ -48,7 +48,7 @@ export default {
 
 
             boxmesh2.position.set(-0.01,-1,-0.05)
-            boxmesh.position.set(2, 0.3, -0.05)
+            boxmesh.position.set(1.6, 0.35, -0.05)
             // boxmesh.position.set(0, 0.33, -3.05)
 
             // textmesh.rotation.set(0, 0.8, 0);
@@ -56,26 +56,26 @@ export default {
             textmesh.castShadow = true
             textmesh.receiveShadow = true
 
-            this.textsignup = textmesh
-            // this.textsignup.add(textmesh)
-            this.textsignup.add(boxmesh)
-            this.textsignup.add(boxmesh2)
+            this.textwelcome = textmesh
+            // this.textwelcome.add(textmesh)
+            this.textwelcome.add(boxmesh2)
+            this.textwelcome.add(boxmesh)
 
 
 
 
-            // this.textsignup = new THREE.Mesh(geometry, textmaterialsr);
-            // this.textsignup.position.set(-2, 0, -3);
-            // this.textsignup.castShadow = true
-            // this.textsignup.receiveShadow = true
+            // this.textwelcome = new THREE.Mesh(geometry, textmaterialsr);
+            // this.textwelcome.position.set(-2, 0, -3);
+            // this.textwelcome.castShadow = true
+            // this.textwelcome.receiveShadow = true
 
 
-            // this.$parent.$parent.$refs.scene.add(this.textsignup);
+            // this.$parent.$parent.$refs.scene.add(this.textwelcome);
             // console.log(this.$parent.$parent.$refs.scene)
             // console.log("valuesBlock", this.valuesBlock)
 
 
-            this.$parent.$parent.$refs.scene.addToScene(this.textsignup);
+            this.$parent.$parent.$refs.scene.addToScene(this.textwelcome);
           }
           // {
           //   const geometry = new THREE.TextGeometry("DUNO", {

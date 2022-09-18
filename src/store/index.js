@@ -12,7 +12,7 @@ const store = createStore({
     var urlparams = (new URL(url_string)).searchParams;
     // console.log("***",url_string, url);
     var thepage = urlparams.get("page");
-    console.log("page",thepage);
+    // console.log("page",thepage);
     return {
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
