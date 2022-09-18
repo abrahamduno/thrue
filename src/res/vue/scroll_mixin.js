@@ -24,7 +24,7 @@ methods: {
           // ONLY SCENE 1
           // console.log(t)
           this.camera.position.z = this.sceneVariables.camera.pos[Z] + t * 0.015;
-          this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + t * 0.015;
+          // this.light4.position.z = this.sceneVariables.camera.pos[Z]-1 + t * 0.015;
           // console.log(this.sceneVariables.camera.pos[Z],t,t * -0.01)
         }
 

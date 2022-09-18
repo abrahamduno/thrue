@@ -33,7 +33,7 @@ methods: {
 			atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5,0.07)
 		}
 		this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x*3.1,0.07)
-		this.light4.position.x = this.lerp(this.light4.position.x,this.pointer.x*3.1,0.01)
+		// this.light4.position.x = this.lerp(this.light4.position.x,this.pointer.x*3.1,0.01)
 		// if (this.camera && (this.pointer.x < -0.75 || this.pointer.x > 0.75))
 		if (this.camera && this.pro_mode &&
 			/*(this.pointer.y < 0.5)*/ true && 
