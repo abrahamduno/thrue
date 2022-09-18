@@ -14,7 +14,7 @@
         <main-menu  style="z-index: 99999" />
         <my-scene ref="scene" />
         <connect />
-        <thrue @animate="animate" />
+        <thrue ref="thrue" @animate="animate" />
     </div>
 </template>
 <script>

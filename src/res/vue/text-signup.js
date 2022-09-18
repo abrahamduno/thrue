@@ -6,10 +6,14 @@ export default {
             accs_length()           { return this.$store.getters.accs_length },
             first_acc()             { return this.$store.getters.first_acc },
             dark_mode()             { return this.$store.getters.dark_mode },
+            valuesBlock()             { return this.$store.getters.getBlock("values") },
         },
   methods: {
     
-    loadTexts() {
+    clickTextSignup() {
+      alert()
+    },
+    loadTextSignup() {
     let bgintensity = this.dark_mode ? 0xB49B85 : 0x909090
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [
@@ -24,36 +28,34 @@ export default {
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("Metamask", {
-              font: font,
-              size: 1,
-              height: 1,
-            });
-            this.textabraham = new THREE.Mesh(geometry, textmaterialsr);
-            this.textabraham.rotation.set(0, -1.6, 0);
-            this.textabraham.position.set(6, -2, 5);
-            this.textabraham.castShadow = true
-            this.textabraham.receiveShadow = true
-            this.scene.add(this.textabraham);
-          }
-        }
-      );
-      textloader.load(
-        "./res/style/fonts/TT Norms Pro Medium_Regular.json",
-        (font) => {
-          {
-            const geometry = new THREE.TextGeometry("signup", {
+            const geometry = new THREE.TextGeometry("siGnup", {
               font: font,
               size: 2,
               height: 1,
             });
             this.textsignup = new THREE.Mesh(geometry, textmaterialsr);
-            this.textsignup.rotation.set(0, 1.6, 0);
-            this.textsignup.position.set(-5, -2, -24);
+            // this.textsignup.rotation.set(0, 0.8, 0);
+            this.textsignup.position.set(-4, -2, -3);
             this.textsignup.castShadow = true
             this.textsignup.receiveShadow = true
-            this.scene.add(this.textsignup);
+            // this.$parent.$parent.$refs.scene.add(this.textsignup);
+            // console.log(this.$parent.$parent.$refs.scene)
+            console.log("valuesBlock", this.valuesBlock)
+            this.$parent.$parent.$refs.scene.addToScene(this.textsignup);
           }
+          // {
+          //   const geometry = new THREE.TextGeometry("DUNO", {
+          //     font: font,
+          //     size: 2,
+          //     height: 1,
+          //   });
+          //   this.textduno = new THREE.Mesh(geometry, textmaterialsr);
+          //   this.textduno.rotation.set(0, 1.6, 0);
+          //   this.textduno.position.set(-5, -2, -24);
+          //   this.textduno.castShadow = true
+          //   this.textduno.receiveShadow = true
+          //   this.scene.add(this.textduno);
+          // }
           // {
           //   const geometry = new THREE.TextGeometry("¿Qué hacemos por ti?", {
           //     font: font,

@@ -20,7 +20,7 @@
         <div v-if="hasStarted ">
             <!-- <theblock v-if="accs_length"  h="7" style="height:100vh"/> -->
             <theblock h="1" v-if="accs_length" class="show-xs_sm"/>
-            <lotto v-if="accs_length" />
+            <lotto ref="lotto" v-if="accs_length" />
             <theblock v-if="accs_length"  h="20" />
             <!-- <aboutUs /> -->
             <div v-if="hasStarted && accs_length">

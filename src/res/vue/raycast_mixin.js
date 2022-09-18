@@ -12,6 +12,12 @@ methods: {
     onPointerClick(e)
     {
       console.log(this.INTERSECTED)
+      if(this.INTERSECTED && this.$parent.$refs.thrue.$refs.lotto && this.INTERSECTED == this.$parent.$refs.thrue.$refs.lotto.textsignup)
+      {
+        // alert()
+        this.$parent.$refs.thrue.$refs.lotto.execute_addFullTargetAllowance();
+        // this.l
+      }
       if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
       {
         this.connectWalletOrb()

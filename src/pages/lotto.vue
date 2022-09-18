@@ -122,7 +122,8 @@
                         
 
 <script>
-    import textPrize from "../res/vue/text-prize.js";
+    import loadTextPrize from "../res/vue/text-prize.js";
+    import loadTextSignup from "../res/vue/text-signup.js";
 
     import {
       Multicall,
@@ -142,7 +143,7 @@
 
     export default {
         name: 'lotto',     
-        mixins: [textPrize],
+        mixins: [loadTextPrize, loadTextSignup],
         components: {
             txCard,
 
@@ -273,6 +274,11 @@
             {
                 this.values.dai_balance_of = msg.data.dai_balance_of
                 this.values.dai_dao_allowance = msg.data.dai_dao_allowance
+                this.$store.dispatch("setNewBlock", {key:"values",...this.values})
+                if (this.values.dai_dao_allowance == 0)
+                {
+                    this.loadTextSignup()
+                }
             },
             async update_currentRound(msg)
             {
