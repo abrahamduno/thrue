@@ -10,7 +10,7 @@ export default {
   methods: {
     
     loadTexts() {
-    let bgintensity = this.dark_mode ? 0x6D5642 : 0x909090
+    let bgintensity = this.dark_mode ? 0xB49B85 : 0x909090
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [
         new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // front
