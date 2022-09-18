@@ -1,7 +1,7 @@
 <template>
 <div>
 
-    <div class="flex-column n-flat border-r-15 mx-2 pa-5 px-3 pos-relative h-50vh" style="z-index: 2" >  <!-- Prize Pool -->
+    <div class="flex-column n-flat border-r-15 mx-2 pa-5 px-3 pos-relative " style="z-index: 2" >  <!-- Prize Pool -->
         <div class="show-lg_x  tx-primary n-tx-s tx-xl" style="position: absolute; top: -100px; z-index: 999">
             <i class="fa fa-2x fa-award"></i>
         </div>

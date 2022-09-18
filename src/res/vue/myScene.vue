@@ -137,7 +137,7 @@ export default {
         .forEach(() => {
           this.loadAStar();
         });
-      // this.loadTexts();
+      this.loadTexts();
       this.loadSpaceObjects();
 
       this.setRenderer();
@@ -192,28 +192,29 @@ export default {
         this.scene.add( this.light4 );
 
         //Create a DirectionalLight and turn on shadows for the light
-    let light = new THREE.DirectionalLight( 0xffffff, 0.2 );
+    // let light = new THREE.DirectionalLight( 0xffffff, 0.2 );
     // const light = new THREE.DirectionalLight( 0xffffff, 1 );
-    light.position.set( 3,5,3 ); //default; light shining from top
-    light.castShadow = true; // default false
+    // light.position.set( 3,5,3 ); //default; light shining from top
+    // light.castShadow = true; // default false
 
     // let ambientintensity = 0x404040
     let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
     let sunintensity = this.dark_mode ? 1.6 : 2
 
-    this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
-    this.sunlight.position.set( 10,2,6 ); //default; light shining from top
+    this.sunlight = new THREE.SpotLight( 0xFFA859 );
+    // this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
+    this.sunlight.position.set( 10,6,6 ); //default; light shining from top
     this.sunlight.castShadow = true; // default false
-    this.sunlight.shadow.camera.near = 0.5; // default
-    this.sunlight.shadow.camera.far = 500; // default
+    // this.sunlight.shadow.camera.near = 0.5; // default
+    // this.sunlight.shadow.camera.far = 500; // default
     // this.scene.add( light );
     this.scene.add( this.sunlight );
 
     //Set up shadow properties for the light
-    light.shadow.mapSize.width = 512; // default
-    light.shadow.mapSize.height = 512; // default
-    light.shadow.camera.near = 0.5; // default
-    light.shadow.camera.far = 500; // default
+    // light.shadow.mapSize.width = 512; // default
+    // light.shadow.mapSize.height = 512; // default
+    // light.shadow.camera.near = 0.5; // default
+    // light.shadow.camera.far = 500; // default
       // this.scene.add(new THREE.CameraHelper(light.shadow.camera)) 
 
 const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light

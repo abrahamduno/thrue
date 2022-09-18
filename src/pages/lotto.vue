@@ -61,7 +61,7 @@
     
 
     <div class="flex-column flex-lg_x-row pt-8 flex-1 w-100 ">
-        <lotto-current-round ref="currentRound" @update_loading="update_loading" class="z-50 flex-1 w-100 "
+        <lotto-current-round ref="currentRound" @update_loading="update_loading" class="z-50 "
             @update_currentRound="update_currentRound" :_loadings="loadings" :_values="values"
         />
 
