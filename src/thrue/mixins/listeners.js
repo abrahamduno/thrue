@@ -2,14 +2,10 @@ import * as THREE from "three";
 const X = 0, Y = 1, Z = 2
 
 export default {
-data () {
-  return {
-
-  }
-},
-methods: {
-
-    updateScrollPosition(e) {
+  methods:
+  {
+    updateScrollPosition(e)
+    {
         this.scrollPosition = window.scrollY;
   
         const t = document.body.getBoundingClientRect().top;
@@ -55,28 +51,21 @@ methods: {
         this.$parent.$refs.thrue.$refs.lotto.execute_addFullTargetAllowance();
       }
 
-
       this.checkConnectWallet()
       this.checkLevelOneClickers()
     },
     updateRaycaster()
     {
-
-        const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
-
-        if ( intersects.length > 0 ) {
-
-          if ( this.INTERSECTED != intersects[ 0 ].object )
-          {
-            // if ( this.INTERSECTED != intersects[ 0 ].object )
-            {
-                this.INTERSECTED = intersects[ 0 ].object
-            }
-          }
-        } else {
-          this.INTERSECTED = null
+      const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
+      if ( intersects.length > 0 )
+      {
+        if ( this.INTERSECTED != intersects[ 0 ].object )
+        {
+          this.INTERSECTED = intersects[ 0 ].object
         }
-
+      } else {
+        this.INTERSECTED = null
+      }
     },
     setRaycaster()
     {
@@ -84,12 +73,10 @@ methods: {
       this.pointer = {x:null,y:null}
       this.raycaster = new THREE.Raycaster();
     },
-    onPointerMove( event ) {
-
-        this.pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        this.pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-        // console.log(this.pointer)
-
-      }
-}
+    onPointerMove( event )
+    {
+      this.pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      this.pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    },
+  }
 }

@@ -5,30 +5,19 @@ const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 
 export default {
-  data ()
-  {
-    return {
-
-    }
-  },
   methods:
   {
-
     checkLevelOneClickers()
     {
       if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
       {
         this.checkLevelOne()
-        // alert("scroll down")
-        // console.log(intersects.length,intersects)
       }
 
       if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
       {
-        // alert("scroll down")
         this.clickTicketer()
         this.goals.tickets++
-        // console.log(intersects.length,intersects)
       }
     },
     checkLevelOne(  ) {
@@ -46,10 +35,9 @@ export default {
     animate_levelone(  ) {
       if (this.accs_length)
       {
-            // this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.02)
         if (this.mylevelone)
         {
-              this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
+          this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
         }
       }
     },
@@ -59,29 +47,22 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelone.obj",
         (object) => {
-
           object.traverse( function ( child ) {
-
-             if ( child instanceof THREE.Mesh ) {
-
-                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
-                child.castShadow = true;
-                child.receiveShadow = true;
-
+            if ( child instanceof THREE.Mesh ) {
+              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+              child.castShadow = true;
+              child.receiveShadow = true;
             }
-
          } );
 
-          object.castshadow = true
-          object.receiveShadow = true
-          object.position.set(0, -50, 0);
-          this.mylevelone = object
-          this.scene.add(this.mylevelone);
+        object.castshadow = true
+        object.receiveShadow = true
+        object.position.set(0, -50, 0);
+        this.mylevelone = object
+        this.scene.add(this.mylevelone);
 
-          this.addLevelMesh()
-      },
-        this.onLoadProgress
-      );
+        this.addLevelMesh()
+      }, this.onLoadProgress );
     },
     addLevelMesh()
     {
