@@ -21,14 +21,14 @@ export default {
         "./res/style/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
-            const geometry = new THREE.TextGeometry("Buy Here", {
+            const geometry = new THREE.TextGeometry("Buy Tickets", {
               font: font,
               size: 0.35,
               height: 0.1,
             });
             this.textabraham = new THREE.Mesh(geometry, qqq);
-            this.textabraham.rotation.set(0, -0.8, 0);
-            this.textabraham.position.set(5, 50, 4);
+            this.textabraham.rotation.set(0, -1, 0);
+            this.textabraham.position.set(3.5, 50, -1);
             this.textabraham.castShadow = true
             this.textabraham.visible = true
             this.textabraham.receiveShadow = true

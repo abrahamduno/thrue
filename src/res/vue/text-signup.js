@@ -15,7 +15,7 @@ export default {
     },
     loadTextSignup() {
     let bgintensity = this.dark_mode ? 0x603923 : 0x603923
-    let textintensity = this.dark_mode ? 0xE7A356 : 0xFFA859
+    let textintensity = this.dark_mode ? 0xE7A356 : 0xC27D58
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [
         new THREE.MeshLambertMaterial({ color: textintensity }), // front
@@ -28,7 +28,7 @@ export default {
             const geometry = new THREE.TextGeometry("Sign Up", {
               font: font,
               size: 0.9,
-              height: 0.03,
+              height: 0.1,
             });
 
 

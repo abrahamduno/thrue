@@ -5,11 +5,30 @@ export default {
 
 data () {
   return {
+                loading: false,
+                hasStarted: false,
+                selectedKey: null,
 
   }
 },
 methods: {
 
+    async connectWallet() {
+        this.loading = true
+        // this.$store.dispatch("setNewBlock", {key:"values",...newnew})
+        await this.$store.dispatch("connectWallet")
+        this.loading = false
+        // let newnew = {signup:true}
+    },
+    start()
+    {
+        this.$emit('animate')
+        this.hasStarted = true
+    },
+    setKey(newKey)
+    {
+        this.selectedKey = newKey
+    },
     async connectWalletOrb()
     {
       // this.loading = true

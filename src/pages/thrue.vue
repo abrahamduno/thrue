@@ -9,31 +9,28 @@
 
         <div v-if="hasStarted ">
             <div v-if="valuesBlock">
-                <div v-if="valuesBlock.signup">
+                <div v-if="valuesBlock.signup" class="pos-absolute bottom-50p">
                     <h1
-                        class="tx-center clickable opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
+                        class="tx-center  opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
                     >
                         l<i class="tx-xs fas fa-circle-notch spin-nback"></i>ading...
                     </h1>
                 </div>
                 <div v-if="valuesBlock.buyTicket">
                     <h1
-                        class="tx-center clickable opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
+                        class="tx-center  opacity-hover-50 tx-xl mt-100  w-100 tx-ls-5"
                     >
                         l<i class="tx-xs fas fa-circle-notch spin-nback"></i>ading...
                     </h1>
                 </div>
             </div>
-            <theblock h="1" v-if="accs_length" class="show-xs_sm"/>
-            <theblock v-if="accs_length"  h="20" />
-            <div v-if="hasStarted && accs_length">
-                <theblock h="10" />
-
-                <ourTeam />
-
+            <div v-if="accs_length">
+                <theblock h="20" />
+                <div v-if="hasStarted">
+                    <theblock h="10" />
+                </div>
             </div>
 
-            <whereAreWe />
             <lotto ref="lotto" v-if="accs_length" />
 
             <theblock h="1" />
@@ -47,9 +44,6 @@
 <script>
     import lotto from "./lotto.vue";
     import theblock from "../components/block.vue";
-    
-    import ourTeam from "../res/vue/our-team.vue";
-    import whereAreWe from "../res/vue/where-are-we.vue";
 
 
     export default {
@@ -58,8 +52,6 @@
             lotto,
             theblock,
 
-            ourTeam,
-            whereAreWe,
         },
         data() {
             return {

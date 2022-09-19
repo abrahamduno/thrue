@@ -111,7 +111,7 @@
 
 
 
-    <div class="flex-around flex-wrap w-100 my-4">
+    <div class="flex-around flex-wrap w-100 my-4 mt-8">
         <lotto-settings v-show="pro_mode" class="z-10 n-flat pa-2  border-r-15" />
         <div v-if="values.dai_dao_allowance > 0" class="z-10">
         </div>

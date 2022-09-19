@@ -21,6 +21,15 @@ methods: {
 		{
 			let atext = this.$parent.$refs.thrue.$refs.lotto.textsignup
 			atext.rotation.y = this.lerp(atext.rotation.y,-this.pointer.x,0.07)
+
+        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
+        	{
+	        	atext.position.z = this.lerp(atext.position.z,25,0.05)
+	        	// atext.scale.x = this.lerp(atext.scale.x,0.25,0.05)
+	        	// atext.scale.y = this.lerp(atext.scale.y,0.25,0.05)
+	        	// atext.scale.z = this.lerp(atext.scale.z,0.25,0.05)
+        	}
+
 		}
 		if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textwelcome) 
 		{
