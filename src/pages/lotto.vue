@@ -122,9 +122,9 @@
                         
 
 <script>
-    import loadTextPrize from "../res/vue/text-prize.js";
-    import loadTextSignup from "../res/vue/text-signup.js";
-    import loadTextWelcome from "../res/vue/text-welcome.js";
+    import loadTextPrize from "../thrue/models/text-prize.js";
+    import loadTextSignup from "../thrue/models/text-signup.js";
+    import loadTextWelcome from "../thrue/models/text-welcome.js";
 
     import {
       Multicall,

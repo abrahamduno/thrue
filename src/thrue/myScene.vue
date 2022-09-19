@@ -8,23 +8,32 @@ import * as THREE from "three";
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-
 import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import scrollmixin from "../res/vue/scroll_mixin.js";
-import raycastmixin from "../res/vue/raycast_mixin.js";
-import animationmixin from "../res/vue/animation_mixin.js";
+import scrollmixin from "./scroll_mixin.js";
+import raycastmixin from "./raycast_mixin.js";
+import animationmixin from "./animation_mixin.js";
+
+import levelOne from "./levels/level-one.js";
+import ticketer from "./models/ticketer.obj.js";
 
 import connectOrb from "./models/connect-orb.js";
-import levelOne from "../res/vue/level-one.js";
-import ticketer from "../res/vue/ticketer.js";
-import texts from "../res/vue/texts.js";
+import texts from "./models/texts.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
-  mixins: [scrollmixin, raycastmixin, animationmixin, connectOrb, levelOne, texts, ticketer],
+  mixins: [
+    scrollmixin,
+    raycastmixin,
+    animationmixin,
+
+    connectOrb,
+    levelOne,
+    texts,
+    ticketer,
+  ],
   data()
   {
     return {
@@ -110,7 +119,7 @@ export default {
       // Array(200).fill().forEach(() => {
       //   this.loadAStar();
       // });
-      this.loadTexts();
+      // this.loadTexts();
       // this.loadSpaceObjects();
 
       this.setRenderer();
