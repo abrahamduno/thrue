@@ -56,7 +56,7 @@ export default {
     {
       if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
       {
-        this.checkLevelOne()
+        this.clickedInterrogationSign()
       }
 
       if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
@@ -71,12 +71,17 @@ export default {
         this.clickFarm()
       }
     },
-    checkLevelOne(  ) {
-      if (this.goals.tickets < 1)
+    clickedInterrogationSign(  ) {
+      if (!this.mylevelone)
       {
-        return alert("Failed")
+        this.connectWalletOrb()
       }
-      alert("You Win!")
+      if (this.goals && this.goals.tickets < 1)
+      {
+        alert("Failed")
+        return
+      }
+      // alert("You Win!")
     },
     addLevelMesh()
     {

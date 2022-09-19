@@ -33,6 +33,9 @@
 
             <lotto ref="lotto" v-if="accs_length" />
 
+            <div v-if="hasStarted">
+                <theblock h="10" />
+            </div>
             <theblock h="1" />
         </div>
 

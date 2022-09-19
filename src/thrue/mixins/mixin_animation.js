@@ -10,6 +10,8 @@ export default {
 		  return (max - min) * value + min;
 		},
 	    updateAnimations(e) {
+        	const t = document.body.getBoundingClientRect().top;
+        	
 			this.tcounter++
 			if (this.camera && this.auto_mode)
 			{
@@ -43,6 +45,13 @@ export default {
 
 			} else {
 				this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
+
+		        if (t < -this.sceneBreakpoints.default[0]) {
+		        	// this.camera.rotation.y = this.lerp(this.camera.rotation.y,t * 0.001,0.07)
+		          // this.camera.rotation.y = this.sceneVariables.camera.rot[y] + t * 0.0001;
+		        } else {
+		        	// this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
+		        }
 
 			}
 			this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,Math.sin(this.tcounter*0.03)*0.15+(this.accs_length ? 25 : 2),0.01)
