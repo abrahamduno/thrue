@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../res/loaders/OBJLoader.js";
+
 import ticketer from "../models/ticketer.obj.js";
+import farm from "../models/farm.obj.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -8,32 +10,14 @@ const BASE_ASSET_URL = "./res";
 export default {
   mixins: [
     ticketer,
+    farm,
   ],
   methods:
   {
-    checkLevelOneClickers()
-    {
-      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
-      {
-        this.checkLevelOne()
-      }
-
-      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
-      {
-        this.clickTicketer()
-        this.goals.tickets++
-      }
-    },
-    checkLevelOne(  ) {
-      if (this.goals.tickets < 1)
-      {
-        return alert("Failed")
-      }
-      alert("You Win!")
-    },
     initLevelOne(  ) {
       this.goals = {
         tickets: 0,
+        eggs: 0,
       }
     },
     animate_levelone(  ) {
@@ -68,10 +52,38 @@ export default {
         this.addLevelMesh()
       }, this.onLoadProgress );
     },
+    checkLevelOneClickers()
+    {
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.checkLevelOne()
+      }
+
+      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
+      {
+        this.goals.tickets++
+        this.clickTicketer()
+      }
+
+      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
+      {
+        this.goals.eggs++
+        this.clickFarm()
+      }
+    },
+    checkLevelOne(  ) {
+      if (this.goals.tickets < 1)
+      {
+        return alert("Failed")
+      }
+      alert("You Win!")
+    },
     addLevelMesh()
     {
+      this.addFarm();
+
       {
-        const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
@@ -81,22 +93,22 @@ export default {
       }
 
       {
-        const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
         boxx.receiveShadow = true; //default
-        boxx.position.set(4,0,-20)
+        boxx.position.set(4.2,0,-20)
         this.mylevelone.add( boxx );
       }
 
       {
-        const boxGeometry = new THREE.BoxGeometry(0.5, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
         boxx.receiveShadow = true; //default
-        boxx.position.set(-4,0,-20)
+        boxx.position.set(-4.2,0,-20)
         this.mylevelone.add( boxx );
       }
     },
