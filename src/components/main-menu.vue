@@ -19,8 +19,8 @@
                     style=""
                 >
                     <span class="pa-2 py-4  opacity-hover-50">
-                        <i class="fas tx-sm" v-if="pro_mode" > <span> PRO</span></i>
-                        <i class="fas tx-sm"  v-else > <span> PRO</span></i>
+                        <i class="fas tx-sm" v-if="pro_mode" > <span> PLAY</span></i>
+                        <i class="fas tx-sm"  v-else > <span> PLAY</span></i>
 
                         <!-- <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="mr- fas tx-lg fa-bars"></i></span></i>
                         <i class="fas tx-sm"  v-else > <span> <i class="mr- fas tx-lg fa-bars"></i></span></i> -->

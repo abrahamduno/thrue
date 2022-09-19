@@ -17,7 +17,7 @@ const store = createStore({
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
       LANG,
-      darkMode: true,
+      darkMode: false,
       proMode: false,
       englishMode: true,
 
