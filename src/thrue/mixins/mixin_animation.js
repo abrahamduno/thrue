@@ -40,7 +40,10 @@ export default {
 				let atext = this.$parent.$refs.thrue.$refs.lotto.textwelcome
 				atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5+1,0.07)
 			}
-			this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x*3.1,0.07)
+			if (this.mysign)
+			{
+				this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x*3.1,0.07)
+			}
 			if (this.camera && this.pro_mode &&
 				(this.pointer.x < -0.15 || this.pointer.x > 0.15)
 				)
@@ -59,7 +62,10 @@ export default {
 	      	if (this.accs_length)
 	      	{
 		        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
-		        this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.07)
+				if (this.mysign)
+				{
+		        	this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.07)
+		        }
 	        	if (this.textabraham && this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
 	        	{
 		        	this.textabraham.position.y = this.lerp(this.textabraham.position.y,-1.5,0.05)

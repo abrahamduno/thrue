@@ -8,10 +8,41 @@ export default {
   data ()
   {
     return {
+
     }
   },
   methods:
   {
+
+    checkLevelOneClickers()
+    {
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.checkLevelOne()
+        // alert("scroll down")
+        // console.log(intersects.length,intersects)
+      }
+
+      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
+      {
+        // alert("scroll down")
+        this.clickTicketer()
+        this.goals.tickets++
+        // console.log(intersects.length,intersects)
+      }
+    },
+    checkLevelOne(  ) {
+      if (this.goals.tickets < 1)
+      {
+        return alert("Failed")
+      }
+      alert("You Win!")
+    },
+    initLevelOne(  ) {
+      this.goals = {
+        tickets: 0,
+      }
+    },
     animate_levelone(  ) {
       if (this.accs_length)
       {
@@ -23,6 +54,7 @@ export default {
       }
     },
     addLevelOne(  ) {
+      this.initLevelOne()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelone.obj",

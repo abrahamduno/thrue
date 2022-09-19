@@ -191,6 +191,30 @@ export default {
     },
     loadObjects()
     {
+
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "sign.obj",
+        (object) => {
+
+          object.traverse( function ( child ) {
+             if ( child instanceof THREE.Mesh ) {
+                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
+                  // side:THREE.DoubleSide 
+                } );
+                child.castShadow = true;
+                child.castShadow = true;
+                child.receiveShadow = true;
+
+            }
+         } );
+
+          object.position.set(0, -2, 0);
+          this.mysign = object
+          this.scene.add(this.mysign);
+        },
+        this.onLoadProgress
+      );
+      
       const sphereGeometry = new THREE.SphereGeometry(1, 32, 32 );
       const sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff9000 } );
       const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
@@ -236,28 +260,6 @@ export default {
       );
 
 
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "sign.obj",
-        (object) => {
-
-          object.traverse( function ( child ) {
-             if ( child instanceof THREE.Mesh ) {
-                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
-                  // side:THREE.DoubleSide 
-                } );
-                child.castShadow = true;
-                child.castShadow = true;
-                child.receiveShadow = true;
-
-            }
-         } );
-
-          object.position.set(0, -2, 0);
-          this.mysign = object
-          this.scene.add(this.mysign);
-        },
-        this.onLoadProgress
-      );
     },
     loadAStar()
     {

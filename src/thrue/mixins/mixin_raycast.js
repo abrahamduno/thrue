@@ -42,12 +42,7 @@ methods: {
         // alert("scroll down")
         // console.log(intersects.length,intersects)
       }
-      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
-      {
-        // alert("scroll down")
-        this.clickTicketer()
-        // console.log(intersects.length,intersects)
-      }
+      this.checkLevelOneClickers()
     },
     updateRaycaster()
     {
