@@ -17,6 +17,12 @@ methods: {
 	},
     updateAnimations(e) {
 		this.counter++
+		if (this.camera && this.pro_mode)
+		{
+			// document.body.getBoundingClientRect().top
+			// window.scrollY += 1
+			window.scrollTo(0,window.scrollY+1)
+		}
 		if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textsignup) 
 		{
 			let atext = this.$parent.$refs.thrue.$refs.lotto.textsignup
