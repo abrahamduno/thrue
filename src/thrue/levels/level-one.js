@@ -4,11 +4,15 @@ import { OBJLoader } from "../../res/loaders/OBJLoader.js";
 import ticketer from "../models/ticketer.obj.js";
 import farm from "../models/farm.obj.js";
 
+import clickBoxes from "../mixins/click-box.js";
+
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 
 export default {
   mixins: [
+    clickBoxes,
+
     ticketer,
     farm,
   ],
@@ -86,6 +90,7 @@ export default {
     addLevelMesh()
     {
       this.addFarm();
+      this.addClickBox();
 
       // center
       {

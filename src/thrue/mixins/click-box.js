@@ -3,6 +3,9 @@ import * as THREE from "three";
 export default {
   data () {
     return {
+      baseParams: {
+        BoxGeometry: [1, 1, 1],
+      },
     }
   },
   methods: {
@@ -24,15 +27,16 @@ export default {
       //     this.addLevelOne()
       //   }
       },
-      addConnectOrb()
+      addClickBox(_params)
       {
-        const boxGeometry = new THREE.SphereGeometry(1, 1,1 );
+        let params = {...this.baseParams, ..._params}
+        const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xA8FF59 } );
-        this.clickBox = new THREE.Mesh( boxGeometry, boxMaterial );
-        this.clickBox.castShadow = true; //default is false
-        this.clickBox.receiveShadow = true; //default
-        this.clickBox.position.set(-0.5,0,5)
-        this.scene.add( this.clickBox );
+        let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
+        newClickBox.castShadow = true; //default is false
+        newClickBox.receiveShadow = true; //default
+        newClickBox.position.set(6,-2,6)
+        this.scene.add( newClickBox );
       },
   }
 }
