@@ -131,8 +131,8 @@
     } from 'ethereum-multicall';
     import { ethers } from 'ethers';
 
-    import { ABIS, CURRENT_NETWORK } from '../store/constants/index';
-    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../store/helpers';
+    import { ABIS, CURRENT_NETWORK } from '../scripts/constants/index';
+    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../scripts/helpers';
     
     import txCard from "../components/tx-card.vue";
     import lottoResults from "./lotto/lotto-results.vue";

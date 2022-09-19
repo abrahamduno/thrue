@@ -7,9 +7,9 @@
 import * as THREE from "three";
 import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import listeners from "./mixins/listeners.js";
-import animationmixin from "./mixins/mixin_animation.js";
-import bloommixin from "./mixins/mixin_bloom.js";
+import listeners from "./scripts/listeners.js";
+import animationmixin from "./scripts/mixin_animation.js";
+import bloommixin from "./scripts/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
 

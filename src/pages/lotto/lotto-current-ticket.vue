@@ -156,8 +156,8 @@
 </template>
 
 <script>
-    import { ABIS, CURRENT_NETWORK } from '../../store/constants/index';
-    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../store/helpers';
+    import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
+    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../scripts/helpers';
 
     import txCard from "../../components/tx-card.vue";
 
