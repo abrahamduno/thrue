@@ -1,13 +1,6 @@
 import * as THREE from "three";
 
 export default {
-        computed: {
-            LANG()                  { return this.$store.getters.LANG },
-            accs_length()           { return this.$store.getters.accs_length },
-            first_acc()             { return this.$store.getters.first_acc },
-            dark_mode()             { return this.$store.getters.dark_mode },
-            valuesBlock()             { return this.$store.getters.getBlock("values") },
-        },
   methods: {
     
     loadTextPrize() {

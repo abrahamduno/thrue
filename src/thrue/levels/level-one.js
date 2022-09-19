@@ -1,10 +1,14 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../res/loaders/OBJLoader.js";
+import ticketer from "../models/ticketer.obj.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 
 export default {
+  mixins: [
+    ticketer,
+  ],
   methods:
   {
     checkLevelOneClickers()

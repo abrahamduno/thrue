@@ -12,7 +12,6 @@ import animationmixin from "./mixins/mixin_animation.js";
 import bloommixin from "./mixins/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
-import ticketer from "./models/ticketer.obj.js";
 
 import connectOrb from "./models/connect-orb.js";
 import texts from "./models/texts.js";
@@ -29,7 +28,6 @@ export default {
     connectOrb,
     levelOne,
     texts,
-    ticketer,
   ],
   data()
   {
@@ -43,6 +41,7 @@ export default {
     first_acc()             { return this.$store.getters.first_acc },
     dark_mode()             { return this.$store.getters.dark_mode },
     current_sub_page()      { return this.$store.getters.current_sub_page },
+    valuesBlock()             { return this.$store.getters.getBlock("values") },
   },
   mounted()
   {
@@ -56,6 +55,7 @@ export default {
   beforeDestroy() {
     // remove listener again
     window.removeEventListener("scroll", this.updateScrollPosition);
+    window.removeEventListener( 'resize', this.setCameraRenderSize );
     document.removeEventListener("mousemove", this.onPointerMove);
     document.removeEventListener("click", this.onPointerClick);
   },
