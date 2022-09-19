@@ -33,12 +33,15 @@ export default {
         (object) => {
           object.traverse( function ( child )
           {
-             if ( child instanceof THREE.Mesh )
-             {
+            if ( child instanceof THREE.Mesh )
+            {
               child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
               child.castShadow = true;
               child.receiveShadow = true;
             }
+            // if( child.material ) {
+            //   child.material.side = THREE.BackSide;
+            // }
          } );
           object.position.set(0, 50, 0);
           this.ticketer = object
