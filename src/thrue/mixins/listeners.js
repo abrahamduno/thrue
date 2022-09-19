@@ -19,7 +19,7 @@ export default {
           this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
         }
         if (t < -this.sceneBreakpoints.default[0]) {
-          this.camera.rotation.x = this.sceneVariables.camera.rot[x] - t * 0.0001;
+          this.camera.rotation.x = this.sceneVariables.camera.rot[x] - (this.sceneBreakpoints.default[0]* 0.0002) - t * 0.0002;
           // EXCEPT SCENE 2
         } else {
           // ONLY SCENE 2

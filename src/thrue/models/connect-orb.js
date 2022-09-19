@@ -5,9 +5,9 @@ export default {
 
 data () {
   return {
-                loading: false,
-                hasStarted: false,
-                selectedKey: null,
+    // loading: false,
+    // hasStarted: false,
+    // selectedKey: null,
 
   }
 },
@@ -19,22 +19,22 @@ methods: {
         this.connectWalletOrb()
       }
     },
-    async connectWallet() {
-        this.loading = true
+    // async connectWallet() {
+        // this.loading = true
         // this.$store.dispatch("setNewBlock", {key:"values",...newnew})
-        await this.$store.dispatch("connectWallet")
-        this.loading = false
+        // await this.$store.dispatch("connectWallet")
+        // this.loading = false
         // let newnew = {signup:true}
-    },
-    start()
-    {
-        this.$emit('animate')
-        this.hasStarted = true
-    },
-    setKey(newKey)
-    {
-        this.selectedKey = newKey
-    },
+    // },
+    // start()
+    // {
+    //     this.$emit('animate')
+    //     // this.hasStarted = true
+    // },
+    // setKey(newKey)
+    // {
+    //     this.selectedKey = newKey
+    // },
     async connectWalletOrb()
     {
       // this.loading = true
