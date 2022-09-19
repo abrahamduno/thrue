@@ -2,8 +2,8 @@ import { createStore } from 'vuex';
 import { ethers, Contract }  from 'ethers';
 
 import { isMetaMaskInstalled } from './helpers';
-import { ABIS, CURRENT_NETWORK } from './constants';
-import { LANG } from './lang';
+import { ABIS, CURRENT_NETWORK } from './constants/index';
+import { LANG } from './constants/lang';
 
 const store = createStore({
   state() {

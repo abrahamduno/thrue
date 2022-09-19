@@ -19,7 +19,7 @@ import texts from "./models/texts.js";
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
-  name: 'my-scene',    
+  name: 'main-scene',    
   mixins: [
     listeners,
     animationmixin,

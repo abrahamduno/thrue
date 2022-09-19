@@ -18,7 +18,7 @@ export default {
         new THREE.MeshStandardMaterial({ color: bgintensity }), // side
       ];
       textloader.load(
-        "./res/style/fonts/gentilis_bold.typeface.json",
+        "./res/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
             const geometry = new THREE.TextGeometry("Buy Tickets", {

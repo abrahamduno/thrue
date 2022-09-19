@@ -1,22 +1,21 @@
 <template>
     <div :class="!!dark_mode ? 'dark-theme' : 'light-theme'" class="main-body n-bg n-tx w-100">
         <main-menu  style="z-index: 99999" />
-        <my-scene ref="scene" />
-        <thrue ref="thrue" @animate="animate" />
+        <main-scene ref="scene" />
+        <main-dom ref="dom" @animate="animate" />
     </div>
 </template>
 <script>
-    import thrue from "./pages/thrue.vue";
-    import MyScene from "./thrue/MyScene.vue";
+    import MainMenu from "./components/main-menu.vue";
+    import MainDom from "./pages/MainDOM.vue";
+    import MainScene from "./thrue/MainScene.vue";
     
-    import mainMenu from "./components/main-menu.vue";
-
     export default {
         name: 'App',    
         components: {
-            mainMenu,
-            MyScene,
-            thrue,
+            MainMenu,
+            MainDom,
+            MainScene,
         },
         computed: {
             dark_mode()     { return this.$store.getters.dark_mode },

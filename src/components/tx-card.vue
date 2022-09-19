@@ -130,7 +130,7 @@
 </template>
 <script>
     import { ethers, Contract }  from 'ethers';
-    import { ABIS, CURRENT_NETWORK } from '../store/constants';
+    import { ABIS, CURRENT_NETWORK } from '../store/constants/index';
     import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../store/helpers';
 
     import {

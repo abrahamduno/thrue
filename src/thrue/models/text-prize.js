@@ -15,7 +15,7 @@ export default {
         new THREE.MeshStandardMaterial({ color: 0xaaaaaa }), // side
       ];
       textloader.load(
-        "./res/style/fonts/gentilis_bold.typeface.json",
+        "./res/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
             const geometry = new THREE.TextGeometry("$"+this.valuesBlock.prize_pool*0.8, {

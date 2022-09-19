@@ -22,7 +22,7 @@ export default {
         new THREE.MeshLambertMaterial({ color: textintensity }), // front
       ];
       textloader.load(
-        "./res/style/fonts/gentilis_bold.typeface.json",
+        "./res/fonts/gentilis_bold.typeface.json",
         (font) => {
           {
             const geometry = new THREE.TextGeometry("hello!", {

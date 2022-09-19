@@ -33,10 +33,10 @@
 
             <lotto ref="lotto" v-if="accs_length" />
 
-            <div v-if="hasStarted">
-                <theblock h="10" />
+            <div v-if="hasStarted && accs_length">
+                <!-- <theblock h="10" /> -->
+                <!-- <theblock h="1" /> -->
             </div>
-            <theblock h="1" />
         </div>
 
     </div>
@@ -50,7 +50,7 @@
 
 
     export default {
-        name: 'thrue',     
+        name: 'main-dom',     
         components: {
             lotto,
             theblock,

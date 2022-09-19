@@ -10,10 +10,10 @@ export default {
     clickFarm() {
       // let input = prompt("Amount",1)
 
-      if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto) 
+      if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto) 
       {
-        // this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
-        // this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.execute_buyTicket()
+        // this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
+        // this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.execute_buyTicket()
         // this.goals.eggs++
         alert("eggs: "+this.goals.eggs)
       }

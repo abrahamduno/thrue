@@ -1,7 +1,7 @@
 // import 
-import * as TheOpenLottoDAO from './ABIS/TheOpenLottoDAO.json';
-import * as TheOpenLotto from './ABIS/TheOpenLotto.json';
-import * as VRFv2Consumer from './ABIS/VRFv2Consumer.json';
+import * as TheOpenLottoDAO from './TheOpenLottoDAO.json';
+import * as TheOpenLotto from './TheOpenLotto.json';
+import * as VRFv2Consumer from './VRFv2Consumer.json';
 
 export const ABIS = {
   DAO: TheOpenLottoDAO.abi,

@@ -17,9 +17,9 @@ export default {
 			{
 				window.scrollTo(0,window.scrollY+1)
 			}
-			if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textsignup) 
+			if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto && this.$parent.$refs.dom.$refs.lotto.textsignup) 
 			{
-				let atext = this.$parent.$refs.thrue.$refs.lotto.textsignup
+				let atext = this.$parent.$refs.dom.$refs.lotto.textsignup
 				atext.rotation.y = this.lerp(atext.rotation.y,-this.pointer.x,0.07)
 
 	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
@@ -28,9 +28,9 @@ export default {
 	        	}
 
 			}
-			if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textwelcome) 
+			if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto && this.$parent.$refs.dom.$refs.lotto.textwelcome) 
 			{
-				let atext = this.$parent.$refs.thrue.$refs.lotto.textwelcome
+				let atext = this.$parent.$refs.dom.$refs.lotto.textwelcome
 				atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5+1,0.07)
 			}
 			if (this.mysign)

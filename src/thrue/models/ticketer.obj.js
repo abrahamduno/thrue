@@ -19,10 +19,10 @@ export default {
     clickTicketer() {
       let input = prompt("Amount",1)
 
-      if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && input) 
+      if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto && input) 
       {
-        this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
-        this.$parent.$refs.thrue.$refs.lotto.$refs.currentTicket.execute_buyTicket()
+        this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
+        this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.execute_buyTicket()
 
       }
     },

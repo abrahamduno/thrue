@@ -50,12 +50,12 @@ export default {
     
     onPointerClick(e)
     {
-      if (this.INTERSECTED && this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto &&  this.$parent.$refs.thrue.$refs.lotto.textsignup &&
-        ( this.INTERSECTED == this.$parent.$refs.thrue.$refs.lotto.textsignup || 
-          this.INTERSECTED == this.$parent.$refs.thrue.$refs.lotto.textsignup.children[0])
+      if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
+        ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 
+          this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup.children[0])
         )
       {
-        this.$parent.$refs.thrue.$refs.lotto.execute_addFullTargetAllowance();
+        this.$parent.$refs.dom.$refs.lotto.execute_addFullTargetAllowance();
       }
 
       this.checkConnectWallet()
