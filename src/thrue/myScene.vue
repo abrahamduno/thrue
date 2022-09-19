@@ -63,21 +63,6 @@ export default {
   },
   methods:
   {
-    _animate()
-    {
-      requestAnimationFrame(this._animate);
-      this.raycaster.setFromCamera( this.pointer, this.camera );
-      this.updateAnimations()
-      this.updateRaycaster()
-      if (this.current_sub_page != "bloom") 
-      {
-        this.renderer.render(this.scene, this.camera);
-      } else {
-        this.composer.render();
-      }
-      // this.composer.render(this.scene, this.camera);
-
-    },
     init()
     {
       this.scene = null
@@ -113,22 +98,39 @@ export default {
       this.setScene();
       this.addLight()
 
-      // this.loadSkeletonObjects();
       this.loadObjects();
 
       // Array(200).fill().forEach(() => {
       //   this.loadAStar();
       // });
       // this.loadTexts();
-      // this.loadSpaceObjects();
 
       this.setRenderer();
+      if (this.current_sub_page == "bloom")
+      {
+        this.setBloomRenderer()
+      }
       this.setRaycaster();
         
 
       // this._animate()
       // this.renderer.render(this.scene, this.camera);
       this.updateScrollPosition()
+    },
+    _animate()
+    {
+      requestAnimationFrame(this._animate);
+      this.raycaster.setFromCamera( this.pointer, this.camera );
+      this.updateAnimations()
+      this.updateRaycaster()
+      if (this.current_sub_page != "bloom") 
+      {
+        this.renderer.render(this.scene, this.camera);
+      } else {
+        this.composer.render();
+      }
+      // this.composer.render(this.scene, this.camera);
+
     },
     setWindowRatio()
     {
@@ -268,10 +270,6 @@ export default {
     {
 
     },
-    loadSpaceObjects()
-    {
-
-    },
     setRenderer()
     {
       this.renderer = new THREE.WebGLRenderer({
@@ -286,9 +284,11 @@ export default {
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+    },
+    setBloomRenderer()
+    {
       // this.renderer.toneMapping = THREE.ReinhardToneMapping;
       
-      if (this.current_sub_page != "bloom") return
         this.renderer.setClearColor(0xff0000, 0);
       let params = {}
       if (this.dark_mode)
