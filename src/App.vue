@@ -7,7 +7,7 @@
 </template>
 <script>
     import thrue from "./pages/thrue.vue";
-    import MyScene from "./res/vue/myScene.vue";
+    import MyScene from "./thrue/myScene.vue";
     
     import mainMenu from "./components/main-menu.vue";
 

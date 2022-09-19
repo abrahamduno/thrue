@@ -5,20 +5,20 @@
 </template>
 <script>
 import * as THREE from "three";
-import { OBJLoader } from "../loaders/OBJLoader.js";
-
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-import scrollmixin from "./scroll_mixin.js";
-import raycastmixin from "./raycast_mixin.js";
-import animationmixin from "./animation_mixin.js";
+import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import connectOrb from "./connect-orb.js";
-import levelOne from "./level-one.js";
-import ticketer from "./ticketer.js";
-import texts from "./texts.js";
+import scrollmixin from "../res/vue/scroll_mixin.js";
+import raycastmixin from "../res/vue/raycast_mixin.js";
+import animationmixin from "../res/vue/animation_mixin.js";
+
+import connectOrb from "./models/connect-orb.js";
+import levelOne from "../res/vue/level-one.js";
+import ticketer from "../res/vue/ticketer.js";
+import texts from "../res/vue/texts.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
