@@ -7,7 +7,7 @@
 </template>
 <script>
     import thrue from "./pages/thrue.vue";
-    import MyScene from "./thrue/myScene.vue";
+    import MyScene from "./thrue/MyScene.vue";
     
     import mainMenu from "./components/main-menu.vue";
 
@@ -15,8 +15,8 @@
         name: 'App',    
         components: {
             mainMenu,
-            thrue,
             MyScene,
+            thrue,
         },
         computed: {
             dark_mode()     { return this.$store.getters.dark_mode },
