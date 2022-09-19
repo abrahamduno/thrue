@@ -14,12 +14,12 @@ export default {
     //   alert()
     // },
     loadTextWelcome() {
-    let bgintensity = this.dark_mode ? 0x603923 : 0x603923
+    let bgintensity = this.dark_mode ? 0xFF8D31 : 0xD17929
     let textintensity = this.dark_mode ? 0xE7A356 : 0xFFA859
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [
-        new THREE.MeshLambertMaterial({ color: textintensity }), // front
         new THREE.MeshStandardMaterial({ color: bgintensity }), // side
+        new THREE.MeshLambertMaterial({ color: textintensity }), // front
       ];
       textloader.load(
         "./res/style/fonts/gentilis_bold.typeface.json",
@@ -49,6 +49,8 @@ export default {
 
             boxmesh2.position.set(-0.01,-1,-0.05)
             boxmesh.position.set(1.6, 0.35, -0.05)
+            boxmesh2.castShadow = true
+            boxmesh2.receiveShadow = true
             // boxmesh.position.set(0, 0.33, -3.05)
 
             // textmesh.rotation.set(0, 0.8, 0);

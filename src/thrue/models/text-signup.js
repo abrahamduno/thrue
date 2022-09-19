@@ -49,6 +49,8 @@ export default {
 
             boxmesh2.position.set(-0.01,-1,-0.05)
             boxmesh.position.set(2, 0.3, -0.05)
+            boxmesh2.castShadow = true
+            boxmesh2.receiveShadow = true
             // boxmesh.position.set(0, 0.33, -3.05)
 
             // textmesh.rotation.set(0, 0.8, 0);

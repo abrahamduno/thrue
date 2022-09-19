@@ -82,33 +82,36 @@ export default {
     {
       this.addFarm();
 
+      // center
       {
-        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(1.6, 0.05, 33);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
         boxx.receiveShadow = true; //default
-        boxx.position.set(0,0,-20)
+        boxx.position.set(0,-0.05,-8)
         this.mylevelone.add( boxx );
       }
 
+      // right
       {
-        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 33);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
         boxx.receiveShadow = true; //default
-        boxx.position.set(4.2,0,-20)
+        boxx.position.set(4.2,-0.05,-8)
         this.mylevelone.add( boxx );
       }
 
+      // left
       {
-        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 60);
+        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 42);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
         let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
         boxx.castShadow = true; //default is false
         boxx.receiveShadow = true; //default
-        boxx.position.set(-4.2,0,-20)
+        boxx.position.set(-4.2,-0.05,-12.5)
         this.mylevelone.add( boxx );
       }
     },

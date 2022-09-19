@@ -11,9 +11,11 @@
                         <i class="mr-2 fas fa-external-link-alt"></i> Docs
                     </span>
                 </a>
+
             </div>
             <!-- <div v-show="!pro_mode"> </div> -->
-                <button class="noborder n-tx ml-4 tx-sm  clickable flex-center border-r-15 show-md_x"
+            <div class="flex-column">
+                <button class="noborder n-tx  tx-sm  clickable flex-center border-r-15 show-md_x"
                         :class="[!pro_mode ? 'n-conca' : 'n-inset']"
                     @click="changeProMode"
                     style=""
@@ -26,6 +28,22 @@
                         <i class="fas tx-sm"  v-else > <span> <i class="mr- fas tx-lg fa-bars"></i></span></i> -->
                     </span>
                 </button>
+
+                <button class="noborder n-tx mt-2 tx-sm  clickable flex-center border-r-15 show-md_x"
+                        :class="[!auto_mode ? 'n-conca' : 'n-inset']"
+                        v-if="pro_mode"
+                    @click="changeAutoMode"
+                    style=""
+                >
+                    <span class="pa-2 py-4  opacity-hover-50">
+                        <i class="fas tx-sm" v-if="pro_mode" > <small> auto</small></i>
+                        <i class="fas tx-sm"  v-else > <small> auto</small></i>
+
+                        <!-- <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="mr- fas tx-lg fa-bars"></i></span></i>
+                        <i class="fas tx-sm"  v-else > <span> <i class="mr- fas tx-lg fa-bars"></i></span></i> -->
+                    </span>
+                </button>
+            </div>
             <div v-show="!pro_mode"> </div>
 
             <div class="flex-column-r flex-md_x-row flex-align-start" v-show="pro_mode">
@@ -78,11 +96,24 @@
             </div>
             <button class="noborder n-tx tx-md n-conca clickable flex-center border-r-15 show-xs_md tx-sm"
                 @click="changeProMode"
+                :class="[!pro_mode ? 'n-conca' : 'n-inset']"
+
                 style=""
             >
-                <small class="pa-2 py-4  opacity-hover-50">
+                <small class="pa-2 py-3  opacity-hover-50">
                     <i class="fas tx-sm" v-if="pro_mode" > <small> PRO</small></i>
-                    <i class="fas tx-sm" v-else > <small> DEFAULT</small></i>
+                    <i class="fas tx-sm" v-else > <small> PRO</small></i>
+                </small>
+            </button>
+            <button class="noborder n-tx tx-md n-conca clickable flex-center border-r-15 show-xs_md tx-sm"
+                v-if="pro_mode"
+                        :class="[!auto_mode ? 'n-conca' : 'n-inset']"
+                @click="changeAutoMode"
+                style=""
+            >
+                <small class="pa-2 py-3  opacity-hover-50">
+                    <i class="fas tx-sm" v-if="auto_mode" > <small> auto</small></i>
+                    <i class="fas tx-sm" v-else > <small> auto</small></i>
                 </small>
             </button>
             <div class="flex-column-r flex-md_x-row flex-align-start">
@@ -126,19 +157,22 @@
         },
         computed: {
             pro_mode()             { return this.$store.getters.pro_mode },
-	        dark_mode()            { return this.$store.getters.dark_mode },
+            dark_mode()            { return this.$store.getters.dark_mode },
+	        auto_mode()            { return this.$store.getters.auto_mode },
 	        english_mode()         { return this.$store.getters.english_mode },
 	        LANG()                 { return this.$store.getters.LANG },
 	        first_acc()            { return this.$store.getters.first_acc },
 	        accs_length()          { return this.$store.getters.accs_length },
         },
         created() {
+            let autoMode = JSON.parse(localStorage.getItem("autoMode"))
             let proMode = JSON.parse(localStorage.getItem("proMode"))
             // console.log(proMode)
             let darkMode = JSON.parse(localStorage.getItem("darkMode"))
             // console.log(darkMode)
             let englishMode = JSON.parse(localStorage.getItem("englishMode"))
             // console.log(englishMode)
+            if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
             if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
             if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
             if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
@@ -147,6 +181,11 @@
         methods: {
             toggleMenu() {
                 this.togglers.menu = !this.togglers.menu
+            },
+            changeAutoMode() {
+                let newMode = !this.auto_mode
+                localStorage.setItem("autoMode", JSON.stringify(newMode));
+                this.$store.dispatch("setAutoMode", newMode)
             },
             changeProMode() {
                 let newMode = !this.pro_mode

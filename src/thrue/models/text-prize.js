@@ -20,12 +20,12 @@ export default {
           {
             const geometry = new THREE.TextGeometry("$"+this.valuesBlock.prize_pool*0.8, {
               font: font,
-              size: 3,
+              size: 2,
               height: 1,
             });
             this.textprize = new THREE.Mesh(geometry, textmaterialsr);
             this.textprize.rotation.set(0, -0.8, 0);
-            this.textprize.position.set(5, -2, -9);
+            this.textprize.position.set(6, -2, -4);
             this.textprize.castShadow = true
             this.textprize.receiveShadow = true
             // this.$parent.$parent.$refs.scene.add(this.textprize);

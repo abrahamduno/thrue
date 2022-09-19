@@ -23,7 +23,7 @@ export default {
         "farm.obj",
         (object2) => {
           object2.traverse( function ( child2 ) {
-            console.log(object2,child2)
+            // console.log(object2,child2)
             if ( child2 instanceof THREE.Mesh ) {
               child2.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
               child2.castShadow = true;
@@ -33,8 +33,8 @@ export default {
             //   child2.children[0] = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
             // }
          } );
-        object2.rotation.set(0, 1.6, 0);
-        object2.position.set(-6.5, -2, -30);
+        object2.rotation.set(0, -0.8, 0);
+        object2.position.set(6, -2, -30);
         this.myfarm = object2
         this.scene.add(this.myfarm);
       }, this.onLoadProgress );

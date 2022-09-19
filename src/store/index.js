@@ -19,6 +19,7 @@ const store = createStore({
       LANG,
       darkMode: false,
       proMode: false,
+      autoMode: false,
       englishMode: true,
 
       ethereum: window.ethereum,
@@ -29,6 +30,9 @@ const store = createStore({
     };
   },
   mutations: {
+    setAutoMode(state, mode) {
+      state.autoMode = mode
+    },
     setDarkMode(state, mode) {
       state.darkMode = mode
     },
@@ -64,6 +68,9 @@ const store = createStore({
   },
   actions: {
 
+    setAutoMode(context, mode) {
+      context.commit('setAutoMode', mode);
+    },
     setProMode(context, mode) {
       context.commit('setProMode', mode);
     },
@@ -103,6 +110,9 @@ const store = createStore({
       return state.LANG[state.englishMode ? "EN" : "ES"];
     },
 
+    auto_mode(state) {
+      return state.autoMode
+    },
     dark_mode(state) {
       return state.darkMode
     },

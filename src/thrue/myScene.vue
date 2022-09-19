@@ -39,7 +39,11 @@ export default {
     LANG()                  { return this.$store.getters.LANG },
     accs_length()           { return this.$store.getters.accs_length },
     first_acc()             { return this.$store.getters.first_acc },
+
     dark_mode()             { return this.$store.getters.dark_mode },
+    pro_mode()             { return this.$store.getters.pro_mode },
+    auto_mode()             { return this.$store.getters.auto_mode },
+
     current_sub_page()      { return this.$store.getters.current_sub_page },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
   },
@@ -162,7 +166,7 @@ export default {
     {
       let suncolor = this.dark_mode ? 0xFFA859 : 0xFFCB91
       let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
-      let sunintensity = this.dark_mode ? 1.6 : 2
+      let sunintensity = this.dark_mode ? 3 : 2
 
       // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
       // this.light4.position.set(-1,2.5,6)
@@ -170,7 +174,7 @@ export default {
 
       this.sunlight = new THREE.SpotLight( suncolor );
       // this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
-      this.sunlight.position.set( 10,6,20 ); //default; light shining from top
+      this.sunlight.position.set( -10,6,15 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       // this.sunlight.shadow.camera.near = 0.5; // default
       this.sunlight.shadow.camera.far = 100; // default

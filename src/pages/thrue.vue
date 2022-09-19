@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div v-if="accs_length">
-                <theblock h="20" />
+                <theblock h="24" />
                 <div v-if="hasStarted">
                     <theblock h="10" />
                 </div>
