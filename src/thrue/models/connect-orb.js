@@ -12,7 +12,13 @@ data () {
   }
 },
 methods: {
-
+    checkConnectWallet()
+    {
+      if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
+      {
+        this.connectWalletOrb()
+      }
+    },
     async connectWallet() {
         this.loading = true
         // this.$store.dispatch("setNewBlock", {key:"values",...newnew})

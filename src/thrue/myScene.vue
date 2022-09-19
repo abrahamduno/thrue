@@ -7,8 +7,7 @@
 import * as THREE from "three";
 import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import scrollmixin from "./mixins/mixin_scroll.js";
-import raycastmixin from "./mixins/mixin_raycast.js";
+import listeners from "./mixins/listeners.js";
 import animationmixin from "./mixins/mixin_animation.js";
 import bloommixin from "./mixins/mixin_bloom.js";
 
@@ -23,10 +22,9 @@ const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
   mixins: [
-    bloommixin,
-    scrollmixin,
-    raycastmixin,
+    listeners,
     animationmixin,
+    bloommixin,
 
     connectOrb,
     levelOne,
@@ -214,7 +212,7 @@ export default {
         },
         this.onLoadProgress
       );
-      
+
       const sphereGeometry = new THREE.SphereGeometry(1, 32, 32 );
       const sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff9000 } );
       const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
