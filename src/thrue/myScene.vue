@@ -7,10 +7,10 @@
 import * as THREE from "three";
 import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import scrollmixin from "./mixin_scroll.js";
-import raycastmixin from "./mixin_raycast.js";
-import animationmixin from "./mixin_animation.js";
-import bloommixin from "./mixin_bloom.js";
+import scrollmixin from "./mixins/mixin_scroll.js";
+import raycastmixin from "./mixins/mixin_raycast.js";
+import animationmixin from "./mixins/mixin_animation.js";
+import bloommixin from "./mixins/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
 import ticketer from "./models/ticketer.obj.js";
