@@ -25,7 +25,7 @@ methods: {
 		if (this.$parent.$refs.thrue && this.$parent.$refs.thrue.$refs.lotto && this.$parent.$refs.thrue.$refs.lotto.textwelcome) 
 		{
 			let atext = this.$parent.$refs.thrue.$refs.lotto.textwelcome
-			atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5,0.07)
+			atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5+1,0.07)
 		}
 		this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x*3.1,0.07)
 		if (this.camera && this.pro_mode &&

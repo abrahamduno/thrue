@@ -75,7 +75,7 @@ export default {
             // console.log("valuesBlock", this.valuesBlock)
 
 
-            this.$parent.$parent.$refs.scene.addToScene(this.textwelcome);
+            this.$parent.$parent.$refs.scene.scene.add(this.textwelcome);
           }
           // {
           //   const geometry = new THREE.TextGeometry("DUNO", {

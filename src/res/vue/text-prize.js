@@ -38,7 +38,7 @@ export default {
             // this.$parent.$parent.$refs.scene.add(this.textprize);
             // console.log(this.$parent.$parent.$refs.scene)
             // console.log("valuesBlock", this.valuesBlock)
-            this.$parent.$parent.$refs.scene.addToScene(this.textprize);
+            this.$parent.$parent.$refs.scene.scene.add(this.textprize);
           }
           // {
           //   const geometry = new THREE.TextGeometry("DUNO", {
