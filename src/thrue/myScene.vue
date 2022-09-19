@@ -51,6 +51,7 @@ export default {
     this.init()
 
     window.addEventListener("scroll", this.updateScrollPosition);
+    window.addEventListener( 'resize', this.setCameraRenderSize );
     document.addEventListener( 'mousemove', this.onPointerMove );
     document.addEventListener( 'click', this.onPointerClick );
   },
@@ -274,8 +275,14 @@ export default {
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMapSoft = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+      this.setCameraRenderSize()
+    },
+    setCameraRenderSize()
+    {
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.camera.aspect = window.innerWidth / window.innerHeight
+      this.camera.updateProjectionMatrix(window.devicePixelRatio);
     },
   },
 };
