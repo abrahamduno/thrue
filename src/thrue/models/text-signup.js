@@ -28,7 +28,7 @@ export default {
             const geometry = new THREE.TextGeometry("Sign Up", {
               font: font,
               size: 0.9,
-              height: 0.1,
+              height: 0.2,
             });
 
 
@@ -47,8 +47,8 @@ export default {
 
 
 
-            boxmesh2.position.set(-0.01,-1,-0.05)
-            boxmesh.position.set(2, 0.3, -0.05)
+            boxmesh2.position.set(0,-1,0)
+            boxmesh.position.set(2, 0.3, 0.05)
             boxmesh2.castShadow = true
             boxmesh2.receiveShadow = true
             // boxmesh.position.set(0, 0.33, -3.05)
