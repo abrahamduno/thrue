@@ -5,14 +5,12 @@
 </template>
 <script>
 import * as THREE from "three";
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { OBJLoader } from "../res/loaders/OBJLoader.js";
 
-import scrollmixin from "./scroll_mixin.js";
-import raycastmixin from "./raycast_mixin.js";
-import animationmixin from "./animation_mixin.js";
+import scrollmixin from "./mixin_scroll.js";
+import raycastmixin from "./mixin_raycast.js";
+import animationmixin from "./mixin_animation.js";
+import bloommixin from "./mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
 import ticketer from "./models/ticketer.obj.js";
@@ -25,6 +23,7 @@ const BASE_ASSET_URL = "./res";
 export default {
   name: 'my-scene',    
   mixins: [
+    bloommixin,
     scrollmixin,
     raycastmixin,
     animationmixin,
@@ -84,7 +83,7 @@ export default {
             desktop: 75,
           },
           minReach: 0.1,
-          maxReach: 1000,
+          maxReach: 100,
         },
       }
       this.renderer = null
@@ -94,8 +93,8 @@ export default {
       }
         
       this.setWindowRatio();
-      this.setWindowSettings();
-      this.setScene();
+      this.setDOMHeight();
+      this.setSceneAndCamera();
       this.addLight()
 
       this.loadObjects();
@@ -111,7 +110,6 @@ export default {
         this.setBloomRenderer()
       }
       this.setRaycaster();
-        
 
       // this._animate()
       // this.renderer.render(this.scene, this.camera);
@@ -129,18 +127,14 @@ export default {
       } else {
         this.composer.render();
       }
-      // this.composer.render(this.scene, this.camera);
-
     },
     setWindowRatio()
     {
       this.DOM.ratio = window.innerWidth / window.innerHeight;
-      let platformKey = this.DOM.ratio > 1 ? "desktop" : "mobile";
-      this.sceneBreakpoints.default = this.sceneBreakpoints[platformKey];
-      this.sceneVariables.camera.fov =
-        this.sceneVariables.camera.fovSettings[platformKey];
+      this.DOM.screenType = this.DOM.ratio > 1 ? "desktop" : "mobile";
+      this.sceneBreakpoints.default = this.sceneBreakpoints[this.DOM.screenType];
     },
-    setWindowSettings()
+    setDOMHeight()
     {
       this.DOM.height = Math.max(
         document.body.scrollHeight,
@@ -150,10 +144,11 @@ export default {
         document.documentElement.offsetHeight
       );
     },
-    setScene()
+    setSceneAndCamera()
     {
       this.scene = new THREE.Scene();
 
+      this.sceneVariables.camera.fov = this.sceneVariables.camera.fovSettings[this.DOM.screenType];
       let camera = new THREE.PerspectiveCamera(
         this.sceneVariables.camera.fov,
         this.DOM.ratio,
@@ -163,9 +158,6 @@ export default {
       this.camera = camera;
       this.camera.position.set(...this.sceneVariables.camera.pos);
       this.camera.rotation.set(...this.sceneVariables.camera.rot);
-
-
-
     },
     addLight()
     {
@@ -284,39 +276,6 @@ export default {
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
-    },
-    setBloomRenderer()
-    {
-      // this.renderer.toneMapping = THREE.ReinhardToneMapping;
-      
-        this.renderer.setClearColor(0xff0000, 0);
-      let params = {}
-      if (this.dark_mode)
-      {
-        params = {
-          exposure: 0.05,
-          bloomStrength: 0.35,
-          bloomThreshold: 0,
-          bloomRadius: 0
-        };
-      } else {
-        params = {
-          exposure: 0.05,
-          bloomStrength: 0.2,
-          bloomThreshold: 0,
-          bloomRadius: 0
-        };
-      }
-
-      let bloomPass = new UnrealBloomPass( new THREE.Vector2( window.innerWidth, window.innerHeight ), 1.5, 0.4, 0.85 );
-      bloomPass.threshold = params.bloomThreshold;
-      bloomPass.strength = params.bloomStrength;
-      bloomPass.radius = params.bloomRadius;
-
-      const renderScene = new RenderPass( this.scene, this.camera );
-      this.composer = new EffectComposer( this.renderer );
-      this.composer.addPass( renderScene );
-      this.composer.addPass( bloomPass );
     },
   },
 };
