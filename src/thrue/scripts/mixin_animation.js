@@ -35,13 +35,34 @@ export default {
 			}
 			if (this.mysign)
 			{
-				this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x*3.1,0.07)
+				// console.log(this.pointer)
+				if (this.pointer.x == null && this.pointer.y == null)
+				{
+					// console.log("asd")
+					this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,-0.6,0.01)
+					this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-0.2,0.03)
+					// this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
+				} else {
+					this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
+					this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y,0.07)
+				}
+				// if (this.pointer.y < 0.6)
+				// {
+				// 	if (this.pointer.y < 0)
+				// 	{
+				// 		this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y+0.2,0.07)
+				// 	} else {
+				// 	}
+				// } else {
+				// 	this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-0.7,0.07)
+				// }
 			}
 			if (this.camera && this.pro_mode &&
-				(this.pointer.x < -0.15 || this.pointer.x > 0.15)
+				(this.pointer.x < -0.2 || this.pointer.x > 0.2)
 				)
 			{
-				this.camera.rotation.y = this.lerp(this.camera.rotation.y,-this.pointer.x*1.3,0.07)
+				this.camera.rotation.y = this.lerp(this.camera.rotation.y,-this.pointer.x*1.2+(
+					this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
 
 			} else {
 				this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
@@ -54,7 +75,7 @@ export default {
 		        }
 
 			}
-			this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,Math.sin(this.tcounter*0.03)*0.15+(this.accs_length ? 25 : 2),0.01)
+			this.rocketMesh.position.y = this.lerp(this.rocketMesh.position.y,Math.sin(this.tcounter*0.03)*0.15+(this.accs_length ? 25 : +0.6),0.02)
 			this.rocketMesh.rotation.z = -Math.sin(this.tcounter*0.02)*0.35
 			this.rocketMesh.rotation.x = Math.sin(this.tcounter*0.05)*0.15
 			this.rocketMesh.rotation.y += 0.006-this.pointer.x*0.01
@@ -62,9 +83,11 @@ export default {
 	      	if (this.accs_length)
 	      	{
 		        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
+		        this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
 				if (this.mysign)
 				{
-		        	this.mysign.position.z = this.lerp(this.mysign.position.z,-50,0.07)
+		        	this.mysign.position.z = this.lerp(this.mysign.position.z,-49.65,0.07)
+		        	this.mysign.position.y = this.lerp(this.mysign.position.y,-0.9,0.07)
 		        }
 	        	if (this.textabraham && this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
 	        	{

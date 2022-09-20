@@ -80,10 +80,10 @@ export default {
         camera: {
           pos: [0, 0, 9],
           rot: [0, 0, 0],
-          fov: 75,
+          fov: 50,
           fovSettings: {
-            mobile: 120,
-            desktop: 75,
+            mobile: 70,
+            desktop: 50,
           },
           minReach: 0.1,
           maxReach: 100,
@@ -210,7 +210,8 @@ export default {
             }
          } );
 
-          object.position.set(0, -2, 0);
+          object.position.set(0, 0.1, 6.35);
+          object.rotation.set(1.6,0,0);
           this.mysign = object
           this.scene.add(this.mysign);
         },
@@ -254,7 +255,8 @@ export default {
 
           object.castshadow = true
           object.receiveShadow = true
-          object.position.set(0, -2, 0);
+          object.position.set(0, -1, 6);
+          // object.scale.set(2.5,2.5,2.5);
           this.myobject = object
           this.scene.add(this.myobject);
         },

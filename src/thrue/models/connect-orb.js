@@ -48,12 +48,12 @@ methods: {
     },
     addConnectOrb(  ) {
 
-      const boxGeometry = new THREE.SphereGeometry(1, 3,4 );
+      const boxGeometry = new THREE.SphereGeometry(0.25, 3,4 );
       const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
       this.rocketMesh = new THREE.Mesh( boxGeometry, boxMaterial );
       this.rocketMesh.castShadow = true; //default is false
       this.rocketMesh.receiveShadow = true; //default
-      this.rocketMesh.position.set(-0.5,0,5)
+      this.rocketMesh.position.set(-0.25,0,7.3)
       this.scene.add( this.rocketMesh );
 
       },

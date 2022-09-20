@@ -34,7 +34,7 @@
             <lotto ref="lotto" v-if="accs_length" />
 
             <div v-if="hasStarted && accs_length">
-                <!-- <theblock h="10" /> -->
+                <theblock h="10" />
                 <!-- <theblock h="1" /> -->
             </div>
         </div>
