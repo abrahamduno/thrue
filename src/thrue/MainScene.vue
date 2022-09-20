@@ -210,7 +210,7 @@ export default {
             }
          } );
 
-          object.position.set(0, 0.1, 6.35);
+          object.position.set(0, 0.1, 6.4);
           object.rotation.set(1.6,0,0);
           this.mysign = object
           this.scene.add(this.mysign);

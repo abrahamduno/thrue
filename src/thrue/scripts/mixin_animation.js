@@ -1,3 +1,5 @@
+const x = 0, y = 1, z = 2
+
 export default {
 	data ()
 	{
@@ -44,7 +46,13 @@ export default {
 					// this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
 				} else {
 					this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
-					this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y,0.07)
+					this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y+0.4,0.07)
+					// if (-this.pointer.y+0.4 > 1)
+					// {
+					// 	// this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,0.5,0.07)
+					// 	// this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,0.75+0.4,0.07)
+					// } else {
+					// }
 				}
 				// if (this.pointer.y < 0.6)
 				// {
@@ -86,7 +94,7 @@ export default {
 		        this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
 				if (this.mysign)
 				{
-		        	this.mysign.position.z = this.lerp(this.mysign.position.z,-49.65,0.07)
+		        	this.mysign.position.z = this.lerp(this.mysign.position.z,-49.6,0.07)
 		        	this.mysign.position.y = this.lerp(this.mysign.position.y,-0.9,0.07)
 		        }
 	        	if (this.textabraham && this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
@@ -97,6 +105,53 @@ export default {
 
 			this.animate_levelone()
 			this.animate_ticketer()
+	    },
+	    updateScrollPosition(e)
+	    {
+	        this.scrollPosition = window.scrollY;
+	  
+	        const t = document.body.getBoundingClientRect().top;
+	        if (this.DEBUG) { console.log(t) }
+
+	        // FLY THRU CITY
+	        if (t < -this.sceneBreakpoints.default[0]) {
+	          // EXCEPT SCENE 1
+	          this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[0] * 0.015;
+	        } else {
+	          // ONLY SCENE 1
+	          this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
+	        }
+
+	        // ROTATION UP
+	        if (t < -this.sceneBreakpoints.default[0]) {
+	          this.camera.rotation.x = this.sceneVariables.camera.rot[x] - (-this.sceneBreakpoints.default[0]* 0.0003) - (-t * 0.0003);
+	          // EXCEPT SCENE 2
+	        } else {
+	          // ONLY SCENE 2
+	          this.camera.rotation.x = this.sceneVariables.camera.rot[x] ;
+	        }
+	        
+	  
+	        // ????
+	        if (t < -this.sceneBreakpoints.default[4]) {
+	        } else {
+	  
+	          if (t < -this.sceneBreakpoints.default[1]) {
+	            this.camera.position.x =
+	              -this.sceneVariables.camera.pos[x] -
+	              (t + this.sceneBreakpoints.default[1]) * 0.03;
+	          } else {
+	            this.camera.position.x = -this.sceneVariables.camera.pos[x];
+	          }
+	  
+	          if (t < -this.sceneBreakpoints.default[2]) {
+	            this.camera.position.x =
+	              -this.sceneVariables.camera.pos[x] -
+	              (t + this.sceneBreakpoints.default[2]) * 0.25 -
+	              (t + this.sceneBreakpoints.default[1]) * 0.03;
+	          } else {
+	          }
+	        }
 	    },
 	}
 }
