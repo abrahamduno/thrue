@@ -7,6 +7,7 @@ export default {
     
     onPointerClick(e)
     {
+
       if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
         ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 
           this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup.children[0])
@@ -17,6 +18,7 @@ export default {
 
       this.checkConnectWallet()
       this.checkLevelOneClickers()
+      this.checkClickNpc()
     },
     updateRaycaster()
     {
