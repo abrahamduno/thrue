@@ -122,19 +122,19 @@
                         
 
 <script>
-    import loadTextPrize from "../thrue/models/text-prize.js";
-    import loadTextSignup from "../thrue/models/text-signup.js";
-    import loadTextWelcome from "../thrue/models/text-welcome.js";
+    import loadTextPrize from "../../thrue/models/text-prize.js";
+    import loadTextSignup from "../../thrue/models/text-signup.js";
+    import loadTextWelcome from "../../thrue/models/text-welcome.js";
 
     import {
       Multicall,
     } from 'ethereum-multicall';
     import { ethers } from 'ethers';
 
-    import { ABIS, CURRENT_NETWORK } from '../scripts/constants/index';
-    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../scripts/helpers';
+    import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
+    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../scripts/helpers';
     
-    import txCard from "../components/tx-card.vue";
+    import txCard from "../parts/tx-card.vue";
     import lottoResults from "./lotto/lotto-results.vue";
     import lottoSettings from "./lotto/lotto-settings.vue";
     import lottoBottomMenu from "./lotto/lotto-bottom-menu.vue";

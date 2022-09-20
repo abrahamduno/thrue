@@ -6,8 +6,8 @@
     </div>
 </template>
 <script>
-    import MainMenu from "./components/main-menu.vue";
-    import MainDom from "./pages/MainDOM.vue";
+    import MainMenu from "./components/parts/main-menu.vue";
+    import MainDom from "./components/pages/MainDOM.vue";
     import MainScene from "./thrue/MainScene.vue";
     
     export default {

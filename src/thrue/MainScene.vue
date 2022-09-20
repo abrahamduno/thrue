@@ -5,7 +5,7 @@
 </template>
 <script>
 import * as THREE from "three";
-import { OBJLoader } from "../res/loaders/OBJLoader.js";
+import { OBJLoader } from "../scripts/loaders/OBJLoader.js";
 
 import listeners from "./scripts/listeners.js";
 import animationmixin from "./scripts/mixin_animation.js";

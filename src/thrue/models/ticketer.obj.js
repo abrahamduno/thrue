@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OBJLoader } from "../../res/loaders/OBJLoader.js";
+import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";

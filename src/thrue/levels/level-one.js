@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { OBJLoader } from "../../res/loaders/OBJLoader.js";
+import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
 
 import ticketer from "../models/ticketer.obj.js";
 import farm from "../models/farm.obj.js";

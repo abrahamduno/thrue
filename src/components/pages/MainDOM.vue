@@ -46,7 +46,7 @@
 
 <script>
     import lotto from "./lotto.vue";
-    import theblock from "../components/block.vue";
+    import theblock from "../parts/block.vue";
 
 
     export default {

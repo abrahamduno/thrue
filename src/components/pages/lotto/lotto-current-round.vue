@@ -75,10 +75,10 @@
 </template>
 
 <script>
-    import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
-    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../scripts/helpers';
+    import { ABIS, CURRENT_NETWORK } from '../../../scripts/constants/index';
+    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../../scripts/helpers';
 
-    import txCard from "../../components/tx-card.vue";
+    import txCard from "../../parts/tx-card.vue";
 
     export default {
         name: 'lotto-current-round',   

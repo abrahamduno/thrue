@@ -130,8 +130,8 @@
 </template>
 <script>
     import { ethers, Contract }  from 'ethers';
-    import { ABIS, CURRENT_NETWORK } from '../scripts/constants/index';
-    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../scripts/helpers';
+    import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
+    import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../scripts/helpers';
 
     import {
       Multicall,
