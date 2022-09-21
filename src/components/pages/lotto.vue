@@ -122,7 +122,7 @@
                         
 
 <script>
-    import loadTextPrize from "../../thrue/models/text-prize.js";
+    import loadTextWithValue from "../../thrue/models/text-value.js";
     import loadTextSignup from "../../thrue/models/text-signup.js";
     import loadTextWelcome from "../../thrue/models/text-welcome.js";
 
@@ -144,7 +144,7 @@
 
     export default {
         name: 'lotto',     
-        mixins: [loadTextPrize, loadTextSignup, loadTextWelcome],
+        mixins: [loadTextWithValue, loadTextSignup, loadTextWelcome],
         components: {
             txCard,
 
@@ -295,7 +295,7 @@
 
                 // console.log(this.$parent.$parent.$refs.scene)
                 this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
-                this.loadTextPrize()
+                this.loadTextWithValue()
 
             },
             async update_currentTicket(msg)

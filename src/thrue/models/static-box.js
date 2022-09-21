@@ -27,7 +27,7 @@ export default {
       //     this.addLevelOne()
       //   }
       },
-      addClickBox(_params)
+      addStaticBox(_params)
       {
         let params = {...this.baseParams, ..._params}
         const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
