@@ -7,7 +7,9 @@
 import * as THREE from "three";
 import { OBJLoader } from "../scripts/loaders/OBJLoader.js";
 
-import listeners from "./scripts/listeners.js";
+import listen_scroll from "./scripts/listen_scroll.js";
+import listen_mouse from "./scripts/listen_mouse.js";
+import listen_click from "./scripts/listen_click.js";
 import animationmixin from "./scripts/mixin_animation.js";
 import bloommixin from "./scripts/mixin_bloom.js";
 
@@ -21,7 +23,9 @@ const BASE_ASSET_URL = "./res";
 export default {
   name: 'main-scene',    
   mixins: [
-    listeners,
+    listen_click,
+    listen_scroll,
+    listen_mouse,
     animationmixin,
     bloommixin,
 

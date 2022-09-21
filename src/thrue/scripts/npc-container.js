@@ -11,13 +11,6 @@ export default {
     }
   },
   methods: {
-      // checkConnectWallet()
-      // {
-      //   if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
-      //   {
-      //     this.connectWalletOrb()
-      //   }
-      // },
       async getFirstNpc(name)
       {
         if (Object.keys(this.NPCContainer).length == 0) return null
@@ -38,14 +31,6 @@ export default {
             }
           }
         }
-      //   // this.loading = true
-      //   await this.$store.dispatch("connectWallet")
-      //   // this.rocketMesh.visible = false
-      //   // this.addSignOrb()
-      //   if (!this.mylevelone)
-      //   {
-      //     this.addLevelOne()
-      //   }
       },
       initNpcs()
       {
