@@ -3,7 +3,7 @@ import * as THREE from "three";
 export default {
   methods: {
     
-    loadTextPrize() {
+    loadTextWithValue() {
     let bgintensity = this.dark_mode ? 0xB49B85 : 0x909090
       const textloader = new THREE.FontLoader();
       const textmaterialsr = [

@@ -10,11 +10,10 @@ import { OBJLoader } from "../scripts/loaders/OBJLoader.js";
 import listen_scroll from "./scripts/listen_scroll.js";
 import listen_mouse from "./scripts/listen_mouse.js";
 import listen_click from "./scripts/listen_click.js";
-import animationmixin from "./scripts/mixin_animation.js";
+import updateanimation from "./scripts/update_animation.js";
 import bloommixin from "./scripts/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
-
 import connectOrb from "./models/connect-orb.js";
 import texts from "./models/texts.js";
 
@@ -26,7 +25,7 @@ export default {
     listen_click,
     listen_scroll,
     listen_mouse,
-    animationmixin,
+    updateanimation,
     bloommixin,
 
     connectOrb,
