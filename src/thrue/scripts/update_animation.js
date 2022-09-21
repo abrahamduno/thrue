@@ -11,6 +11,22 @@ export default {
 		lerp(min, max, value) {
 		  return (max - min) * value + min;
 		},
+	    _animate()
+	    {
+	      requestAnimationFrame(this._animate);
+	      // animations and mouse position
+	      this.raycaster.setFromCamera( this.pointer, this.camera );
+	      this.updateAnimations()
+	      this.updateRaycaster()
+
+	      // render
+	      if (this.current_sub_page == "bloom") 
+	      {
+	        this.composer.render();
+	      } else {
+	        this.renderer.render(this.scene, this.camera);
+	      }
+	    },
 	    updateAnimations(e) {
         	const t = document.body.getBoundingClientRect().top;
         	

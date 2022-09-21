@@ -98,60 +98,29 @@ export default {
       this.setSceneAndCamera();
       this.addLight()
 
-      this.loadObjects();
-
-      // Array(200).fill().forEach(() => {
-      //   this.loadAStar();
-      // });
-      // this.loadTexts();
+      this.loadMainObjects();
 
       this.setRenderer();
-      if (this.current_sub_page == "bloom")
-      {
-        this.setBloomRenderer()
-      }
+      if (this.current_sub_page == "bloom") { this.setBloomRenderer() }
+
       this.setRaycaster();
-
-      // this._animate()
-      // this.renderer.render(this.scene, this.camera);
       this.updateScrollPosition()
+      // this._animate()
     },
-    _animate()
+    loadMainObjects()
     {
-      requestAnimationFrame(this._animate);
-      this.raycaster.setFromCamera( this.pointer, this.camera );
-      this.updateAnimations()
-      this.updateRaycaster()
-      if (this.current_sub_page != "bloom") 
-      {
-        this.renderer.render(this.scene, this.camera);
-      } else {
-        this.composer.render();
-      }
-    },
-    loadSkeletonObjects()
-    {
-
-    },
-    loadObjects()
-    {
+      this.addConnectOrb()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "sign.obj",
         (object) => {
-
           object.traverse( function ( child ) {
              if ( child instanceof THREE.Mesh ) {
-                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
-                  // side:THREE.DoubleSide 
-                } );
-                child.castShadow = true;
+                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
                 child.castShadow = true;
                 child.receiveShadow = true;
-
             }
          } );
-
           object.position.set(0, 0.1, 6.4);
           object.rotation.set(1.6,0,0);
           this.mysign = object
@@ -160,56 +129,22 @@ export default {
         this.onLoadProgress
       );
 
-      const sphereGeometry = new THREE.SphereGeometry(1, 32, 32 );
-      const sphereMaterial = new THREE.MeshStandardMaterial( { color: 0xff9000 } );
-      const sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-      sphere.castShadow = true; //default is false
-      sphere.receiveShadow = true; //default
-      sphere.position.x = -2.4
-      sphere.position.z = 2
-      // this.scene.add( sphere );
-
-      //Create a sphere that cast shadows (but does not receive them)
-      this.addConnectOrb()
-
-      //Create a plane that receives shadows (but does not cast them)
-      const planeGeometry = new THREE.PlaneGeometry( 20, 20, 32, 32 );
-      const planeMaterial = new THREE.MeshStandardMaterial( { color: 0x00ff00 } )
-      const plane = new THREE.Mesh( planeGeometry, planeMaterial );
-      plane.receiveShadow = true;
-
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "test.obj",
         (object) => {
-
           object.traverse( function ( child ) {
              if ( child instanceof THREE.Mesh ) {
-
-                 child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa,
-                  // side:THREE.DoubleSide 
-                } );
-                child.castShadow = true;
-                child.castShadow = true;
-                child.receiveShadow = true;
-
+              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
+              child.castShadow = true;
+              child.receiveShadow = true;
             }
          } );
-
-          object.castshadow = true
-          object.receiveShadow = true
           object.position.set(0, -1, 6);
-          // object.scale.set(2.5,2.5,2.5);
           this.myobject = object
           this.scene.add(this.myobject);
         },
         this.onLoadProgress
       );
-
-
-    },
-    loadAStar()
-    {
-
     },
     beforeDestroy() {
       // remove listener again
