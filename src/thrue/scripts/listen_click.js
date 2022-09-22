@@ -15,9 +15,9 @@ export default {
         this.$parent.$refs.dom.$refs.lotto.execute_addFullTargetAllowance();
       }
 
-      this.checkConnectWallet()
-      this.checkLevelOneClickers()
-      this.checkClickNpc()
+      this.checkClick_connectOrb()
+      this.checkClick_levelOne()
+      this.checkClick_npc()
     },
   }
 }

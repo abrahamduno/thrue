@@ -58,7 +58,7 @@ export default {
         this.addLevelMesh()
       }, this.onLoadProgress );
     },
-    checkLevelOneClickers()
+    checkClick_levelOne()
     {
       if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
       {
@@ -80,7 +80,7 @@ export default {
     clickedInterrogationSign(  ) {
       if (!this.mylevelone)
       {
-        this.connectWalletOrb()
+        this.clicked_connectOrb()
       }
       if (this.goals && this.goals.tickets < 1)
       {
