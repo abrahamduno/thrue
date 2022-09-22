@@ -6,6 +6,7 @@ export default {
   {
     onPointerClick(e)
     {
+      this.mainCheckClick()
 
       if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
         ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 

@@ -25,11 +25,11 @@ export default {
         this.addLevelOne()
       }
     },
-    addConnectOrb()
+    add_connectOrb()
     {
-      const boxGeometry = new THREE.SphereGeometry(0.25, 3,4 );
-      const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
-      this.connectOrb = new THREE.Mesh( boxGeometry, boxMaterial );
+      const orbGeometry = new THREE.SphereGeometry(0.25, 3,4 );
+      const orbMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xFFA859 } );
+      this.connectOrb = new THREE.Mesh( orbGeometry, orbMaterial );
       this.connectOrb.castShadow = true; //default is false
       this.connectOrb.receiveShadow = true; //default
       this.connectOrb.position.set(-0.25,0,7.3)

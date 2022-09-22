@@ -16,6 +16,7 @@ import bloommixin from "./scripts/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
 import connectOrb from "./models/connect-orb.js";
+import bubbleHead from "./models/bubble-head.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -30,6 +31,7 @@ export default {
     bloommixin,
 
     connectOrb,
+    bubbleHead,
     levelOne,
   ],
   data()
@@ -107,42 +109,28 @@ export default {
     },
     loadMainObjects()
     {
-      this.addConnectOrb()
-
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "sign.obj",
-        (object) => {
-          object.traverse( function ( child ) {
-             if ( child instanceof THREE.Mesh ) {
-                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
-                child.castShadow = true;
-                child.receiveShadow = true;
-            }
-         } );
-          object.position.set(0, 0.1, 6.4);
-          object.rotation.set(1.6,0,0);
-          this.mysign = object
-          this.scene.add(this.mysign);
-        },
-        this.onLoadProgress
-      );
-
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "test.obj",
-        (object) => {
-          object.traverse( function ( child ) {
-             if ( child instanceof THREE.Mesh ) {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-         } );
-          object.position.set(0, -1, 6);
-          this.myobject = object
-          this.scene.add(this.myobject);
-        },
-        this.onLoadProgress
-      );
+      this.add_connectOrb()
+      this.add_bubbleHead()
+    },
+    mainCheckClick()
+    {
+      // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.clickedBubbleHeadHead()
+      }
+    },
+    clickedBubbleHeadHead(  ) {
+      if (!this.mylevelone)
+      {
+        this.clicked_connectOrb()
+      }
+      if (this.goals && this.goals.tickets < 1)
+      {
+        alert("Failed")
+        return
+      }
+      // alert("You Win!")
     },
     mainAnimation()
     {
