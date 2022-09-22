@@ -12,6 +12,14 @@ data () {
   }
 },
 methods: {
+    animate_connectOrb()
+    {
+      this.rocketMesh.position.y =
+        this.lerp(this.rocketMesh.position.y,Math.sin(this.tcounter*0.03)*0.15+(this.accs_length ? 25 : +0.6),0.02)
+      this.rocketMesh.rotation.z = -Math.sin(this.tcounter*0.02)*0.35
+      this.rocketMesh.rotation.x = Math.sin(this.tcounter*0.05)*0.15
+      this.rocketMesh.rotation.y += 0.006-this.pointer.x*0.01
+    },
     checkConnectWallet()
     {
       if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
