@@ -17,7 +17,7 @@ export default {
 
         return this.NPCContainer[Object.keys(this.NPCContainer)[0]]
       },
-      async checkClickNpc()
+      async checkClick_npc()
       {
         if(this.INTERSECTED && this.NPCContainer)
         {

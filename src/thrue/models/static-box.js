@@ -9,23 +9,8 @@ export default {
     }
   },
   methods: {
-      // checkConnectWallet()
-      // {
-      //   if(this.INTERSECTED && this.INTERSECTED == this.rocketMesh)
-      //   {
-      //     this.connectWalletOrb()
-      //   }
-      // },
       async clickEvent()
       {
-      //   // this.loading = true
-      //   await this.$store.dispatch("connectWallet")
-      //   // this.rocketMesh.visible = false
-      //   // this.addSignOrb()
-      //   if (!this.mylevelone)
-      //   {
-      //     this.addLevelOne()
-      //   }
       },
       addStaticBox(_params)
       {

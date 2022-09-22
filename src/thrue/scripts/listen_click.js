@@ -6,6 +6,7 @@ export default {
   {
     onPointerClick(e)
     {
+      this.mainCheckClick()
 
       if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
         ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 
@@ -15,9 +16,9 @@ export default {
         this.$parent.$refs.dom.$refs.lotto.execute_addFullTargetAllowance();
       }
 
-      this.checkConnectWallet()
-      this.checkLevelOneClickers()
-      this.checkClickNpc()
+      this.checkClick_connectOrb()
+      this.checkClick_levelOne()
+      this.checkClick_npc()
     },
   }
 }

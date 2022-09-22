@@ -58,13 +58,8 @@ export default {
         this.addLevelMesh()
       }, this.onLoadProgress );
     },
-    checkLevelOneClickers()
+    checkClick_levelOne()
     {
-      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
-      {
-        this.clickedInterrogationSign()
-      }
-
       if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
       {
         this.goals.tickets++
@@ -76,18 +71,6 @@ export default {
         this.goals.eggs++
         this.clickFarm()
       }
-    },
-    clickedInterrogationSign(  ) {
-      if (!this.mylevelone)
-      {
-        this.connectWalletOrb()
-      }
-      if (this.goals && this.goals.tickets < 1)
-      {
-        alert("Failed")
-        return
-      }
-      // alert("You Win!")
     },
     addLevelMesh()
     {

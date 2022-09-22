@@ -16,7 +16,7 @@ import bloommixin from "./scripts/mixin_bloom.js";
 
 import levelOne from "./levels/level-one.js";
 import connectOrb from "./models/connect-orb.js";
-import texts from "./models/texts.js";
+import bubbleHead from "./models/bubble-head.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -31,8 +31,8 @@ export default {
     bloommixin,
 
     connectOrb,
+    bubbleHead,
     levelOne,
-    texts,
   ],
   data()
   {
@@ -109,42 +109,71 @@ export default {
     },
     loadMainObjects()
     {
-      this.addConnectOrb()
+      this.add_connectOrb()
+      this.add_bubbleHead()
+    },
+    mainCheckClick()
+    {
+      // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.clickedBubbleHeadHead()
+      }
+    },
+    clickedBubbleHeadHead(  ) {
+      if (!this.mylevelone)
+      {
+        this.clicked_connectOrb()
+      }
+      if (this.goals && this.goals.tickets < 1)
+      {
+        alert("Failed")
+        return
+      }
+      // alert("You Win!")
+    },
+    mainAnimation()
+    {
 
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "sign.obj",
-        (object) => {
-          object.traverse( function ( child ) {
-             if ( child instanceof THREE.Mesh ) {
-                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
-                child.castShadow = true;
-                child.receiveShadow = true;
-            }
-         } );
-          object.position.set(0, 0.1, 6.4);
-          object.rotation.set(1.6,0,0);
-          this.mysign = object
-          this.scene.add(this.mysign);
-        },
-        this.onLoadProgress
-      );
+      // TRANSITION TO LEVEL ! WHEN CONNECTED
+      if (this.accs_length)
+      {
+        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
+        this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
+        if (this.mysign)
+        {
+          this.mysign.position.z = this.lerp(this.mysign.position.z,-49.6,0.07)
+          this.mysign.position.y = this.lerp(this.mysign.position.y,-0.9,0.07)
+        }
+      }
 
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "test.obj",
-        (object) => {
-          object.traverse( function ( child ) {
-             if ( child instanceof THREE.Mesh ) {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-         } );
-          object.position.set(0, -1, 6);
-          this.myobject = object
-          this.scene.add(this.myobject);
-        },
-        this.onLoadProgress
-      );
+      // LIVE ANIMAL LOOKING TO POINTER
+      if (this.mysign)
+      {
+        // console.log(this.pointer)
+        if (this.pointer.x == null && this.pointer.y == null)
+        {
+          // console.log("asd")
+          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,-0.6,0.01)
+          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-0.2,0.03)
+          // this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
+        } else {
+          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
+          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y+0.4,0.07)
+        }
+      }
+
+      // PLAYER CAMERA
+      if (this.camera && this.pro_mode &&
+        (this.pointer.x < -0.2 || this.pointer.x > 0.2)
+        )
+      {
+        this.camera.rotation.y =
+          this.lerp(this.camera.rotation.y,-this.pointer.x*1.2+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+      } else {
+        this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
+
+      }
     },
     beforeDestroy() {
       // remove listener again
