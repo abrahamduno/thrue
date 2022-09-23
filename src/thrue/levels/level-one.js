@@ -20,6 +20,29 @@ export default {
   ],
   methods:
   {
+    checkGoals()
+    {
+      let input = prompt("Amount",1)
+
+      if (this.goals && input)
+      {
+        let input = prompt("Amount",1)
+        if (this.goals.eggs == input)
+        {
+          this.YOU_WIN()
+        } else {
+          this.YOU_LOSE()
+        }
+      }
+    },
+    YOU_WIN()
+    {
+      alert("you win")
+    },
+    YOU_LOSE()
+    {
+      alert("Failed")
+    },
     initLevelOne(  ) {
       this.goals = {
         tickets: 0,
@@ -29,10 +52,10 @@ export default {
     animate_levelone(  ) {
       if (this.accs_length)
       {
-        if (this.mylevelone)
-        {
-          this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
-        }
+      }
+      if (this.mylevelone)
+      {
+        this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
       }
     },
     addLevelOne(  ) {
@@ -78,7 +101,10 @@ export default {
       this.addFarm();
 
       this.initNpcs()
-      this.addNpc({pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa});
+      this.addNpc({name:"const",pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["y"],value:0.01}});
+      this.addNpc({name:"sin",obj:"sign.obj",pos: [3,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"sin",path:["x"],value:3}});
+      this.addNpc({name:"cos",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xaaaaaa, animation:{type:"cos",path:["z"],value:1}});
+      this.addNpc({name:"circle",pos: [-2,-2,-40], BoxGeometry: [0.5,1,0.5], color: 0xaaaaaa, animation:{type:"circle",path:["z","x"],value:1.1}});
 
       // center
       {

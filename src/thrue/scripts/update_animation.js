@@ -20,7 +20,7 @@ export default {
 	      this.updateRaycaster()
 
 	      // render
-	      if (this.current_sub_page == "bloom") 
+	      if (this.current_filter == "bloom") 
 	      {
 	        this.composer.render();
 	      } else {
@@ -57,6 +57,7 @@ export default {
 			}
 			
 
+			this.animate_npcs(this.tcounter)
 			this.animate_levelone()
 			this.animate_ticketer()
 	    },

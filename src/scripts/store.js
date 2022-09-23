@@ -12,11 +12,15 @@ const store = createStore({
     var urlparams = (new URL(url_string)).searchParams;
     // console.log("***",url_string, url);
     var thepage = urlparams.get("page");
+    var thefilter = urlparams.get("filter");
     // console.log("page",thepage);
     return {
+      LANG,
+
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
-      LANG,
+      currentFilter: thefilter,
+      isPlayingTest: false,
       darkMode: false,
       proMode: false,
       autoMode: false,
@@ -40,6 +44,9 @@ const store = createStore({
       state.proMode = mode
     },
 
+    setTestingConnect(state, val) {
+      state.isPlayingTest = val
+    },
     setCurrentPseudoPage(state, _page) {
       state.currentPseudoPage = _page
     },
@@ -83,8 +90,16 @@ const store = createStore({
     setNewBlock(context, blockData) {
       context.commit('addBlockchainObject', blockData);
     },
+    setTestingConnect(context, val) {
+      context.commit('setTestingConnect', val);
+    },
 
     connectWallet: async (context) => {
+      if (context.getters.current_sub_page == "test")
+      {
+        context.commit('setTestingConnect', true);
+        return
+      }
       if (!context.getters.is_metaMask) { alert("Please, Install Metamask.") }
       let accs = await context.getters.eth.request({ method: 'eth_requestAccounts' }).catch((err) => {
         if (err.code == -32002)
@@ -94,6 +109,7 @@ const store = createStore({
       })
       if(typeof accs == "undefined") { console.log("Unlock or Connect Wallet and try Again...")}
       for (var i = 0; i < accs.length; i++) {
+        console.log(accs[i])
         context.commit('addAccount', accs[i]);
       }
     },
@@ -105,6 +121,12 @@ const store = createStore({
     },
     current_sub_page(state) {
       return state.currentSubPage
+    },
+    is_playing_test(state) {
+      return state.isPlayingTest
+    },
+    current_filter(state) {
+      return state.currentFilter
     },
     LANG(state) {
       return state.LANG[state.englishMode ? "EN" : "ES"];

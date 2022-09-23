@@ -24,7 +24,7 @@
                     </h1>
                 </div>
             </div>
-            <div v-if="accs_length">
+            <div v-if="accs_length || is_playing_test">
                 <theblock h="24" />
                 <div v-if="hasStarted">
                     <theblock h="10" />
@@ -32,6 +32,10 @@
             </div>
 
             <lotto ref="lotto" v-if="accs_length" />
+            <div v-if="hasStarted && !accs_length && is_playing_test">
+                <theblock h="6" />
+                <!-- <theblock h="1" /> -->
+            </div>
 
             <div v-if="hasStarted && accs_length">
                 <theblock h="10" />
@@ -70,6 +74,7 @@
             dark_mode()             { return this.$store.getters.dark_mode },
             pro_mode()              { return this.$store.getters.pro_mode },
             current_sub_page()      { return this.$store.getters.current_sub_page },
+            is_playing_test()      { return this.$store.getters.is_playing_test },
 
             valuesBlock()             { return this.$store.getters.getBlock("values") },
         },

@@ -49,7 +49,9 @@ export default {
     pro_mode()             { return this.$store.getters.pro_mode },
     auto_mode()             { return this.$store.getters.auto_mode },
 
+    is_playing_test()      { return this.$store.getters.is_playing_test },
     current_sub_page()      { return this.$store.getters.current_sub_page },
+    current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
   },
   mounted()
@@ -101,7 +103,7 @@ export default {
       this.loadMainObjects();
 
       this.setRenderer();
-      if (this.current_sub_page == "bloom") { this.setBloomRenderer() }
+      if (this.current_filter == "bloom") { this.setBloomRenderer() }
 
       this.setRaycaster();
       this.updateScrollPosition()
@@ -121,22 +123,19 @@ export default {
       }
     },
     clickedBubbleHeadHead(  ) {
+      console.log("clickk")
       if (!this.mylevelone)
       {
         this.clicked_connectOrb()
       }
-      if (this.goals && this.goals.tickets < 1)
-      {
-        alert("Failed")
-        return
-      }
+      this.checkGoals()
       // alert("You Win!")
     },
     mainAnimation()
     {
 
       // TRANSITION TO LEVEL ! WHEN CONNECTED
-      if (this.accs_length)
+      if (this.accs_length || this.is_playing_test)
       {
         this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
         this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
