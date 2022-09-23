@@ -32,6 +32,10 @@
             </div>
 
             <lotto ref="lotto" v-if="accs_length" />
+            <div v-if="hasStarted && !accs_length && is_playing_test">
+                <theblock h="6" />
+                <!-- <theblock h="1" /> -->
+            </div>
 
             <div v-if="hasStarted && accs_length">
                 <theblock h="10" />

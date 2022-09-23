@@ -123,6 +123,7 @@ export default {
       }
     },
     clickedBubbleHeadHead(  ) {
+      console.log("clickk")
       if (!this.mylevelone)
       {
         this.clicked_connectOrb()
