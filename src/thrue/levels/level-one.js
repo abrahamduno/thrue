@@ -78,7 +78,10 @@ export default {
       this.addFarm();
 
       this.initNpcs()
-      this.addNpc({pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["z"],value:0.1}});
+      this.addNpc({name:"const",pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["y"],value:0.01}});
+      this.addNpc({name:"sin",pos: [3,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"sin",path:["x"],value:3}});
+      this.addNpc({name:"cos",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xaaaaaa, animation:{type:"cos",path:["z"],value:1}});
+      this.addNpc({name:"circle",pos: [-2,-2,-40], BoxGeometry: [0.5,1,0.5], color: 0xaaaaaa, animation:{type:"circle",path:["z","x"],value:1.1}});
 
       // center
       {

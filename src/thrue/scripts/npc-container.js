@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-      animate_npcs()
+      animate_npcs(tcounter)
       {
         if(!this.NPCContainer) return
         let thekeys = Object.keys(this.NPCContainer)
@@ -23,6 +23,19 @@ export default {
             if(this.NPCAnimationContainer[thekeys[i]].type == "constant")
             {
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value
+            }
+            if(this.NPCAnimationContainer[thekeys[i]].type == "sin" || this.NPCAnimationContainer[thekeys[i]].type == "cos")
+            {
+              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
+                Math[this.NPCAnimationContainer[thekeys[i]].type](tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
+            }
+            if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
+            {
+              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
+                Math.sin(tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
+
+              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[1]] =  
+                Math.cos(tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
             }
             // alert("npc clicked")
           }
@@ -39,12 +52,13 @@ export default {
         if(this.INTERSECTED && this.NPCContainer)
         {
           let thekeys = Object.keys(this.NPCContainer)
+          console.log(this.NPCContainer)
           for (var i = 0; i < thekeys.length; i++)
           {            
             // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
             if(this.INTERSECTED == this.NPCContainer[thekeys[i]])
             {
-              alert("npc clicked")
+              alert("npc clicked: "+thekeys[i])
             }
           }
         }
@@ -52,11 +66,13 @@ export default {
       initNpcs()
       {
         this.NPCContainer = {}
+        this.NPCBaseContainer = {}
         this.NPCAnimationContainer = {}
       },
 
       addNpc(_params)
       {
+        if (!_params.name) return
         let params = {...this.baseNpc, ..._params}
         const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
         const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
@@ -64,9 +80,12 @@ export default {
         newClickBox.castShadow = true; //default is false
         newClickBox.receiveShadow = true; //default
         newClickBox.position.set(...params.pos)
+        newClickBox.name = params.name
 
-        this.NPCContainer[newClickBox.name] = newClickBox
-        this.NPCAnimationContainer[newClickBox.name] = params.animation
+        this.NPCContainer[params.name] = newClickBox
+        this.NPCAnimationContainer[params.name] = params.animation
+        this.NPCBaseContainer[params.name] = params
+          console.log(this.NPCContainer)
 
         this.scene.add( newClickBox );
       },
