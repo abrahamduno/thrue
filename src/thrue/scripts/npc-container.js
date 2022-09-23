@@ -1,4 +1,8 @@
 import * as THREE from "three";
+import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
+
+const BASE_URL = "http://localhost:3000/";
+const BASE_ASSET_URL = "./res";
 
 export default {
   data () {
@@ -68,26 +72,57 @@ export default {
         this.NPCContainer = {}
         this.NPCBaseContainer = {}
         this.NPCAnimationContainer = {}
+        this.NPCObjectContainer = {}
       },
 
       addNpc(_params)
       {
         if (!_params.name) return
         let params = {...this.baseNpc, ..._params}
-        const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
-        const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
-        let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
-        newClickBox.castShadow = true; //default is false
-        newClickBox.receiveShadow = true; //default
-        newClickBox.position.set(...params.pos)
-        newClickBox.name = params.name
+        if(params.obj)
+        {
+          this.addObject(params)
+        } else {
+          const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
+          const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
+          let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
+          newClickBox.castShadow = true; //default is false
+          newClickBox.receiveShadow = true; //default
+          newClickBox.position.set(...params.pos)
+          newClickBox.name = params.name
 
-        this.NPCContainer[params.name] = newClickBox
-        this.NPCAnimationContainer[params.name] = params.animation
-        this.NPCBaseContainer[params.name] = params
-          console.log(this.NPCContainer)
+          this.NPCContainer[params.name] = newClickBox
+          this.NPCAnimationContainer[params.name] = params.animation
+          this.NPCBaseContainer[params.name] = params
+          this.scene.add( newClickBox );
+        }
+      },
+      addObject( _params )
+      {
+        console.log(_params)
+        new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+          _params.obj,
+          (object) => {
+            object.traverse( function ( child )
+            {
+              if ( child instanceof THREE.Mesh )
+              {
+                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+                child.castShadow = true;
+                child.receiveShadow = true;
+              }
+              // if( child.material ) {
+              //   child.material.side = THREE.BackSide;
+              // }
+           } );
+            object.position.set(..._params.pos);
 
-        this.scene.add( newClickBox );
+            this.NPCContainer[_params.name] = object
+            this.NPCAnimationContainer[_params.name] = _params.animation
+            this.NPCBaseContainer[_params.name] = _params
+
+            this.scene.add(this.NPCContainer[_params.name]);
+        }, this.onLoadProgress );
       },
   }
 }

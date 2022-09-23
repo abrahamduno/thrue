@@ -128,11 +128,7 @@ export default {
       {
         this.clicked_connectOrb()
       }
-      if (this.goals && this.goals.tickets < 1)
-      {
-        alert("Failed")
-        return
-      }
+      this.checkGoals()
       // alert("You Win!")
     },
     mainAnimation()
