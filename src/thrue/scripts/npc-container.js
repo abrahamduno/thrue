@@ -11,6 +11,23 @@ export default {
     }
   },
   methods: {
+      animate_npcs()
+      {
+        if(!this.NPCContainer) return
+        let thekeys = Object.keys(this.NPCContainer)
+        for (var i = 0; i < thekeys.length; i++)
+        {            
+          // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
+          if(this.NPCAnimationContainer[thekeys[i]])
+          {
+            if(this.NPCAnimationContainer[thekeys[i]].type == "constant")
+            {
+              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value
+            }
+            // alert("npc clicked")
+          }
+        }
+      },
       async getFirstNpc(name)
       {
         if (Object.keys(this.NPCContainer).length == 0) return null
@@ -35,6 +52,7 @@ export default {
       initNpcs()
       {
         this.NPCContainer = {}
+        this.NPCAnimationContainer = {}
       },
 
       addNpc(_params)
@@ -48,6 +66,7 @@ export default {
         newClickBox.position.set(...params.pos)
 
         this.NPCContainer[newClickBox.name] = newClickBox
+        this.NPCAnimationContainer[newClickBox.name] = params.animation
 
         this.scene.add( newClickBox );
       },

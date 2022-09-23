@@ -78,7 +78,7 @@ export default {
       this.addFarm();
 
       this.initNpcs()
-      this.addNpc({pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa});
+      this.addNpc({pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["z"],value:0.1}});
 
       // center
       {

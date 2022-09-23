@@ -57,6 +57,7 @@ export default {
 			}
 			
 
+			this.animate_npcs()
 			this.animate_levelone()
 			this.animate_ticketer()
 	    },
