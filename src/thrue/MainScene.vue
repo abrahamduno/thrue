@@ -50,6 +50,7 @@ export default {
     auto_mode()             { return this.$store.getters.auto_mode },
 
     current_sub_page()      { return this.$store.getters.current_sub_page },
+    current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
   },
   mounted()
@@ -101,7 +102,7 @@ export default {
       this.loadMainObjects();
 
       this.setRenderer();
-      if (this.current_sub_page == "bloom") { this.setBloomRenderer() }
+      if (this.current_filter == "bloom") { this.setBloomRenderer() }
 
       this.setRaycaster();
       this.updateScrollPosition()

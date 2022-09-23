@@ -12,10 +12,12 @@ const store = createStore({
     var urlparams = (new URL(url_string)).searchParams;
     // console.log("***",url_string, url);
     var thepage = urlparams.get("page");
+    var thefilter = urlparams.get("filter");
     // console.log("page",thepage);
     return {
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
+      currentFilter: thefilter,
       LANG,
       darkMode: false,
       proMode: false,
@@ -105,6 +107,9 @@ const store = createStore({
     },
     current_sub_page(state) {
       return state.currentSubPage
+    },
+    current_filter(state) {
+      return state.currentFilter
     },
     LANG(state) {
       return state.LANG[state.englishMode ? "EN" : "ES"];
