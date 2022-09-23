@@ -29,10 +29,10 @@ export default {
     animate_levelone(  ) {
       if (this.accs_length)
       {
-        if (this.mylevelone)
-        {
-          this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
-        }
+      }
+      if (this.mylevelone)
+      {
+        this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
       }
     },
     addLevelOne(  ) {
