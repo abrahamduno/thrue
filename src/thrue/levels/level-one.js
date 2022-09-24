@@ -27,21 +27,35 @@ export default {
     checkGoals()
     {
       // let input = prompt("Amount",1)
+      // let input = prompt("Amount",1)
+      console.log("this.enable_help",this.enable_help)
 
-      if (this.goals /*&& input*/)
+      if (!this.goals)
       {
-        // let input = prompt("Amount",1)
-        if (this.goals.bedding < 3)
-        {
-          if ( !this.NPCClickCounter.Molly
-            || !this.NPCClickCounter.Lucy
-            || !this.NPCClickCounter.Amy
-            || !this.NPCClickCounter.Mia)
-          {
-            this.YOU_LOSE()
-            return
-          }
-        }
+        alert("please reload game")
+        this.YOU_LOSE()
+        return
+      }
+      if (this.goals.hay < 3)
+      {
+        alert("hay")
+        this.YOU_LOSE()
+        return
+      }
+      if ( !this.NPCClickCounter.Molly
+        || !this.NPCClickCounter.Lucy
+        || !this.NPCClickCounter.Amy
+        || !this.NPCClickCounter.Mia)
+      {
+        alert("Molly Lucy Amy Mia")
+        this.YOU_LOSE()
+        return
+      }
+      if (this.enable_help < 2)
+      {
+        alert("enable_help")
+        this.YOU_LOSE()
+        return
       }
 
       this.enable_help++
@@ -60,7 +74,7 @@ export default {
     {
       this.goals = {
         tickets: 0,
-        bedding: 0,
+        hay: 0,
       }
     },
     animate_levelone()
@@ -121,7 +135,7 @@ export default {
 
       if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
       {
-        this.goals.bedding++
+        this.goals.hay++
         this.clickFarm()
       }
     },
