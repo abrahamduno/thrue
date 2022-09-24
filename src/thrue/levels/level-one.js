@@ -22,12 +22,12 @@ export default {
   {
     checkGoals()
     {
-      let input = prompt("Amount",1)
+      // let input = prompt("Amount",1)
 
-      if (this.goals && input)
+      if (this.goals /*&& input*/)
       {
-        let input = prompt("Amount",1)
-        if (this.goals.eggs == input)
+        // let input = prompt("Amount",1)
+        if (this.goals.bedding > 3)
         {
           this.YOU_WIN()
         } else {
@@ -43,13 +43,15 @@ export default {
     {
       alert("Failed")
     },
-    initLevelOne(  ) {
+    initLevelOne()
+    {
       this.goals = {
         tickets: 0,
-        eggs: 0,
+        bedding: 0,
       }
     },
-    animate_levelone(  ) {
+    animate_levelone()
+    {
       if (this.accs_length)
       {
       }
@@ -91,7 +93,7 @@ export default {
 
       if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
       {
-        this.goals.eggs++
+        this.goals.bedding++
         this.clickFarm()
       }
     },
@@ -101,10 +103,10 @@ export default {
       this.addFarm();
 
       this.initNpcs()
-      this.addNpc({name:"const",pos: [0,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["y"],value:0.01}});
-      this.addNpc({name:"sin",obj:"sign.obj",pos: [3,-2,-40], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"sin",path:["x"],value:3}});
-      this.addNpc({name:"cos",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xaaaaaa, animation:{type:"cos",path:["z"],value:1}});
-      this.addNpc({name:"circle",pos: [-2,-2,-40], BoxGeometry: [0.5,1,0.5], color: 0xaaaaaa, animation:{type:"circle",path:["z","x"],value:1.1}});
+      this.addNpc({name:"molly",obj:"achiken.obj",pos: [0,-2,-40],rot: [-0.5,0.2,0.4], BoxGeometry: [0.5,0.5,0.5], color: 0xaaaaaa, animation:{type:"constant",path:["y"],value:0.01}});
+      this.addNpc({name:"water",pos: [6,-2.5,-42.8], BoxGeometry: [7.5*2,0.7,9*2], color: 0xC8D3E5, animation:{type:"sin",path:["y"],value:0.02}});
+      this.addNpc({name:"protein",obj:"achiken.obj",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xFFC88A, animation:{type:"cos",path:["z"],value:1,add:[{rot:"y"}]}});
+      this.addNpc({name:"lucy",obj:"achiken.obj",pos: [-2,-2.1,-51.15], BoxGeometry: [0.5,1,0.5], color: 0xeeeeee, animation:{type:"circle",path:["z","x"],value:1}});
 
       // center
       {

@@ -74,7 +74,7 @@ export default {
       this.sceneBreakpoints = {
         default: [],
         mobile: [3000, 8500, 9900, 13100, 14400],
-        desktop: [3000, 8500, 12900, 16100, 18400],
+        desktop: [2400, 4200, 12900, 16100, 18400],
       }
       this.sceneVariables = {
         camera: {

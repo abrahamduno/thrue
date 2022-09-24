@@ -32,6 +32,14 @@ export default {
             {
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
                 Math[this.NPCAnimationContainer[thekeys[i]].type](tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
+              if (this.NPCAnimationContainer[thekeys[i]].add)
+              {
+                // console.log(this.NPCAnimationContainer[thekeys[i]].add)
+                if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+                {
+                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*0.01)
+                }
+              }
             }
             if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
             {
@@ -40,6 +48,10 @@ export default {
 
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[1]] =  
                 Math.cos(tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
+
+              this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*0.01)
+
+
             }
             // alert("npc clicked")
           }
@@ -60,7 +72,9 @@ export default {
           for (var i = 0; i < thekeys.length; i++)
           {            
             // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
-            if(this.INTERSECTED == this.NPCContainer[thekeys[i]])
+            if(this.INTERSECTED == this.NPCContainer[thekeys[i]] ||
+              (this.NPCContainer[thekeys[i]].children && this.INTERSECTED == this.NPCContainer[thekeys[i]].children[0])
+              )
             {
               alert("npc clicked: "+thekeys[i])
             }
@@ -89,6 +103,7 @@ export default {
           newClickBox.castShadow = true; //default is false
           newClickBox.receiveShadow = true; //default
           newClickBox.position.set(...params.pos)
+          if (params.rot) newClickBox.rotation.set(...params.rot)
           newClickBox.name = params.name
 
           this.NPCContainer[params.name] = newClickBox
@@ -107,7 +122,7 @@ export default {
             {
               if ( child instanceof THREE.Mesh )
               {
-                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+                child.material = new THREE.MeshStandardMaterial( { color: _params.color } );
                 child.castShadow = true;
                 child.receiveShadow = true;
               }
@@ -116,6 +131,7 @@ export default {
               // }
            } );
             object.position.set(..._params.pos);
+            if (_params.rot) object.rotation.set(..._params.rot);
 
             this.NPCContainer[_params.name] = object
             this.NPCAnimationContainer[_params.name] = _params.animation
