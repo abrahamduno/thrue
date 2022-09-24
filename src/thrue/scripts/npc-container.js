@@ -17,6 +17,8 @@ export default {
   methods: {
       animate_npcs(tcounter)
       {
+        let r = this.refreshRate
+
         if(!this.NPCContainer) return
         let thekeys = Object.keys(this.NPCContainer)
         for (var i = 0; i < thekeys.length; i++)
@@ -24,32 +26,42 @@ export default {
           // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
           if(this.NPCAnimationContainer[thekeys[i]])
           {
+            let speed = this.NPCAnimationContainer[thekeys[i]].speed ? this.NPCAnimationContainer[thekeys[i]].speed : 0.01
             if(this.NPCAnimationContainer[thekeys[i]].type == "constant")
             {
-              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value
+              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value*r
+
+              if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+              {
+                this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+              }
             }
             if(this.NPCAnimationContainer[thekeys[i]].type == "sin" || this.NPCAnimationContainer[thekeys[i]].type == "cos")
             {
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
-                Math[this.NPCAnimationContainer[thekeys[i]].type](tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
+                Math[this.NPCAnimationContainer[thekeys[i]].type](tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
               if (this.NPCAnimationContainer[thekeys[i]].add)
               {
                 // console.log(this.NPCAnimationContainer[thekeys[i]].add)
                 if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
                 {
-                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*0.01)
+                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+                }
+                if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "z")
+                {
+                  this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(tcounter*r*speed)*0.001
                 }
               }
             }
             if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
             {
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
-                Math.sin(tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
+                Math.sin(tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
 
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[1]] =  
-                Math.cos(tcounter*0.01)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
+                Math.cos(tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
 
-              this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*0.01)
+              this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
 
 
             }
@@ -68,7 +80,7 @@ export default {
         if(this.INTERSECTED && this.NPCContainer)
         {
           let thekeys = Object.keys(this.NPCContainer)
-          console.log(this.NPCContainer)
+          // console.log(this.NPCContainer)
           for (var i = 0; i < thekeys.length; i++)
           {            
             // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)

@@ -15,7 +15,7 @@ export default {
 
       this.sunlight = new THREE.SpotLight( suncolor );
       // this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( 10,5,18 ); //default; light shining from top
+      this.sunlight.position.set( 5,5,10 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       // this.sunlight.penumbra = 0.1; // default false
@@ -35,6 +35,7 @@ export default {
     },
     setSceneAndCamera()
     {
+      this.refreshRate = !window.chrome ? 1 : 3
       this.scene = new THREE.Scene();
 
       this.sceneVariables.camera.fov = this.sceneVariables.camera.fovSettings[this.DOM.screenType];
