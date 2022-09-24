@@ -55,7 +55,6 @@
 
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!auto_mode ? 'n-conca' : 'n-inset']"
-                            v-show="accs_length || is_playing_test"
                         @click="changeAutoMode"
                         style=""
                     >

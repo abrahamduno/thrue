@@ -14,16 +14,21 @@ export default {
       // this.scene.add( this.light4 );
 
       this.sunlight = new THREE.SpotLight( suncolor );
-      // this.sunlight = new THREE.DirectionalLight( 0xFFA859, sunintensity );
-      this.sunlight.position.set( -10,6,15 ); //default; light shining from top
+      // this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
+      this.sunlight.position.set( -10,7,18 ); //default; light shining from top
+      // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
+      // this.sunlight.penumbra = 0.1; // default false
       // this.sunlight.shadow.camera.near = 0.5; // default
       this.sunlight.shadow.camera.far = 100; // default
-      this.sunlight.shadow.mapSize.width = 2048; // default
-      this.sunlight.shadow.mapSize.height = 2048; // default
+      if (!window.chrome)
+      {
+        this.sunlight.shadow.mapSize.width = 4092; // default
+        this.sunlight.shadow.mapSize.height = 4092; // default
+      }
       this.scene.add( this.sunlight );
 
-      // this.scene.add(new THREE.CameraHelper(light.shadow.camera)) 
+      // this.scene.add(new THREE.CameraHelper(this.sunlight.shadow.camera)) 
 
       const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
       this.scene.add( amlight );

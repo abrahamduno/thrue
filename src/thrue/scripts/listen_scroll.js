@@ -9,6 +9,8 @@ export default {
       this.scrollPosition = window.scrollY;
 
       const t = document.body.getBoundingClientRect().top;
+      this.scrollPosition = t
+      // this.scrollPosition = window.scrollY;
       if (this.DEBUG) { console.log(t) }
       let currentScene = 1
       // currentScene = 

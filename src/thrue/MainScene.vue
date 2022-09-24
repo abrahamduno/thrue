@@ -162,6 +162,17 @@ export default {
         }
       }
 
+      // SUNLIGHT
+      // if (!this.pro_mode && this.auto_mode)
+      // {
+      //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,this.pointer.x*20,0.001)
+      // } else {
+      //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,-10,0.01)
+      // }
+      this.sunlight.position.z = this.scrollPosition * 0.01 +18
+      // this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +18,0.05)
+      this.sunlight.target  = this.mysign
+
       // PLAYER CAMERA
       if (this.camera && this.pro_mode &&
         (this.pointer.x < -0.2 || this.pointer.x > 0.2)
@@ -169,6 +180,8 @@ export default {
       {
         this.camera.rotation.y =
           this.lerp(this.camera.rotation.y,-this.pointer.x*1.2+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+
+
       } else {
         this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
 
