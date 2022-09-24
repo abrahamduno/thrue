@@ -76,6 +76,7 @@ export default {
               (this.NPCContainer[thekeys[i]].children && this.INTERSECTED == this.NPCContainer[thekeys[i]].children[0])
               )
             {
+              this.NPCClickCounter[thekeys[i]] ++
               alert("npc clicked: "+thekeys[i])
             }
           }
@@ -83,6 +84,7 @@ export default {
       },
       initNpcs()
       {
+        this.NPCClickCounter = {}
         this.NPCContainer = {}
         this.NPCBaseContainer = {}
         this.NPCAnimationContainer = {}
@@ -109,6 +111,8 @@ export default {
           this.NPCContainer[params.name] = newClickBox
           this.NPCAnimationContainer[params.name] = params.animation
           this.NPCBaseContainer[params.name] = params
+          this.NPCClickCounter[params.name] = 0
+          
           this.scene.add( newClickBox );
         }
       },
@@ -136,6 +140,8 @@ export default {
             this.NPCContainer[_params.name] = object
             this.NPCAnimationContainer[_params.name] = _params.animation
             this.NPCBaseContainer[_params.name] = _params
+            this.NPCClickCounter[_params.name] = 0
+            
 
             this.scene.add(this.NPCContainer[_params.name]);
         }, this.onLoadProgress );

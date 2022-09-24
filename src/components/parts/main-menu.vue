@@ -23,7 +23,7 @@
                     >
                             <!-- v-show="pro_mode" -->
                         <span class="pa-2 py-4  opacity-hover-50">
-                            <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-user-tie"></i> PRO</span></i>
+                            <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> PRO</span></i>
                             <i class="fas tx-sm"  v-else > <span> PRO</span></i>
                         </span>
                     </button>
@@ -60,7 +60,7 @@
                         style=""
                     >
                         <span class="pa-2 py-3  opacity-hover-50">
-                            <i class="fas tx-sm" v-if="auto_mode" > <small> <i class="fas fa-robot"></i> auto</small></i>
+                            <i class="fas tx-sm" v-if="auto_mode" > <small> <i class="fas fa-times-circle"></i> auto</small></i>
                             <i class="fas tx-sm"  v-else > <small> auto</small></i>
                         </span>
                     </button>
