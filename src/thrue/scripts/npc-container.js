@@ -118,7 +118,12 @@ export default {
               )
             {
               this.NPCClickCounter[thekeys[i]] ++
-              alert("npc clicked: "+thekeys[i])
+              // alert("You Found: "+thekeys[i])
+              // console.log(this.NPCContainer[thekeys[i]])
+              if (this.NPCBaseContainer[thekeys[i]].click)
+              {
+                this.NPCBaseContainer[thekeys[i]].click(thekeys[i])
+              }
             }
           }
         }

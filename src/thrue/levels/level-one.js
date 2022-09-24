@@ -20,7 +20,8 @@ export default {
   {
     clickedLevelHelp()
     {
-      this.enable_help++
+      // this.enable_help++
+      this.show_help = false
       // alert("clickHelp: "+this.enable_help)
     },
     checkGoals()
@@ -32,7 +33,10 @@ export default {
         // let input = prompt("Amount",1)
         if (this.goals.bedding < 3)
         {
-          if (!this.NPCClickCounter.molly || !this.NPCClickCounter.lucy || !this.NPCClickCounter.mia)
+          if ( !this.NPCClickCounter.Molly
+            || !this.NPCClickCounter.Lucy
+            || !this.NPCClickCounter.Amy
+            || !this.NPCClickCounter.Mia)
           {
             this.YOU_LOSE()
             return
@@ -40,6 +44,8 @@ export default {
         }
       }
 
+      this.enable_help++
+      this.show_help = true
       this.YOU_WIN()
     },
     YOU_WIN()
@@ -122,17 +128,53 @@ export default {
     addLevelMesh()
     {
       this.addFarm();
-
+      let npcName = ""
       this.initNpcs()
-      this.addNpc({name:"lucy",obj:"achiken.obj",pos: [-2,-2.1,-1.15], BoxGeometry: [0.5,1,0.55], color: 0xFFD8BA, animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]}});
+      let foundFunction = (_npcName) => {
+        alert("You've found "+`${_npcName}`)
+        this.NPCContainer[_npcName].position.y = 50;
+        this.NPCContainer[_npcName].visible = false
+      }
 
-      this.addNpc({name:"molly",obj:"achiken.obj",pos: [0,-2,-40],rot: [-0.5,0.2,0.4], BoxGeometry: [0.5,0.5,0.5], color: 0xFFD8BA, animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]}});
-      this.addNpc({name:"mia",obj:"achiken.obj",pos: [8,-2.1,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A, animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]}});
-      // this.addNpc({name:"mia",obj:"achiken.obj",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xFFC88A, animation:{type:"cos",path:["z"],value:1,add:[{rot:"y"}]}});
-      this.addNpc({name:"amy",obj:"achiken.obj",pos: [9,-2.22,-45],scale:[2,2,2], BoxGeometry: [0.5,1,0.5], color: 0xF3D7FF, animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]}});
+      npcName = "Lucy"
+      this.addNpc({name:npcName,obj:"achiken.obj",
+        pos: [-2,-2.1,-1.15], color: 0xFFD8BA,
+        animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
+        click: foundFunction,
+      });
 
-      this.addNpc({name:"water",pos: [8.6,-2.22,-42.7], rot:[0,-0.3,0],BoxGeometry: [3.6*2,0.1,8.6*2], color: 0x3CA7DE, animation:{type:"sin",path:["y"],value:0.02}});
-      this.addNpc({name:"stor",obj:"stor.obj",pos: [5.5,-2.22,-46], rot:[0,-0.3,0],BoxGeometry: [3.6*2,0.1,8.6*2], color: 0x9f9f9f});
+      npcName = "Molly"
+      this.addNpc({name:npcName,obj:"achiken.obj",
+        pos: [0,-2,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
+        animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
+        click: foundFunction,
+      });
+      npcName = "Mia"
+      this.addNpc({name:npcName,obj:"achiken.obj",
+        pos: [8,-2.1,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
+        animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
+        click: foundFunction,
+      });
+      npcName = "Amy"
+      this.addNpc({name:npcName,obj:"achiken.obj",
+        pos: [9,-2.22,-45],scale:[2,2,2], color: 0xF3D7FF,
+        animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: foundFunction,
+      });
+
+      npcName = "Water"
+      this.addNpc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
+        pos: [8.6,-2.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
+        animation:{type:"sin",path:["y"],value:0.02},
+      });
+      npcName = "Stor"
+      this.addNpc({name:npcName,obj:"stor.obj",
+        pos: [5.5,-2.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
+      });
+
+
+      // this.addNpc({name:"mia",obj:"achiken.obj",
+      // pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xFFC88A, animation:{type:"cos",path:["z"],value:1,add:[{rot:"y"}]}});
 
       // // center
       // {

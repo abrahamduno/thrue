@@ -1,11 +1,21 @@
 <template>
   <div >
     <canvas ref="canvas" class="w-100 pos-fixed"> </canvas>
-    <h1 v-if="enable_help == 1" style="z-index: 999999" 
+    <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999" 
       @click="clickedLevelHelp"
         class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-absolute w-100 "
     >
         Pick Up all the Chiks
+        <br>
+        <small class="opacity-50">(Scroll Down)</small>
+    </h1>
+    <h1 v-if="enable_help == 2 && show_help" style="z-index: 999999" 
+      @click="clickedLevelHelp"
+        class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-fixed w-100 "
+    >
+        Congratulations!
+        <!-- <br> -->
+        <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
   </div>
 </template>
@@ -44,6 +54,7 @@ export default {
   {
     return {
       enable_help: 0,
+      show_help: false,
     };
   },
   computed:
@@ -72,11 +83,6 @@ export default {
   },
   methods:
   {
-    // clickHelp()
-    // {
-    //   console.log(this.clickedLevelHelp,"this.clickedLevelHelp()")
-    //   this.clickedLevelHelp()
-    // },
     init()
     {
       this.scene = null

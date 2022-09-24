@@ -16,8 +16,8 @@ export default {
 	      requestAnimationFrame(this._animate);
 	      // animations and mouse position
 	      this.raycaster.setFromCamera( this.pointer, this.camera );
-	      this.updateAnimations()
 	      this.updateRaycaster()
+	      this.updateAnimations()
 
 	      // render
 	      if (this.current_filter == "bloom") 
