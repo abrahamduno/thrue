@@ -33,7 +33,7 @@
 
             <lotto ref="lotto" v-if="accs_length" />
             <div v-if="hasStarted && !accs_length && is_playing_test">
-                <theblock h="6" />
+                <theblock h="11" />
                 <!-- <theblock h="1" /> -->
             </div>
 

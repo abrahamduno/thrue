@@ -74,7 +74,7 @@ export default {
       this.sceneBreakpoints = {
         default: [],
         mobile: [3000, 8500, 9900, 13100, 14400],
-        desktop: [3000, 8500, 12900, 16100, 18400],
+        desktop: [2400, 4200, 12900, 16100, 18400],
       }
       this.sceneVariables = {
         camera: {
@@ -137,6 +137,10 @@ export default {
       // TRANSITION TO LEVEL ! WHEN CONNECTED
       if (this.accs_length || this.is_playing_test)
       {
+        this.sunlight.position.z = this.scrollPosition * 0.01 +10
+        this.sunlighTarget.position.z = this.scrollPosition * 0.01 -10
+        this.sunlight.target  = this.sunlighTarget
+
         this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
         this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
         if (this.mysign)
@@ -162,13 +166,25 @@ export default {
         }
       }
 
+      // SUNLIGHT
+      // if (!this.pro_mode && this.auto_mode)
+      // {
+      //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,this.pointer.x*20,0.001)
+      // } else {
+      //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,-10,0.01)
+      // }
+      // this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +10,0.05)
+      // this.sunlight.target  = this.camera
+
       // PLAYER CAMERA
       if (this.camera && this.pro_mode &&
         (this.pointer.x < -0.2 || this.pointer.x > 0.2)
         )
       {
         this.camera.rotation.y =
-          this.lerp(this.camera.rotation.y,-this.pointer.x*1.2+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+          this.lerp(this.camera.rotation.y,-this.pointer.x*(Math.PI*0.6)+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+
+
       } else {
         this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
 

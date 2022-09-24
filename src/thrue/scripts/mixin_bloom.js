@@ -14,11 +14,11 @@ export default {
       if (this.dark_mode)
       {
         params = {
-          exposure: 0.05, bloomStrength: 0.35, bloomThreshold: 0, bloomRadius: 0
+          exposure: 0.05, bloomStrength: 0.22, bloomThreshold: 0, bloomRadius: 0
         };
       } else {
         params = {
-          exposure: 0.05, bloomStrength: 0.2, bloomThreshold: 0, bloomRadius: 0
+          exposure: 0.02, bloomStrength: 0.08, bloomThreshold: 0, bloomRadius: 0
         };
       }
 
