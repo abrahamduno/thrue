@@ -87,6 +87,7 @@ export default {
           },
           minReach: 0.1,
           maxReach: 100,
+          shadowDistance: 42,
         },
       }
       this.renderer = null

@@ -18,13 +18,20 @@ export default {
       this.sunlight.position.set( 5,5,10 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
+      this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
+      // this.sunlight.penumbra = 0.9 // default false
       // this.sunlight.penumbra = 0.9 // default false
       // this.sunlight.shadow.camera.near = 0.5; // default
-      this.sunlight.shadow.camera.far = 500; // default
+      // this.sunlight.shadow.camera.far = 500; // default
       if (!window.chrome)
       {
-        this.sunlight.shadow.mapSize.width = 4092; // default
-        this.sunlight.shadow.mapSize.height = 4092; // default
+        this.sunlight.shadow.mapSize.width = 2048; // default
+        this.sunlight.shadow.mapSize.height = 2048; // default
       }
       this.scene.add( this.sunlight );
       this.sunlighTarget = new THREE.Object3D();
