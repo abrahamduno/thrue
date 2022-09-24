@@ -85,5 +85,14 @@ export default {
         document.documentElement.offsetHeight
       );
     },
+    objStandardMaterial(child)
+    {
+      if ( child instanceof THREE.Mesh )
+      {
+        child.material = new THREE.MeshStandardMaterial( { color: 0xcccccc, } );
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    },
   }
 }

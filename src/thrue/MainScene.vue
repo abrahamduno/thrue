@@ -179,7 +179,7 @@ export default {
         )
       {
         this.camera.rotation.y =
-          this.lerp(this.camera.rotation.y,-this.pointer.x*1.2+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+          this.lerp(this.camera.rotation.y,-this.pointer.x*(Math.PI*0.6)+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
 
 
       } else {
