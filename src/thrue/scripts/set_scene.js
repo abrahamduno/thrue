@@ -7,7 +7,7 @@ export default {
     {
       let suncolor = this.dark_mode ? 0xFFA859 : 0xFFCB91
       let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
-      let sunintensity = this.dark_mode ? 3 : 2
+      let sunintensity = this.dark_mode ? 1 : 1
 
       // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
       // this.light4.position.set(-1,2.5,6)
@@ -15,12 +15,12 @@ export default {
 
       this.sunlight = new THREE.SpotLight( suncolor );
       // this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( -10,7,18 ); //default; light shining from top
+      this.sunlight.position.set( 10,5,18 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       // this.sunlight.penumbra = 0.1; // default false
       // this.sunlight.shadow.camera.near = 0.5; // default
-      this.sunlight.shadow.camera.far = 100; // default
+      this.sunlight.shadow.camera.far = 500; // default
       if (!window.chrome)
       {
         this.sunlight.shadow.mapSize.width = 4092; // default

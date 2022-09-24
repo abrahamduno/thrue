@@ -59,9 +59,10 @@ export default {
       if (this.accs_length)
       {
       }
-      if (this.mylevelone)
+      if (this.mylevelone && this.mylevelone.position.y != -2)
       {
-        this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
+        this.mylevelone.position.y = -2
+        // this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
       }
     },
     addLevelOne(  ) {
@@ -72,7 +73,7 @@ export default {
         (object) => {
           object.traverse( function ( child ) {
             if ( child instanceof THREE.Mesh ) {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
+              child.material = new THREE.MeshStandardMaterial( { color: 0xcccccc } );
               child.castShadow = true;
               child.receiveShadow = true;
             }
@@ -113,7 +114,7 @@ export default {
       this.addNpc({name:"lucy",obj:"achiken.obj",pos: [-2,-2.1,-51.15], BoxGeometry: [0.5,1,0.5], color: 0xeeeeee, animation:{type:"circle",path:["z","x"],value:1}});
       this.addNpc({name:"amy",obj:"achiken.obj",pos: [9,-2.22,-45],scale:[2,2,2], BoxGeometry: [0.5,1,0.5], color: 0xF3D7FF, animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]}});
 
-      this.addNpc({name:"water",pos: [6,-2.5,-42.8], BoxGeometry: [7.5*2,0.7,9*2], color: 0xC8D3E5, animation:{type:"sin",path:["y"],value:0.02}});
+      this.addNpc({name:"water",pos: [6,-2.5,-42.8], BoxGeometry: [7.5*2,0.7,9*2], color: 0x3CA7DE, animation:{type:"sin",path:["y"],value:0.02}});
 
       // center
       {
@@ -126,27 +127,27 @@ export default {
         this.mylevelone.add( boxx );
       }
 
-      // right
-      {
-        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 33);
-        const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
-        let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
-        boxx.castShadow = true; //default is false
-        boxx.receiveShadow = true; //default
-        boxx.position.set(4.2,-0.05,-8)
-        this.mylevelone.add( boxx );
-      }
+      // // right
+      // {
+      //   const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 33);
+      //   const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
+      //   let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
+      //   boxx.castShadow = true; //default is false
+      //   boxx.receiveShadow = true; //default
+      //   boxx.position.set(4.2,-0.05,-8)
+      //   this.mylevelone.add( boxx );
+      // }
 
       // left
-      {
-        const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 42);
-        const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
-        let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
-        boxx.castShadow = true; //default is false
-        boxx.receiveShadow = true; //default
-        boxx.position.set(-4.2,-0.05,-12.5)
-        this.mylevelone.add( boxx );
-      }
+      // {
+      //   const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 42);
+      //   const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
+      //   let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
+      //   boxx.castShadow = true; //default is false
+      //   boxx.receiveShadow = true; //default
+      //   boxx.position.set(-4.2,-0.05,-12.5)
+      //   this.mylevelone.add( boxx );
+      // }
     },
   }
 }

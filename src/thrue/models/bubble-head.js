@@ -60,7 +60,7 @@ export default {
         (object) => {
           object.traverse( function ( child ) {
              if ( child instanceof THREE.Mesh ) {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xbbbbbb, } );
+              child.material = new THREE.MeshStandardMaterial( { color: 0xcccccc, } );
               child.castShadow = true;
               child.receiveShadow = true;
             }
