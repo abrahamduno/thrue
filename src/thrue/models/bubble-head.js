@@ -12,7 +12,7 @@ export default {
         (object) => {
           object.traverse( function ( child ) {
              if ( child instanceof THREE.Mesh ) {
-                child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
+                child.material = new THREE.MeshStandardMaterial( { color: 0xcccccc, } );
                 child.castShadow = true;
                 child.receiveShadow = true;
             }
@@ -24,12 +24,43 @@ export default {
         },
         this.onLoadProgress
       );
+
+      // new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+      //   "chickencoop.obj",
+      //   (object2) => {
+      //     object2.traverse( function ( child ) {
+      //        if ( child instanceof THREE.Mesh ) {
+      //         child.material = new THREE.MeshStandardMaterial( { color: 0xCB4343, } );
+      //         child.castShadow = true;
+      //         child.receiveShadow = true;
+      //       }
+      //    } );
+      //     object2.position.set(0, -1, 6);
+      //     this.scene.add(object2);
+      //   },
+      //   this.onLoadProgress
+      // );
+      // new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+      //   "chickencoopwood.obj",
+      //   (object3) => {
+      //     object3.traverse( function ( child ) {
+      //        if ( child instanceof THREE.Mesh ) {
+      //         child.material = new THREE.MeshStandardMaterial( { color: 0xD0A979, } );
+      //         child.castShadow = true;
+      //         child.receiveShadow = true;
+      //       }
+      //    } );
+      //     object3.position.set(0, -1, 6);
+      //     this.scene.add(object3);
+      //   },
+      //   this.onLoadProgress
+      // );
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "test.obj",
         (object) => {
           object.traverse( function ( child ) {
              if ( child instanceof THREE.Mesh ) {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
+              child.material = new THREE.MeshStandardMaterial( { color: 0xbbbbbb, } );
               child.castShadow = true;
               child.receiveShadow = true;
             }
@@ -37,9 +68,50 @@ export default {
           object.position.set(0, -1, 6);
           this.myobject = object
           this.scene.add(this.myobject);
+
+
+
+
         },
         this.onLoadProgress
       );
+      return
+      {
+        const x = 0, y = 0;
+
+
+        var coordinatesList = [
+          // new THREE.Vector3(-0.5, 0, 0),
+          new THREE.Vector3(0.6, 0.45, 0),
+          new THREE.Vector3(0.57, 0.38, 0),
+          new THREE.Vector3(0, 0.77, 0), // bottomtop
+          // new THREE.Vector3(-0.4, 0.5, 0),
+          // new THREE.Vector3(-0.5, 0.4, 0),
+          new THREE.Vector3(-0.57, 0.38, 0),
+          new THREE.Vector3(-0.6, 0.45, 0),
+          new THREE.Vector3(0, 0.845, 0), // top
+          // new THREE.Vector3(0.4, 0.5, 0),
+          // new THREE.Vector3(0.5, 0.4, 0),
+          // new THREE.Vector3(0.5, 0, 0),
+        ];
+        const heartShape = new THREE.Shape(coordinatesList);
+        const extrudeSettings = {
+          // steps: 2,
+          depth: 1.7,
+          bevelEnabled: false,
+          // bevelThickness: 1,
+          // bevelSize: 1,
+          // bevelOffset: 0,
+          // bevelSegments: 1
+        };
+        const geometry = new THREE.ExtrudeBufferGeometry(heartShape, extrudeSettings);
+        const material = new THREE.MeshStandardMaterial( { wireframe:false,color: 0xCD4B54, } );
+        const mesh = new THREE.Mesh( geometry, material ) ;
+        mesh.position.set(0, -1, 5);
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        this.scene.add(mesh);
+      }
       return
 
       {
@@ -90,7 +162,7 @@ export default {
         const geometry = new THREE.ExtrudeBufferGeometry(heartShape, extrudeSettings);
         const material = new THREE.MeshStandardMaterial( { wireframe:false,color: 0xaaaaaa, } );
         const mesh = new THREE.Mesh( geometry, material ) ;
-        mesh.position.set(0, -1.1, 4.5);
+        mesh.position.set(0, -0.9, 4.5);
         mesh.castShadow = true;
         mesh.receiveShadow = true;
         this.scene.add(mesh);

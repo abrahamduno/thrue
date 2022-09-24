@@ -136,6 +136,7 @@ export default {
            } );
             object.position.set(..._params.pos);
             if (_params.rot) object.rotation.set(..._params.rot);
+            if (_params.scale) object.scale.set(..._params.scale);
 
             this.NPCContainer[_params.name] = object
             this.NPCAnimationContainer[_params.name] = _params.animation
