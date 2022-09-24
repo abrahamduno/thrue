@@ -18,6 +18,11 @@ export default {
   ],
   methods:
   {
+    clickedLevelHelp()
+    {
+      this.enable_help++
+      // alert("clickHelp: "+this.enable_help)
+    },
     checkGoals()
     {
       // let input = prompt("Amount",1)

@@ -25,6 +25,7 @@ export default {
       if (!this.mylevelone)
       {
         this.addLevelOne()
+        this.enable_help++
       }
     },
     add_connectOrb()
