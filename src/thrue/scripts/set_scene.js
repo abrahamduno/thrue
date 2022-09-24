@@ -18,7 +18,7 @@ export default {
       this.sunlight.position.set( 5,5,10 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
-      // this.sunlight.penumbra = 0.1; // default false
+      this.sunlight.penumbra = 0.9 // default false
       // this.sunlight.shadow.camera.near = 0.5; // default
       this.sunlight.shadow.camera.far = 500; // default
       if (!window.chrome)

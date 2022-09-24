@@ -169,9 +169,10 @@ export default {
       // } else {
       //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,-10,0.01)
       // }
-      this.sunlight.position.z = this.scrollPosition * 0.01 +18
-      // this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +18,0.05)
-      this.sunlight.target  = this.camera
+      // this.sunlight.position.z = this.scrollPosition * 0.01 +10
+      this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +10,0.05)
+      this.sunlight.target  = this.mysign
+      // this.sunlight.target  = this.camera
 
       // PLAYER CAMERA
       if (this.camera && this.pro_mode &&
