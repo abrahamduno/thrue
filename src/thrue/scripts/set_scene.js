@@ -5,9 +5,9 @@ export default {
   {
     addLight()
     {
-      let suncolor = this.dark_mode ? 0xFFA859 : 0xF7E0B0
+      let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
+      let sunintensity = this.dark_mode ? 1.2 : 0.9
       let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
-      let sunintensity = this.dark_mode ? 1 : 0.9
 
       // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
       // this.light4.position.set(-1,2.5,6)
