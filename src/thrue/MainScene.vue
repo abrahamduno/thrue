@@ -137,6 +137,10 @@ export default {
       // TRANSITION TO LEVEL ! WHEN CONNECTED
       if (this.accs_length || this.is_playing_test)
       {
+        this.sunlight.position.z = this.scrollPosition * 0.01 +10
+        this.sunlighTarget.position.z = this.scrollPosition * 0.01 -10
+        this.sunlight.target  = this.sunlighTarget
+
         this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
         this.myobject.position.y = this.lerp(this.myobject.position.y,-2,0.07)
         if (this.mysign)
@@ -169,9 +173,7 @@ export default {
       // } else {
       //   this.sunlight.position.x = this.lerp(this.sunlight.position.x,-10,0.01)
       // }
-      // this.sunlight.position.z = this.scrollPosition * 0.01 +10
-      this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +10,0.05)
-      this.sunlight.target  = this.mysign
+      // this.sunlight.position.z = this.lerp(this.sunlight.position.z,this.scrollPosition * 0.01 +10,0.05)
       // this.sunlight.target  = this.camera
 
       // PLAYER CAMERA
