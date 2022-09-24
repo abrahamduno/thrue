@@ -31,10 +31,10 @@ export default {
             {
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value*r
 
-              if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
-              {
-                this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
-              }
+              // if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+              // {
+              //   this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+              // }
             }
             if(this.NPCAnimationContainer[thekeys[i]].type == "sin" || this.NPCAnimationContainer[thekeys[i]].type == "cos")
             {
@@ -43,10 +43,10 @@ export default {
               if (this.NPCAnimationContainer[thekeys[i]].add)
               {
                 // console.log(this.NPCAnimationContainer[thekeys[i]].add)
-                if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
-                {
-                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
-                }
+                // if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+                // {
+                //   this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+                // }
                 if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "z")
                 {
                   this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(tcounter*r*speed)*0.001
@@ -60,12 +60,41 @@ export default {
 
               this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[1]] =  
                 Math.cos(tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
+              if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+              {
+                if (this.NPCAnimationContainer[thekeys[i]].path[0] == "z")
+                {
+                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+                } else {
+                  this.NPCContainer[thekeys[i]].rotation["y"] = (tcounter*r*speed)+Math.PI/2
 
-              this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+                }
+              }
+
 
 
             }
             // alert("npc clicked")
+
+            if (this.NPCAnimationContainer[thekeys[i]].add)
+            {
+              for (var j = 0; j < this.NPCAnimationContainer[thekeys[i]].add.length; j++)
+              {
+                const transformationList = Object.keys(this.NPCAnimationContainer[thekeys[i]].add[j])
+                for (var k = 0; k < transformationList.length; k++)
+                {
+                  // console.log(transformationList[j])
+                  if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
+                  {
+                    continue
+                    // this.NPCContainer[thekeys[i]].rotation[this.NPCAnimationContainer[thekeys[i]].add[j][transformationList[j]]] = -(tcounter*r*speed)
+                  } else {
+                    this.NPCContainer[thekeys[i]].rotation[this.NPCAnimationContainer[thekeys[i]].add[j][transformationList[j]]] = -(tcounter*r*speed)
+                  }
+                  // {"x":0,"y":1,"z":2}[transformationList[i]]
+                }
+              }
+            }
           }
         }
       },

@@ -122,13 +122,15 @@ export default {
       this.addFarm();
 
       this.initNpcs()
+      this.addNpc({name:"lucy",obj:"achiken.obj",pos: [-2,-2.1,-1.15], BoxGeometry: [0.5,1,0.5], color: 0xFFD8BA, animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]}});
+
       this.addNpc({name:"molly",obj:"achiken.obj",pos: [0,-2,-40],rot: [-0.5,0.2,0.4], BoxGeometry: [0.5,0.5,0.5], color: 0xFFD8BA, animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]}});
-      this.addNpc({name:"mia",obj:"achiken.obj",pos: [9,-2.1,-35.5], scale: [1.6,1.6,1.6], color: 0xFFC88A, animation:{type:"circle",path:["x","z"],value:1,speed:0.005}});
+      this.addNpc({name:"mia",obj:"achiken.obj",pos: [8,-2.1,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A, animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]}});
       // this.addNpc({name:"mia",obj:"achiken.obj",pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xFFC88A, animation:{type:"cos",path:["z"],value:1,add:[{rot:"y"}]}});
-      this.addNpc({name:"lucy",obj:"achiken.obj",pos: [-2,-2.1,-1.15], BoxGeometry: [0.5,1,0.5], color: 0xFFD8BA, animation:{type:"circle",path:["z","x"],value:1}});
       this.addNpc({name:"amy",obj:"achiken.obj",pos: [9,-2.22,-45],scale:[2,2,2], BoxGeometry: [0.5,1,0.5], color: 0xF3D7FF, animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]}});
 
-      this.addNpc({name:"water",pos: [8.6,-2.22,-42.7], rot:[0,-0.3,0],BoxGeometry: [3.6*2,0.1,8.6*2], color: 0x3CA7DE, animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"z"}]}});
+      this.addNpc({name:"water",pos: [8.6,-2.22,-42.7], rot:[0,-0.3,0],BoxGeometry: [3.6*2,0.1,8.6*2], color: 0x3CA7DE, animation:{type:"sin",path:["y"],value:0.02}});
+      this.addNpc({name:"stor",obj:"stor.obj",pos: [6,-2.22,-52], rot:[0,-0.3,0],BoxGeometry: [3.6*2,0.1,8.6*2], color: 0x9f9f9f});
 
       // // center
       // {
