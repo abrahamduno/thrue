@@ -28,10 +28,10 @@ export default {
             this.textprize.position.set(6, -2, -4);
             this.textprize.castShadow = true
             this.textprize.receiveShadow = true
-            // this.$parent.$parent.$refs.scene.add(this.textprize);
-            // console.log(this.$parent.$parent.$refs.scene)
+            // this.$parent.$parent.$refs.scene.$refs.level.add(this.textprize);
+            // console.log(this.$parent.$parent.$refs.scene.$refs.level)
             // console.log("valuesBlock", this.valuesBlock)
-            this.$parent.$parent.$refs.scene.scene.add(this.textprize);
+            this.$parent.$parent.$refs.scene.$refs.level.scene.add(this.textprize);
           }
           // {
           //   const geometry = new THREE.TextGeometry("DUNO", {

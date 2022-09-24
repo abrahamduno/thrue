@@ -282,7 +282,7 @@
                     this.loadTextSignup()
                 } else {
                     this.loadTextWelcome()
-                    this.$parent.$parent.$refs.scene.addTicketer();
+                    this.$parent.$parent.$refs.scene.$refs.level.addTicketer();
                     // this.loadTextWelcome()
                 }
             },
@@ -293,7 +293,7 @@
                 this.values.val_randomResultBlock = msg.data.val_randomResultBlock
                 this.values.deadline = msg.data.deadline
 
-                // console.log(this.$parent.$parent.$refs.scene)
+                // console.log(this.$parent.$parent.$refs.scene.$refs.level)
                 this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
                 this.loadTextWithValue()
 

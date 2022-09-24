@@ -72,12 +72,12 @@ export default {
             // this.textwelcome.receiveShadow = true
 
 
-            // this.$parent.$parent.$refs.scene.add(this.textwelcome);
-            // console.log(this.$parent.$parent.$refs.scene)
+            // this.$parent.$parent.$refs.scene.$refs.level.add(this.textwelcome);
+            // console.log(this.$parent.$parent.$refs.scene.$refs.level)
             // console.log("valuesBlock", this.valuesBlock)
 
 
-            this.$parent.$parent.$refs.scene.scene.add(this.textwelcome);
+            this.$parent.$parent.$refs.scene.$refs.level.scene.add(this.textwelcome);
           }
           // {
           //   const geometry = new THREE.TextGeometry("DUNO", {
