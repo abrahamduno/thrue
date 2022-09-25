@@ -1,15 +1,9 @@
 <template>
   <div >
-  	<!-- asdasdasqwe
-  	{{currentLevel}} -->
-
-    <component ref="level" :is="currentLevel" v-bind="levelOne"></component>
+    <component ref="level" :is="getterLevel" v-bind="levelOne"></component>
   </div>
 </template>
 <script>
-//Vue 3 is having a special function to define these async functions
-import {defineAsyncComponent} from "vue"
-// import {defineAsyncComponent} from "vue";
 import levelOne from "./levels/level-one.vue"
 import levelTwo from "./levels/level-two.vue"
 
@@ -20,13 +14,12 @@ export default {
   components: {
   	levelOne,
   	levelTwo,
-  //   'level-one': () => import('./levels/level-one.vue'),
   },
-  // computed: {
-	 //  comp () {
-	 //      return defineAsyncComponent(() => import(`./levels/level-one.vue`))
-	 //  },
-  // },
+  computed: {
+	  getterLevel () {
+	      return this.$store.getters.current_level
+	  },
+  },
   data()
   {
     return {

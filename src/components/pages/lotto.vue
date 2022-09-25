@@ -122,10 +122,6 @@
                         
 
 <script>
-    import loadTextWithValue from "../../thrue/models/text-value.js";
-    import loadTextSignup from "../../thrue/models/text-signup.js";
-    import loadTextWelcome from "../../thrue/models/text-welcome.js";
-
     import {
       Multicall,
     } from 'ethereum-multicall';
@@ -141,6 +137,10 @@
     import lottoMyAccount from "./lotto/lotto-my-account.vue";
     import lottoCurrentTicket from "./lotto/lotto-current-ticket.vue";
     import lottoCurrentRound from "./lotto/lotto-current-round.vue";
+    
+    import loadTextWithValue from "../../thrue/models/text-value.js";
+    import loadTextSignup from "../../thrue/models/text-signup.js";
+    import loadTextWelcome from "../../thrue/models/text-welcome.js";
 
     export default {
         name: 'lotto',     

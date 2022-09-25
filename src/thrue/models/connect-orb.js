@@ -22,7 +22,7 @@ export default {
     async clicked_connectOrb()
     {
       await this.$store.dispatch("connectWallet")
-      if (!this.mylevelone)
+      if (!this.mycurrentlevel)
       {
         this.addLevelOne()
         this.enable_help++

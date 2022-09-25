@@ -184,7 +184,8 @@
         computed: {
             pro_mode()             { return this.$store.getters.pro_mode },
             dark_mode()            { return this.$store.getters.dark_mode },
-	        auto_mode()            { return this.$store.getters.auto_mode },
+            auto_mode()            { return this.$store.getters.auto_mode },
+	        current_level()            { return this.$store.getters.current_level },
 	        english_mode()         { return this.$store.getters.english_mode },
 	        LANG()                 { return this.$store.getters.LANG },
 	        first_acc()            { return this.$store.getters.first_acc },
@@ -196,11 +197,14 @@
             let proMode = JSON.parse(localStorage.getItem("proMode"))
             // console.log(proMode)
             let darkMode = JSON.parse(localStorage.getItem("darkMode"))
+            let currentLevel = JSON.parse(localStorage.getItem("currentLevel"))
+            // console.log(currentLevel)
             // console.log(darkMode)
             let englishMode = JSON.parse(localStorage.getItem("englishMode"))
             // console.log(englishMode)
             if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
             if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
+            if (currentLevel != null) { this.$store.dispatch("setCurrentLevel", currentLevel) }
             if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
             if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
             console.table({englishMode,proMode,darkMode})

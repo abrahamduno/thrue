@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
 
-import npcContainer from "../scripts/npc-container.js";
+import npcContainer from "../system/npc-container.js";
 
 import ticketer from "../models/ticketer.obj.js";
 import farm from "../models/farm.obj.js";
@@ -61,6 +61,16 @@ export default {
       this.enable_help++
       this.show_help = true
       this.YOU_WIN()
+      setTimeout(() => {
+        localStorage.setItem("currentLevel", JSON.stringify("levelTwo"));
+        this.$store.dispatch("setCurrentLevel", "levelTwo")
+        this.$nextTick(() => {
+          window.location.reload()
+        })
+        // let newMode = !this.auto_mode
+        // this.$store.dispatch("setAutoMode", newMode)
+        
+      },1000)
     },
     YOU_WIN()
     {
@@ -82,10 +92,10 @@ export default {
       if (this.accs_length)
       {
       }
-      if (this.mylevelone && this.mylevelone.position.y != -2)
+      if (this.mycurrentlevel && this.mycurrentlevel.position.y != -2)
       {
-        this.mylevelone.position.y = -2
-        // this.mylevelone.position.y = this.lerp(this.mylevelone.position.y,-2,0.1)
+        this.mycurrentlevel.position.y = -2
+        // this.mycurrentlevel.position.y = this.lerp(this.mycurrentlevel.position.y,-2,0.1)
       }
     },
     addLevelOne(  ) {
@@ -104,8 +114,8 @@ export default {
           }
         } );
           object.position.set(0, -50, 0);
-          this.mylevelone = object
-          this.scene.add(this.mylevelone);
+          this.mycurrentlevel = object
+          this.scene.add(this.mycurrentlevel);
 
           this.addLevelMesh()
       }, this.onLoadProgress );
@@ -198,7 +208,7 @@ export default {
       //   boxx.castShadow = true; //default is false
       //   boxx.receiveShadow = true; //default
       //   boxx.position.set(0,-0.05,-8)
-      //   this.mylevelone.add( boxx );
+      //   this.mycurrentlevel.add( boxx );
       // }
 
       // // right
@@ -209,7 +219,7 @@ export default {
       //   boxx.castShadow = true; //default is false
       //   boxx.receiveShadow = true; //default
       //   boxx.position.set(4.2,-0.05,-8)
-      //   this.mylevelone.add( boxx );
+      //   this.mycurrentlevel.add( boxx );
       // }
 
       // left
@@ -220,7 +230,7 @@ export default {
       //   boxx.castShadow = true; //default is false
       //   boxx.receiveShadow = true; //default
       //   boxx.position.set(-4.2,-0.05,-12.5)
-      //   this.mylevelone.add( boxx );
+      //   this.mycurrentlevel.add( boxx );
       // }
     },
   }

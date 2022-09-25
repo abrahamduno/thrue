@@ -20,6 +20,7 @@ const store = createStore({
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
       currentFilter: thefilter,
+      currentLevel: "levelOne",
       isPlayingTest: false,
       darkMode: false,
       proMode: false,
@@ -34,6 +35,9 @@ const store = createStore({
     };
   },
   mutations: {
+    setCurrentLevel(state, level) {
+      state.currentLevel = level
+    },
     setAutoMode(state, mode) {
       state.autoMode = mode
     },
@@ -74,6 +78,9 @@ const store = createStore({
     },
   },
   actions: {
+    setCurrentLevel(context, level) {
+      context.commit('setCurrentLevel', level);
+    },
 
     setAutoMode(context, mode) {
       context.commit('setAutoMode', mode);
@@ -130,6 +137,10 @@ const store = createStore({
     },
     LANG(state) {
       return state.LANG[state.englishMode ? "EN" : "ES"];
+    },
+
+    current_level(state) {
+      return state.currentLevel
     },
 
     auto_mode(state) {

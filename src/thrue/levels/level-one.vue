@@ -23,14 +23,14 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
 
-import set_scene from "../scripts/set_scene.js";
-import listen_scroll from "../scripts/listen_scroll.js";
-import listen_mouse from "../scripts/listen_mouse.js";
-import listen_click from "../scripts/listen_click.js";
-import updateanimation from "../scripts/update_animation.js";
-import bloommixin from "../scripts/mixin_bloom.js";
+import set_scene from "../system/set_scene.js";
+import listen_scroll from "../system/listen_scroll.js";
+import listen_mouse from "../system/listen_mouse.js";
+import listen_click from "../system/listen_click.js";
+import updateanimation from "../system/update_animation.js";
+import bloommixin from "../system/mixin_bloom.js";
 
-import levelOne from "./level-one.js";
+import levelOne from "./base-level-1.js";
 import connectOrb from "../models/connect-orb.js";
 import bubbleHead from "../models/bubble-head.js";
 
@@ -143,7 +143,7 @@ export default {
     },
     clickedBubbleHeadHead(  ) {
       console.log("clickk")
-      if (!this.mylevelone)
+      if (!this.mycurrentlevel)
       {
         this.clicked_connectOrb()
       }
