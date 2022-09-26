@@ -4,8 +4,10 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
-    $animate_main()
+    _$animate_main()
     {
+      this.$animate_startLevelBlob()
+
       // TRANSITION TO LEVEL ! WHEN CONNECTED
       if (this.accs_length || this.is_playing_test)
       {
@@ -40,7 +42,7 @@ export default {
       }
 
     },
-    $animate_currentLevel()
+    _$animate_currentLevel()
     {
       if (this.mycurrentlevel && this.mycurrentlevel.position.y != this.MIN.y)
       {

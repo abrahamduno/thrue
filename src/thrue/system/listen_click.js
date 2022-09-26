@@ -14,9 +14,8 @@ export default {
         this.$parent.$refs.dom.$refs.lotto.execute_addFullTargetAllowance();
       }
 
-      this.$click_startLevelBlob()
-      this.$click_currentLevel()
-      this.$click_npcContainer()
+      this._$click_currentLevel()
+      this._$click_npcContainer()
     },
   }
 }

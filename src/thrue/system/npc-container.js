@@ -47,7 +47,7 @@ export default {
           this.scene.add( newClickBox );
         }
       },
-      async $click_npcContainer()
+      async _$click_npcContainer()
       {
         if(this.INTERSECTED && this.NPCContainer)
         {
@@ -67,7 +67,7 @@ export default {
           }
         }
       },
-      $animate_npcContainer(__timer)
+      _$animate_npcContainer(__timer)
       {
         let r = this.refreshRate
 

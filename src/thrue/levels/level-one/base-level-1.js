@@ -88,8 +88,10 @@ export default {
       this.show_help = false
       // alert("clickHelp: "+this.enable_help)
     },
-    $click_currentLevel()
+    _$click_currentLevel()
     {
+      this.$click_startLevelBlob()
+
       // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
       if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
       {

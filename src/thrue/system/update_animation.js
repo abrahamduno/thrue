@@ -39,10 +39,9 @@ export default {
 				window.scrollTo(0,window.scrollY+1)
 			}
 
-			this.$animate_main()
-			this.$animate_startLevelBlob()
-			this.$animate_npcContainer(this.__timer)
-			this.$animate_currentLevel()
+			this._$animate_main()
+			this._$animate_npcContainer(this.__timer)
+			this._$animate_currentLevel()
 
 			// ANIMATE PRIZE TEXT WAITING FOR BLOCKCHAIN
 			if (!this.$parent.$parent.$refs.dom) return
