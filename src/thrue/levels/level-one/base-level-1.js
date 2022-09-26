@@ -178,7 +178,7 @@ export default {
         "path.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xffffff) );
-          object.position.set(0, -2, 0);
+          object.position.set(0, this.MIN.y, 0);
           this.scene.add(object);
 
       }, this.onLoadProgress );

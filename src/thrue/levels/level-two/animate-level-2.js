@@ -15,13 +15,13 @@ export default {
         this.sunlighTarget.position.z = this.__scroll * 0.01 -10
         this.sunlight.target  = this.sunlighTarget
 
-        this.myobject.position.z = this._$lerp(this.myobject.position.z,-50,0.07)
+        this.myobject.position.z = this._$lerp(this.myobject.position.z,-20,0.07)
         this.myobject.position.y = this._$lerp(this.myobject.position.y,this.MIN.y,0.07)
         // this.myobject.rotation.y = this._$lerp(this.myobject.rotation.y,Math.PI/12,0.07)
         if (this.mysign)
         {
-          this.mysign.position.z = this._$lerp(this.mysign.position.z,-49.6,0.07)
-          this.mysign.position.y = this._$lerp(this.mysign.position.y,-0.9,0.07)
+          this.mysign.position.z = this._$lerp(this.mysign.position.z,-19.6,0.07)
+          this.mysign.position.y = this._$lerp(this.mysign.position.y,this.MIN.y+1.1,0.07)
         }
       }
 
@@ -78,18 +78,19 @@ export default {
         this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[currentScene] * 0.015;
       } else {
         // ONLY SCENE 1
+        // this.camera.position.y = -this.sceneVariables.camera.pos[y] + t * 0.001;
         this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
       }
 
-      // currentScene++
-      // ROTATION UP
-      if (t < -this.sceneBreakpoints.default[0]) {
-        this.camera.rotation.x = this.sceneVariables.camera.rot[x] - (-this.sceneBreakpoints.default[0]* 0.0003) - (-t * 0.0003);
-        // EXCEPT SCENE 2
-      } else {
-        // ONLY SCENE 2
-        this.camera.rotation.x = this.sceneVariables.camera.rot[x] ;
-      }
+      // // currentScene++
+      // // ROTATION UP
+      // if (t < -this.sceneBreakpoints.default[0]) {
+      //   this.camera.rotation.x = this.sceneVariables.camera.rot[x] + (-this.sceneBreakpoints.default[0]* 0.0003) - (-t * 0.0003);
+      //   // EXCEPT SCENE 2
+      // } else {
+      //   // ONLY SCENE 2
+      //   this.camera.rotation.x = this.sceneVariables.camera.rot[x] ;
+      // }
     },
   }
 }

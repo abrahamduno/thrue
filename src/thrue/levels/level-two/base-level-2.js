@@ -7,7 +7,7 @@ import animateLevelTwo from "./animate-level-2.js";
 import startLevelBlob from "../../models/start-level-blob.js";
 import bubbleHead from "../../models/bubble-head.js";
 import ticketer from "../../models/ticketer.obj.js";
-import farm from "../../models/farm.obj.js";
+// import farm from "../../models/farm.obj.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -19,7 +19,7 @@ export default {
     startLevelBlob,
     bubbleHead,
     ticketer,
-    farm,
+    // farm,
   ],
   methods:
   {
@@ -35,12 +35,12 @@ export default {
         this.YOU_LOSE()
         return
       }
-      if (this.goals.hay < 3)
-      {
-        alert("hay")
-        this.YOU_LOSE()
-        return
-      }
+      // if (this.goals.hay < 3)
+      // {
+      //   alert("hay")
+      //   this.YOU_LOSE()
+      //   return
+      // }
       if ( !this.NPCClickCounter.Molly
         || !this.NPCClickCounter.Lucy
         || !this.NPCClickCounter.Amy
@@ -104,11 +104,11 @@ export default {
         this.clickTicketer()
       }
 
-      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
-      {
-        this.goals.hay++
-        this.clickFarm()
-      }
+      // if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
+      // {
+      //   this.goals.hay++
+      //   this.clickFarm()
+      // }
     },
 
 
@@ -178,14 +178,14 @@ export default {
         "path2.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xffffff) );
-          object.position.set(0, -2, 0);
+          object.position.set(0, this.MIN.y, 0);
           this.scene.add(object);
 
       }, this.onLoadProgress );
     },
     addLevelMesh()
     {
-      this.addFarm();
+      // this.addFarm();
       let npcName = ""
       this.$init_npcContainer()
       let defaultNPCFoundFunction = (_npcName) => {
@@ -196,7 +196,7 @@ export default {
 
       npcName = "Lucy"
       this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
+        pos: [3,this.MIN.y,1], color: 0xFFD8BA,
         animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
@@ -213,22 +213,22 @@ export default {
         animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
-      npcName = "Molly"
+      npcName = "1car"
       this.$add_npc({name:npcName,obj:"acar.obj",
-        pos: [-20,this.MIN.y,0],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        pos: [-20,this.MIN.y,-5],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
         animation:{type:"constant",path:["x"],value:0.1},
         click: defaultNPCFoundFunction,
       });
 
-      npcName = "Water"
-      this.$add_npc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
-        pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
-        animation:{type:"sin",path:["y"],value:0.02},
-      });
-      npcName = "Stor"
-      this.$add_npc({name:npcName,obj:"stor.obj",
-        pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
-      });
+      // npcName = "Water"
+      // this.$add_npc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
+      //   pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
+      //   animation:{type:"sin",path:["y"],value:0.02},
+      // });
+      // npcName = "Stor"
+      // this.$add_npc({name:npcName,obj:"stor.obj",
+      //   pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
+      // });
     },
   }
 }
