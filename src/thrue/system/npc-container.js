@@ -22,77 +22,53 @@ export default {
         if(!this.NPCContainer) return
         let thekeys = Object.keys(this.NPCContainer)
         for (var i = 0; i < thekeys.length; i++)
-        {            
-          // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
-          if(this.NPCAnimationContainer[thekeys[i]])
+        {     
+          let element = this.NPCAnimationContainer[thekeys[i]]       
+          if(!element) return
+
+          let speed = element.speed ? element.speed : 0.01
+          if(element.type == "constant")
           {
-            let speed = this.NPCAnimationContainer[thekeys[i]].speed ? this.NPCAnimationContainer[thekeys[i]].speed : 0.01
-            if(this.NPCAnimationContainer[thekeys[i]].type == "constant")
+            this.NPCContainer[thekeys[i]].position[element.path[0]] += element.value*r
+          }
+          if(element.type == "sin" || element.type == "cos")
+          {
+            this.NPCContainer[thekeys[i]].position[element.path[0]] =  
+              Math[element.type](tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
+            if (element.add)
             {
-              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] += this.NPCAnimationContainer[thekeys[i]].value*r
-
-              // if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
-              // {
-              //   this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
-              // }
-            }
-            if(this.NPCAnimationContainer[thekeys[i]].type == "sin" || this.NPCAnimationContainer[thekeys[i]].type == "cos")
-            {
-              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
-                Math[this.NPCAnimationContainer[thekeys[i]].type](tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
-              if (this.NPCAnimationContainer[thekeys[i]].add)
+              if (element.add[0].rot == "z")
               {
-                // console.log(this.NPCAnimationContainer[thekeys[i]].add)
-                // if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
-                // {
-                //   this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
-                // }
-                if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "z")
-                {
-                  this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(tcounter*r*speed)*0.001
-                }
+                this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(tcounter*r*speed)*0.001
               }
             }
-            if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
+          }
+          if(element.type == "circle")
+          {
+            this.NPCContainer[thekeys[i]].position[element.path[0]] =  
+              Math.sin(tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
+
+            this.NPCContainer[thekeys[i]].position[element.path[1]] =  
+              Math.cos(tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[1]]]
+            if (element.add[0].rot == "y")
             {
-              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[0]] =  
-                Math.sin(tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[0]]]
-
-              this.NPCContainer[thekeys[i]].position[this.NPCAnimationContainer[thekeys[i]].path[1]] =  
-                Math.cos(tcounter*r*speed)*this.NPCAnimationContainer[thekeys[i]].value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[this.NPCAnimationContainer[thekeys[i]].path[1]]]
-              if (this.NPCAnimationContainer[thekeys[i]].add[0].rot == "y")
+              if (element.path[0] == "z")
               {
-                if (this.NPCAnimationContainer[thekeys[i]].path[0] == "z")
-                {
-                  this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
-                } else {
-                  this.NPCContainer[thekeys[i]].rotation["y"] = (tcounter*r*speed)+Math.PI/2
-
-                }
+                this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+              } else {
+                this.NPCContainer[thekeys[i]].rotation["y"] = (tcounter*r*speed)+Math.PI/2
               }
-
-
-
             }
-            // alert("npc clicked")
-
-            if (this.NPCAnimationContainer[thekeys[i]].add)
+          }
+          if (element.add)
+          {
+            for (var j = 0; j < element.add.length; j++)
             {
-              for (var j = 0; j < this.NPCAnimationContainer[thekeys[i]].add.length; j++)
+              const transformationList = Object.keys(element.add[j])
+              for (var k = 0; k < transformationList.length; k++)
               {
-                const transformationList = Object.keys(this.NPCAnimationContainer[thekeys[i]].add[j])
-                for (var k = 0; k < transformationList.length; k++)
-                {
-                  // console.log(transformationList[j])
-                  if(this.NPCAnimationContainer[thekeys[i]].type == "circle")
-                  {
-                    continue
-                    // this.NPCContainer[thekeys[i]].rotation[this.NPCAnimationContainer[thekeys[i]].add[j][transformationList[j]]] = -(tcounter*r*speed)
-                  } else {
-                    this.NPCContainer[thekeys[i]].rotation[this.NPCAnimationContainer[thekeys[i]].add[j][transformationList[j]]] = -(tcounter*r*speed)
-                  }
-                  // {"x":0,"y":1,"z":2}[transformationList[i]]
-                }
+                if(element.type == "circle") { continue }
+                this.NPCContainer[thekeys[i]].rotation[element.add[j][transformationList[j]]] = -(tcounter*r*speed)
               }
             }
           }
@@ -109,17 +85,13 @@ export default {
         if(this.INTERSECTED && this.NPCContainer)
         {
           let thekeys = Object.keys(this.NPCContainer)
-          // console.log(this.NPCContainer)
           for (var i = 0; i < thekeys.length; i++)
           {            
-            // console.log("1", this.NPCContainer[thekeys[i]], "2", this.INTERSECTED)
             if(this.INTERSECTED == this.NPCContainer[thekeys[i]] ||
               (this.NPCContainer[thekeys[i]].children && this.INTERSECTED == this.NPCContainer[thekeys[i]].children[0])
               )
             {
               this.NPCClickCounter[thekeys[i]] ++
-              // alert("You Found: "+thekeys[i])
-              // console.log(this.NPCContainer[thekeys[i]])
               if (this.NPCBaseContainer[thekeys[i]].click)
               {
                 this.NPCBaseContainer[thekeys[i]].click(thekeys[i])
