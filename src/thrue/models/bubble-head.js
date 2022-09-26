@@ -18,7 +18,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "sign.obj",
         (object) => {
-          object.traverse( this.objStandardMaterial );
+          object.traverse( this.baseStandardMaterial() );
           object.position.set(...this.mysign_base.pos);
           object.rotation.set(...this.mysign_base.rot);
           this.mysign = object
@@ -29,7 +29,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "test.obj",
         (object) => {
-          object.traverse( this.objStandardMaterial );
+          object.traverse( this.baseStandardMaterial() );
           object.position.set(...this.myobject_base.pos);
           this.myobject = object
           this.scene.add(this.myobject);

@@ -104,15 +104,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelone.obj",
         (object) => {
-          object.traverse( this.objStandardMaterial );
-          object.traverse( (child) => {
-          if ( child instanceof THREE.Mesh )
-          {
-            child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa, } );
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
-        } );
+          object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, -50, 0);
           this.mycurrentlevel = object
           this.scene.add(this.mycurrentlevel);
@@ -122,14 +114,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "path.obj",
         (object) => {
-          object.traverse( (child) => {
-          if ( child instanceof THREE.Mesh )
-          {
-            child.material = new THREE.MeshStandardMaterial( { color: 0xffffff, } );
-            child.castShadow = true;
-            child.receiveShadow = true;
-          }
-        } );
+          object.traverse( this.baseStandardMaterial(0xffffff) );
           object.position.set(0, -2, 0);
           this.scene.add(object);
 

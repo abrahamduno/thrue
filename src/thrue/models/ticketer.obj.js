@@ -31,18 +31,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "ticketer.obj",
         (object) => {
-          object.traverse( function ( child )
-          {
-            if ( child instanceof THREE.Mesh )
-            {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-            // if( child.material ) {
-            //   child.material.side = THREE.BackSide;
-            // }
-         } );
+          object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, 50, 0);
           this.ticketer = object
           this.scene.add(this.ticketer);

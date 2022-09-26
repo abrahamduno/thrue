@@ -32,6 +32,7 @@ import bloommixin from "../../system/mixin_bloom.js";
 
 import levelOne from "./base-level-1.js";
 import connectOrb from "../../models/connect-orb.js";
+import baseStandardMaterial from "../../../scripts/constants/baseStandardMaterial.js";
 import bubbleHead from "../../models/bubble-head.js";
 
 const BASE_URL = "http://localhost:3000/";
@@ -46,6 +47,7 @@ export default {
     updateanimation,
     bloommixin,
 
+    baseStandardMaterial,
     connectOrb,
     bubbleHead,
     levelOne,

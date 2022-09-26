@@ -140,18 +140,7 @@ export default {
         new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
           _params.obj,
           (object) => {
-            object.traverse( function ( child )
-            {
-              if ( child instanceof THREE.Mesh )
-              {
-                child.material = new THREE.MeshStandardMaterial( { color: _params.color } );
-                child.castShadow = true;
-                child.receiveShadow = true;
-              }
-              // if( child.material ) {
-              //   child.material.side = THREE.BackSide;
-              // }
-           } );
+            object.traverse( this.baseStandardMaterial(_params.color) );
             object.position.set(..._params.pos);
             if (_params.rot) object.rotation.set(..._params.rot);
             if (_params.scale) object.scale.set(..._params.scale);
