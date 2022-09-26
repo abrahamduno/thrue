@@ -21,18 +21,18 @@
 </template>
 <script>
 import * as THREE from "three";
-import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
+import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 
-import set_scene from "../system/set_scene.js";
-import listen_scroll from "../system/listen_scroll.js";
-import listen_mouse from "../system/listen_mouse.js";
-import listen_click from "../system/listen_click.js";
-import updateanimation from "../system/update_animation.js";
-import bloommixin from "../system/mixin_bloom.js";
+import set_scene from "../../system/set_scene.js";
+import listen_scroll from "../../system/listen_scroll.js";
+import listen_mouse from "../../system/listen_mouse.js";
+import listen_click from "../../system/listen_click.js";
+import updateanimation from "../../system/update_animation.js";
+import bloommixin from "../../system/mixin_bloom.js";
 
 import levelOne from "./base-level-1.js";
-import connectOrb from "../models/connect-orb.js";
-import bubbleHead from "../models/bubble-head.js";
+import connectOrb from "../../models/connect-orb.js";
+import bubbleHead from "../../models/bubble-head.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";

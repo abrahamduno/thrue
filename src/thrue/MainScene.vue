@@ -4,8 +4,8 @@
   </div>
 </template>
 <script>
-import levelOne from "./levels/level-one.vue"
-import levelTwo from "./levels/level-two.vue"
+import levelOne from "./levels/level-one/level-1.vue"
+// import levelTwo from "./levels/level-two.vue"
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -13,7 +13,7 @@ export default {
   name: 'main-scene',  
   components: {
   	levelOne,
-  	levelTwo,
+  	// levelTwo,
   },
   computed: {
 	  getterLevel () {

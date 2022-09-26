@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
+import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 
-import npcContainer from "../system/npc-container.js";
+import npcContainer from "../../system/npc-container.js";
 
-import ticketer from "../models/ticketer.obj.js";
-import farm from "../models/farm.obj.js";
+import ticketer from "../../models/ticketer.obj.js";
+import farm from "../../models/farm.obj.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -154,7 +154,7 @@ export default {
       this.addFarm();
       let npcName = ""
       this.initNpcs()
-      let foundFunction = (_npcName) => {
+      let defaultNPCFoundFunction = (_npcName) => {
         alert("You've found "+`${_npcName}`)
         this.NPCContainer[_npcName].position.y = 50;
         this.NPCContainer[_npcName].visible = false
@@ -164,26 +164,26 @@ export default {
       this.addNpc({name:npcName,obj:"achiken.obj",
         pos: [-2,-2.1,-1.15], color: 0xFFD8BA,
         animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
-        click: foundFunction,
+        click: defaultNPCFoundFunction,
       });
 
       npcName = "Molly"
       this.addNpc({name:npcName,obj:"achiken.obj",
         pos: [0,-2,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
         animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
-        click: foundFunction,
+        click: defaultNPCFoundFunction,
       });
       npcName = "Mia"
       this.addNpc({name:npcName,obj:"achiken.obj",
         pos: [8,-2.1,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
         animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
-        click: foundFunction,
+        click: defaultNPCFoundFunction,
       });
       npcName = "Amy"
       this.addNpc({name:npcName,obj:"achiken.obj",
         pos: [9,-2.22,-45],scale:[2,2,2], color: 0xF3D7FF,
         animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
-        click: foundFunction,
+        click: defaultNPCFoundFunction,
       });
 
       npcName = "Water"

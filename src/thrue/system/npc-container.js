@@ -164,7 +164,7 @@ export default {
       },
       addObject( _params )
       {
-        console.log(_params)
+        // console.log(_params)
         new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
           _params.obj,
           (object) => {
