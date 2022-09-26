@@ -43,6 +43,7 @@ export default {
       this.camera.updateProjectionMatrix(window.devicePixelRatio);
     },
 
+/* //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-  */
     
     __set_windowRatio()
     {

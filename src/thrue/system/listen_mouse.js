@@ -17,13 +17,13 @@ export default {
         this.INTERSECTED = null
       }
     },
-    setRaycaster()
+    $set_raycaster()
     {
       this.INTERSECTED = null
       this.__pointer = {x:null,y:null}
       this.raycaster = new THREE.Raycaster();
     },
-    onPointerMove( event )
+    $listen_pointerPos( event )
     {
       this.__pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
       this.__pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;

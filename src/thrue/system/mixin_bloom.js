@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 export default {
   methods:
   {
-    setBloomRenderer()
+    $set_bloomRenderer()
     {
       // this.renderer.toneMapping = THREE.ReinhardToneMapping;
       this.renderer.setClearColor(0xff0000, 0);

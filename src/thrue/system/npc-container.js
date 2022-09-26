@@ -3,7 +3,6 @@ import { OBJLoader } from "../../scripts/loaders/OBJLoader.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
-
 export default {
   data () {
     return {
@@ -127,6 +126,9 @@ export default {
           }
         }
       },
+
+/* //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-  */
+
       async getFirstNpc(name)
       {
         if (Object.keys(this.NPCContainer).length == 0) return null

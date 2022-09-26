@@ -106,7 +106,7 @@ export default {
       }
 
       this.setScene();
-      this.$animate_scrollPosition()
+      this.$listen_scrollPosition()
       // this.$animate()
     },
     setScene()
@@ -118,9 +118,9 @@ export default {
       this.add_bubbleHead()
 
       this.$set_renderer();
-      if (this.current_filter == "bloom") { this.setBloomRenderer() }
+      if (this.current_filter == "bloom") { this.$set_bloomRenderer() }
 
-      this.setRaycaster();
+      this.$set_raycaster();
     },
     clickedBubbleHeadHead(  ) {
       console.log("clickk")
@@ -134,19 +134,19 @@ export default {
   },
   beforeDestroy() {
     // remove listener again
-    window.removeEventListener("scroll", this.$animate_scrollPosition);
     window.removeEventListener( 'resize', this.$set_cameraRenderSize );
-    document.removeEventListener("mousemove", this.onPointerMove);
-    document.removeEventListener("click", this.onPointerClick);
+    window.removeEventListener("scroll", this.$listen_scrollPosition);
+    document.removeEventListener("mousemove", this.$listen_pointerPos);
+    document.removeEventListener("click", this.$listen_click);
   },
   mounted()
   {
     this.initLevel()
 
-    window.addEventListener("scroll", this.$animate_scrollPosition);
     window.addEventListener( 'resize', this.$set_cameraRenderSize );
-    document.addEventListener( 'mousemove', this.onPointerMove );
-    document.addEventListener( 'click', this.onPointerClick );
+    window.addEventListener("scroll", this.$listen_scrollPosition);
+    document.addEventListener( 'mousemove', this.$listen_pointerPos );
+    document.addEventListener( 'click', this.$listen_click );
   },
 };
 </script>

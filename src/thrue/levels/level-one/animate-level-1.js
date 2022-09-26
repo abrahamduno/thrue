@@ -60,7 +60,7 @@ export default {
       
       this.animate_ticketer()
     },
-    $animate_scrollPosition(e)
+    $listen_scrollPosition(e)
     {
       this.__scroll = window.scrollY;
 

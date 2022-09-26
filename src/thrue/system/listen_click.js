@@ -4,7 +4,7 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
-    onPointerClick(e)
+    $listen_click(e)
     {
       if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
         ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 

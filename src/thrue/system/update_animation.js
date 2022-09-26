@@ -28,7 +28,8 @@ export default {
 	      }
 	    },
 
-	    
+/* //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-  */
+
 	    __update_animations(e) {
         	const t = document.body.getBoundingClientRect().top;
         	
