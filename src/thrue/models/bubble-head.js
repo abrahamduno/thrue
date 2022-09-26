@@ -88,12 +88,12 @@ export default {
       // {
       //   const orbGeometry = new THREE.SphereGeometry(0.5, 6,6 );
       //   const orbMaterial = new THREE.MeshStandardMaterial( { wireframe:false,flatShading: true,color: 0xaaaaaa } );
-      //   let connectOrb = new THREE.Mesh( orbGeometry, orbMaterial );
-      //   connectOrb.castShadow = true; //default is false
-      //   connectOrb.receiveShadow = true; //default
-      //   connectOrb.position.set(0,-0.1,6.1)
-      //   connectOrb.scale.set(0.65,0.69,1)
-      //   this.scene.add( connectOrb );
+      //   let startLevelBlob = new THREE.Mesh( orbGeometry, orbMaterial );
+      //   startLevelBlob.castShadow = true; //default is false
+      //   startLevelBlob.receiveShadow = true; //default
+      //   startLevelBlob.position.set(0,-0.1,6.1)
+      //   startLevelBlob.scale.set(0.65,0.69,1)
+      //   this.scene.add( startLevelBlob );
       // }
       // {
       //   const x = 0, y = 0;

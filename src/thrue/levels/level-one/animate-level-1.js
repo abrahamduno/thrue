@@ -4,7 +4,25 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
-    updateScrollPosition(e)
+    $animate_currentLevel()
+    {
+      if (this.mycurrentlevel && this.mycurrentlevel.position.y != this.MIN.y)
+      {
+        this.mycurrentlevel.position.y = this.MIN.y
+      }
+
+        // PLAYER CAMERA
+      if (this.camera && this.pro_mode &&
+        (this.pointer.x < -0.2 || this.pointer.x > 0.2)
+        )
+      {
+        this.camera.rotation.y =
+          this.lerp(this.camera.rotation.y,-this.pointer.x*(Math.PI*0.6)+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+      } else {
+        this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
+      }
+    },
+    $animate_scrollPosition(e)
     {
       this.scrollPosition = window.scrollY;
 

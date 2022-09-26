@@ -6,8 +6,6 @@ export default {
   {
     onPointerClick(e)
     {
-      this.mainCheckClick()
-
       if (this.INTERSECTED && this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto &&  this.$parent.$refs.dom.$refs.lotto.textsignup &&
         ( this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup || 
           this.INTERSECTED == this.$parent.$refs.dom.$refs.lotto.textsignup.children[0])
@@ -16,9 +14,9 @@ export default {
         this.$parent.$refs.dom.$refs.lotto.execute_addFullTargetAllowance();
       }
 
-      this.checkClick_connectOrb()
-      this.checkClick_levelOne()
-      this.checkClick_npc()
+      this.$click_startLevelBlob()
+      this.$click_currentLevel()
+      this.$click_npcContainer()
     },
   }
 }

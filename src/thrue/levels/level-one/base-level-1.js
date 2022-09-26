@@ -18,12 +18,6 @@ export default {
   ],
   methods:
   {
-    clickedLevelHelp()
-    {
-      // this.enable_help++
-      this.show_help = false
-      // alert("clickHelp: "+this.enable_help)
-    },
     checkGoals()
     {
       // let input = prompt("Amount",1)
@@ -80,6 +74,32 @@ export default {
     {
       alert("Failed")
     },
+    clickedLevelHelp()
+    {
+      // this.enable_help++
+      this.show_help = false
+      // alert("clickHelp: "+this.enable_help)
+    },
+    $click_currentLevel()
+    {
+      // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.clickedBubbleHeadHead()
+      }
+      
+      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
+      {
+        this.goals.tickets++
+        this.clickTicketer()
+      }
+
+      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
+      {
+        this.goals.hay++
+        this.clickFarm()
+      }
+    },
     initLevelOne()
     {
       this.goals = {
@@ -87,7 +107,48 @@ export default {
         hay: 0,
       }
     },
-    addLevelOne(  ) {
+    addLight()
+    {
+      let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
+      let sunintensity = this.dark_mode ? 1.2 : 0.9
+      let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
+
+      // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
+      // this.light4.position.set(-1,2.5,6)
+      // this.scene.add( this.light4 );
+
+      // this.sunlight = new THREE.SpotLight( suncolor );
+      this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
+      this.sunlight.position.set( 5,5,10 ); //default; light shining from top
+      // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
+      this.sunlight.castShadow = true; // default false
+      this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
+      this.sunlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
+      // this.sunlight.penumbra = 0.9 // default false
+      // this.sunlight.penumbra = 0.9 // default false
+      // this.sunlight.shadow.camera.near = 0.5; // default
+      // this.sunlight.shadow.camera.far = 500; // default
+      if (!window.chrome)
+      {
+        this.sunlight.shadow.mapSize.width = 2048; // default
+        this.sunlight.shadow.mapSize.height = 2048; // default
+      }
+      this.scene.add( this.sunlight );
+      this.sunlighTarget = new THREE.Object3D();
+      this.scene.add( this.sunlighTarget );
+      // this.sunlighTarget.position.z = -30
+      // this.sunlight.target = this.sunlighTarget
+
+      // this.scene.add(new THREE.CameraHelper(this.sunlight.shadow.camera)) 
+
+      const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
+      this.scene.add( amlight );
+    },
+    addCurrentLevel(  ) {
       this.initLevelOne()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
@@ -108,20 +169,6 @@ export default {
           this.scene.add(object);
 
       }, this.onLoadProgress );
-    },
-    checkClick_levelOne()
-    {
-      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
-      {
-        this.goals.tickets++
-        this.clickTicketer()
-      }
-
-      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
-      {
-        this.goals.hay++
-        this.clickFarm()
-      }
     },
     addLevelMesh()
     {

@@ -15,7 +15,7 @@ export default {
     }
   },
   methods: {
-      animate_npcs(tcounter)
+      $animate_npcContainer(tcounter)
       {
         let r = this.refreshRate
 
@@ -80,7 +80,7 @@ export default {
 
         return this.NPCContainer[Object.keys(this.NPCContainer)[0]]
       },
-      async checkClick_npc()
+      async $click_npcContainer()
       {
         if(this.INTERSECTED && this.NPCContainer)
         {
