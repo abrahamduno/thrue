@@ -3,7 +3,7 @@ import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 
 import npcContainer from "../../system/npc-container.js";
 
-import animateLevelOne from "./animate-level-1.js";
+import animateLevelTwo from "./animate-level-2.js";
 import startLevelBlob from "../../models/start-level-blob.js";
 import bubbleHead from "../../models/bubble-head.js";
 import ticketer from "../../models/ticketer.obj.js";
@@ -15,7 +15,7 @@ export default {
   mixins: [
     npcContainer,
 
-    animateLevelOne,
+    animateLevelTwo,
     startLevelBlob,
     bubbleHead,
     ticketer,
@@ -165,7 +165,7 @@ export default {
       this.initLevelOne()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "levelone.obj",
+        "leveltwo.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, -50, 0);
@@ -175,7 +175,7 @@ export default {
           this.addLevelMesh()
       }, this.onLoadProgress );
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "path.obj",
+        "path2.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xffffff) );
           object.position.set(0, -2, 0);
@@ -203,7 +203,7 @@ export default {
 
       npcName = "Mia"
       this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [7,this.MIN.y,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
+        pos: [8,this.MIN.y,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
         animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
@@ -214,9 +214,9 @@ export default {
         click: defaultNPCFoundFunction,
       });
       npcName = "Molly"
-      this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
-        animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
+      this.$add_npc({name:npcName,obj:"acar.obj",
+        pos: [-20,this.MIN.y,0],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.1},
         click: defaultNPCFoundFunction,
       });
 
