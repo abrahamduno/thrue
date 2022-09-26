@@ -38,28 +38,21 @@ export default {
 
 			this.mainAnimation()
 			this.animate_connectOrb()
-
-			if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto && this.$parent.$refs.dom.$refs.lotto.textsignup) 
-			{
-				let atext = this.$parent.$refs.dom.$refs.lotto.textsignup
-				atext.rotation.y = this.lerp(atext.rotation.y,-this.pointer.x,0.07)
-
-	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
-	        	{
-		        	atext.position.z = this.lerp(atext.position.z,25,0.05)
-	        	}
-
-			}
-			if (this.$parent.$refs.dom && this.$parent.$refs.dom.$refs.lotto && this.$parent.$refs.dom.$refs.lotto.textwelcome) 
-			{
-				let atext = this.$parent.$refs.dom.$refs.lotto.textwelcome
-				atext.rotation.y = this.lerp(atext.rotation.y,this.pointer.x*0.5+1,0.07)
-			}
-			
-
 			this.animate_npcs(this.tcounter)
 			this.animate_levelone()
 			this.animate_ticketer()
+
+			if (!this.$parent.$parent.$refs.dom) return
+			let _lotto = this.$parent.$parent.$refs.dom.$refs.lotto
+			let atext
+			if (_lotto && (atext = _lotto.textsignup)) 
+			{
+				atext.rotation.y = this.lerp(atext.rotation.y,-this.pointer.x,0.07)
+	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
+	        	{
+		        	atext.position.z = this.lerp(atext.position.z,25,0.05)
+				}
+			}
 	    },
 	}
 }

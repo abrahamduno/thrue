@@ -140,11 +140,10 @@
     
     import loadTextWithValue from "../../thrue/models/text-value.js";
     import loadTextSignup from "../../thrue/models/text-signup.js";
-    import loadTextWelcome from "../../thrue/models/text-welcome.js";
 
     export default {
         name: 'lotto',     
-        mixins: [loadTextWithValue, loadTextSignup, loadTextWelcome],
+        mixins: [loadTextWithValue, loadTextSignup],
         components: {
             txCard,
 
@@ -281,9 +280,7 @@
                 {
                     this.loadTextSignup()
                 } else {
-                    this.loadTextWelcome()
                     this.$parent.$parent.$refs.scene.$refs.level.addTicketer();
-                    // this.loadTextWelcome()
                 }
             },
             async update_currentRound(msg)
