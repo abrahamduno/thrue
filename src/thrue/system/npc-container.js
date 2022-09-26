@@ -100,7 +100,7 @@ export default {
           }
         }
       },
-      initNpcs()
+      $init_npcContainer()
       {
         this.NPCClickCounter = {}
         this.NPCContainer = {}
@@ -109,13 +109,13 @@ export default {
         this.NPCObjectContainer = {}
       },
 
-      addNpc(_params)
+      $add_npc(_params)
       {
         if (!_params.name) return
         let params = {...this.baseNpc, ..._params}
         if(params.obj)
         {
-          this.addObject(params)
+          this.addNpcLinkedObject(params)
         } else {
           const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
           const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
@@ -134,7 +134,7 @@ export default {
           this.scene.add( newClickBox );
         }
       },
-      addObject( _params )
+      addNpcLinkedObject( _params )
       {
         // console.log(_params)
         new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
