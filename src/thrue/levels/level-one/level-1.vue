@@ -107,19 +107,17 @@ export default {
 
       this.setScene();
       this.$animate_scrollPosition()
-      // this._animate()
+      // this.$animate()
     },
     setScene()
     {
-      this.setWindowRatio();
-      this.setDOMHeight();
-      this.setSceneAndCamera();
+      this.$set_sceneAndCamera();
       this.addLight()
 
       this.add_startLevelBlob()
       this.add_bubbleHead()
 
-      this.setRenderer();
+      this.$set_renderer();
       if (this.current_filter == "bloom") { this.setBloomRenderer() }
 
       this.setRaycaster();
@@ -137,7 +135,7 @@ export default {
   beforeDestroy() {
     // remove listener again
     window.removeEventListener("scroll", this.$animate_scrollPosition);
-    window.removeEventListener( 'resize', this.setCameraRenderSize );
+    window.removeEventListener( 'resize', this.$set_cameraRenderSize );
     document.removeEventListener("mousemove", this.onPointerMove);
     document.removeEventListener("click", this.onPointerClick);
   },
@@ -146,7 +144,7 @@ export default {
     this.initLevel()
 
     window.addEventListener("scroll", this.$animate_scrollPosition);
-    window.addEventListener( 'resize', this.setCameraRenderSize );
+    window.addEventListener( 'resize', this.$set_cameraRenderSize );
     document.addEventListener( 'mousemove', this.onPointerMove );
     document.addEventListener( 'click', this.onPointerClick );
   },

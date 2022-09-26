@@ -8,16 +8,16 @@ export default {
 		}
 	},
 	methods: {
-		lerp(min, max, value) {
+		$lerp(min, max, value) {
 		  return (max - min) * value + min;
 		},
-	    _animate()
+	    $animate()
 	    {
-	      requestAnimationFrame(this._animate);
+	      requestAnimationFrame(this.$animate);
 	      // animations and mouse position
 	      this.raycaster.setFromCamera( this.__pointer, this.camera );
-	      this.updateRaycaster()
-	      this.updateAnimations()
+	      this.$update_raycaster()
+	      this.__update_animations()
 
 	      // render
 	      if (this.current_filter == "bloom") 
@@ -27,7 +27,9 @@ export default {
 	        this.renderer.render(this.scene, this.camera);
 	      }
 	    },
-	    updateAnimations(e) {
+
+	    
+	    __update_animations(e) {
         	const t = document.body.getBoundingClientRect().top;
         	
 			this.__timer++
@@ -47,10 +49,10 @@ export default {
 			let atext
 			if (_lotto && (atext = _lotto.textsignup)) 
 			{
-				atext.rotation.y = this.lerp(atext.rotation.y,-this.__pointer.x,0.07)
+				atext.rotation.y = this.$lerp(atext.rotation.y,-this.__pointer.x,0.07)
 	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
 	        	{
-		        	atext.position.z = this.lerp(atext.position.z,25,0.05)
+		        	atext.position.z = this.$lerp(atext.position.z,25,0.05)
 				}
 			}
 	    },

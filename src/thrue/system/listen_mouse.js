@@ -4,7 +4,7 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
-    updateRaycaster()
+    $update_raycaster()
     {
       const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
       if ( intersects.length > 0 )

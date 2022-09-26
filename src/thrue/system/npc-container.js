@@ -15,6 +15,59 @@ export default {
     }
   },
   methods: {
+      $init_npcContainer()
+      {
+        this.NPCClickCounter = {}
+        this.NPCContainer = {}
+        this.NPCBaseContainer = {}
+        this.NPCAnimationContainer = {}
+        this.NPCObjectContainer = {}
+      },
+      $add_npc(_params)
+      {
+        if (!_params.name) return
+        let params = {...this.baseNpc, ..._params}
+        if(params.obj)
+        {
+          this.addNpcLinkedObject(params)
+        } else {
+          const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
+          const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
+          let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
+          newClickBox.castShadow = true; //default is false
+          newClickBox.receiveShadow = true; //default
+          newClickBox.position.set(...params.pos)
+          if (params.rot) newClickBox.rotation.set(...params.rot)
+          newClickBox.name = params.name
+
+          this.NPCContainer[params.name] = newClickBox
+          this.NPCAnimationContainer[params.name] = params.animation
+          this.NPCBaseContainer[params.name] = params
+          this.NPCClickCounter[params.name] = 0
+          
+          this.scene.add( newClickBox );
+        }
+      },
+      async $click_npcContainer()
+      {
+        if(this.INTERSECTED && this.NPCContainer)
+        {
+          let thekeys = Object.keys(this.NPCContainer)
+          for (var i = 0; i < thekeys.length; i++)
+          {            
+            if(this.INTERSECTED == this.NPCContainer[thekeys[i]] ||
+              (this.NPCContainer[thekeys[i]].children && this.INTERSECTED == this.NPCContainer[thekeys[i]].children[0])
+              )
+            {
+              this.NPCClickCounter[thekeys[i]] ++
+              if (this.NPCBaseContainer[thekeys[i]].click)
+              {
+                this.NPCBaseContainer[thekeys[i]].click(thekeys[i])
+              }
+            }
+          }
+        }
+      },
       $animate_npcContainer(__timer)
       {
         let r = this.refreshRate
@@ -79,60 +132,6 @@ export default {
         if (Object.keys(this.NPCContainer).length == 0) return null
 
         return this.NPCContainer[Object.keys(this.NPCContainer)[0]]
-      },
-      async $click_npcContainer()
-      {
-        if(this.INTERSECTED && this.NPCContainer)
-        {
-          let thekeys = Object.keys(this.NPCContainer)
-          for (var i = 0; i < thekeys.length; i++)
-          {            
-            if(this.INTERSECTED == this.NPCContainer[thekeys[i]] ||
-              (this.NPCContainer[thekeys[i]].children && this.INTERSECTED == this.NPCContainer[thekeys[i]].children[0])
-              )
-            {
-              this.NPCClickCounter[thekeys[i]] ++
-              if (this.NPCBaseContainer[thekeys[i]].click)
-              {
-                this.NPCBaseContainer[thekeys[i]].click(thekeys[i])
-              }
-            }
-          }
-        }
-      },
-      $init_npcContainer()
-      {
-        this.NPCClickCounter = {}
-        this.NPCContainer = {}
-        this.NPCBaseContainer = {}
-        this.NPCAnimationContainer = {}
-        this.NPCObjectContainer = {}
-      },
-
-      $add_npc(_params)
-      {
-        if (!_params.name) return
-        let params = {...this.baseNpc, ..._params}
-        if(params.obj)
-        {
-          this.addNpcLinkedObject(params)
-        } else {
-          const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
-          const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
-          let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
-          newClickBox.castShadow = true; //default is false
-          newClickBox.receiveShadow = true; //default
-          newClickBox.position.set(...params.pos)
-          if (params.rot) newClickBox.rotation.set(...params.rot)
-          newClickBox.name = params.name
-
-          this.NPCContainer[params.name] = newClickBox
-          this.NPCAnimationContainer[params.name] = params.animation
-          this.NPCBaseContainer[params.name] = params
-          this.NPCClickCounter[params.name] = 0
-          
-          this.scene.add( newClickBox );
-        }
       },
       addNpcLinkedObject( _params )
       {

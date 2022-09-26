@@ -26,9 +26,9 @@
             {
                 // console.log(this.$refs.scene.$refs)
                 // setTimeout(() => {
-                    if (this.$refs.scene.$refs.level._animate)
+                    if (this.$refs.scene.$refs.level.$animate)
                     {
-                        this.$refs.scene.$refs.level._animate()
+                        this.$refs.scene.$refs.level.$animate()
                     }
                 // },1000)
                 

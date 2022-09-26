@@ -13,13 +13,13 @@ export default {
         this.sunlighTarget.position.z = this.__scroll * 0.01 -10
         this.sunlight.target  = this.sunlighTarget
 
-        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
-        this.myobject.position.y = this.lerp(this.myobject.position.y,this.MIN.y,0.07)
-        // this.myobject.rotation.y = this.lerp(this.myobject.rotation.y,Math.PI/12,0.07)
+        this.myobject.position.z = this.$lerp(this.myobject.position.z,-50,0.07)
+        this.myobject.position.y = this.$lerp(this.myobject.position.y,this.MIN.y,0.07)
+        // this.myobject.rotation.y = this.$lerp(this.myobject.rotation.y,Math.PI/12,0.07)
         if (this.mysign)
         {
-          this.mysign.position.z = this.lerp(this.mysign.position.z,-49.6,0.07)
-          this.mysign.position.y = this.lerp(this.mysign.position.y,-0.9,0.07)
+          this.mysign.position.z = this.$lerp(this.mysign.position.z,-49.6,0.07)
+          this.mysign.position.y = this.$lerp(this.mysign.position.y,-0.9,0.07)
         }
       }
 
@@ -30,12 +30,12 @@ export default {
         if (this.__pointer.x == null && this.__pointer.y == null)
         {
           // console.log("asd")
-          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,-0.6,0.01)
-          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-0.2,0.03)
-          // this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
+          this.mysign.rotation.y = this.$lerp(this.mysign.rotation.y,-0.6,0.01)
+          this.mysign.rotation.x = this.$lerp(this.mysign.rotation.x,-0.2,0.03)
+          // this.mysign.rotation.y = this.$lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
         } else {
-          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
-          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.__pointer.y+0.4,0.07)
+          this.mysign.rotation.y = this.$lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
+          this.mysign.rotation.x = this.$lerp(this.mysign.rotation.x,-this.__pointer.y+0.4,0.07)
         }
       }
 
@@ -53,9 +53,9 @@ export default {
         )
       {
         this.camera.rotation.y =
-          this.lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+          this.$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
       } else {
-        this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
+        this.camera.rotation.y = this.$lerp(this.camera.rotation.y,0,0.07)
       }
       
       this.animate_ticketer()

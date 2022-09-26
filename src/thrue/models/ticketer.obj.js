@@ -12,7 +12,7 @@ export default {
       {
         if (this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
         {
-          this.ticketer.position.y = this.lerp(this.ticketer.position.y,-2,0.1)
+          this.ticketer.position.y = this.$lerp(this.ticketer.position.y,-2,0.1)
         }
       }
     },
