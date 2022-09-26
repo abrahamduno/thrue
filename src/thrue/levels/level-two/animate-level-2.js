@@ -55,7 +55,7 @@ export default {
         )
       {
         this.camera.rotation.y =
-          this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+          this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.1)
       } else {
         this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
       }
@@ -75,11 +75,11 @@ export default {
       // FLY THRU CITY
       if (t < -this.sceneBreakpoints.default[currentScene]) {
         // EXCEPT SCENE 1
-        this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[currentScene] * 0.015;
+        this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[currentScene] * 0.006;
       } else {
         // ONLY SCENE 1
         // this.camera.position.y = -this.sceneVariables.camera.pos[y] + t * 0.001;
-        this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
+        this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.006;
       }
 
       // // currentScene++

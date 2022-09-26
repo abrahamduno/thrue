@@ -80,7 +80,7 @@ export default {
       this.sceneBreakpoints = {
         default: [],
         mobile: [3000, 8500, 9900, 13100, 14400],
-        desktop: [1200, 1500, 12900, 16100, 18400],
+        desktop: [2500, 5000, 12900, 16100, 18400],
       }
       this.MIN = {
         y:-0.3,
