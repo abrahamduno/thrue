@@ -83,7 +83,7 @@ export default {
         desktop: [1200, 1500, 12900, 16100, 18400],
       }
       this.MIN = {
-        y:-1,
+        y:-0.3,
       }
       this.sceneVariables = {
         camera: {

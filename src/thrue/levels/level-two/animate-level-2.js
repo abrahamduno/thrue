@@ -11,8 +11,8 @@ export default {
       // TRANSITION TO LEVEL ! WHEN CONNECTED
       if (this.accs_length || this.is_playing_test)
       {
-        this.sunlight.position.z = this.__scroll * 0.01 +10
-        this.sunlighTarget.position.z = this.__scroll * 0.01 -10
+        this.sunlight.position.z = this.__scroll * 0.01 -3
+        this.sunlighTarget.position.z = this.__scroll * 0.01 
         this.sunlight.target  = this.sunlighTarget
 
         this.myobject.position.z = this._$lerp(this.myobject.position.z,-20,0.07)

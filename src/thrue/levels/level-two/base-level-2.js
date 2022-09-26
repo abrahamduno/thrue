@@ -123,8 +123,8 @@ export default {
     addLight()
     {
       let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
-      let sunintensity = this.dark_mode ? 1.2 : 0.9
-      let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
+      let sunintensity = this.dark_mode ? 1.2 : 0.5
+      let ambientintensity = this.dark_mode ? 0x404040 : 0xa1a1a1
 
       // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
       // this.light4.position.set(-1,2.5,6)
@@ -132,7 +132,7 @@ export default {
 
       // this.sunlight = new THREE.SpotLight( suncolor );
       this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( 5,5,10 ); //default; light shining from top
+      this.sunlight.position.set( 5,3,15 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
@@ -215,13 +215,13 @@ export default {
       });
       npcName = "1car"
       this.$add_npc({name:npcName,obj:"acar.obj",
-        pos: [-20,this.MIN.y,-3.5],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.1,add:[{loop:20}]},
+        pos: [-25,this.MIN.y,-8.5],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.1,add:[{loop:30}]},
         click: defaultNPCFoundFunction,
       });
       npcName = "2car"
       this.$add_npc({name:npcName,obj:"acar.obj",
-        pos: [0,this.MIN.y,8],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        pos: [0,this.MIN.y,10],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
         animation:{type:"circle",path:["x","z"],value:16,speed:0.01,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
