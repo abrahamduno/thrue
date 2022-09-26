@@ -215,8 +215,14 @@ export default {
       });
       npcName = "1car"
       this.$add_npc({name:npcName,obj:"acar.obj",
-        pos: [-20,this.MIN.y,-5],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.1},
+        pos: [-20,this.MIN.y,-3.5],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.1,add:[{loop:20}]},
+        click: defaultNPCFoundFunction,
+      });
+      npcName = "2car"
+      this.$add_npc({name:npcName,obj:"acar.obj",
+        pos: [0,this.MIN.y,8],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"circle",path:["x","z"],value:16,speed:0.01,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
 
