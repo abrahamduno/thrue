@@ -8,15 +8,15 @@ export default {
 		}
 	},
 	methods: {
-		$lerp(min, max, value) {
+		_$lerp(min, max, value) {
 		  return (max - min) * value + min;
 		},
-	    $animate()
+	    _$animate()
 	    {
-	      requestAnimationFrame(this.$animate);
+	      requestAnimationFrame(this._$animate);
 	      // animations and mouse position
 	      this.raycaster.setFromCamera( this.__pointer, this.camera );
-	      this.$update_raycaster()
+	      this._$update_raycaster()
 	      this.__update_animations()
 
 	      // render
@@ -50,10 +50,10 @@ export default {
 			let atext
 			if (_lotto && (atext = _lotto.textsignup)) 
 			{
-				atext.rotation.y = this.$lerp(atext.rotation.y,-this.__pointer.x,0.07)
+				atext.rotation.y = this._$lerp(atext.rotation.y,-this.__pointer.x,0.07)
 	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
 	        	{
-		        	atext.position.z = this.$lerp(atext.position.z,25,0.05)
+		        	atext.position.z = this._$lerp(atext.position.z,25,0.05)
 				}
 			}
 	    },

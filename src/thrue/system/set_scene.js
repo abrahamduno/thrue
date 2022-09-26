@@ -3,7 +3,7 @@ import * as THREE from "three";
 export default {
   methods:
   {
-    $set_sceneAndCamera()
+    _$set_sceneAndCamera()
     {
       this.__set_windowRatio()
       this.__set_DOMHeight()
@@ -21,7 +21,7 @@ export default {
       this.camera.position.set(...this.sceneVariables.camera.pos);
       this.camera.rotation.set(...this.sceneVariables.camera.rot);
     },
-    $set_renderer()
+    _$set_renderer()
     {
       this.renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -33,9 +33,9 @@ export default {
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMapSoft = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
-      this.$set_cameraRenderSize() // set_scene_function
+      this._$set_cameraRenderSize() // set_scene_function
     },
-    $set_cameraRenderSize()
+    _$set_cameraRenderSize()
     {
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
