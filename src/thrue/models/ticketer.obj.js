@@ -12,7 +12,7 @@ export default {
       {
         if (this.ticketer && this.valuesBlock  && this.valuesBlock.prize_pool)
         {
-          this.ticketer.position.y = this.lerp(this.ticketer.position.y,-2,0.1)
+          this.ticketer.position.y = this._$lerp(this.ticketer.position.y,-2,0.1)
         }
       }
     },
@@ -31,18 +31,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "ticketer.obj",
         (object) => {
-          object.traverse( function ( child )
-          {
-            if ( child instanceof THREE.Mesh )
-            {
-              child.material = new THREE.MeshStandardMaterial( { color: 0xaaaaaa } );
-              child.castShadow = true;
-              child.receiveShadow = true;
-            }
-            // if( child.material ) {
-            //   child.material.side = THREE.BackSide;
-            // }
-         } );
+          object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, 50, 0);
           this.ticketer = object
           this.scene.add(this.ticketer);

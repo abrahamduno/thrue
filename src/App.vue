@@ -24,7 +24,14 @@
         methods: {
             animate()
             {
-                this.$refs.scene._animate()
+                // console.log(this.$refs.scene.$refs)
+                // setTimeout(() => {
+                    if (this.$refs.scene.$refs.level._$animate)
+                    {
+                        this.$refs.scene.$refs.level._$animate()
+                    }
+                // },1000)
+                
             },
         }, 
     }

@@ -122,10 +122,6 @@
                         
 
 <script>
-    import loadTextWithValue from "../../thrue/models/text-value.js";
-    import loadTextSignup from "../../thrue/models/text-signup.js";
-    import loadTextWelcome from "../../thrue/models/text-welcome.js";
-
     import {
       Multicall,
     } from 'ethereum-multicall';
@@ -141,10 +137,13 @@
     import lottoMyAccount from "./lotto/lotto-my-account.vue";
     import lottoCurrentTicket from "./lotto/lotto-current-ticket.vue";
     import lottoCurrentRound from "./lotto/lotto-current-round.vue";
+    
+    import loadTextWithValue from "../../thrue/models/text-value.js";
+    import loadTextSignup from "../../thrue/models/text-signup.js";
 
     export default {
         name: 'lotto',     
-        mixins: [loadTextWithValue, loadTextSignup, loadTextWelcome],
+        mixins: [loadTextWithValue, loadTextSignup],
         components: {
             txCard,
 
@@ -281,9 +280,7 @@
                 {
                     this.loadTextSignup()
                 } else {
-                    this.loadTextWelcome()
-                    this.$parent.$parent.$refs.scene.addTicketer();
-                    // this.loadTextWelcome()
+                    this.$parent.$parent.$refs.scene.$refs.level.addTicketer();
                 }
             },
             async update_currentRound(msg)
@@ -293,7 +290,7 @@
                 this.values.val_randomResultBlock = msg.data.val_randomResultBlock
                 this.values.deadline = msg.data.deadline
 
-                // console.log(this.$parent.$parent.$refs.scene)
+                // console.log(this.$parent.$parent.$refs.scene.$refs.level)
                 this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
                 this.loadTextWithValue()
 

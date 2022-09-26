@@ -10,7 +10,7 @@ export default {
     clickFarm() {
       // let input = prompt("Amount",1)
 
-      alert("bedding: "+this.goals.bedding)
+      alert("hay: "+this.goals.hay)
 
       if (this.is_playing_test) return
 
@@ -19,8 +19,8 @@ export default {
       {
         // this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.forms.form_buyTicketAmount = input
         // this.$parent.$refs.dom.$refs.lotto.$refs.currentTicket.execute_buyTicket()
-        // this.goals.bedding++
-        // alert("bedding: "+this.goals.bedding)
+        // this.goals.hay++
+        // alert("hay: "+this.goals.hay)
       }
     },
     addFarm(  ) {

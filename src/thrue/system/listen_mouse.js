@@ -4,7 +4,7 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
-    updateRaycaster()
+    _$update_raycaster()
     {
       const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
       if ( intersects.length > 0 )
@@ -17,16 +17,16 @@ export default {
         this.INTERSECTED = null
       }
     },
-    setRaycaster()
+    _$set_raycaster()
     {
       this.INTERSECTED = null
-      this.pointer = {x:null,y:null}
+      this.__pointer = {x:null,y:null}
       this.raycaster = new THREE.Raycaster();
     },
-    onPointerMove( event )
+    _$listen_pointerPos( event )
     {
-      this.pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-      this.pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      this.__pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      this.__pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     },
   }
 }
