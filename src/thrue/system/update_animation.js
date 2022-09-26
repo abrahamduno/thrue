@@ -4,7 +4,7 @@ export default {
 	data ()
 	{
 		return {
-			tcounter: 0,
+			__timer: 0,
 		}
 	},
 	methods: {
@@ -15,7 +15,7 @@ export default {
 	    {
 	      requestAnimationFrame(this._animate);
 	      // animations and mouse position
-	      this.raycaster.setFromCamera( this.pointer, this.camera );
+	      this.raycaster.setFromCamera( this.__pointer, this.camera );
 	      this.updateRaycaster()
 	      this.updateAnimations()
 
@@ -30,7 +30,7 @@ export default {
 	    updateAnimations(e) {
         	const t = document.body.getBoundingClientRect().top;
         	
-			this.tcounter++
+			this.__timer++
 			if (this.camera && this.auto_mode)
 			{
 				window.scrollTo(0,window.scrollY+1)
@@ -38,7 +38,7 @@ export default {
 
 			this.mainAnimation()
 			this.$animate_startLevelBlob()
-			this.$animate_npcContainer(this.tcounter)
+			this.$animate_npcContainer(this.__timer)
 			this.$animate_currentLevel()
 			this.animate_ticketer()
 
@@ -48,7 +48,7 @@ export default {
 			let atext
 			if (_lotto && (atext = _lotto.textsignup)) 
 			{
-				atext.rotation.y = this.lerp(atext.rotation.y,-this.pointer.x,0.07)
+				atext.rotation.y = this.lerp(atext.rotation.y,-this.__pointer.x,0.07)
 	        	if (this.valuesBlock  && this.valuesBlock.dai_dao_allowance)
 	        	{
 		        	atext.position.z = this.lerp(atext.position.z,25,0.05)
@@ -60,8 +60,8 @@ export default {
 	      // TRANSITION TO LEVEL ! WHEN CONNECTED
 	      if (this.accs_length || this.is_playing_test)
 	      {
-	        this.sunlight.position.z = this.scrollPosition * 0.01 +10
-	        this.sunlighTarget.position.z = this.scrollPosition * 0.01 -10
+	        this.sunlight.position.z = this.__scroll * 0.01 +10
+	        this.sunlighTarget.position.z = this.__scroll * 0.01 -10
 	        this.sunlight.target  = this.sunlighTarget
 
 	        this.myobject.position.z = this.lerp(this.myobject.position.z,-50,0.07)
@@ -77,16 +77,16 @@ export default {
 	      // LIVE ANIMAL LOOKING TO POINTER
 	      if (this.mysign)
 	      {
-	        // console.log(this.pointer)
-	        if (this.pointer.x == null && this.pointer.y == null)
+	        // console.log(this.__pointer)
+	        if (this.__pointer.x == null && this.__pointer.y == null)
 	        {
 	          // console.log("asd")
 	          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,-0.6,0.01)
 	          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-0.2,0.03)
-	          // this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
+	          // this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
 	        } else {
-	          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.pointer.x,0.07)
-	          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.pointer.y+0.4,0.07)
+	          this.mysign.rotation.y = this.lerp(this.mysign.rotation.y,this.__pointer.x,0.07)
+	          this.mysign.rotation.x = this.lerp(this.mysign.rotation.x,-this.__pointer.y+0.4,0.07)
 	        }
 	      }
 

@@ -20,13 +20,13 @@ export default {
     setRaycaster()
     {
       this.INTERSECTED = null
-      this.pointer = {x:null,y:null}
+      this.__pointer = {x:null,y:null}
       this.raycaster = new THREE.Raycaster();
     },
     onPointerMove( event )
     {
-      this.pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-      this.pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      this.__pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      this.__pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     },
   }
 }

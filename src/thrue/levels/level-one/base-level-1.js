@@ -74,6 +74,9 @@ export default {
     {
       alert("Failed")
     },
+
+
+    
     clickedLevelHelp()
     {
       // this.enable_help++
@@ -100,6 +103,9 @@ export default {
         this.clickFarm()
       }
     },
+
+
+
     initLevelOne()
     {
       this.goals = {

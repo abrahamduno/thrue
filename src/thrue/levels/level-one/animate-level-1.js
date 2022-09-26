@@ -13,22 +13,22 @@ export default {
 
         // PLAYER CAMERA
       if (this.camera && this.pro_mode &&
-        (this.pointer.x < -0.2 || this.pointer.x > 0.2)
+        (this.__pointer.x < -0.2 || this.__pointer.x > 0.2)
         )
       {
         this.camera.rotation.y =
-          this.lerp(this.camera.rotation.y,-this.pointer.x*(Math.PI*0.6)+(this.pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+          this.lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
       } else {
         this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
       }
     },
     $animate_scrollPosition(e)
     {
-      this.scrollPosition = window.scrollY;
+      this.__scroll = window.scrollY;
 
       const t = document.body.getBoundingClientRect().top;
-      this.scrollPosition = t
-      // this.scrollPosition = window.scrollY;
+      this.__scroll = t
+      // this.__scroll = window.scrollY;
       if (this.DEBUG) { console.log(t) }
       let currentScene = 1
       // currentScene = 

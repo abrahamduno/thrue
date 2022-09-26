@@ -80,7 +80,7 @@ export default {
     {
       this.scene = null
       this.camera = null
-      this.scrollPosition = null
+      this.__scroll = null
       
       this.sceneBreakpoints = {
         default: [],

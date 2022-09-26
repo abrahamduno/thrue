@@ -15,7 +15,7 @@ export default {
     }
   },
   methods: {
-      $animate_npcContainer(tcounter)
+      $animate_npcContainer(__timer)
       {
         let r = this.refreshRate
 
@@ -34,29 +34,29 @@ export default {
           if(element.type == "sin" || element.type == "cos")
           {
             this.NPCContainer[thekeys[i]].position[element.path[0]] =  
-              Math[element.type](tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
+              Math[element.type](__timer*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
             if (element.add)
             {
               if (element.add[0].rot == "z")
               {
-                this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(tcounter*r*speed)*0.001
+                this.NPCContainer[thekeys[i]].rotation["z"] = -Math.sin(__timer*r*speed)*0.001
               }
             }
           }
           if(element.type == "circle")
           {
             this.NPCContainer[thekeys[i]].position[element.path[0]] =  
-              Math.sin(tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
+              Math.sin(__timer*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]]
 
             this.NPCContainer[thekeys[i]].position[element.path[1]] =  
-              Math.cos(tcounter*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[1]]]
+              Math.cos(__timer*r*speed)*element.value + this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[1]]]
             if (element.add[0].rot == "y")
             {
               if (element.path[0] == "z")
               {
-                this.NPCContainer[thekeys[i]].rotation["y"] = -(tcounter*r*speed)
+                this.NPCContainer[thekeys[i]].rotation["y"] = -(__timer*r*speed)
               } else {
-                this.NPCContainer[thekeys[i]].rotation["y"] = (tcounter*r*speed)+Math.PI/2
+                this.NPCContainer[thekeys[i]].rotation["y"] = (__timer*r*speed)+Math.PI/2
               }
             }
           }
@@ -68,7 +68,7 @@ export default {
               for (var k = 0; k < transformationList.length; k++)
               {
                 if(element.type == "circle") { continue }
-                this.NPCContainer[thekeys[i]].rotation[element.add[j][transformationList[j]]] = -(tcounter*r*speed)
+                this.NPCContainer[thekeys[i]].rotation[element.add[j][transformationList[j]]] = -(__timer*r*speed)
               }
             }
           }
