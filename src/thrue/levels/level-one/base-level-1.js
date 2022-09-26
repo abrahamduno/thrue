@@ -87,17 +87,6 @@ export default {
         hay: 0,
       }
     },
-    animate_levelone()
-    {
-      if (this.accs_length)
-      {
-      }
-      if (this.mycurrentlevel && this.mycurrentlevel.position.y != -2)
-      {
-        this.mycurrentlevel.position.y = -2
-        // this.mycurrentlevel.position.y = this.lerp(this.mycurrentlevel.position.y,-2,0.1)
-      }
-    },
     addLevelOne(  ) {
       this.initLevelOne()
 
@@ -147,76 +136,39 @@ export default {
 
       npcName = "Lucy"
       this.addNpc({name:npcName,obj:"achiken.obj",
-        pos: [-2,-2.1,-1.15], color: 0xFFD8BA,
+        pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
         animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
 
-      npcName = "Molly"
-      this.addNpc({name:npcName,obj:"achiken.obj",
-        pos: [0,-2,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
-        animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
-        click: defaultNPCFoundFunction,
-      });
       npcName = "Mia"
       this.addNpc({name:npcName,obj:"achiken.obj",
-        pos: [8,-2.1,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
+        pos: [8,this.MIN.y,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
         animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
       npcName = "Amy"
       this.addNpc({name:npcName,obj:"achiken.obj",
-        pos: [9,-2.22,-45],scale:[2,2,2], color: 0xF3D7FF,
+        pos: [9,this.MIN.y-0.25,-45],scale:[2,2,2], color: 0xFFC88A,
         animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: defaultNPCFoundFunction,
+      });
+      npcName = "Molly"
+      this.addNpc({name:npcName,obj:"achiken.obj",
+        pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
+        animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
 
       npcName = "Water"
       this.addNpc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
-        pos: [8.6,-2.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
+        pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
         animation:{type:"sin",path:["y"],value:0.02},
       });
       npcName = "Stor"
       this.addNpc({name:npcName,obj:"stor.obj",
-        pos: [5.5,-2.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
+        pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
       });
-
-
-      // this.addNpc({name:"mia",obj:"achiken.obj",
-      // pos: [-4,-2,-30], BoxGeometry: [0.25,0.25,0.25], color: 0xFFC88A, animation:{type:"cos",path:["z"],value:1,add:[{rot:"y"}]}});
-
-      // // center
-      // {
-      //   const boxGeometry = new THREE.BoxGeometry(1.6, 0.05, 33);
-      //   const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
-      //   let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
-      //   boxx.castShadow = true; //default is false
-      //   boxx.receiveShadow = true; //default
-      //   boxx.position.set(0,-0.05,-8)
-      //   this.mycurrentlevel.add( boxx );
-      // }
-
-      // // right
-      // {
-      //   const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 33);
-      //   const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
-      //   let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
-      //   boxx.castShadow = true; //default is false
-      //   boxx.receiveShadow = true; //default
-      //   boxx.position.set(4.2,-0.05,-8)
-      //   this.mycurrentlevel.add( boxx );
-      // }
-
-      // left
-      // {
-      //   const boxGeometry = new THREE.BoxGeometry(0.69, 0.05, 42);
-      //   const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: 0xaaaaaa } );
-      //   let boxx =  new THREE.Mesh( boxGeometry, boxMaterial );
-      //   boxx.castShadow = true; //default is false
-      //   boxx.receiveShadow = true; //default
-      //   boxx.position.set(-4.2,-0.05,-12.5)
-      //   this.mycurrentlevel.add( boxx );
-      // }
     },
   }
 }
