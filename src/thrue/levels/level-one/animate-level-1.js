@@ -57,6 +57,8 @@ export default {
       } else {
         this.camera.rotation.y = this.lerp(this.camera.rotation.y,0,0.07)
       }
+      
+      this.animate_ticketer()
     },
     $animate_scrollPosition(e)
     {

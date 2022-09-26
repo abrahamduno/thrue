@@ -40,7 +40,6 @@ export default {
 			this.$animate_startLevelBlob()
 			this.$animate_npcContainer(this.__timer)
 			this.$animate_currentLevel()
-			this.animate_ticketer()
 
 			// ANIMATE PRIZE TEXT WAITING FOR BLOCKCHAIN
 			if (!this.$parent.$parent.$refs.dom) return
