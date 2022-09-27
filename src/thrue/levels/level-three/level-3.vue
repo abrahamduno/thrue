@@ -28,6 +28,7 @@
           <span class="flex mr-3" > <span title="Energy">E:</span> <small>{{__player.stats.energy}}</small> </span>
           <!-- <span class="flex mr-3" > <span title="Rotation">Ro:</span> <small>{{__player.rot}}</small> </span> -->
           <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span>
+          <span class="flex mr-3" > <span title="Rotation">P:</span> <small>{{__player_pos_z}}</small> </span>
         </div>
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
@@ -87,7 +88,8 @@ export default {
     valuesBlock()             { return this.$store.getters.getBlock("values") },
 
     __player()      { return this.$store.getters.getPlayers[0] },
-    __player_rot_y()      { return !this.__player ? 0 : parseFloat(this.__player.rot[1].toFixed(2)) },
+    __player_rot_y()      { return !this.__player || !this.__player.rot ? 0 : parseFloat(this.__player.rot[1].toFixed(2)) },
+    __player_pos_z()      { return !this.__player || !this.__player.pos ? 0 : parseFloat(this.__player.pos[2].toFixed(2)) },
 
   },
   methods:

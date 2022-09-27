@@ -56,8 +56,9 @@ const store = createStore({
       state.players = {...state.players, ...newData}
       state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
       if (newData.rot) { state.players[playerData.id].rot = [...newData.rot] }
+      if (newData.pos) { state.players[playerData.id].pos = [...newData.pos] }
       // state.players[playerData.id].pos = {...state.players[playerData.id].pos, ...newData.pos}
-      // console.log("newset", playerData)
+      console.log("newset", state.players[playerData.id])
     },
 
     setCurrentLevel(state, level) {

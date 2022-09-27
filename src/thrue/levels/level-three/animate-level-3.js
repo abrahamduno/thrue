@@ -10,6 +10,47 @@ export default {
       { 
         // Touch events are supported
       } else {
+
+        if (this.__pointer.y > 0.6)  
+        {
+          if (this.$player)
+          {
+            this.$store.dispatch("setPlayerStats",{
+              id:"0",
+              rot:[
+                this.$player.rot[x],
+                this.__player_rot_y,
+                this.$player.rot[z],
+              ],
+              pos:[
+                this.$player.pos[x],
+                this.$player.pos[y],
+                this.__player_pos_z-4,
+              ]
+            })
+          }
+        }
+
+        if (this.__pointer.y < -0.6)  
+        {
+          if (this.$player)
+          {
+            this.$store.dispatch("setPlayerStats",{
+              id:"0",
+              rot:[
+                this.$player.rot[x],
+                this.__player_rot_y,
+                this.$player.rot[z],
+              ],
+              pos:[
+                this.$player.pos[x],
+                this.$player.pos[y],
+                this.__player_pos_z+4,
+              ]
+            })
+          }
+        }
+
         if (this.__pointer.x < -0.6)  
         {
           if (this.$player)
@@ -20,7 +61,12 @@ export default {
                 this.$player.rot[x],
                 this.__player_rot_y+0.3,
                 this.$player.rot[z],
-              ]
+              ],
+              pos:[
+                this.$player.pos[x],
+                this.$player.pos[y],
+                this.__player_pos_z,
+              ],
             })
           }
         }
@@ -34,10 +80,17 @@ export default {
                 this.$player.rot[x],
                 this.__player_rot_y-0.3,
                 this.$player.rot[z],
-              ]
+              ],
+              pos:[
+                this.$player.pos[x],
+                this.$player.pos[y],
+                this.__player_pos_z,
+              ],
             })
           }
         }
+
+
       }
     },
     _$swipe_left()
@@ -51,7 +104,12 @@ export default {
             this.$player.rot[x],
             this.__player_rot_y+this.__swipe.diffx*0.012*r,
             this.$player.rot[z],
-          ]
+          ],
+          pos:[
+            this.$player.pos[x],
+            this.$player.pos[y],
+            this.__player_pos_z,
+          ],
         })
       }
     },
@@ -67,18 +125,54 @@ export default {
             this.$player.rot[x],
             this.__player_rot_y+this.__swipe.diffx*0.012*r,
             this.$player.rot[z],
-          ]
+          ],
+          pos:[
+            this.$player.pos[x],
+            this.$player.pos[y],
+            this.__player_pos_z,
+          ],
         })
       }
     },
     _$swipe_up()
     {
-      console.log("swiped up");
-
+      let r = this.refreshAccelerator
+      if (this.$player)
+      {
+        this.$store.dispatch("setPlayerStats",{
+          id:"0",
+          pos:[
+            this.$player.pos[x],
+            this.$player.pos[y],
+            this.__player_pos_z-this.__swipe.diffy*0.15*r,
+          ],
+          rot:[
+            this.$player.rot[x],
+            this.__player_rot_y,
+            this.$player.rot[z],
+          ],
+        })
+      }
     },
     _$swipe_down()
     {
-      console.log("swiped down");
+      let r = this.refreshAccelerator
+      if (this.$player)
+      {
+        this.$store.dispatch("setPlayerStats",{
+          id:"0",
+          pos:[
+            this.$player.pos[x],
+            this.$player.pos[y],
+            this.__player_pos_z+this.__swipe.diffy*0.15*r,
+          ],
+          rot:[
+            this.$player.rot[x],
+            this.__player_rot_y,
+            this.$player.rot[z],
+          ],
+        })
+      }
 
     },
     _$animate_main()
@@ -160,6 +254,7 @@ export default {
       {
         // console.log(this.__player_rot_y)
         this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player_rot_y,0.05)
+        this.camera.position.z = this._$lerp(this.camera.position.z,this.__player_pos_z,0.05)
         // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
         // {
         //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
@@ -205,7 +300,7 @@ export default {
       // }
 
 
-      
+
 
       // // currentScene++
       // // ROTATION UP
