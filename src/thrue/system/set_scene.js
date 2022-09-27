@@ -37,13 +37,18 @@ export default {
     },
     _$set_cameraRenderSize()
     {
+      // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+      let vh = window.innerHeight * 0.01;
+      // Then we set the value in the --vh custom property to the root of the document
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.camera.aspect = window.innerWidth / window.innerHeight
       this.camera.updateProjectionMatrix(window.devicePixelRatio);
-      
-      let vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+      let vh2 = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh2}px`);
     },
 
 /* //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-  */

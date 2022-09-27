@@ -13,8 +13,8 @@ body {
     height: calc(100%);
 }*/
 .main-wrap {
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
+  height: 90vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 90) !important;
 }
 .main-body {
   /*height: 100%;*/
