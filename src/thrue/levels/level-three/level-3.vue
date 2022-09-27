@@ -1,26 +1,36 @@
 <template>
   <div >
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
-    <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999; background: #ffffff44" 
-      @click="enable_help++; clickedLevelHelp()" 
-        class="tx-center clickable opacity-hover-50 tx-lg top-50p pos-fixed pa-5 border-r-50"
-    >
-        <span>Swipe!</span>
-        <br>
-        <small class="opacity-50">(Up/Down=move) <br> (Left/Right=rotate)</small>
-        <br>
-        <span>OK</span>
-    </h1>
-    <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #ffffff44" 
+
+    <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
+    style="left: 20%; width: 60vw">
+    </div>
+
+    <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-bg pos-fixed w-100 flex-center"
+      style="top: 20%; height: 60vh">
+      <h1  style="z-index: 999999; background: #222222" 
+        @click="enable_help++; clickedLevelHelp()" 
+          class="tx-center clickable opacity-hover-75 tx-lg  pa-5 border-r-50 n-tx-3d"
+      >
+          <span class="nopointer show-md_x tx-sm">Click the Edges</span>
+          <span class="nopointer show-xs_md">Swipe!</span>
+          <hr class="nopointer w-100 opacity- pa-0 my-2">
+          <!-- <br> -->
+          <small class="nopointer ">(Up/Down=move) <br> (Left/Right=rotate)</small>
+          <hr class="w-100 opacity-25 pa-0 my-2">
+          <span class="opacity-hover-50 tx-lg">OK</span>
+      </h1>
+    </div>
+    <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #77777744" 
       @click="clickedLevelHelp" 
-        class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
+        class="tx-center clickable opacity-hover-75 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Congratulations!
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999; background: #ffffff44" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-5 border-r-50 flex-align-start flex-column"
+    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-5 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap ">

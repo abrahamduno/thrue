@@ -13,7 +13,7 @@ export default {
 
         if (this.__pointer.y > 0.6)  
         {
-          if (this.__player)
+          if (this.__player &&this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
           {
             this.$store.dispatch("setPlayerPosition",{
               id:"0",
@@ -28,7 +28,7 @@ export default {
 
         if (this.__pointer.y < -0.6)  
         {
-          if (this.__player)
+          if (this.__player && this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
           {
             this.$store.dispatch("setPlayerPosition",{
               id:"0",
@@ -43,7 +43,7 @@ export default {
 
         if (this.__pointer.x < -0.6)  
         {
-          if (this.__player)
+          if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
@@ -57,7 +57,7 @@ export default {
         }
         if (this.__pointer.x > 0.6)  
         {
-          if (this.__player)
+          if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
             this.$store.dispatch("setPlayerRotation",{
               id:"0",

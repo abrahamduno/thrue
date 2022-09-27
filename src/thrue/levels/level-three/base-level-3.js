@@ -171,6 +171,44 @@ export default {
 
       const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
       this.scene.add( amlight );
+
+
+
+
+
+      const roomPositiong = [-16,5,-12]
+      const targetroomPositiong = [roomPositiong[0],roomPositiong[1]-5,roomPositiong[2]]
+
+      // color, intensity, distance = 0, angle = Math.PI / 3, penumbra = 0, decay = 1
+      this.roomlight = new THREE.SpotLight( 0xffdd77, 1 );
+      // this.roomlight = new THREE.DirectionalLight( suncolor, sunintensity );
+      this.roomlight.position.set( ...roomPositiong ); //default; light shining from top
+      // this.roomlight.position.lookAt( 0,0,0 ); //default; light shining from top
+      this.roomlight.castShadow = true; // default false
+      // this.roomlight.distance = this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
+      // this.roomlight.penumbra = 0.9 // default false
+      this.roomlight.penumbra = 0.9 // default false
+      this.roomlight.angle = Math.PI/4 // default false
+      // this.roomlight.shadow.camera.near = 0.5; // default
+      // this.roomlight.shadow.camera.far = 500; // default
+      // if (!window.chrome)
+      // {
+      //   this.roomlight.shadow.mapSize.width = 2048; // default
+      //   this.roomlight.shadow.mapSize.height = 2048; // default
+      // }
+      this.scene.add( this.roomlight );
+      this.roomlightTarget = new THREE.Object3D();
+      this.roomlightTarget.position.set( ...targetroomPositiong )
+      this.scene.add( this.roomlightTarget );
+      this.roomlight.target = this.roomlightTarget
+
+
+
     },
     addCurrentLevel(  ) {
       this.initLevelOne()
@@ -256,18 +294,18 @@ export default {
         // click: defaultNPCFoundFunction,
       });
 
-      npcName = "Mia"
-      this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [6.5,this.MIN.y+.2,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
-        animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
-        click: defaultNPCFoundFunction,
-      });
-      npcName = "Amy"
-      this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [9,this.MIN.y-0.25,-45],scale:[2,2,2], color: 0xFFC88A,
-        animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
-        click: defaultNPCFoundFunction,
-      });
+      // npcName = "Mia"
+      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      //   pos: [6.5,this.MIN.y+.2,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
+      //   animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
+      //   click: defaultNPCFoundFunction,
+      // });
+      // npcName = "Amy"
+      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      //   pos: [9,this.MIN.y-0.25,-45],scale:[2,2,2], color: 0xFFC88A,
+      //   animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+      //   click: defaultNPCFoundFunction,
+      // });
 
 
 
@@ -306,11 +344,11 @@ export default {
       //   click: defaultNPCFoundFunction,
       // });
 
-      // npcName = "Water"
-      // this.$add_npc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
-      //   pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
+      npcName = "floorhouse"
+      this.$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
+        pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
       //   animation:{type:"sin",path:["y"],value:0.02},
-      // });
+      });
       // npcName = "Stor"
       // this.$add_npc({name:npcName,obj:"stor.obj",
       //   pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
