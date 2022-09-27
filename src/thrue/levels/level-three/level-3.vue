@@ -9,8 +9,8 @@
         <!-- <br>
         <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-    <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999" 
-      @click="clickedLevelHelp" style="background: #ffffff44" 
+    <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #ffffff44" 
+      @click="clickedLevelHelp" 
         class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Congratulations!
