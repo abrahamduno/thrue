@@ -41,6 +41,9 @@ export default {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.camera.aspect = window.innerWidth / window.innerHeight
       this.camera.updateProjectionMatrix(window.devicePixelRatio);
+      
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
     },
 
 /* //-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-//-  */
