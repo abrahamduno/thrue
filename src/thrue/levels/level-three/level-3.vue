@@ -3,11 +3,13 @@
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
     <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999; background: #ffffff44" 
       @click="enable_help++; clickedLevelHelp()" 
-        class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
+        class="tx-center clickable opacity-hover-50 tx-lg top-50p pos-fixed pa-5 border-r-50"
     >
-        Survive!
-        <!-- <br>
-        <small class="opacity-50">(Scroll Down)</small> -->
+        <span>Swipe!</span>
+        <br>
+        <small class="opacity-50">(Up/Down=move) (Left/Right=rotate)</small>
+        <br>
+        <span>OK</span>
     </h1>
     <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #ffffff44" 
       @click="clickedLevelHelp" 
@@ -116,7 +118,7 @@ export default {
           rot: [0, 0, 0],
           fov: 50,
           fovSettings: {
-            mobile: 70,
+            mobile: 80,
             desktop: 50,
           },
           minReach: 0.1,

@@ -59,7 +59,7 @@ export default {
               id:"0",
               rot:[
                 this.$player.rot[x],
-                this.__player_rot_y+0.3,
+                this.__player_rot_y+Math.PI/4,
                 this.$player.rot[z],
               ],
               pos:[
@@ -78,7 +78,7 @@ export default {
               id:"0",
               rot:[
                 this.$player.rot[x],
-                this.__player_rot_y-0.3,
+                this.__player_rot_y-Math.PI/4,
                 this.$player.rot[z],
               ],
               pos:[
@@ -102,7 +102,7 @@ export default {
           id:"0",
           rot:[
             this.$player.rot[x],
-            this.__player_rot_y+this.__swipe.diffx*0.01*r,
+            this.__player_rot_y+Math.PI/4,
             this.$player.rot[z],
           ],
           pos:[
@@ -123,7 +123,7 @@ export default {
           id:"0",
           rot:[
             this.$player.rot[x],
-            this.__player_rot_y+this.__swipe.diffx*0.01*r,
+            this.__player_rot_y-Math.PI/4,
             this.$player.rot[z],
           ],
           pos:[

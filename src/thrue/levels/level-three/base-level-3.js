@@ -47,9 +47,9 @@ export default {
 
       if (!this.goals)
       {
-        alert("please reload game")
-        this.YOU_LOSE()
+        alert("please wait for game to load")
         return
+        this.YOU_LOSE()
       }
       if (this.goals.hay < 3)
       {
@@ -250,13 +250,13 @@ export default {
 
       npcName = "bed"
       this.$add_npc({name:npcName,obj:"bed.obj",
-        pos: [-20.7,this.MIN.y+0.25,-7.9], color: 0xaaaaaa,
+        pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
       npcName = "fridge"
       this.$add_npc({name:npcName,obj:"fridge.obj",
-        pos: [-18,this.MIN.y+0.25,-12.9], color: 0xaaaaaa,
+        pos: [-17,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
