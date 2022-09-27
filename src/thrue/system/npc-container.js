@@ -69,7 +69,7 @@ export default {
       },
       _$animate_npcContainer(__timer)
       {
-        let r = this.refreshRate
+        let r = this.refreshAccelerator
 
         if(!this.NPCContainer) return
         let thekeys = Object.keys(this.NPCContainer)

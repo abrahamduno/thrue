@@ -4,11 +4,88 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
+    checkNavigationClick()
+    {
+      if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)
+      { 
+        // Touch events are supported
+      } else {
+        if (this.__pointer.x < -0.6)  
+        {
+          if (this.$player)
+          {
+            this.$store.dispatch("setPlayerStats",{
+              id:"0",
+              rot:[
+                this.$player.rot[x],
+                this.__player_rot_y+0.3,
+                this.$player.rot[z],
+              ]
+            })
+          }
+        }
+        if (this.__pointer.x > 0.6)  
+        {
+          if (this.$player)
+          {
+            this.$store.dispatch("setPlayerStats",{
+              id:"0",
+              rot:[
+                this.$player.rot[x],
+                this.__player_rot_y-0.3,
+                this.$player.rot[z],
+              ]
+            })
+          }
+        }
+      }
+    },
+    _$swipe_left()
+    {
+        let r = this.refreshAccelerator
+      if (this.$player)
+      {
+        this.$store.dispatch("setPlayerStats",{
+          id:"0",
+          rot:[
+            this.$player.rot[x],
+            this.__player_rot_y+this.__swipe.diffx*0.012*r,
+            this.$player.rot[z],
+          ]
+        })
+      }
+    },
+
+    _$swipe_right()
+    {
+        let r = this.refreshAccelerator
+      if (this.$player)
+      {
+        this.$store.dispatch("setPlayerStats",{
+          id:"0",
+          rot:[
+            this.$player.rot[x],
+            this.__player_rot_y+this.__swipe.diffx*0.012*r,
+            this.$player.rot[z],
+          ]
+        })
+      }
+    },
+    _$swipe_up()
+    {
+      console.log("swiped up");
+
+    },
+    _$swipe_down()
+    {
+      console.log("swiped down");
+
+    },
     _$animate_main()
     {
       let ms = Date.now();
       // console.log(ms);
-      
+
       this.$animate_startLevelBlob()
 
       // TRANSITION TO LEVEL ! WHEN CONNECTED
@@ -68,13 +145,42 @@ export default {
         // PLAYER CAMERA
       if (this.camera && this.pro_mode)
       {
-        if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
-        {
-          this.camera.rotation.y -= (this.__pointer.x + (this.__pointer.x < -0.2 ? -0.2 : +0.2))*0.01
-        }
-        //   this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+        // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
+        // {
+        //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
+        //   {
+        //     this.camera.rotation.y -= (this.__pointer.x)*0.01
+        //   }
+        // }
+        // //   this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
       } else {
-        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
+        // this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
+      }
+      if (this.$player)
+      {
+        // console.log(this.__player_rot_y)
+        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player_rot_y,0.05)
+        // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
+        // {
+        //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
+        //   {
+        //     // const newRot = this.camera.rotation.y - (this.__pointer.x)*0.01
+        //     this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.$player.rot[y],0.0005)
+        //   }
+        // }
+        // if (this.$player.rot[y] != this.camera.rotation.y)
+        // {
+        //   const newRot = this._$lerp(this.$player.rot[y],this.camera.rotation.y,0.0005)
+        //   this.$store.dispatch("setPlayerStats",{
+        //     id:"0",
+        //     rot:[
+        //       this.$player.rot[x],
+        //       newRot,
+        //       this.$player.rot[z],
+        //     ]
+        //   })
+        //   this.$player.rot[y] = newRot
+        // }
       }
       
       this.animate_ticketer()

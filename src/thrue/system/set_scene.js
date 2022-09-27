@@ -7,7 +7,7 @@ export default {
     {
       this.__set_windowRatio()
       this.__set_DOMHeight()
-      this.refreshRate = !window.chrome ? 1 : 3
+      this.refreshAccelerator = !window.chrome ? 1 : 3
       this.scene = new THREE.Scene();
 
       this.sceneVariables.camera.fov = this.sceneVariables.camera.fovSettings[this.DOM.screenType];

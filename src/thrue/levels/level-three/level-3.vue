@@ -1,6 +1,6 @@
 <template>
   <div >
-    <canvas ref="canvas" class="w-100 pos-fixed"> </canvas>
+    <canvas ref="canvas" id="canvas" class="w-100 pos-fixed"> </canvas>
     <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999" 
       @click="enable_help++; clickedLevelHelp()" style="background: #ffffff44" 
         class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
@@ -23,10 +23,12 @@
     >
         <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap ">
-          <span class="flex mr-3" > <span title="Hunger">Hu:</span> <small>{{__players.stats.hunger}}</small> </span>
-          <span class="flex mr-3" > <span title="Hygene">Hy:</span> <small>{{__players.stats.hygene}}</small> </span>
-          <span class="flex mr-3" > <span title="Fun">F:</span> <small>{{__players.stats.fun}}</small> </span>
-          <span class="flex mr-3" > <span title="Energy">E:</span> <small>{{__players.stats.energy}}</small> </span>
+          <span class="flex mr-3" > <span title="Hunger">Hu:</span> <small>{{__player.stats.hunger}}</small> </span>
+          <span class="flex mr-3" > <span title="Hygene">Hy:</span> <small>{{__player.stats.hygene}}</small> </span>
+          <span class="flex mr-3" > <span title="Fun">F:</span> <small>{{__player.stats.fun}}</small> </span>
+          <span class="flex mr-3" > <span title="Energy">E:</span> <small>{{__player.stats.energy}}</small> </span>
+          <!-- <span class="flex mr-3" > <span title="Rotation">Ro:</span> <small>{{__player.rot}}</small> </span> -->
+          <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span>
         </div>
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
@@ -42,6 +44,7 @@ import set_scene from "../../system/set_scene.js";
 import bloommixin from "../../system/mixin_bloom.js";
 import listen_mouse from "../../system/listen_mouse.js";
 import listen_click from "../../system/listen_click.js";
+import listen_swipe from "../../system/listen_swipe.js";
 import update_animation from "../../system/update_animation.js";
 
 import levelThree from "./base-level-3.js";
@@ -55,6 +58,7 @@ export default {
     
     set_scene,
     bloommixin,
+    listen_swipe,
     listen_mouse,
     listen_click,
     update_animation,
@@ -83,7 +87,9 @@ export default {
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
 
-    __players()      { return this.$store.getters.getPlayers[0] },
+    __player()      { return this.$store.getters.getPlayers[0] },
+    __player_rot_y()      { return !this.__player ? 0 : parseFloat(this.__player.rot[1].toFixed(2)) },
+
   },
   methods:
   {
@@ -139,12 +145,13 @@ export default {
       if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
 
       this._$set_raycaster();
+      this._$set_swipe()
     },
     clickedBubbleHeadHead(  ) {
       console.log("clickk")
       if (!this.mycurrentlevel)
       {
-        this.clicked_startBlob()
+        this.$click_startLevelBlob()
       }
       this.checkGoals() // base-level js
       // alert("test")
@@ -167,6 +174,9 @@ export default {
 
     document.addEventListener( 'mousemove', this._$listen_pointerPos );
     document.addEventListener( 'click', this._$listen_click );
+
+    document.addEventListener("touchstart", this._$startTouch, false);
+    document.addEventListener("touchmove", this._$moveTouch, false);
   },
 };
 </script>

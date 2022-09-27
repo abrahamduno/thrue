@@ -106,6 +106,8 @@ export default {
     },
     _$click_currentLevel()
     {
+      this.checkNavigationClick()
+
       this.$click_startLevelBlob()
 
       // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
