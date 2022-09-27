@@ -192,17 +192,20 @@ export default {
       const t = document.body.getBoundingClientRect().top;
       this.__scroll = t
       // this.__scroll = window.scrollY;
-      if (this.DEBUG) { console.log(t) }
-      let currentScene = 1
-      // currentScene = 
-      // FLY THRU CITY
-      if (t < -this.sceneBreakpoints.default[currentScene]) {
-        // EXCEPT SCENE 1
-        this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[currentScene] * 0.015;
-      } else {
-        // ONLY SCENE 1
-        this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
-      }
+      // if (this.DEBUG) { console.log(t) }
+      // let currentScene = 1
+      // // currentScene = 
+      // // FLY THRU CITY
+      // if (t < -this.sceneBreakpoints.default[currentScene]) {
+      //   // EXCEPT SCENE 1
+      //   this.camera.position.z = this.sceneVariables.camera.pos[z] + -this.sceneBreakpoints.default[currentScene] * 0.015;
+      // } else {
+      //   // ONLY SCENE 1
+      //   this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
+      // }
+
+
+      
 
       // // currentScene++
       // // ROTATION UP
