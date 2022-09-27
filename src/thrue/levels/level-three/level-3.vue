@@ -5,7 +5,7 @@
       @click="enable_help++; clickedLevelHelp()" style="background: #ffffff44" 
         class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
-        Pick Up all the Chiks
+        Survive!
         <br>
         <small class="opacity-50">(Scroll Down)</small>
     </h1>
@@ -14,6 +14,20 @@
         class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Congratulations!
+        <!-- <br> -->
+        <!-- <small class="opacity-50">(Scroll Down)</small> -->
+    </h1>
+    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999" 
+      style="background: #ffffff44" 
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-5 border-r-50 flex-align-start flex-column"
+    >
+        <!-- <div>PlayerStats</div> -->
+        <div class="flex-wrap ">
+          <span class="flex mr-3" > <span title="Hunger">Hu:</span> <small>{{__players.stats.hunger}}</small> </span>
+          <span class="flex mr-3" > <span title="Hygene">Hy:</span> <small>{{__players.stats.hygene}}</small> </span>
+          <span class="flex mr-3" > <span title="Fun">F:</span> <small>{{__players.stats.fun}}</small> </span>
+          <span class="flex mr-3" > <span title="Energy">E:</span> <small>{{__players.stats.energy}}</small> </span>
+        </div>
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
@@ -68,6 +82,8 @@ export default {
     current_sub_page()      { return this.$store.getters.current_sub_page },
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
+
+    __players()      { return this.$store.getters.getPlayers[0] },
   },
   methods:
   {

@@ -32,9 +32,32 @@ const store = createStore({
 
       accounts: {},
       block: {},
+      players: {
+        "0":{
+          obj: null,
+          pos: [0,0,0],
+          rot: [0,0,0],
+          scale: [1,1,1],
+          stats: {
+            hunger: -1,
+            hygene: -1,
+            energy: -1,
+            fun: -1,
+          },
+        },
+      }
     };
   },
   mutations: {
+    setPlayerObject(state, playerData) {
+      const newData = {
+        [playerData.id]: playerData, 
+      }
+      state.players = {...state.players, ...newData}
+      state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
+      console.log("newset", playerData)
+    },
+
     setCurrentLevel(state, level) {
       state.currentLevel = level
     },
@@ -58,7 +81,7 @@ const store = createStore({
       state.englishMode = mode
     },
 
-    addBlockchainObject(state, blockData) {
+    setBlockchainObject(state, blockData) {
       const newBlock = {
         [blockData.key]: blockData, 
       }
@@ -78,10 +101,13 @@ const store = createStore({
     },
   },
   actions: {
+    setPlayerStats(context, playerData) {
+      context.commit('setPlayerObject', playerData);
+    },
+
     setCurrentLevel(context, level) {
       context.commit('setCurrentLevel', level);
     },
-
     setAutoMode(context, mode) {
       context.commit('setAutoMode', mode);
     },
@@ -95,7 +121,7 @@ const store = createStore({
       context.commit('setEnglishMode', mode);
     },
     setNewBlock(context, blockData) {
-      context.commit('addBlockchainObject', blockData);
+      context.commit('setBlockchainObject', blockData);
     },
     setTestingConnect(context, val) {
       context.commit('setTestingConnect', val);
@@ -123,6 +149,15 @@ const store = createStore({
 
   },
   getters: {
+    getPlayers(state) {
+      return state.players;
+    },
+    getPlayer(state) {
+      return (id = 0) => {
+        return state.players[id];
+      };
+    },
+
     current_page(state) {
       return state.currentPseudoPage
     },

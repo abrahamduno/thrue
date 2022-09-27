@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 
 import npcContainer from "../../system/npc-container.js";
+import player from "./player.js";
 
 import animateLevelThree from "./animate-level-3.js";
 import startLevelBlob from "./start-game.js";
@@ -21,6 +22,8 @@ export default {
     bubbleHead,
     ticketer,
     farm,
+
+    player,
   ],
   methods:
   {
@@ -34,6 +37,7 @@ export default {
         energy: 0,
         fun: 0,
       }
+      this.$init_player()
     },
     checkGoals()
     {
@@ -137,7 +141,7 @@ export default {
 
       // this.sunlight = new THREE.SpotLight( suncolor );
       this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( -15,5,10 ); //default; light shining from top
+      this.sunlight.position.set( -15,9,10 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
@@ -187,6 +191,14 @@ export default {
           this.scene.add(object);
 
       }, this.onLoadProgress );
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "levelthreew.obj",
+        (object) => {
+          object.traverse( this.wireframeMaterial(0xffffff) );
+          object.position.set(0, this.MIN.y, 0);
+          this.scene.add(object);
+
+      }, this.onLoadProgress );
     },
     addLevelMesh()
     {
@@ -199,6 +211,12 @@ export default {
         this.NPCContainer[_npcName].visible = false
       }
 
+      let defaultNPCClickFunction = (_npcName) => {
+        alert("You've Clicked "+`${_npcName}`)
+        // this.NPCContainer[_npcName].position.y = 50;
+        // this.NPCContainer[_npcName].visible = false
+      }
+
       // npcName = "Lucy"
       // this.$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
@@ -208,8 +226,8 @@ export default {
 
       npcName = "1car"
       this.$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-60,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:60}]},
+        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
         // click: defaultNPCFoundFunction,
       });
 
@@ -225,6 +243,31 @@ export default {
         animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
+
+
+
+      npcName = "bed"
+      this.$add_npc({name:npcName,obj:"bed.obj",
+        pos: [-20.7,this.MIN.y+0.25,-7.9], color: 0xaaaaaa,
+        // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: defaultNPCClickFunction,
+      });
+      npcName = "fridge"
+      this.$add_npc({name:npcName,obj:"fridge.obj",
+        pos: [-18,this.MIN.y+0.25,-12.9], color: 0xaaaaaa,
+        // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: defaultNPCClickFunction,
+      });
+      npcName = "mailbox"
+      this.$add_npc({name:npcName,obj:"mailbox.obj",
+        pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
+        // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: defaultNPCClickFunction,
+      });
+
+
+
+
       // npcName = "Molly"
       // this.$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,

@@ -6,6 +6,9 @@ export default {
   {
     _$animate_main()
     {
+      let ms = Date.now();
+      // console.log(ms);
+      
       this.$animate_startLevelBlob()
 
       // TRANSITION TO LEVEL ! WHEN CONNECTED
