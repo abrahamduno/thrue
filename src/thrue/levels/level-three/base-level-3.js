@@ -4,8 +4,9 @@ import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 import npcContainer from "../../system/npc-container.js";
 
 import animateLevelThree from "./animate-level-3.js";
-import startLevelBlob from "../../models/start-level-blob.js";
-import bubbleHead from "../../models/bubble-head.js";
+import startLevelBlob from "./start-game.js";
+import bubbleHead from "./bubble-head.js";
+
 import ticketer from "../../models/ticketer.obj.js";
 import farm from "../../models/farm.obj.js";
 
@@ -23,6 +24,17 @@ export default {
   ],
   methods:
   {
+    initLevelOne()
+    {
+      this.goals = {
+        tickets: 0,
+        hay: 0,
+        hunger: 0,
+        hygene: 0,
+        energy: 0,
+        fun: 0,
+      }
+    },
     checkGoals()
     {
       // let input = prompt("Amount",1)
@@ -113,13 +125,6 @@ export default {
 
 
 
-    initLevelOne()
-    {
-      this.goals = {
-        tickets: 0,
-        hay: 0,
-      }
-    },
     addLight()
     {
       let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
@@ -132,7 +137,7 @@ export default {
 
       // this.sunlight = new THREE.SpotLight( suncolor );
       this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( 5,5,10 ); //default; light shining from top
+      this.sunlight.position.set( -15,5,10 ); //default; light shining from top
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
@@ -165,7 +170,7 @@ export default {
       this.initLevelOne()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "levelone.obj",
+        "levelthree.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, -50, 0);
@@ -175,7 +180,7 @@ export default {
           this.addLevelMesh()
       }, this.onLoadProgress );
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "path.obj",
+        "path3.obj",
         (object) => {
           object.traverse( this.baseStandardMaterial(0xffffff) );
           object.position.set(0, this.MIN.y, 0);
@@ -185,7 +190,7 @@ export default {
     },
     addLevelMesh()
     {
-      this.addFarm();
+      // this.addFarm();
       let npcName = ""
       this.$init_npcContainer()
       let defaultNPCFoundFunction = (_npcName) => {
@@ -194,16 +199,23 @@ export default {
         this.NPCContainer[_npcName].visible = false
       }
 
-      npcName = "Lucy"
-      this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
-        animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
-        click: defaultNPCFoundFunction,
+      // npcName = "Lucy"
+      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      //   pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
+      //   animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
+      //   click: defaultNPCFoundFunction,
+      // });
+
+      npcName = "1car"
+      this.$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [-60,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:60}]},
+        // click: defaultNPCFoundFunction,
       });
 
       npcName = "Mia"
       this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [7,this.MIN.y,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
+        pos: [6.5,this.MIN.y+.2,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
         animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
@@ -213,22 +225,22 @@ export default {
         animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCFoundFunction,
       });
-      npcName = "Molly"
-      this.$add_npc({name:npcName,obj:"achiken.obj",
-        pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
-        animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
-        click: defaultNPCFoundFunction,
-      });
+      // npcName = "Molly"
+      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      //   pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
+      //   animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
+      //   click: defaultNPCFoundFunction,
+      // });
 
-      npcName = "Water"
-      this.$add_npc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
-        pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
-        animation:{type:"sin",path:["y"],value:0.02},
-      });
-      npcName = "Stor"
-      this.$add_npc({name:npcName,obj:"stor.obj",
-        pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
-      });
+      // npcName = "Water"
+      // this.$add_npc({name:npcName,BoxGeometry: [3.6*2,0.1,8.6*2],
+      //   pos: [8.6,this.MIN.y-0.22,-42.7], rot:[0,-0.3,0], color: 0x3CA7DE,
+      //   animation:{type:"sin",path:["y"],value:0.02},
+      // });
+      // npcName = "Stor"
+      // this.$add_npc({name:npcName,obj:"stor.obj",
+      //   pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
+      // });
     },
   }
 }

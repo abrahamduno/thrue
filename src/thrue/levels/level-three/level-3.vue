@@ -83,8 +83,10 @@ export default {
         desktop: [2400, 4200, 12900, 16100, 18400],
       }
       this.MIN = {
-        y:-2,
+        y:-4,
       }
+      this.LIVE_OFFSET = {}
+      this.OFFSET = {}
       this.sceneVariables = {
         camera: {
           pos: [0, 0, 9],
@@ -96,7 +98,7 @@ export default {
           },
           minReach: 0.1,
           maxReach: 100,
-          shadowDistance: 42,
+          shadowDistance: 85,
         },
       }
       this.renderer = null

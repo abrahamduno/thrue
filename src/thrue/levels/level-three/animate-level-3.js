@@ -11,17 +11,19 @@ export default {
       // TRANSITION TO LEVEL ! WHEN CONNECTED
       if (this.accs_length || this.is_playing_test)
       {
-        this.sunlight.position.z = this.__scroll * 0.01 +10
-        this.sunlighTarget.position.z = this.__scroll * 0.01 -10
+        this.sunlight.position.z = this.__scroll * 0.01 +15
+        this.sunlighTarget.position.z = this.__scroll * 0.01 -15
         this.sunlight.target  = this.sunlighTarget
 
-        this.myobject.position.z = this._$lerp(this.myobject.position.z,-50,0.07)
-        this.myobject.position.y = this._$lerp(this.myobject.position.y,this.MIN.y,0.07)
+        this.myobject.position.z = this._$lerp(this.myobject.position.z,this.LIVE_OFFSET.myobject.z,0.07)
+        this.myobject.position.x = this._$lerp(this.myobject.position.x,this.LIVE_OFFSET.myobject.x,0.07)
+        this.myobject.position.y = this._$lerp(this.myobject.position.y,this.MIN.y+this.LIVE_OFFSET.myobject.y,0.07)
         // this.myobject.rotation.y = this._$lerp(this.myobject.rotation.y,Math.PI/12,0.07)
         if (this.mysign)
         {
-          this.mysign.position.z = this._$lerp(this.mysign.position.z,-49.6,0.07)
-          this.mysign.position.y = this._$lerp(this.mysign.position.y,-0.9,0.07)
+          this.mysign.position.z = this._$lerp(this.mysign.position.z,this.LIVE_OFFSET.mysign.z,0.07)
+          this.mysign.position.x = this._$lerp(this.mysign.position.x,this.LIVE_OFFSET.mysign.x,0.07)
+          this.mysign.position.y = this._$lerp(this.mysign.position.y,this.MIN.y+this.LIVE_OFFSET.mysign.y,0.07)
         }
       }
 
@@ -49,13 +51,25 @@ export default {
         this.mycurrentlevel.position.y = this.MIN.y
       }
 
+      //   // PLAYER CAMERA
+      // if (this.camera && this.pro_mode &&
+      //   (this.__pointer.x < -0.2 || this.__pointer.x > 0.2)
+      //   )
+      // {
+      //   this.camera.rotation.y =
+      //     this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+      // } else {
+      //   this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
+      // }
+
         // PLAYER CAMERA
-      if (this.camera && this.pro_mode &&
-        (this.__pointer.x < -0.2 || this.__pointer.x > 0.2)
-        )
+      if (this.camera && this.pro_mode)
       {
-        this.camera.rotation.y =
-          this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
+        if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
+        {
+          this.camera.rotation.y -= (this.__pointer.x + (this.__pointer.x < -0.2 ? -0.2 : +0.2))*0.01
+        }
+        //   this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
       } else {
         this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
       }
@@ -81,15 +95,15 @@ export default {
         this.camera.position.z = this.sceneVariables.camera.pos[z] + t * 0.015;
       }
 
-      // currentScene++
-      // ROTATION UP
-      if (t < -this.sceneBreakpoints.default[0]) {
-        this.camera.rotation.x = this.sceneVariables.camera.rot[x] - (-this.sceneBreakpoints.default[0]* 0.0003) - (-t * 0.0003);
-        // EXCEPT SCENE 2
-      } else {
-        // ONLY SCENE 2
-        this.camera.rotation.x = this.sceneVariables.camera.rot[x] ;
-      }
+      // // currentScene++
+      // // ROTATION UP
+      // if (t < -this.sceneBreakpoints.default[0]) {
+      //   this.camera.rotation.x = this.sceneVariables.camera.rot[x] - (-this.sceneBreakpoints.default[0]* 0.0003) - (-t * 0.0003);
+      //   // EXCEPT SCENE 2
+      // } else {
+      //   // ONLY SCENE 2
+      //   this.camera.rotation.x = this.sceneVariables.camera.rot[x] ;
+      // }
     },
   }
 }
