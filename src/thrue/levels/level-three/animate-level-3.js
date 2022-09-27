@@ -15,13 +15,8 @@ export default {
         {
           if (this.$player)
           {
-            this.$store.dispatch("setPlayerStats",{
+            this.$store.dispatch("setPlayerPosition",{
               id:"0",
-              rot:[
-                this.$player.rot[x],
-                this.__player_rot_y,
-                this.$player.rot[z],
-              ],
               pos:[
                 this.$player.pos[x],
                 this.$player.pos[y],
@@ -35,13 +30,8 @@ export default {
         {
           if (this.$player)
           {
-            this.$store.dispatch("setPlayerStats",{
+            this.$store.dispatch("setPlayerPosition",{
               id:"0",
-              rot:[
-                this.$player.rot[x],
-                this.__player_rot_y,
-                this.$player.rot[z],
-              ],
               pos:[
                 this.$player.pos[x],
                 this.$player.pos[y],
@@ -55,17 +45,12 @@ export default {
         {
           if (this.$player)
           {
-            this.$store.dispatch("setPlayerStats",{
+            this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
                 this.$player.rot[x],
                 this.__player_rot_y+Math.PI/4,
                 this.$player.rot[z],
-              ],
-              pos:[
-                this.$player.pos[x],
-                this.$player.pos[y],
-                this.__player_pos_z,
               ],
             })
           }
@@ -74,17 +59,12 @@ export default {
         {
           if (this.$player)
           {
-            this.$store.dispatch("setPlayerStats",{
+            this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
                 this.$player.rot[x],
                 this.__player_rot_y-Math.PI/4,
                 this.$player.rot[z],
-              ],
-              pos:[
-                this.$player.pos[x],
-                this.$player.pos[y],
-                this.__player_pos_z,
               ],
             })
           }
@@ -98,17 +78,12 @@ export default {
         let r = this.refreshAccelerator
       if (this.$player)
       {
-        this.$store.dispatch("setPlayerStats",{
+        this.$store.dispatch("setPlayerRotation",{
           id:"0",
           rot:[
             this.$player.rot[x],
             this.__player_rot_y+Math.PI/4,
             this.$player.rot[z],
-          ],
-          pos:[
-            this.$player.pos[x],
-            this.$player.pos[y],
-            this.__player_pos_z,
           ],
         })
       }
@@ -119,17 +94,12 @@ export default {
         let r = this.refreshAccelerator
       if (this.$player)
       {
-        this.$store.dispatch("setPlayerStats",{
+        this.$store.dispatch("setPlayerRotation",{
           id:"0",
           rot:[
             this.$player.rot[x],
             this.__player_rot_y-Math.PI/4,
             this.$player.rot[z],
-          ],
-          pos:[
-            this.$player.pos[x],
-            this.$player.pos[y],
-            this.__player_pos_z,
           ],
         })
       }
@@ -139,17 +109,12 @@ export default {
       let r = this.refreshAccelerator
       if (this.$player)
       {
-        this.$store.dispatch("setPlayerStats",{
+        this.$store.dispatch("setPlayerPosition",{
           id:"0",
           pos:[
             this.$player.pos[x],
             this.$player.pos[y],
             this.__player_pos_z-this.__swipe.diffy*0.1*r,
-          ],
-          rot:[
-            this.$player.rot[x],
-            this.__player_rot_y,
-            this.$player.rot[z],
           ],
         })
       }
@@ -159,17 +124,12 @@ export default {
       let r = this.refreshAccelerator
       if (this.$player)
       {
-        this.$store.dispatch("setPlayerStats",{
+        this.$store.dispatch("setPlayerPosition",{
           id:"0",
           pos:[
             this.$player.pos[x],
             this.$player.pos[y],
             this.__player_pos_z-this.__swipe.diffy*0.1*r,
-          ],
-          rot:[
-            this.$player.rot[x],
-            this.__player_rot_y,
-            this.$player.rot[z],
           ],
         })
       }

@@ -24,13 +24,33 @@
     >
         <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap ">
-          <span class="flex mr-3" > <span title="Hunger">Hu:</span> <small>{{__player.stats.hunger}}</small> </span>
-          <span class="flex mr-3" > <span title="Hygene">Hy:</span> <small>{{__player.stats.hygene}}</small> </span>
-          <span class="flex mr-3" > <span title="Fun">F:</span> <small>{{__player.stats.fun}}</small> </span>
-          <span class="flex mr-3" > <span title="Energy">E:</span> <small>{{__player.stats.energy}}</small> </span>
+          <span class="flex mr-3" >
+            <span title="Hunger">
+              <i class="mr-2 fas fa-hamburger"></i>
+              <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
+            <small>{{__player.stats.hunger}}</small>
+          </span>
+          <span class="flex mr-3" >
+            <span title="Hygene">
+              <i class="mr-2 fas fa-shower"></i>
+              <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
+            <small>{{__player.stats.hygene}}</small>
+          </span>
+          <span class="flex mr-3" >
+            <span title="Fun">
+              <i class="mr-2 fas fa-smile-beam"></i>
+              <!-- <i class="fas fa-solid fa-pool-8-ball"></i>  --></span>
+            <small>{{__player.stats.fun}}</small>
+          </span>
+          <span class="flex mr-3" >
+            <span title="Energy">
+              <i class="mr-2 fas fa-bolt"></i>
+              <!-- <i class="fas fa-solid fa-bolt-lightning"></i> --></span>
+            <small>{{__player.stats.energy}}</small>
+          </span>
           <!-- <span class="flex mr-3" > <span title="Rotation">Ro:</span> <small>{{__player.rot}}</small> </span> -->
-          <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span>
-          <span class="flex mr-3" > <span title="Rotation">P:</span> <small>{{__player_pos_z}}</small> </span>
+          <!-- <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span> -->
+          <!-- <span class="flex mr-3" > <span title="Rotation">P:</span> <small>{{__player_pos_z}}</small> </span> -->
         </div>
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->

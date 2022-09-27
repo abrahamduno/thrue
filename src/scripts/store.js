@@ -54,11 +54,24 @@ const store = createStore({
         [playerData.id]: playerData, 
       }
       state.players = {...state.players, ...newData}
+      // state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
+      // // if (newData.rot) { state.players[playerData.id].rot = [...newData.rot] }
+      // if (newData.pos) { state.players[playerData.id].pos = [...newData.pos] }
+      // // state.players[playerData.id].pos = {...state.players[playerData.id].pos, ...newData.pos}
+      // state.context.commit('setPlayerRotation', playerData);
+      // console.log("newset", state.players[playerData.id])
+    },
+    setPlayerStats(state, playerData) {
+      if (!playerData.stats) return
       state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
-      if (newData.rot) { state.players[playerData.id].rot = [...newData.rot] }
-      if (newData.pos) { state.players[playerData.id].pos = [...newData.pos] }
-      // state.players[playerData.id].pos = {...state.players[playerData.id].pos, ...newData.pos}
-      console.log("newset", state.players[playerData.id])
+    },
+    setPlayerRotation(state, playerData) {
+      if (!playerData.rot) return
+      state.players[playerData.id].rot = [...playerData.rot] 
+    },
+    setPlayerPosition(state, playerData) {
+      if (!playerData.pos) return
+      state.players[playerData.id].pos = [...playerData.pos] 
     },
 
     setCurrentLevel(state, level) {
@@ -104,8 +117,17 @@ const store = createStore({
     },
   },
   actions: {
-    setPlayerStats(context, playerData) {
+    setPlayer(context, playerData) {
       context.commit('setPlayerObject', playerData);
+    },
+    setPlayerStats(context, playerData) {
+      context.commit('setPlayerStats', playerData);
+    },
+    setPlayerRotation(context, playerData) {
+      context.commit('setPlayerRotation', playerData);
+    },
+    setPlayerPosition(context, playerData) {
+      context.commit('setPlayerPosition', playerData);
     },
 
     setCurrentLevel(context, level) {

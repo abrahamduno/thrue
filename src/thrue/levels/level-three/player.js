@@ -25,7 +25,7 @@ export default {
       // if (this.$player.stats && this.$player.stats.energy == -1)
       {
         // unsigned
-        this.$store.dispatch("setPlayerStats",
+        this.$store.dispatch("setPlayer",
           {
             id:"0",
             obj: null,

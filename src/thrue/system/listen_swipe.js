@@ -37,8 +37,8 @@ export default {
 
       this.__swipe.diffx = this.__swipe.x - this.__swipe.x2;
       this.__swipe.diffy = this.__swipe.y - this.__swipe.y2;
-      console.log(this.__swipe)
-      console.log(Math.abs(this.__swipe.diffx) > Math.abs(this.__swipe.diffy))
+      // console.log(this.__swipe)
+      // console.log(Math.abs(this.__swipe.diffx) > Math.abs(this.__swipe.diffy))
 
       if (Math.abs(this.__swipe.diffx) > Math.abs(this.__swipe.diffy)) {
         // sliding horizontally
