@@ -4,7 +4,7 @@ body {
   font-size: x-large;
   font-family: Arial, Helvetica, sans-serif;
   background: #2C2F34;
-  min-height: 100vh;
+  /*min-height: 100vh;*/
 }
 
     /*min-height: 100vh !important;
@@ -17,6 +17,7 @@ body {
   height: calc(var(--vh, 1vh) * 90) !important;
 }
 body {
+    /*height: 90vh;*/
   height: calc(var(--vh, 1vh) * 90) !important;
 }
 .main-body {
