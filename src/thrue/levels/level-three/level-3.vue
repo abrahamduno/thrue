@@ -1,8 +1,8 @@
 <template>
   <div >
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed"> </canvas>
-    <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999" 
-      @click="enable_help++; clickedLevelHelp()" style="background: #ffffff44" 
+    <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999; background: #ffffff44" 
+      @click="enable_help++; clickedLevelHelp()" 
         class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Survive!
