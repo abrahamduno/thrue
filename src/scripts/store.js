@@ -63,7 +63,7 @@ const store = createStore({
     },
     setPlayerStats(state, playerData) {
       if (!playerData.stats) return
-      state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
+      state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...playerData.stats}
     },
     setPlayerRotation(state, playerData) {
       if (!playerData.rot) return

@@ -13,13 +13,13 @@ export default {
 
         if (this.__pointer.y > 0.6)  
         {
-          if (this.$player)
+          if (this.__player)
           {
             this.$store.dispatch("setPlayerPosition",{
               id:"0",
               pos:[
-                this.$player.pos[x],
-                this.$player.pos[y],
+                this.__player.pos[x],
+                this.__player.pos[y],
                 this.__player_pos_z-4,
               ]
             })
@@ -28,13 +28,13 @@ export default {
 
         if (this.__pointer.y < -0.6)  
         {
-          if (this.$player)
+          if (this.__player)
           {
             this.$store.dispatch("setPlayerPosition",{
               id:"0",
               pos:[
-                this.$player.pos[x],
-                this.$player.pos[y],
+                this.__player.pos[x],
+                this.__player.pos[y],
                 this.__player_pos_z+4,
               ]
             })
@@ -43,28 +43,28 @@ export default {
 
         if (this.__pointer.x < -0.6)  
         {
-          if (this.$player)
+          if (this.__player)
           {
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
-                this.$player.rot[x],
+                this.__player.rot[x],
                 this.__player_rot_y+Math.PI/4,
-                this.$player.rot[z],
+                this.__player.rot[z],
               ],
             })
           }
         }
         if (this.__pointer.x > 0.6)  
         {
-          if (this.$player)
+          if (this.__player)
           {
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
-                this.$player.rot[x],
+                this.__player.rot[x],
                 this.__player_rot_y-Math.PI/4,
-                this.$player.rot[z],
+                this.__player.rot[z],
               ],
             })
           }
@@ -76,14 +76,14 @@ export default {
     _$swipe_left()
     {
         let r = this.refreshAccelerator
-      if (this.$player)
+      if (this.__player)
       {
         this.$store.dispatch("setPlayerRotation",{
           id:"0",
           rot:[
-            this.$player.rot[x],
+            this.__player.rot[x],
             this.__player_rot_y+Math.PI/4,
-            this.$player.rot[z],
+            this.__player.rot[z],
           ],
         })
       }
@@ -92,14 +92,14 @@ export default {
     _$swipe_right()
     {
         let r = this.refreshAccelerator
-      if (this.$player)
+      if (this.__player)
       {
         this.$store.dispatch("setPlayerRotation",{
           id:"0",
           rot:[
-            this.$player.rot[x],
+            this.__player.rot[x],
             this.__player_rot_y-Math.PI/4,
-            this.$player.rot[z],
+            this.__player.rot[z],
           ],
         })
       }
@@ -107,13 +107,13 @@ export default {
     _$swipe_up()
     {
       let r = this.refreshAccelerator
-      if (this.$player)
+      if (this.__player)
       {
         this.$store.dispatch("setPlayerPosition",{
           id:"0",
           pos:[
-            this.$player.pos[x],
-            this.$player.pos[y],
+            this.__player.pos[x],
+            this.__player.pos[y],
             this.__player_pos_z-this.__swipe.diffy*0.1*r,
           ],
         })
@@ -122,13 +122,13 @@ export default {
     _$swipe_down()
     {
       let r = this.refreshAccelerator
-      if (this.$player)
+      if (this.__player)
       {
         this.$store.dispatch("setPlayerPosition",{
           id:"0",
           pos:[
-            this.$player.pos[x],
-            this.$player.pos[y],
+            this.__player.pos[x],
+            this.__player.pos[y],
             this.__player_pos_z-this.__swipe.diffy*0.1*r,
           ],
         })
@@ -210,7 +210,7 @@ export default {
       } else {
         // this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
       }
-      if (this.$player)
+      if (this.accs_length || this.is_playing_test)
       {
         // console.log(this.__player_rot_y)
         this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player_rot_y,0.05)
@@ -246,6 +246,7 @@ export default {
 
       const t = document.body.getBoundingClientRect().top;
       this.__scroll = t
+      console.log(this.__scroll)
       // this.__scroll = window.scrollY;
       // if (this.DEBUG) { console.log(t) }
       // let currentScene = 1

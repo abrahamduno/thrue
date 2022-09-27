@@ -7,7 +7,7 @@
     >
         <span>Swipe!</span>
         <br>
-        <small class="opacity-50">(Up/Down=move) (Left/Right=rotate)</small>
+        <small class="opacity-50">(Up/Down=move) <br> (Left/Right=rotate)</small>
         <br>
         <span>OK</span>
     </h1>
@@ -24,25 +24,25 @@
     >
         <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap ">
-          <span class="flex mr-3" >
+          <span class="flex px-3" style="border-right: 2px solid #777777">
             <span title="Hunger">
               <i class="mr-2 fas fa-hamburger"></i>
               <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
             <small>{{__player.stats.hunger}}</small>
           </span>
-          <span class="flex mr-3" >
+          <span class="flex px-3" style="border-right: 2px solid #777777">
             <span title="Hygene">
               <i class="mr-2 fas fa-shower"></i>
               <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
             <small>{{__player.stats.hygene}}</small>
           </span>
-          <span class="flex mr-3" >
+          <span class="flex px-3" style="border-right: 2px solid #777777">
             <span title="Fun">
               <i class="mr-2 fas fa-smile-beam"></i>
               <!-- <i class="fas fa-solid fa-pool-8-ball"></i>  --></span>
             <small>{{__player.stats.fun}}</small>
           </span>
-          <span class="flex mr-3" >
+          <span class="flex px-3">
             <span title="Energy">
               <i class="mr-2 fas fa-bolt"></i>
               <!-- <i class="fas fa-solid fa-bolt-lightning"></i> --></span>

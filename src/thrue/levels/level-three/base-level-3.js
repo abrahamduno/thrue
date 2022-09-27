@@ -214,7 +214,30 @@ export default {
       }
 
       let defaultNPCClickFunction = (_npcName) => {
-        alert("You've Clicked "+`${_npcName}`)
+        // alert("You've Clicked "+`${_npcName}`)
+        console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+        if (this.NPCClickCounter[_npcName] == 1)
+        {
+          // console.log(this.$player.stats.energy)
+          // const statList = ["energy","hunger","hygene","fun"]
+          // for (var i = 0; i < statList.length; i++)
+          {
+            let theStat = _npcName
+            if (this.__player.stats[theStat] < 10)
+            {
+              this.$store.dispatch("setPlayerStats",{
+                id:"0",
+                stats:{
+                  [theStat]: parseFloat(this.__player.stats[theStat])+1,
+                },
+              })
+            } else {
+              alert("You can't action with full "+theStat)
+            }
+          }
+          
+          this.NPCClickCounter[_npcName]--
+        }
         // this.NPCContainer[_npcName].position.y = 50;
         // this.NPCContainer[_npcName].visible = false
       }
@@ -248,19 +271,25 @@ export default {
 
 
 
-      npcName = "bed"
+      npcName = "energy"
       this.$add_npc({name:npcName,obj:"bed.obj",
         pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
-      npcName = "fridge"
+      npcName = "hygene"
+      this.$add_npc({name:npcName,obj:"shower.obj",
+        pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
+        // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
+        click: defaultNPCClickFunction,
+      });
+      npcName = "hunger"
       this.$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-17,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
-      npcName = "mailbox"
+      npcName = "fun"
       this.$add_npc({name:npcName,obj:"mailbox.obj",
         pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},

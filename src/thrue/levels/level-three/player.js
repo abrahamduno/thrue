@@ -14,7 +14,6 @@ export default {
     {
       let ms = Date.now();
       // this.$store.dispatch("setPlayerStats",{id:"test"})
-      this.$player = this.$store.getters.getPlayers[0]
       // this.$nextTick(() => {
         // console.log("321",this.$player.target)
         // console.log("321",this.$player.stats)
@@ -41,6 +40,7 @@ export default {
           }
         )
       }
+      this.$player = this.$store.getters.getPlayers[0]
       // this.$player = {
       //   obj: null,
       //   pos: [0,0,0],
