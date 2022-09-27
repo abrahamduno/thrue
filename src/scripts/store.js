@@ -20,7 +20,7 @@ const store = createStore({
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
       currentFilter: thefilter,
-      currentLevel: "levelOne",
+      currentLevel: "levelThree",
       isPlayingTest: false,
       darkMode: false,
       proMode: false,
