@@ -16,6 +16,9 @@ body {
   height: 90vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 90) !important;
 }
+body {
+  height: calc(var(--vh, 1vh) * 90) !important;
+}
 .main-body {
   /*height: 100%;*/
   /*display: block;*/
