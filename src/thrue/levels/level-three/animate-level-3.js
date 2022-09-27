@@ -164,7 +164,7 @@ export default {
           pos:[
             this.$player.pos[x],
             this.$player.pos[y],
-            this.__player_pos_z+this.__swipe.diffy*0.15*r,
+            this.__player_pos_z-this.__swipe.diffy*0.15*r,
           ],
           rot:[
             this.$player.rot[x],
