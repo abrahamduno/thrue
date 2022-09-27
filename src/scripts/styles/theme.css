@@ -14,11 +14,11 @@ body {
 }*/
 .main-wrap {
   height: 90vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 90) !important;
+  height: calc(var(--vh, 1vh) * 100) !important;
 }
 body {
     /*height: 90vh;*/
-  height: calc(var(--vh, 1vh) * 90) !important;
+  height: calc(var(--vh, 1vh) * 100) !important;
 }
 .main-body {
   /*height: 100%;*/
