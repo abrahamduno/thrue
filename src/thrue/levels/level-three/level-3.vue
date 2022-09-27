@@ -2,16 +2,16 @@
   <div >
     <canvas ref="canvas" class="w-100 pos-fixed"> </canvas>
     <h1 v-if="enable_help == 1 && show_help" style="z-index: 999999" 
-      @click="enable_help++; clickedLevelHelp()"
-        class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-absolute w-100 "
+      @click="enable_help++; clickedLevelHelp()" style="background: #ffffff44" 
+        class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Pick Up all the Chiks
         <br>
         <small class="opacity-50">(Scroll Down)</small>
     </h1>
     <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999" 
-      @click="clickedLevelHelp"
-        class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-fixed w-100 "
+      @click="clickedLevelHelp" style="background: #ffffff44" 
+        class="tx-center clickable opacity-hover-50 tx-xl top-50p pos-fixed pa-5 border-r-50"
     >
         Congratulations!
         <!-- <br> -->
