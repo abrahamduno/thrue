@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-100 " style="min-height: 100svh">
+    <div class=" w-100 main-wrap">
 
         <h1 @click="start" v-if="!hasStarted"
             class="tx-center clickable opacity-hover-50 tx-xl mt-100 pos-absolute w-100"
