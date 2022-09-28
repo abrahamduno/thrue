@@ -20,7 +20,7 @@ const store = createStore({
       currentPseudoPage: "lottery",
       currentSubPage: thepage,
       currentFilter: thefilter,
-      currentLevel: "levelOne",
+      currentLevel: "levelThree",
       isPlayingTest: false,
       darkMode: false,
       proMode: false,
@@ -32,9 +32,48 @@ const store = createStore({
 
       accounts: {},
       block: {},
+      players: {
+        "0":{
+          obj: null,
+          pos: [0,0,0],
+          rot: [0,0,0],
+          scale: [1,1,1],
+          stats: {
+            hunger: -1,
+            hygene: -1,
+            energy: -1,
+            fun: -1,
+          },
+        },
+      }
     };
   },
   mutations: {
+    setPlayerObject(state, playerData) {
+      const newData = {
+        [playerData.id]: playerData, 
+      }
+      state.players = {...state.players, ...newData}
+      // state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...newData.stats}
+      // // if (newData.rot) { state.players[playerData.id].rot = [...newData.rot] }
+      // if (newData.pos) { state.players[playerData.id].pos = [...newData.pos] }
+      // // state.players[playerData.id].pos = {...state.players[playerData.id].pos, ...newData.pos}
+      // state.context.commit('setPlayerRotation', playerData);
+      // console.log("newset", state.players[playerData.id])
+    },
+    setPlayerStats(state, playerData) {
+      if (!playerData.stats) return
+      state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...playerData.stats}
+    },
+    setPlayerRotation(state, playerData) {
+      if (!playerData.rot) return
+      state.players[playerData.id].rot = [...playerData.rot] 
+    },
+    setPlayerPosition(state, playerData) {
+      if (!playerData.pos) return
+      state.players[playerData.id].pos = [...playerData.pos] 
+    },
+
     setCurrentLevel(state, level) {
       state.currentLevel = level
     },
@@ -58,7 +97,7 @@ const store = createStore({
       state.englishMode = mode
     },
 
-    addBlockchainObject(state, blockData) {
+    setBlockchainObject(state, blockData) {
       const newBlock = {
         [blockData.key]: blockData, 
       }
@@ -78,10 +117,22 @@ const store = createStore({
     },
   },
   actions: {
+    setPlayer(context, playerData) {
+      context.commit('setPlayerObject', playerData);
+    },
+    setPlayerStats(context, playerData) {
+      context.commit('setPlayerStats', playerData);
+    },
+    setPlayerRotation(context, playerData) {
+      context.commit('setPlayerRotation', playerData);
+    },
+    setPlayerPosition(context, playerData) {
+      context.commit('setPlayerPosition', playerData);
+    },
+
     setCurrentLevel(context, level) {
       context.commit('setCurrentLevel', level);
     },
-
     setAutoMode(context, mode) {
       context.commit('setAutoMode', mode);
     },
@@ -95,7 +146,7 @@ const store = createStore({
       context.commit('setEnglishMode', mode);
     },
     setNewBlock(context, blockData) {
-      context.commit('addBlockchainObject', blockData);
+      context.commit('setBlockchainObject', blockData);
     },
     setTestingConnect(context, val) {
       context.commit('setTestingConnect', val);
@@ -123,6 +174,15 @@ const store = createStore({
 
   },
   getters: {
+    getPlayers(state) {
+      return state.players;
+    },
+    getPlayer(state) {
+      return (id = 0) => {
+        return state.players[id];
+      };
+    },
+
     current_page(state) {
       return state.currentPseudoPage
     },

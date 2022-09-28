@@ -4,9 +4,26 @@ body {
   font-size: x-large;
   font-family: Arial, Helvetica, sans-serif;
   background: #2C2F34;
-  min-height: 100vh;
+  /*min-height: 100vh;*/
 }
 
+    /*min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;*/
+/*.main-wrap {
+    height: calc(100%);
+}*/
+.main-wrap {
+  height: 90vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100) !important;
+}
+body {
+    /*height: 90vh;*/
+  height: calc(var(--vh, 1vh) * 100) !important;
+}
+html,
+body {
+    overscroll-behavior-y: contain;
+}
 .main-body {
   /*height: 100%;*/
   /*display: block;*/
@@ -37,6 +54,17 @@ body {
   --success-color-light-2: #66FF66;
 }
 
+@media only screen and (min-width: 769px)
+{
+  .tutorial-theme-bg  { 
+    background: linear-gradient(90deg,#ff331100, #ff331177 5%, #00000000 20%
+                                    ,#ff331100 80%, #ff331177 95%, #00000000 );
+  }
+  .tutorial-theme-wrapper  { 
+    background: linear-gradient(0deg,#33ff1100, #33ff1177 5%, #00000000 20%
+                                    ,#33ff1100 80%, #33ff1177 95%, #00000000 );
+  }
+}
 .dark-theme  { 
   /*background: url(./../../public/res/5952124.jpg)  no-repeat center center fixed !important;  
   background-size: cover;
@@ -56,15 +84,8 @@ body {
     font-weight: 700;
     color: #f5f5f5;
     text-shadow: 1px 1px 1px #919191,
-        0px 2px 1px #919191,
-        0px 3px 1px #919191,
-        -1px 4px 1px #919191,
-        -1px 5px 1px #919191,
-        -2px 6px 1px #919191,
-    1px 12px 6px rgba(16,16,16,0.3),
-    1px 18px 10px rgba(16,16,16,0.2),
-    1px 25px 35px rgba(16,16,16,0.2),
-    1px 30px 60px rgba(16,16,16,0.3);
+                  0px 2px 1px #919191,
+                  -1px 3px 1px #919191
 }
 
 .dark-theme .n-tx-3d {
@@ -76,13 +97,14 @@ body {
     text-shadow: 1px 1px 1px #919191,
         0px 2px 1px #919191,
         0px 3px 1px #919191,
-        -1px 4px 1px #919191,
-        -1px 5px 1px #919191,
-        -2px 6px 1px #919191,
+        /*-1px 4px 1px #919191,*/
+        /*-1px 5px 1px #919191,*/
+        /*-2px 6px 1px #919191,*/
     1px 18px 6px rgba(16,16,16,0.4),
     1px 22px 10px rgba(16,16,16,0.2),
-    1px 25px 35px rgba(16,16,16,0.2),
-    1px 30px 60px rgba(16,16,16,0.4);
+    1px 25px 35px rgba(16,16,16,0.2)
+    /*,1px 30px 60px rgba(16,16,16,0.4)*/
+    ;
 }
 
 

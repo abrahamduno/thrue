@@ -69,7 +69,7 @@ export default {
       },
       _$animate_npcContainer(__timer)
       {
-        let r = this.refreshRate
+        let r = this.refreshAccelerator
 
         if(!this.NPCContainer) return
         let thekeys = Object.keys(this.NPCContainer)
@@ -82,6 +82,16 @@ export default {
           if(element.type == "constant")
           {
             this.NPCContainer[thekeys[i]].position[element.path[0]] += element.value*r
+            if (element.add)
+            {
+              if (element.add[0].loop)
+              {
+                if (this.NPCContainer[thekeys[i]].position[element.path[0]] > element.add[0].loop)
+                {
+                   this.NPCContainer[thekeys[i]].position[element.path[0]] = this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]] 
+                }
+              }
+            }
           }
           if(element.type == "sin" || element.type == "cos")
           {
