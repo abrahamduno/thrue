@@ -185,6 +185,23 @@ export default {
         this.mycurrentlevel.position.y = this.MIN.y
       }
 
+      // if (this._player)
+      {
+        // console.log("player")
+          const statList = ["energy","hunger","hygene","fun"]
+        if (this.NPCContainer)
+        {
+          for (var i = 0; i < statList.length; i++)
+          {
+            const theStat = statList[i]
+            if (!this.NPCContainer[theStat]) continue
+            this.NPCContainer[theStat].rotation.x = this._$lerp(this.NPCContainer[theStat].rotation.x,0,0.1)
+            this.NPCContainer[theStat].rotation.y = this._$lerp(this.NPCContainer[theStat].rotation.y,0,0.1)
+            this.NPCContainer[theStat].rotation.z = this._$lerp(this.NPCContainer[theStat].rotation.z,0,0.1)
+          }
+        }
+      }
+
       //   // PLAYER CAMERA
       // if (this.camera && this.pro_mode &&
       //   (this.__pointer.x < -0.2 || this.__pointer.x > 0.2)

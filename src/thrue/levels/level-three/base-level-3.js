@@ -269,6 +269,10 @@ export default {
                   [theStat]: parseFloat(this.__player.stats[theStat])+1,
                 },
               })
+
+              // this.NPCContainer[_npcName].rotation.x = 0.2
+              this.NPCContainer[_npcName].rotation.y = 0.8
+              // this.NPCContainer[_npcName].rotation.z = 0.2
             } else {
               alert("You can't action with full "+theStat)
             }
