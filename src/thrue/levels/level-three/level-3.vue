@@ -3,11 +3,11 @@
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
 
     <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
-    style="left: 20%; width: 60vw">
+    >
     </div>
 
     <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-bg pos-fixed w-100 flex-center"
-      style="top: 20%; height: 60vh">
+      >
       <h1  style="z-index: 999999; background: #222222" 
         @click="enable_help++; clickedLevelHelp()" 
           class="tx-center clickable opacity-hover-75 tx-lg  pa-5 border-r-50 n-tx-3d"
@@ -16,7 +16,7 @@
           <span class="nopointer show-xs_md">Swipe!</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
           <!-- <br> -->
-          <small class="nopointer ">(Up/Down=move) <br> (Left/Right=rotate)</small>
+          <small class="nopointer show-md_x tx-sm">(GREEN=<span style="color:#33ff11">Move</span>) <br> (RED=<span style="color:#ff3311">Turn</span>)</small>
           <hr class="w-100 opacity-25 pa-0 my-2">
           <span class="opacity-hover-50 tx-lg">OK</span>
       </h1>
@@ -59,7 +59,7 @@
             <small>{{__player.stats.energy}}</small>
           </span>
           <!-- <span class="flex mr-3" > <span title="Rotation">Ro:</span> <small>{{__player.rot}}</small> </span> -->
-          <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span>
+          <!-- <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span> -->
           <!-- <span class="flex mr-3" > <span title="Rotation">P:</span> <small>{{__player_pos_z}}</small> </span> -->
         </div>
         <!-- <br> -->

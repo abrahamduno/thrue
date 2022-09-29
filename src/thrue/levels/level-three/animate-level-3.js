@@ -4,6 +4,65 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
+    _player_moveForward()
+    {
+      let newPosX = 0
+      let newPosZ = 0
+      // console.log(this.__player.rot[y])
+      let currentRotY = this.__player.rot[y]
+      console.log(currentRotY)
+      if (currentRotY == 0) // north
+      {
+        newPosZ = -4
+      }
+      if (currentRotY == Math.PI || currentRotY == -Math.PI ) // south
+      {
+        newPosZ = 4
+      }
+      if (currentRotY > 0)
+      {
+        if (Math.abs(currentRotY) == Math.PI/2) // west
+        {
+          newPosX = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4) // north west
+        {
+          newPosX = -4
+          newPosZ = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+        {
+          newPosX = -4
+          newPosZ = 4
+        }
+      }
+      if (currentRotY < 0)
+      {
+        if (Math.abs(currentRotY) == Math.PI/2) // west
+        {
+          newPosX = 4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4) // north west
+        {
+          newPosX = 4
+          newPosZ = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+        {
+          newPosX = 4
+          newPosZ = 4
+        }
+      }
+      // console.table({newPosX,newPosZ})
+      this.$store.dispatch("setPlayerPosition",{
+        id:"0",
+        pos:[
+          this.__player.pos[x]+newPosX,
+          this.__player.pos[y],
+          this.__player.pos[z]+newPosZ,
+        ]
+      })
+    },
     checkNavigationClick()
     {
       if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch)
@@ -11,66 +70,12 @@ export default {
         // Touch events are supported
       } else {
 
-        if (this.__pointer.y > -0.6 && this.__pointer.y < 0.6)  
+        if (this.__pointer.y < -0.6)  
+        // if (this.__pointer.y > -0.3 && this.__pointer.y < 0.3)  
         {
-          if (this.__player &&this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
+          if (this.__player &&this.__pointer.x > -0.3 && this.__pointer.x < 0.3)
           {
-            let newPosX = 0
-            let newPosZ = 0
-            // console.log(this.__player.rot[y])
-            let currentRotY = this.__player.rot[y]
-            console.log(currentRotY)
-            if (currentRotY == 0)
-            {
-              newPosZ = -4
-            }
-            if (currentRotY == Math.PI || currentRotY == -Math.PI )
-            {
-              newPosZ = 4
-            }
-            if (currentRotY > 0)
-            {
-              if (Math.abs(currentRotY) == Math.PI/2) // west
-              {
-                newPosX = -4
-              }
-              if (Math.abs(currentRotY) == Math.PI/4) // north west
-              {
-                newPosX = -4
-                newPosZ = -4
-              }
-              if (Math.abs(currentRotY) == Math.PI/4*3) // south west
-              {
-                newPosX = -4
-                newPosZ = 4
-              }
-            }
-            if (currentRotY < 0)
-            {
-              if (Math.abs(currentRotY) == Math.PI/2) // west
-              {
-                newPosX = 4
-              }
-              if (Math.abs(currentRotY) == Math.PI/4) // north west
-              {
-                newPosX = 4
-                newPosZ = -4
-              }
-              if (Math.abs(currentRotY) == Math.PI/4*3) // south west
-              {
-                newPosX = 4
-                newPosZ = 4
-              }
-            }
-            // console.table({newPosX,newPosZ})
-            this.$store.dispatch("setPlayerPosition",{
-              id:"0",
-              pos:[
-                this.__player.pos[x]+newPosX,
-                this.__player.pos[y],
-                this.__player.pos[z]+newPosZ,
-              ]
-            })
+            this._player_moveForward()
           }
         }
 
@@ -170,30 +175,31 @@ export default {
       let r = this.refreshAccelerator
       if (this.__player)
       {
-        this.$store.dispatch("setPlayerPosition",{
-          id:"0",
-          pos:[
-            this.__player.pos[x],
-            this.__player.pos[y],
-            this.__player_pos_z-this.__swipe.diffy*0.1*r,
-          ],
-        })
+        this._player_moveForward()
+        // this.$store.dispatch("setPlayerPosition",{
+        //   id:"0",
+        //   pos:[
+        //     this.__player.pos[x],
+        //     this.__player.pos[y],
+        //     this.__player_pos_z-this.__swipe.diffy*0.1*r,
+        //   ],
+        // })
       }
     },
     _$swipe_down()
     {
       let r = this.refreshAccelerator
-      if (this.__player)
-      {
-        this.$store.dispatch("setPlayerPosition",{
-          id:"0",
-          pos:[
-            this.__player.pos[x],
-            this.__player.pos[y],
-            this.__player_pos_z-this.__swipe.diffy*0.1*r,
-          ],
-        })
-      }
+      // if (this.__player)
+      // {
+      //   this.$store.dispatch("setPlayerPosition",{
+      //     id:"0",
+      //     pos:[
+      //       this.__player.pos[x],
+      //       this.__player.pos[y],
+      //       this.__player_pos_z-this.__swipe.diffy*0.1*r,
+      //     ],
+      //   })
+      // }
 
     },
     _$animate_main()

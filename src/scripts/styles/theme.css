@@ -59,10 +59,11 @@ body {
   .tutorial-theme-bg  { 
     background: linear-gradient(90deg,#ff331100, #ff331177 5%, #00000000 20%
                                     ,#ff331100 80%, #ff331177 95%, #00000000 );
+    top: 20%; height: 60vh
   }
   .tutorial-theme-wrapper  { 
-    background: linear-gradient(0deg,#33ff1100, #33ff1177 5%, #00000000 20%
-                                    ,#33ff1100 80%, #33ff1177 95%, #00000000 );
+    background: linear-gradient(0deg,#33ff1100, #33ff1177 5%, #33ff1177 15%, #00000000 20% );
+    left: 20%; width: 60vw
   }
 }
 .dark-theme  { 
