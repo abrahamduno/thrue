@@ -244,7 +244,7 @@ export default {
     {
       // this.addFarm();
       let npcName = ""
-      this.$init_npcContainer()
+      this._$init_npcContainer()
       let defaultNPCFoundFunction = (_npcName) => {
         alert("You've found "+`${_npcName}`)
         this.NPCContainer[_npcName].position.y = 50;
@@ -285,27 +285,27 @@ export default {
       }
 
       // npcName = "Lucy"
-      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      // this._$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [-2,this.MIN.y,-1.15], color: 0xFFD8BA,
       //   animation:{type:"circle",path:["z","x"],value:1,add:[{rot:"y"}]},
       //   click: defaultNPCFoundFunction,
       // });
 
       npcName = "1car"
-      this.$add_npc({name:npcName,obj:"standardcar.obj",
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
         pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
         animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
         // click: defaultNPCFoundFunction,
       });
 
       // npcName = "Mia"
-      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      // this._$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [6.5,this.MIN.y+.2,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
       //   animation:{type:"circle",path:["x","z"],value:1.3,speed:0.005,add:[{rot:"y"}]},
       //   click: defaultNPCFoundFunction,
       // });
       // npcName = "Amy"
-      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      // this._$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [9,this.MIN.y-0.25,-45],scale:[2,2,2], color: 0xFFC88A,
       //   animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
       //   click: defaultNPCFoundFunction,
@@ -314,25 +314,25 @@ export default {
 
 
       npcName = "energy"
-      this.$add_npc({name:npcName,obj:"bed.obj",
+      this._$add_npc({name:npcName,obj:"bed.obj",
         pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
       npcName = "hygene"
-      this.$add_npc({name:npcName,obj:"shower.obj",
+      this._$add_npc({name:npcName,obj:"shower.obj",
         pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
       npcName = "hunger"
-      this.$add_npc({name:npcName,obj:"fridge.obj",
+      this._$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-17,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });
       npcName = "fun"
-      this.$add_npc({name:npcName,obj:"mailbox.obj",
+      this._$add_npc({name:npcName,obj:"mailbox.obj",
         pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
@@ -342,19 +342,19 @@ export default {
 
 
       // npcName = "Molly"
-      // this.$add_npc({name:npcName,obj:"achiken.obj",
+      // this._$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [0,this.MIN.y,-40],rot: [-0.5,0.2,0.4], color: 0xFFD8BA,
       //   animation:{type:"constant",path:["y"],value:0.01,add:[{rot:"y"}]},
       //   click: defaultNPCFoundFunction,
       // });
 
       npcName = "floorhouse"
-      this.$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
+      this._$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
         pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });
       // npcName = "Stor"
-      // this.$add_npc({name:npcName,obj:"stor.obj",
+      // this._$add_npc({name:npcName,obj:"stor.obj",
       //   pos: [5.5,this.MIN.y-0.22,-46], rot:[0,-0.3,0], color: 0x9f9f9f,
       // });
     },

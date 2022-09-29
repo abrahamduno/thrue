@@ -14,7 +14,7 @@ export default {
     }
   },
   methods: {
-      $init_npcContainer()
+      _$init_npcContainer()
       {
         this.NPCClickCounter = {}
         this.NPCContainer = {}
@@ -22,7 +22,7 @@ export default {
         this.NPCAnimationContainer = {}
         this.NPCObjectContainer = {}
       },
-      $add_npc(_params)
+      _$add_npc(_params)
       {
         if (!_params.name) return
         let params = {...this.baseNpc, ..._params}
