@@ -97,8 +97,8 @@ export default {
             if (newRotY >= Math.PI)
             {
               newRotY = -Math.PI
+              this.camera.rotation.y = -Math.PI - ((Math.PI - this.camera.rotation.y))
             }
-            console.log("newRotY1",newRotY)
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
@@ -117,6 +117,7 @@ export default {
             if (newRotY <= -Math.PI)
             {
               newRotY = Math.PI
+              this.camera.rotation.y = Math.PI + ((Math.PI + this.camera.rotation.y))
             }
             console.log("newRotY2",newRotY)
             this.$store.dispatch("setPlayerRotation",{
