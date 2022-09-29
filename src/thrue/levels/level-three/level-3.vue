@@ -16,7 +16,7 @@
           <span class="nopointer show-xs_md">Swipe!</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
           <!-- <br> -->
-          <small class="nopointer show-md_x tx-sm">(GREEN=<span style="color:#33ff11">Move</span>) <br> (RED=<span style="color:#ff3311">Turn</span>)</small>
+          <small class="nopointer show-md_x tx-sm">(GREEN=<span class="tx-ls-3 ml-2" style="color:#33ff11">Move</span>) <br> (RED=<span class="tx-ls-3 ml-2" style="color:#ff3311">Turn</span>)</small>
           <hr class="w-100 opacity-25 pa-0 my-2">
           <span class="opacity-hover-50 tx-lg">OK</span>
       </h1>
