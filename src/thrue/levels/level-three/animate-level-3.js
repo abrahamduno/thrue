@@ -94,15 +94,10 @@ export default {
           if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
             let newRotY = this.__player.rot[y]+Math.PI/4
-            // if (Math.PI*2 == this.__player.rot[y]+Math.PI/4)
-            // if (this.__player.rot[y]+Math.PI/4)
+            if (newRotY >= Math.PI)
             {
-            //   newRotY = 0
+              newRotY = -Math.PI
             }
-            // if (-Math.PI*2 == this.__player.rot[y]-Math.PI/4)
-            // {
-            //   newRotY = 0
-            // }
             console.log("newRotY1",newRotY)
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
@@ -119,14 +114,10 @@ export default {
           if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
             let newRotY = this.__player.rot[y]-Math.PI/4
-            // if (Math.PI*2 == this.__player.rot[y]+Math.PI/4)
-            // {
-            //   newRotY = 0
-            // }
-            // if (-Math.PI*2 == this.__player.rot[y]-Math.PI/4)
-            // {
-            //   newRotY = 0
-            // }
+            if (newRotY <= -Math.PI)
+            {
+              newRotY = Math.PI
+            }
             console.log("newRotY2",newRotY)
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
