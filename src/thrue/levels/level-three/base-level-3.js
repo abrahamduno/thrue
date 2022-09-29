@@ -176,36 +176,36 @@ export default {
 
 
 
-      const roomPositiong = [-16,5,-12]
-      const targetroomPositiong = [roomPositiong[0],roomPositiong[1]-5,roomPositiong[2]]
+      // const roomPositiong = [-16,5,-12]
+      // const targetroomPositiong = [roomPositiong[0],roomPositiong[1]-5,roomPositiong[2]]
 
-      // color, intensity, distance = 0, angle = Math.PI / 3, penumbra = 0, decay = 1
-      this.roomlight = new THREE.SpotLight( 0xffdd77, 1 );
-      // this.roomlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.roomlight.position.set( ...roomPositiong ); //default; light shining from top
-      // this.roomlight.position.lookAt( 0,0,0 ); //default; light shining from top
-      this.roomlight.castShadow = true; // default false
-      // this.roomlight.distance = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
+      // // color, intensity, distance = 0, angle = Math.PI / 3, penumbra = 0, decay = 1
+      // this.roomlight = new THREE.SpotLight( 0xffdd77, 1 );
+      // // this.roomlight = new THREE.DirectionalLight( suncolor, sunintensity );
+      // this.roomlight.position.set( ...roomPositiong ); //default; light shining from top
+      // // this.roomlight.position.lookAt( 0,0,0 ); //default; light shining from top
+      // this.roomlight.castShadow = true; // default false
+      // // this.roomlight.distance = this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
+      // // this.roomlight.penumbra = 0.9 // default false
       // this.roomlight.penumbra = 0.9 // default false
-      this.roomlight.penumbra = 0.9 // default false
-      this.roomlight.angle = Math.PI/4 // default false
-      // this.roomlight.shadow.camera.near = 0.5; // default
-      // this.roomlight.shadow.camera.far = 500; // default
-      // if (!window.chrome)
-      // {
-      //   this.roomlight.shadow.mapSize.width = 2048; // default
-      //   this.roomlight.shadow.mapSize.height = 2048; // default
-      // }
-      this.scene.add( this.roomlight );
-      this.roomlightTarget = new THREE.Object3D();
-      this.roomlightTarget.position.set( ...targetroomPositiong )
-      this.scene.add( this.roomlightTarget );
-      this.roomlight.target = this.roomlightTarget
+      // this.roomlight.angle = Math.PI/4 // default false
+      // // this.roomlight.shadow.camera.near = 0.5; // default
+      // // this.roomlight.shadow.camera.far = 500; // default
+      // // if (!window.chrome)
+      // // {
+      // //   this.roomlight.shadow.mapSize.width = 2048; // default
+      // //   this.roomlight.shadow.mapSize.height = 2048; // default
+      // // }
+      // this.scene.add( this.roomlight );
+      // this.roomlightTarget = new THREE.Object3D();
+      // this.roomlightTarget.position.set( ...targetroomPositiong )
+      // this.scene.add( this.roomlightTarget );
+      // this.roomlight.target = this.roomlightTarget
 
 
 

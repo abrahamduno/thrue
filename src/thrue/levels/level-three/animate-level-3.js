@@ -11,45 +11,104 @@ export default {
         // Touch events are supported
       } else {
 
-        if (this.__pointer.y > 0.6)  
+        if (this.__pointer.y > -0.6 && this.__pointer.y < 0.6)  
         {
           if (this.__player &&this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
           {
+            let newPosX = 0
+            let newPosZ = 0
+            // console.log(this.__player.rot[y])
+            let currentRotY = this.__player.rot[y]
+            console.log(currentRotY)
+            if (currentRotY == 0)
+            {
+              newPosZ = -4
+            }
+            if (currentRotY == Math.PI || currentRotY == -Math.PI )
+            {
+              newPosZ = 4
+            }
+            if (currentRotY > 0)
+            {
+              if (Math.abs(currentRotY) == Math.PI/2) // west
+              {
+                newPosX = -4
+              }
+              if (Math.abs(currentRotY) == Math.PI/4) // north west
+              {
+                newPosX = -4
+                newPosZ = -4
+              }
+              if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+              {
+                newPosX = -4
+                newPosZ = 4
+              }
+            }
+            if (currentRotY < 0)
+            {
+              if (Math.abs(currentRotY) == Math.PI/2) // west
+              {
+                newPosX = 4
+              }
+              if (Math.abs(currentRotY) == Math.PI/4) // north west
+              {
+                newPosX = 4
+                newPosZ = -4
+              }
+              if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+              {
+                newPosX = 4
+                newPosZ = 4
+              }
+            }
+            // console.table({newPosX,newPosZ})
             this.$store.dispatch("setPlayerPosition",{
               id:"0",
               pos:[
-                this.__player.pos[x],
+                this.__player.pos[x]+newPosX,
                 this.__player.pos[y],
-                this.__player_pos_z-4,
+                this.__player.pos[z]+newPosZ,
               ]
             })
           }
         }
 
-        if (this.__pointer.y < -0.6)  
-        {
-          if (this.__player && this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
-          {
-            this.$store.dispatch("setPlayerPosition",{
-              id:"0",
-              pos:[
-                this.__player.pos[x],
-                this.__player.pos[y],
-                this.__player_pos_z+4,
-              ]
-            })
-          }
-        }
+        // if (this.__pointer.y < -0.6)  
+        // {
+        //   if (this.__player && this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
+        //   {
+        //     this.$store.dispatch("setPlayerPosition",{
+        //       id:"0",
+        //       pos:[
+        //         this.__player.pos[x],
+        //         this.__player.pos[y],
+        //         this.__player_pos_z+4,
+        //       ]
+        //     })
+        //   }
+        // }
 
         if (this.__pointer.x < -0.6)  
         {
           if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
+            let newRotY = this.__player.rot[y]+Math.PI/4
+            // if (Math.PI*2 == this.__player.rot[y]+Math.PI/4)
+            // if (this.__player.rot[y]+Math.PI/4)
+            {
+            //   newRotY = 0
+            }
+            // if (-Math.PI*2 == this.__player.rot[y]-Math.PI/4)
+            // {
+            //   newRotY = 0
+            // }
+            console.log("newRotY1",newRotY)
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
                 this.__player.rot[x],
-                this.__player_rot_y+Math.PI/4,
+                newRotY,
                 this.__player.rot[z],
               ],
             })
@@ -59,11 +118,21 @@ export default {
         {
           if (this.__player && this.__pointer.y > -0.6 && this.__pointer.y < 0.6)
           {
+            let newRotY = this.__player.rot[y]-Math.PI/4
+            // if (Math.PI*2 == this.__player.rot[y]+Math.PI/4)
+            // {
+            //   newRotY = 0
+            // }
+            // if (-Math.PI*2 == this.__player.rot[y]-Math.PI/4)
+            // {
+            //   newRotY = 0
+            // }
+            console.log("newRotY2",newRotY)
             this.$store.dispatch("setPlayerRotation",{
               id:"0",
               rot:[
                 this.__player.rot[x],
-                this.__player_rot_y-Math.PI/4,
+                newRotY,
                 this.__player.rot[z],
               ],
             })
@@ -230,8 +299,9 @@ export default {
       if (this.accs_length || this.is_playing_test)
       {
         // console.log(this.__player_rot_y)
-        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player_rot_y,0.05)
-        this.camera.position.z = this._$lerp(this.camera.position.z,this.__player_pos_z,0.05)
+        this.camera.position.x = this._$lerp(this.camera.position.x,this.__player.pos[x],0.05)
+        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player.rot[y],0.05)
+        this.camera.position.z = this._$lerp(this.camera.position.z,this.__player.pos[z],0.05)
         // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
         // {
         //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
@@ -292,3 +362,50 @@ export default {
     },
   }
 }
+              // if (Math.abs(currentRotY) == Math.PI/4) // north west
+              // {
+              //   newPosX = -4
+              //   newPosZ = -4
+              // }
+            //   if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+            //   {
+            //     newPosX = -4
+            //     newPosZ = 4
+            //   }
+            //   if (Math.abs(currentRotY) == Math.PI) // south
+            //   {
+            //     newPosZ = 4
+            //     // newPosZ = -4
+            //   }
+            // } else {
+            //   if (Math.abs(currentRotY) == Math.PI/4) // north east
+            //   {
+            //     newPosX = 4
+            //     newPosZ = -4
+            //   }
+            //   if (Math.abs(currentRotY) == Math.PI/4*3) // south east
+            //   {
+            //     newPosX = 4
+            //     newPosZ = 4
+            //   }
+            //   // if (Math.abs(currentRotY) == Math.PI/4*3) 
+            //   // {
+            //   //   newPosX = 4
+            //   //   newPosZ = 4
+
+            //   // }
+            //   if (Math.abs(currentRotY) == Math.PI/2) // east
+            //   {
+            //     newPosX = 4
+            //     // newPosZ = -4
+            //   }
+            //   // if (Math.abs(currentRotY) == 0)
+            //   // {
+            //   //   console.log("Math.abs(currentRotY")
+            //   //   newPosZ = 4
+            //   // }
+            //   if (Math.abs(currentRotY) == -Math.PI) // extra north
+            //   {
+            //     // newPosX = 4
+            //     newPosZ = -4
+            //   }
