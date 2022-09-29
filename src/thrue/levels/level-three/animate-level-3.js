@@ -4,6 +4,65 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
+    _player_moveBackward()
+    {
+      let newPosX = 0
+      let newPosZ = 0
+      // console.log(this.__player.rot[y])
+      let currentRotY = this.__player.rot[y]
+      console.log(currentRotY)
+      if (currentRotY == 0) // north
+      {
+        newPosZ = -4
+      }
+      if (currentRotY == Math.PI || currentRotY == -Math.PI ) // south
+      {
+        newPosZ = 4
+      }
+      if (currentRotY > 0)
+      {
+        if (Math.abs(currentRotY) == Math.PI/2) // west
+        {
+          newPosX = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4) // north west
+        {
+          newPosX = -4
+          newPosZ = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+        {
+          newPosX = -4
+          newPosZ = 4
+        }
+      }
+      if (currentRotY < 0)
+      {
+        if (Math.abs(currentRotY) == Math.PI/2) // west
+        {
+          newPosX = 4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4) // north west
+        {
+          newPosX = 4
+          newPosZ = -4
+        }
+        if (Math.abs(currentRotY) == Math.PI/4*3) // south west
+        {
+          newPosX = 4
+          newPosZ = 4
+        }
+      }
+      // console.table({newPosX,newPosZ})
+      this.$store.dispatch("setPlayerPosition",{
+        id:"0",
+        pos:[
+          this.__player.pos[x]+(newPosX*-1),
+          this.__player.pos[y],
+          this.__player.pos[z]+(newPosZ*-1),
+        ]
+      })
+    },
     _player_moveForward()
     {
       let newPosX = 0
@@ -71,6 +130,14 @@ export default {
       } else {
 
         if (this.__pointer.y < -0.6)  
+        // if (this.__pointer.y > -0.3 && this.__pointer.y < 0.3)  
+        {
+          if (this.__player &&this.__pointer.x > -0.3 && this.__pointer.x < 0.3)
+          {
+            this._player_moveBackward()
+          }
+        }
+        if (this.__pointer.y > 0.6)  
         // if (this.__pointer.y > -0.3 && this.__pointer.y < 0.3)  
         {
           if (this.__player &&this.__pointer.x > -0.3 && this.__pointer.x < 0.3)
@@ -189,8 +256,9 @@ export default {
     _$swipe_down()
     {
       let r = this.refreshAccelerator
-      // if (this.__player)
-      // {
+      if (this.__player)
+      {
+            this._player_moveBackward()
       //   this.$store.dispatch("setPlayerPosition",{
       //     id:"0",
       //     pos:[
@@ -199,7 +267,7 @@ export default {
       //       this.__player_pos_z-this.__swipe.diffy*0.1*r,
       //     ],
       //   })
-      // }
+      }
 
     },
     _$animate_main()
@@ -281,8 +349,8 @@ export default {
       // }
 
         // PLAYER CAMERA
-      if (this.camera && this.pro_mode)
-      {
+      // if (this.camera && this.pro_mode)
+      // {
         // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
         // {
         //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
@@ -291,9 +359,9 @@ export default {
         //   }
         // }
         // //   this._$lerp(this.camera.rotation.y,-this.__pointer.x*(Math.PI*0.6)+(this.__pointer.x < -0.2 ? -0.2 : +0.2),0.07)
-      } else {
+      // } else {
         // this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
-      }
+      // }
       if (this.accs_length || this.is_playing_test)
       {
         // console.log(this.__player_rot_y)

@@ -32,7 +32,7 @@ export default {
             rot: [0,0,0],
             scale: [1,1,1],
             stats: {
-              hunger: 4,
+              hunger: 3,
               hygene: 8,
               energy: 9,
               fun: 5,
