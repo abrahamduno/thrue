@@ -135,8 +135,6 @@ import * as THREE from "three";
 import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 import baseStandardMaterial from "../../../scripts/constants/baseStandardMaterial.js";
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
-import { OrbitControls } from "../../../scripts/loaders/OrbitControls.js";
-// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import set_scene from "../../system/set_scene.js";
 import bloommixin from "../../system/mixin_bloom.js";
@@ -145,7 +143,7 @@ import listen_click from "../../system/listen_click.js";
 import listen_swipe from "../../system/listen_swipe.js";
 import update_animation from "../../system/update_animation.js";
 
-import levelThree from "./base-level-3.js";
+import levelScene from "./level-3-scene.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -161,7 +159,7 @@ export default {
     listen_click,
     update_animation,
 
-    levelThree,
+    levelScene,
   ],
   data()
   {
@@ -240,34 +238,13 @@ export default {
       this._$set_renderer();
       if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
 
-      this.__orbitcontrols = new OrbitControls( this.camera, this.renderer.domElement );
-      this.__orbitcontrols.listenToKeyEvents( window ); // optional
-
-      //this.__orbitcontrols.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
-
-      // this.__orbitcontrols.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-      // this.__orbitcontrols.dampingFactor = 0.05;
-      this.__orbitcontrols.enablePan = false
-      // this.__orbitcontrols.keyPanSpeed = 15
-      // this.__orbitcontrols.keys = {
-      //   LEFT: 'KeyA', //left arrow
-      //   UP: 'KeyW', // up arrow
-      //   RIGHT: 'KeyD', // right arrow
-      //   BOTTOM: 'KeyS' // down arrow
-      // }
-      this.__orbitcontrols.screenSpacePanning = false;
-
-      this.__orbitcontrols.minDistance = 5;
-      this.__orbitcontrols.maxDistance = 40;
-
-      this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
-// D5EAF9
-// D88223
+      this.p_$set_playerOrbitControl();
+      // D5EAF9 // D88223
       this.scene.fog = new THREE.FogExp2( 0xD5EAF9, 0.015  );
 
 
       this.add_startLevelBlob()
-      this.add_bubbleHead()
+      this.add_personBubbleHead()
 
 
       this._$set_raycaster();
