@@ -31,19 +31,30 @@
     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
-          class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d"
+          class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d noclick"
       >
-          <span class="nopointer show-md_x tx-sm">Click to Move</span>
-          <span class="nopointer show-xs_md">Swipe!</span>
+          <span class="nopointer show-xs_md block " style="height: 100px"></span>
+          <span class="nopointer ">CONTROLS</span>
+          <br>
+          <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Click to Move</span>
+          <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
           <!-- <br> -->
-          <small class="nopointer show-md_x tx-sm flex-column">
+          <small class="nopointer  tx-sm flex-column show-md_x">
               <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward</span>
               <div class="flex">
                 <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> Left</span>
                 <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> Right</span>
               </div>
               <span class="tx-ls-3 mx-2" style="color:#33ff11">Backward</span>
+          </small>
+          <small class="nopointer  tx-sm flex-column show-xs_md">
+              <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward <br> ↑</span>
+              <div class="flex">
+                <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> ← <br> Left</span>
+                <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> → <br> Right</span>
+              </div>
+              <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
           </small>
           <hr class="w-100 opacity-25 pa-0 my-2">
           <span class="opacity-hover-50 tx-xs">Click "PRO" to hide</span>
