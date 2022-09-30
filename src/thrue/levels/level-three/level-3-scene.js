@@ -27,7 +27,7 @@ export default {
   ],
   methods:
   {
-    initLevelOne()
+    __initLevel()
     {
       this.goals = {
         tickets: 0,
@@ -39,16 +39,6 @@ export default {
       }
       this.p_$init_player({pos:[-13,0.25,-4]})
       this.p_$setOrbitToPlayerPos()
-    },
-    statToAction(stat)
-    {
-      switch(stat)
-      {
-        case "hunger": return "Eat Food"
-        case "energy": return "Sleep"
-        case "fun": return "Read Newspaper"
-        case "hygene": return "Take Shower"
-      }
     },
     checkGoals()
     {
@@ -223,7 +213,7 @@ export default {
 
     },
     addCurrentLevel(  ) {
-      this.initLevelOne()
+      this.__initLevel()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelthree.obj",

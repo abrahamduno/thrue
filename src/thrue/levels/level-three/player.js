@@ -16,6 +16,16 @@ export default {
   {
   },
   methods: {
+    p_$statToAction(stat)
+    {
+      switch(stat)
+      {
+        case "hunger": return "Eat Food"
+        case "energy": return "Sleep"
+        case "fun": return "Read Newspaper"
+        case "hygene": return "Take Shower"
+      }
+    },
     p_$setOrbitToPlayerPos()
     {
       this.__orbitcontrols.target.set(

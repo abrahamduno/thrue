@@ -1,3 +1,11 @@
+<!--
+  _$ -> from system
+  l_$ -> from localScene
+  p_$ -> from player
+  a_$ -> from animation
+
+  __ -> only used inside same file
+-->
 <template>
 
     <div  class=" pos-fixed z-999 pa-2  bottom-0 right-0  border-r-15 flex-align-start flex-column  " v-if="accs_length || is_playing_test" >
@@ -13,7 +21,7 @@
                 :class="[index == 0 ? 'n-flat':' opacity-hover-50']"
             >
                 <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
-                {{statToAction(qItem.stat)}}
+                {{p_$statToAction(qItem.stat)}}
             </div>
           </span>
         </div>
@@ -143,7 +151,7 @@ import listen_click from "../../system/listen_click.js";
 import listen_swipe from "../../system/listen_swipe.js";
 import update_animation from "../../system/update_animation.js";
 
-import levelScene from "./level-3-scene.js";
+import localScene from "./level-3-scene.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -159,7 +167,7 @@ export default {
     listen_click,
     update_animation,
 
-    levelScene,
+    localScene,
   ],
   data()
   {
