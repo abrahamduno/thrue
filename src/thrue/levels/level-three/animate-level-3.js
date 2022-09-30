@@ -342,6 +342,7 @@ export default {
     },
     _$animate_currentLevel()
     {
+      let r = this.refreshAccelerator
       if (this.mycurrentlevel && this.mycurrentlevel.position.y != this.MIN.y)
       {
         this.mycurrentlevel.position.y = this.MIN.y
@@ -392,9 +393,9 @@ export default {
       if (this.accs_length || this.is_playing_test)
       {
         // console.log(this.__player_rot_y)
-        this.camera.position.x = this._$lerp(this.camera.position.x,this.__player.pos[x],0.05)
-        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player.rot[y],0.05)
-        this.camera.position.z = this._$lerp(this.camera.position.z,this.__player.pos[z],0.05)
+        this.camera.position.x = this._$lerp(this.camera.position.x,this.__player.pos[x],0.05*r)
+        this.camera.rotation.y = this._$lerp(this.camera.rotation.y,this.__player.rot[y],0.05*r)
+        this.camera.position.z = this._$lerp(this.camera.position.z,this.__player.pos[z],0.05*r)
         // if (this.__pointer.x < -0.75 || this.__pointer.x > 0.75)
         // {
         //   if (this.__pointer.y > -0.25 && this.__pointer.y < 0.25)
