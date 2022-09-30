@@ -280,13 +280,13 @@ export default {
               //     [theStat]: parseFloat(this.__player.stats[theStat])+1,
               //   },
               // })
-              this.$store.dispatch("addToPlayerQ",{
-                  id:"0",
-                  q: [
-                    { stat:theStat, t:Date.now(), d:2500 }
-                  ]
-                },
-              )
+              // this.$store.dispatch("addToPlayerQ",{
+              //     id:"0",
+              //     q: [
+              //       { stat:theStat, t:Date.now(), d:7500 }
+              //     ]
+              //   },
+              // )
 
               // this.NPCContainer[_npcName].rotation.x = 0.2
               // this.__orbitcontrols.target.set(this.NPCContainer[_npcName].position.x,this.NPCContainer[_npcName].position.y,this.NPCContainer[_npcName].position.z)
@@ -294,29 +294,63 @@ export default {
               // console.table({newPosX,newPosZ})
               // this.NPCBaseContainer[_npcName].playerpos
               // this.NPCBaseContainer[_npcName].playerrot
-              if (this.NPCBaseContainer[_npcName].playerpos)
+
+
+
+
+
+
+
+
+
+
+
+
+              if (this.localQ)
               {
-                this.$store.dispatch("setPlayerPosition",{
+                this.localQ.push({
                   id:"0",
-                  pos:[
-                    this.NPCBaseContainer[_npcName].playerpos[0],
-                    this.__player.pos[1],
-                    this.NPCBaseContainer[_npcName].playerpos[2]
-                  ]
+                  stats:{
+                    [theStat]: 1,
+                  },
                 })
+                console.log(this.localQ)
               }
-              if (this.NPCBaseContainer[_npcName].playerrot)
-              {
-                this.$store.dispatch("setPlayerRotation",{
-                  id:"0",
-                  pos:[
-                    this.__player.pos[0],
-                    this.NPCBaseContainer[_npcName].playerrot[1],
-                    this.__player.pos[2],
-                  ]
-                })
-              }
+              // if (this.NPCBaseContainer[_npcName].playerpos)
+              // {
+              //   this.$store.dispatch("setPlayerPosition",{
+              //     id:"0",
+              //     pos:[
+              //       this.NPCBaseContainer[_npcName].playerpos[0],
+              //       this.__player.pos[1],
+              //       this.NPCBaseContainer[_npcName].playerpos[2]
+              //     ]
+              //   })
+              //   this.__orbitcontrols.target.set(...this.NPCBaseContainer[_npcName].playerpos)
+              // }
+              // if (this.NPCBaseContainer[_npcName].playerrot)
+              // {
+              //   this.$store.dispatch("setPlayerRotation",{
+              //     id:"0",
+              //     pos:[ 
+              //       this.__player.pos[0],
+              //       this.NPCBaseContainer[_npcName].playerrot[1],
+              //       this.__player.pos[2],
+              //     ]
+              //   })
+              // }
               this.NPCContainer[_npcName].rotation.y = 0.5
+
+
+
+
+
+
+
+
+
+
+
               // this.NPCContainer[_npcName].rotation.z = 0.2
             // if (this.__player.stats[theStat] < 10)
             // {

@@ -4,6 +4,12 @@ import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 const BASE_ASSET_URL = "./res";
 
 export default {
+  data()
+  {
+    return {
+      localQ: [],
+    }
+  },
   computed:
   {
     // getPlayer()                  { return this.$store.getters.getPlayer },

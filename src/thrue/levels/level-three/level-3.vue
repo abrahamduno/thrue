@@ -31,7 +31,8 @@
 
 
 
-<!--     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
+<!-- tutorial-theme-bg  -->
+    <div v-if="!pro_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
           class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d noclick"
@@ -39,8 +40,11 @@
           <span class="nopointer show-xs_md block " style="height: 100px"></span>
           <span class="nopointer ">CONTROLS</span>
           <br>
-          <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Click to Move</span>
-          <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
+          <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Drag the screen <br> to Rotate</span>
+          <span class="nopointer show-xs_md tx-xs  opacity-75 tx-ls-5">Swipe to Rotate</span>
+          <br>
+          <i class="fas rock-nroll fa-hand-point-up"></i>
+          <!-- <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
           <small class="nopointer  tx-sm flex-column show-md_x">
               <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward</span>
@@ -57,11 +61,11 @@
                 <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> → <br> Right</span>
               </div>
               <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
-          </small>
+          </small> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
-          <span class="opacity-hover-50 tx-xs">Click "PRO" to hide</span>
+          <span class="opacity-hover-50 tx-xs">Click "PRO" <br> to hide this</span>
       </h1>
-    </div> -->
+    </div>
 
 
 
@@ -78,6 +82,9 @@
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
+        <div class="flex-wrap mb-3" v-if="localQ && localQ.length">
+          {{localQ[0].stats}}
+        </div>
         <div class="flex-wrap mb-3" v-if="__player.stats">
           <span class="flex px-3" style="border-right: 2px solid #777777"
             :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]"
@@ -211,7 +218,7 @@ export default {
             desktop: 50,
           },
           minReach: 0.1,
-          maxReach: 100,
+          maxReach: 120,
           shadowDistance: 85,
         },
       }
@@ -238,15 +245,25 @@ export default {
 
       //this.__orbitcontrols.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
 
-      this.__orbitcontrols.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
-      this.__orbitcontrols.dampingFactor = 0.05;
-
+      // this.__orbitcontrols.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+      // this.__orbitcontrols.dampingFactor = 0.05;
+      this.__orbitcontrols.enablePan = false
+      // this.__orbitcontrols.keyPanSpeed = 15
+      // this.__orbitcontrols.keys = {
+      //   LEFT: 'KeyA', //left arrow
+      //   UP: 'KeyW', // up arrow
+      //   RIGHT: 'KeyD', // right arrow
+      //   BOTTOM: 'KeyS' // down arrow
+      // }
       this.__orbitcontrols.screenSpacePanning = false;
 
       this.__orbitcontrols.minDistance = 5;
       this.__orbitcontrols.maxDistance = 40;
 
       this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
+// D5EAF9
+// D88223
+      this.scene.fog = new THREE.FogExp2( 0xD5EAF9, 0.015  );
 
 
       this.add_startLevelBlob()

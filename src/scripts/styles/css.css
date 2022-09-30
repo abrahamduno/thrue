@@ -336,6 +336,8 @@
 
 
 /* ------------------------------------------ ANIMATING ------------------------------------------ */
+.rock-nroll { animation: rocknroll 2s;  animation-iteration-count: infinite }
+@keyframes rocknroll { 0%{ transform: translateX(15px) rotate(-49deg); } 50% { transform: translateX(-15px) rotate(-95deg); }  100% { transform: translateX(15px) rotate(-49deg); } }
 .spin-spin { animation: spinspin 2s;  animation-iteration-count: infinite }
 @keyframes spinspin { 0%{ transform: rotate(90deg); } 100% { transform: rotate(450deg); } }
 .spin-nback { animation: spinnback 4s;  animation-iteration-count: infinite }
