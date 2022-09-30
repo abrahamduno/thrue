@@ -30,7 +30,7 @@
          <!-- v-if="enable_help == 1 && show_help" -->
 
 
-         
+
 <!--     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
@@ -207,7 +207,7 @@ export default {
           rot: [0, 0, 0],
           fov: 50,
           fovSettings: {
-            mobile: 80,
+            mobile: 65,
             desktop: 50,
           },
           minReach: 0.1,

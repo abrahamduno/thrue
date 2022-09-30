@@ -289,6 +289,33 @@ export default {
               )
 
               // this.NPCContainer[_npcName].rotation.x = 0.2
+              // this.__orbitcontrols.target.set(this.NPCContainer[_npcName].position.x,this.NPCContainer[_npcName].position.y,this.NPCContainer[_npcName].position.z)
+
+              // console.table({newPosX,newPosZ})
+              // this.NPCBaseContainer[_npcName].playerpos
+              // this.NPCBaseContainer[_npcName].playerrot
+              if (this.NPCBaseContainer[_npcName].playerpos)
+              {
+                this.$store.dispatch("setPlayerPosition",{
+                  id:"0",
+                  pos:[
+                    this.NPCBaseContainer[_npcName].playerpos[0],
+                    this.__player.pos[1],
+                    this.NPCBaseContainer[_npcName].playerpos[2]
+                  ]
+                })
+              }
+              if (this.NPCBaseContainer[_npcName].playerrot)
+              {
+                this.$store.dispatch("setPlayerRotation",{
+                  id:"0",
+                  pos:[
+                    this.__player.pos[0],
+                    this.NPCBaseContainer[_npcName].playerrot[1],
+                    this.__player.pos[2],
+                  ]
+                })
+              }
               this.NPCContainer[_npcName].rotation.y = 0.5
               // this.NPCContainer[_npcName].rotation.z = 0.2
             // if (this.__player.stats[theStat] < 10)
@@ -311,13 +338,6 @@ export default {
       //   click: defaultNPCFoundFunction,
       // });
 
-      npcName = "1car"
-      this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
-        // click: defaultNPCFoundFunction,
-      });
-
       // npcName = "Mia"
       // this._$add_npc({name:npcName,obj:"achiken.obj",
       //   pos: [6.5,this.MIN.y+.2,-23.5], scale: [1.6,1.6,1.6], color: 0xFFC88A,
@@ -331,6 +351,13 @@ export default {
       //   click: defaultNPCFoundFunction,
       // });
 
+
+      npcName = "1car"
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
+        // click: defaultNPCFoundFunction,
+      });
 
 
       npcName = "energy"
@@ -347,7 +374,8 @@ export default {
       });
       npcName = "hunger"
       this._$add_npc({name:npcName,obj:"fridge.obj",
-        pos: [-17,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
+        pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
+        playerrot:[0,Math.PI,0],
         // animation:{type:"sin",path:["y"],value:0.02,add:[{rot:"y"}]},
         click: defaultNPCClickFunction,
       });

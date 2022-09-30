@@ -391,7 +391,7 @@ export default {
       // } else {
         // this.camera.rotation.y = this._$lerp(this.camera.rotation.y,0,0.07)
       // }
-      if (this.accs_length || this.is_playing_test)
+      if ((this.accs_length || this.is_playing_test) && this.myplayer && this.__player)
       {
         // console.log(this.__player_rot_y)
         this.myplayer.position.set(
@@ -399,6 +399,18 @@ export default {
           this._$lerp(this.myplayer.position.y,this.__player.pos[y]+this.MIN.y,0.05*r),
           this._$lerp(this.myplayer.position.z,this.__player.pos[z],0.05*r),
         )
+        if (this.__player.q.length)
+        {
+        let theStat = this.__player.q[0].stat
+        if (this.NPCBaseContainer[theStat].playerrot)
+        {
+          this.myplayer.rotation.set(
+            this._$lerp(this.myplayer.rotation.x,this.NPCBaseContainer[theStat].playerrot[x],0.05*r),
+            this._$lerp(this.myplayer.rotation.y,this.NPCBaseContainer[theStat].playerrot[y],0.05*r),
+            this._$lerp(this.myplayer.rotation.z,this.NPCBaseContainer[theStat].playerrot[z],0.05*r),
+          )
+          }
+        }
         // this.myplayer.rotation.y = this._$lerp(this.myplayer.rotation.y,Math.PI+this.camera.rotation.y,0.05*r)
         // this.myplayer.position.z = this._$lerp(this.camera.position.z,this.__player.pos[z],0.05*r)
         // this.camera.position.x = this._$lerp(this.camera.position.x,this.__player.pos[x],0.05*r)
