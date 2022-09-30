@@ -82,8 +82,8 @@
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
-        <div class="flex-wrap mb-3" v-if="localQ && localQ.length">
-          {{localQ[0].stats}}
+        <div class="flex-wrap mb-3" v-if="p_$localQ && p_$localQ.length">
+          {{p_$localQ[0].stats}}
         </div>
         <div class="flex-wrap mb-3" v-if="__player.stats">
           <span class="flex px-3" style="border-right: 2px solid #777777"

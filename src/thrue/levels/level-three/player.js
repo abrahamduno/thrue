@@ -8,7 +8,7 @@ export default {
   data()
   {
     return {
-      localQ: [],
+      p_$localQ: [],
       p_$statList: ["energy","hunger","hygene","fun"]
     }
   },

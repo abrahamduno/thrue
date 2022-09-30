@@ -302,15 +302,15 @@ export default {
 
 
 
-              if (this.localQ)
+              if (this.p_$localQ)
               {
-                this.localQ.push({
+                this.p_$localQ.push({
                   id:"0",
                   stats:{
                     [theStat]: 1,
                   },
                 })
-                console.log(this.localQ)
+                console.log(this.p_$localQ)
               }
               // if (this.NPCBaseContainer[_npcName].playerpos)
               // {
