@@ -22,13 +22,16 @@
 
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
 
-    <div  v-if="!pro_mode && (accs_length || is_playing_test)"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
+    <!-- <div  v-if="!pro_mode && (accs_length || is_playing_test)"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
     >
-    </div>
+    </div> -->
 
         <!-- @click="enable_help++; clickedLevelHelp()"  -->
          <!-- v-if="enable_help == 1 && show_help" -->
-    <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
+
+
+         
+<!--     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
           class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d noclick"
@@ -39,7 +42,6 @@
           <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Click to Move</span>
           <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
-          <!-- <br> -->
           <small class="nopointer  tx-sm flex-column show-md_x">
               <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward</span>
               <div class="flex">
@@ -59,7 +61,11 @@
           <hr class="w-100 opacity-25 pa-0 my-2">
           <span class="opacity-hover-50 tx-xs">Click "PRO" to hide</span>
       </h1>
-    </div>
+    </div> -->
+
+
+
+
     <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #77777744" 
       @click="clickedLevelHelp" 
         class="tx-center clickable opacity-hover-75 tx-xl top-50p pos-fixed pa-5 border-r-50"
@@ -121,6 +127,9 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 import baseStandardMaterial from "../../../scripts/constants/baseStandardMaterial.js";
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { OrbitControls } from "../../../scripts/loaders/OrbitControls.js";
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import set_scene from "../../system/set_scene.js";
 import bloommixin from "../../system/mixin_bloom.js";
@@ -221,11 +230,28 @@ export default {
       this._$set_sceneAndCamera();
       this.addLight()
 
+      this._$set_renderer();
+      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
+
+      this.__orbitcontrols = new OrbitControls( this.camera, this.renderer.domElement );
+      this.__orbitcontrols.listenToKeyEvents( window ); // optional
+
+      //this.__orbitcontrols.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+
+      this.__orbitcontrols.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+      this.__orbitcontrols.dampingFactor = 0.05;
+
+      this.__orbitcontrols.screenSpacePanning = false;
+
+      this.__orbitcontrols.minDistance = 5;
+      this.__orbitcontrols.maxDistance = 40;
+
+      this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
+
+
       this.add_startLevelBlob()
       this.add_bubbleHead()
 
-      this._$set_renderer();
-      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
 
       this._$set_raycaster();
       this._$set_swipe()

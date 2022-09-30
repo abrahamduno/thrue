@@ -37,7 +37,9 @@ export default {
         energy: 0,
         fun: 0,
       }
-      this.$init_player()
+      this.$init_player({pos:[-13,0.25,-4]})
+      // this.__orbitcontrols.target.set(-4,0,-4)
+      this.__orbitcontrols.target.set(...this.__player.pos)
     },
     statToAction(stat)
     {
@@ -116,7 +118,8 @@ export default {
     },
     _$click_currentLevel()
     {
-      this.checkNavigationClick()
+      // this.checkNavigationClick()
+      // this.__orbitcontrols.update();
 
       this.$click_startLevelBlob()
 

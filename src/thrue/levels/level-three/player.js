@@ -10,7 +10,7 @@ export default {
   },
   // setPlayerStats
   methods: {
-    $init_player()
+    $init_player(_player)
     {
       let ms = Date.now();
       // this.$store.dispatch("setPlayerStats",{id:"test"})
@@ -25,7 +25,7 @@ export default {
       {
         // unsigned
         this.$store.dispatch("setPlayer",
-          {
+          {...{
             id:"0",
             q: [],
             obj: null,
@@ -38,7 +38,7 @@ export default {
               energy: 9,
               fun: 5,
             },
-          }
+          },..._player}
         )
       }
       this.$player = this.$store.getters.getPlayers[0]
@@ -54,6 +54,17 @@ export default {
       //     fun: 0,
       //   },
       // }
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "aplayer.obj",
+        (object) => {
+          object.traverse( this.baseStandardMaterial() );
+          // object.position.set(...this.mysign_base.pos);
+          // object.rotation.set(...this.mysign_base.rot);
+          this.myplayer = object
+          this.scene.add(this.myplayer);
+        },
+        this.onLoadProgress
+      );
     },
     llladd_bubbleHead()
     {
