@@ -57,13 +57,13 @@ body {
 @media only screen and (min-width: 769px)
 {
   .tutorial-theme-bg  { 
-    background: linear-gradient(90deg,#ff331100, #ff331177 5%, #00000000 20%),
-                linear-gradient(-90deg,#3311ff00, #ff991177 5%, #00000000 20%);
+    background: linear-gradient(90deg,#ff331100, #ff3311cc 5%, #00000000 20%),
+                linear-gradient(-90deg,#3311ff00, #ff9911cc 5%, #00000000 20%);
     top: 20%; height: 60vh
   }
   .tutorial-theme-wrapper  { 
-    background: linear-gradient(0deg,#33ff1100, #33ff1177 5%, #00000000 20% ),
-                linear-gradient(180deg,#33ff1100, #3311ff77 5%, #00000000 20% );
+    background: linear-gradient(0deg,#33ff1100, #33ff11cc 5%, #00000000 20% ),
+                linear-gradient(180deg,#33ff1100, #3311ffcc 5%, #00000000 20% );
     left: 35%; width: 30vw
   }
 }
