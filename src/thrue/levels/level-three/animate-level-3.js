@@ -282,6 +282,19 @@ export default {
         if (nowT > this.__player.q[0].t+this.__player.q[0].d)
         {
           // alert("action finished")
+          let theStat = this.__player.q[0].stat
+
+          if (this.__player.stats[theStat] < 10)
+          {
+            this.$store.dispatch("setPlayerStats",{
+              id:"0",
+              stats:{
+                [theStat]: parseFloat(this.__player.stats[theStat])+1,
+              },
+            })
+          } else {
+            alert("You are sinnin "+theStat)
+          }
           this.$store.dispatch("clearFirstInQ",{
             id:"0",
           })

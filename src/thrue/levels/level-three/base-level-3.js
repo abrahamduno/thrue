@@ -288,11 +288,11 @@ export default {
               // this.NPCContainer[_npcName].rotation.x = 0.2
               this.NPCContainer[_npcName].rotation.y = 0.5
               // this.NPCContainer[_npcName].rotation.z = 0.2
-            if (this.__player.stats[theStat] < 10)
-            {
-            } else {
-              alert("You are sinnin "+theStat)
-            }
+            // if (this.__player.stats[theStat] < 10)
+            // {
+            // } else {
+            //   alert("You are sinnin "+theStat)
+            // }
           }
           
           this.NPCClickCounter[_npcName]--
