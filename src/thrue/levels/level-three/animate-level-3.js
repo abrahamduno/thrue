@@ -211,14 +211,14 @@ export default {
         let r = this.refreshAccelerator
       if (this.__player)
       {
-        this.$store.dispatch("setPlayerRotation",{
-          id:"0",
-          rot:[
-            this.__player.rot[x],
-            this.__player_rot_y+Math.PI/4,
-            this.__player.rot[z],
-          ],
-        })
+        // this.$store.dispatch("setPlayerRotation",{
+        //   id:"0",
+        //   rot:[
+        //     this.__player.rot[x],
+        //     this.__player_rot_y+Math.PI/4,
+        //     this.__player.rot[z],
+        //   ],
+        // })
       }
     },
 
@@ -227,14 +227,14 @@ export default {
         let r = this.refreshAccelerator
       if (this.__player)
       {
-        this.$store.dispatch("setPlayerRotation",{
-          id:"0",
-          rot:[
-            this.__player.rot[x],
-            this.__player_rot_y-Math.PI/4,
-            this.__player.rot[z],
-          ],
-        })
+        // this.$store.dispatch("setPlayerRotation",{
+        //   id:"0",
+        //   rot:[
+        //     this.__player.rot[x],
+        //     this.__player_rot_y-Math.PI/4,
+        //     this.__player.rot[z],
+        //   ],
+        // })
       }
     },
     _$swipe_up()
@@ -242,7 +242,7 @@ export default {
       let r = this.refreshAccelerator
       if (this.__player)
       {
-        this._player_moveForward()
+        // this._player_moveForward()
         // this.$store.dispatch("setPlayerPosition",{
         //   id:"0",
         //   pos:[
@@ -258,7 +258,7 @@ export default {
       let r = this.refreshAccelerator
       if (this.__player)
       {
-            this._player_moveBackward()
+            // this._player_moveBackward()
       //   this.$store.dispatch("setPlayerPosition",{
       //     id:"0",
       //     pos:[
