@@ -31,7 +31,7 @@
     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
-          class="tx-center opacity-hover-75 tx-lg  pa-5 border-r-50 n-tx-3d"
+          class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d"
       >
           <span class="nopointer show-md_x tx-sm">Click to Move</span>
           <span class="nopointer show-xs_md">Swipe!</span>
