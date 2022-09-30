@@ -12,6 +12,7 @@
               class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
                 :class="[index == 0 ? 'n-flat':'border-l-2 opacity-hover-50']"
             >
+                <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
                 {{statToAction(qItem.stat)}}
             </div>
           </span>

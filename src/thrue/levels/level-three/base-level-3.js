@@ -280,7 +280,7 @@ export default {
               this.$store.dispatch("addToPlayerQ",{
                   id:"0",
                   q: [
-                    { stat:theStat, t:Date.now(), d:5000 }
+                    { stat:theStat, t:Date.now(), d:2500 }
                   ]
                 },
               )
