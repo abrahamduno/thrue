@@ -22,13 +22,13 @@
 
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
 
-    <div  v-if="!pro_mode"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
+    <div  v-if="!pro_mode && (accs_length || is_playing_test)"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
     >
     </div>
 
         <!-- @click="enable_help++; clickedLevelHelp()"  -->
          <!-- v-if="enable_help == 1 && show_help" -->
-    <div v-if="!pro_mode" class="tutorial-theme-bg pos-fixed w-100 flex-center"
+    <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222" 
           class="tx-center opacity-hover-75 tx-lg  pa-5 border-r-50 n-tx-3d"
@@ -45,8 +45,8 @@
               </div>
               <span class="tx-ls-3 mx-2" style="color:#33ff11">Backward</span>
           </small>
-          <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
-          <!-- <span class="opacity-hover-50 tx-lg">OK</span> -->
+          <hr class="w-100 opacity-25 pa-0 my-2">
+          <span class="opacity-hover-50 tx-xs">Click "PRO" to hide</span>
       </h1>
     </div>
     <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #77777744" 
