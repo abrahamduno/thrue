@@ -67,6 +67,30 @@ body {
     left: 35%; width: 30vw
   }
 }
+.border-r-1 {
+  border-right: 1px solid #888;
+}
+.border-l-1 {
+  border-left: 1px solid #888;
+}
+.border-r-1-secondary {
+  border-right: 1px solid var(--secondary-color);
+}
+.border-l-1-secondary {
+  border-left: 1px solid var(--secondary-color);
+}
+.border-r-2 {
+  border-right: 2px solid #888;
+}
+.border-l-2 {
+  border-left: 2px solid #888;
+}
+.border-r-2-secondary {
+  border-right: 2px solid var(--secondary-color);
+}
+.border-l-2-secondary {
+  border-left: 2px solid var(--secondary-color);
+}
 .dark-theme  { 
   /*background: url(./../../public/res/5952124.jpg)  no-repeat center center fixed !important;  
   background-size: cover;

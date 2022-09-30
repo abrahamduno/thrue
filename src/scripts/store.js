@@ -34,6 +34,8 @@ const store = createStore({
       block: {},
       players: {
         "0":{
+          id: "0",
+          q: [],
           obj: null,
           pos: [0,0,0],
           rot: [0,0,0],
@@ -60,6 +62,17 @@ const store = createStore({
       // // state.players[playerData.id].pos = {...state.players[playerData.id].pos, ...newData.pos}
       // state.context.commit('setPlayerRotation', playerData);
       // console.log("newset", state.players[playerData.id])
+    },
+    clearFirstInQ(state, playerData) {
+      state.players[playerData.id].q.shift(); 
+      for (var i = 0; i < state.players[playerData.id].q.length; i++)
+      {
+        state.players[playerData.id].q[i].t = Date.now()
+      }
+    },
+    addToPlayerQ(state, playerData) {
+      if (!playerData.q) return
+      state.players[playerData.id].q = [...state.players[playerData.id].q, ...playerData.q]
     },
     setPlayerStats(state, playerData) {
       if (!playerData.stats) return
@@ -128,6 +141,12 @@ const store = createStore({
     },
     setPlayerPosition(context, playerData) {
       context.commit('setPlayerPosition', playerData);
+    },
+    addToPlayerQ(context, playerData) {
+      context.commit('addToPlayerQ', playerData);
+    },
+    clearFirstInQ(context, playerData) {
+      context.commit('clearFirstInQ', playerData);
     },
 
     setCurrentLevel(context, level) {

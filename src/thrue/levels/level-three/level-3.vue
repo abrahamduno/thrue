@@ -1,5 +1,24 @@
 <template>
-  <div >
+
+    <div  class=" pos-fixed z-999 pa-2  bottom-0 right-0  border-r-15 flex-align-start flex-column  " v-if="accs_length || is_playing_test" >
+
+        <!-- <div>PlayerStats</div> -->
+            <!-- :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]" -->
+        <div class="flex-wrap pa-1 n-flat border-r-15" v-if="__player.q">
+          <span class="flex-align-stetch " 
+          >
+            
+            <div v-for="(qItem, index) in __player.q" 
+              class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
+                :class="[index == 0 ? 'n-flat':'border-l-2 opacity-hover-50']"
+            >
+                {{statToAction(qItem.stat)}}
+            </div>
+          </span>
+        </div>
+      </div>
+
+
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
 
     <div  v-if="!pro_mode"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
@@ -38,7 +57,7 @@
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-5 border-r-50 flex-align-start flex-column n-flat noclick"
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap " v-if="__player.stats">
@@ -83,7 +102,6 @@
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-  </div>
 </template>
 <script>
 import * as THREE from "three";

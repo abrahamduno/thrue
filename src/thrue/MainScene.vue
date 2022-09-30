@@ -1,7 +1,5 @@
 <template>
-  <div >
     <component ref="level" :is="getterLevel" v-bind="levelOne"></component>
-  </div>
 </template>
 <script>
 import levelOne from "./levels/level-one/level-1.vue"

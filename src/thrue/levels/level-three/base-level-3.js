@@ -39,6 +39,16 @@ export default {
       }
       this.$init_player()
     },
+    statToAction(stat)
+    {
+      switch(stat)
+      {
+        case "hunger": return "Eat Food"
+        case "energy": return "Sleep"
+        case "fun": return "Read Newspaper"
+        case "hygene": return "Take Shower"
+      }
+    },
     checkGoals()
     {
       // let input = prompt("Amount",1)
@@ -261,20 +271,27 @@ export default {
           // for (var i = 0; i < statList.length; i++)
           {
             let theStat = _npcName
-            if (this.__player.stats[theStat] < 10)
-            {
-              this.$store.dispatch("setPlayerStats",{
-                id:"0",
-                stats:{
-                  [theStat]: parseFloat(this.__player.stats[theStat])+1,
+              // this.$store.dispatch("setPlayerStats",{
+              //   id:"0",
+              //   stats:{
+              //     [theStat]: parseFloat(this.__player.stats[theStat])+1,
+              //   },
+              // })
+              this.$store.dispatch("addToPlayerQ",{
+                  id:"0",
+                  q: [
+                    { stat:theStat, t:Date.now(), d:5000 }
+                  ]
                 },
-              })
+              )
 
               // this.NPCContainer[_npcName].rotation.x = 0.2
-              this.NPCContainer[_npcName].rotation.y = 0.8
+              this.NPCContainer[_npcName].rotation.y = 0.5
               // this.NPCContainer[_npcName].rotation.z = 0.2
+            if (this.__player.stats[theStat] < 10)
+            {
             } else {
-              alert("You can't action with full "+theStat)
+              alert("You are sinnin "+theStat)
             }
           }
           

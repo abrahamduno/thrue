@@ -272,7 +272,21 @@ export default {
     },
     _$animate_main()
     {
-      let ms = Date.now();
+      // let ms = Date.now();
+
+      // if ()
+      const nowT = Date.now()
+      // console.log(nowT)
+      if (this.__player && this.__player.q.length)
+      {
+        if (nowT > this.__player.q[0].t+this.__player.q[0].d)
+        {
+          // alert("action finished")
+          this.$store.dispatch("clearFirstInQ",{
+            id:"0",
+          })
+        }
+      }
       // console.log(ms);
 
       this.$animate_startLevelBlob()

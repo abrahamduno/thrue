@@ -67,6 +67,7 @@
 .flex-between { display: flex; justify-content: space-between; align-items: center }
 .flex-around { display: flex; justify-content: space-around; align-items: center }
 
+.flex-align-stetch { display: flex; align-items: stretch !important; }
 .flex-align-start { display: flex; align-items: flex-start !important; }
 .flex-align-end { display: flex; align-items: flex-end !important; }
 .flex-justify-start { display: flex; justify-content: flex-start !important; }
