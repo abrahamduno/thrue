@@ -18,6 +18,7 @@
                 <div class="flex-row ma-2" >
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!pro_mode ? 'n-conca' : 'n-inset']"
+                            v-if="is_playing_test || accs_length"
                         @click="changeProMode"
                         style=""
                     >
@@ -99,6 +100,7 @@
         </div>
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
                             :class="[!pro_mode ? 'n-conca' : 'n-inset']"
+                            v-if="is_playing_test || accs_length"
                         @click="changeProMode"
                         style=""
                     >

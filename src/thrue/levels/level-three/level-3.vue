@@ -5,12 +5,12 @@
         <!-- <div>PlayerStats</div> -->
             <!-- :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]" -->
         <div class="flex-wrap pa-1 n-flat border-r-15" v-if="__player.q">
-          <span class="flex-align-stetch " 
+          <span class="flex-column " 
           >
             
             <div v-for="(qItem, index) in __player.q" 
               class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
-                :class="[index == 0 ? 'n-flat':'border-l-2 opacity-hover-50']"
+                :class="[index == 0 ? 'n-flat':' opacity-hover-50']"
             >
                 <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
                 {{statToAction(qItem.stat)}}
@@ -72,7 +72,7 @@
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
-        <div class="flex-wrap " v-if="__player.stats">
+        <div class="flex-wrap mb-3" v-if="__player.stats">
           <span class="flex px-3" style="border-right: 2px solid #777777"
             :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]"
           >
@@ -83,7 +83,7 @@
               
             > {{__player.stats.hunger}}</small>
           </span>
-          <span class="flex px-3" style="border-right: 2px solid #777777"
+          <span class="flex px-3" 
             :class="[[__player.stats.hygene > 8 ? 'tx-success':''],[__player.stats.hygene < 4 ? 'tx-error':'']]"
           >
             <span title="Hygene">
@@ -91,6 +91,8 @@
               <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
             <small>{{__player.stats.hygene}}</small>
           </span>
+        </div>
+        <div class="flex-wrap " v-if="__player.stats">
           <span class="flex px-3" style="border-right: 2px solid #777777"
             :class="[[__player.stats.fun > 8 ? 'tx-success':''],[__player.stats.fun < 4 ? 'tx-error':'']]"
           >
@@ -157,12 +159,12 @@ export default {
     LANG()                  { return this.$store.getters.LANG },
     accs_length()           { return this.$store.getters.accs_length },
     first_acc()             { return this.$store.getters.first_acc },
+    is_playing_test()      { return this.$store.getters.is_playing_test },
 
     dark_mode()             { return this.$store.getters.dark_mode },
     pro_mode()             { return this.$store.getters.pro_mode },
     auto_mode()             { return this.$store.getters.auto_mode },
 
-    is_playing_test()      { return this.$store.getters.is_playing_test },
     current_sub_page()      { return this.$store.getters.current_sub_page },
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
