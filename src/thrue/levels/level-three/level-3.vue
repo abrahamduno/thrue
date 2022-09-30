@@ -1,26 +1,71 @@
 <template>
-  <div >
+
+    <div  class=" pos-fixed z-999 pa-2  bottom-0 right-0  border-r-15 flex-align-start flex-column  " v-if="accs_length || is_playing_test" >
+
+        <!-- <div>PlayerStats</div> -->
+            <!-- :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]" -->
+        <div class="flex-wrap pa-1 n-flat border-r-15" v-if="__player.q">
+          <span class="flex-column " 
+          >
+            
+            <div v-for="(qItem, index) in __player.q" 
+              class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
+                :class="[index == 0 ? 'n-flat':' opacity-hover-50']"
+            >
+                <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
+                {{statToAction(qItem.stat)}}
+            </div>
+          </span>
+        </div>
+      </div>
+
+
     <canvas ref="canvas" id="canvas" class="w-100 pos-fixed main-wrap"> </canvas>
 
-    <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
-    style="left: 20%; width: 60vw">
-    </div>
+    <!-- <div  v-if="!pro_mode && (accs_length || is_playing_test)"  class="tutorial-theme-wrapper pos-fixed  h-100 top-0 block flex-center flex-align-center"
+    >
+    </div> -->
 
-    <div  v-if="enable_help == 1 && show_help" class="tutorial-theme-bg pos-fixed w-100 flex-center"
-      style="top: 20%; height: 60vh">
-      <h1  style="z-index: 999999; background: #222222" 
-        @click="enable_help++; clickedLevelHelp()" 
-          class="tx-center clickable opacity-hover-75 tx-lg  pa-5 border-r-50 n-tx-3d"
+        <!-- @click="enable_help++; clickedLevelHelp()"  -->
+         <!-- v-if="enable_help == 1 && show_help" -->
+
+
+
+<!--     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="tutorial-theme-bg pos-fixed w-100 flex-center"
       >
-          <span class="nopointer show-md_x tx-sm">Click the Edges</span>
-          <span class="nopointer show-xs_md">Swipe!</span>
+      <h1  style="z-index: 999999; background: #222222" 
+          class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d noclick"
+      >
+          <span class="nopointer show-xs_md block " style="height: 100px"></span>
+          <span class="nopointer ">CONTROLS</span>
+          <br>
+          <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Click to Move</span>
+          <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
-          <!-- <br> -->
-          <small class="nopointer ">(Up/Down=move) <br> (Left/Right=rotate)</small>
+          <small class="nopointer  tx-sm flex-column show-md_x">
+              <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward</span>
+              <div class="flex">
+                <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> Left</span>
+                <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> Right</span>
+              </div>
+              <span class="tx-ls-3 mx-2" style="color:#33ff11">Backward</span>
+          </small>
+          <small class="nopointer  tx-sm flex-column show-xs_md">
+              <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward <br> ↑</span>
+              <div class="flex">
+                <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> ← <br> Left</span>
+                <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> → <br> Right</span>
+              </div>
+              <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
+          </small>
           <hr class="w-100 opacity-25 pa-0 my-2">
-          <span class="opacity-hover-50 tx-lg">OK</span>
+          <span class="opacity-hover-50 tx-xs">Click "PRO" to hide</span>
       </h1>
-    </div>
+    </div> -->
+
+
+
+
     <h1 v-if="enable_help == 3 && show_help" style="z-index: 999999; background: #77777744" 
       @click="clickedLevelHelp" 
         class="tx-center clickable opacity-hover-75 tx-xl top-50p pos-fixed pa-5 border-r-50"
@@ -30,29 +75,41 @@
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-5 border-r-50 flex-align-start flex-column n-flat noclick"
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <!-- <div>PlayerStats</div> -->
-        <div class="flex-wrap ">
-          <span class="flex px-3" style="border-right: 2px solid #777777">
-            <span title="Hunger">
-              <i class="mr-2 fas fa-hamburger"></i>
+        <div class="flex-wrap mb-3" v-if="__player.stats">
+          <span class="flex px-3" style="border-right: 2px solid #777777"
+            :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]"
+          >
+            <span title="Hunger" >
+              <i class="mr-2 fas fa-hamburger" ></i>
               <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
-            <small>{{__player.stats.hunger}}</small>
+            <small
+              
+            > {{__player.stats.hunger}}</small>
           </span>
-          <span class="flex px-3" style="border-right: 2px solid #777777">
+          <span class="flex px-3" 
+            :class="[[__player.stats.hygene > 8 ? 'tx-success':''],[__player.stats.hygene < 4 ? 'tx-error':'']]"
+          >
             <span title="Hygene">
               <i class="mr-2 fas fa-shower"></i>
               <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
             <small>{{__player.stats.hygene}}</small>
           </span>
-          <span class="flex px-3" style="border-right: 2px solid #777777">
+        </div>
+        <div class="flex-wrap " v-if="__player.stats">
+          <span class="flex px-3" style="border-right: 2px solid #777777"
+            :class="[[__player.stats.fun > 8 ? 'tx-success':''],[__player.stats.fun < 4 ? 'tx-error':'']]"
+          >
             <span title="Fun">
               <i class="mr-2 fas fa-smile-beam"></i>
               <!-- <i class="fas fa-solid fa-pool-8-ball"></i>  --></span>
             <small>{{__player.stats.fun}}</small>
           </span>
-          <span class="flex px-3">
+          <span class="flex px-3"
+            :class="[[__player.stats.energy > 8 ? 'tx-success':''],[__player.stats.energy < 4 ? 'tx-error':'']]"
+          >
             <span title="Energy">
               <i class="mr-2 fas fa-bolt"></i>
               <!-- <i class="fas fa-solid fa-bolt-lightning"></i> --></span>
@@ -65,12 +122,14 @@
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-  </div>
 </template>
 <script>
 import * as THREE from "three";
 import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
 import baseStandardMaterial from "../../../scripts/constants/baseStandardMaterial.js";
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { OrbitControls } from "../../../scripts/loaders/OrbitControls.js";
+// import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 import set_scene from "../../system/set_scene.js";
 import bloommixin from "../../system/mixin_bloom.js";
@@ -109,12 +168,12 @@ export default {
     LANG()                  { return this.$store.getters.LANG },
     accs_length()           { return this.$store.getters.accs_length },
     first_acc()             { return this.$store.getters.first_acc },
+    is_playing_test()      { return this.$store.getters.is_playing_test },
 
     dark_mode()             { return this.$store.getters.dark_mode },
     pro_mode()             { return this.$store.getters.pro_mode },
     auto_mode()             { return this.$store.getters.auto_mode },
 
-    is_playing_test()      { return this.$store.getters.is_playing_test },
     current_sub_page()      { return this.$store.getters.current_sub_page },
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
@@ -148,7 +207,7 @@ export default {
           rot: [0, 0, 0],
           fov: 50,
           fovSettings: {
-            mobile: 80,
+            mobile: 65,
             desktop: 50,
           },
           minReach: 0.1,
@@ -171,11 +230,28 @@ export default {
       this._$set_sceneAndCamera();
       this.addLight()
 
+      this._$set_renderer();
+      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
+
+      this.__orbitcontrols = new OrbitControls( this.camera, this.renderer.domElement );
+      this.__orbitcontrols.listenToKeyEvents( window ); // optional
+
+      //this.__orbitcontrols.addEventListener( 'change', render ); // call this only in static scenes (i.e., if there is no animation loop)
+
+      this.__orbitcontrols.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+      this.__orbitcontrols.dampingFactor = 0.05;
+
+      this.__orbitcontrols.screenSpacePanning = false;
+
+      this.__orbitcontrols.minDistance = 5;
+      this.__orbitcontrols.maxDistance = 40;
+
+      this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
+
+
       this.add_startLevelBlob()
       this.add_bubbleHead()
 
-      this._$set_renderer();
-      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
 
       this._$set_raycaster();
       this._$set_swipe()

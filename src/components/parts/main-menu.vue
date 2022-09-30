@@ -18,6 +18,7 @@
                 <div class="flex-row ma-2" >
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!pro_mode ? 'n-conca' : 'n-inset']"
+                            v-if="is_playing_test || accs_length"
                         @click="changeProMode"
                         style=""
                     >
@@ -98,7 +99,6 @@
             </div>
         </div>
 
-
         <div class="flex-between flex-align-start n-inset py-2 px-2 show-xs_md " v-show="togglers.menu"> 
             <div class="flex-column tx-xs" >
                 <div class="flex mb-4">
@@ -116,7 +116,7 @@
                     </a>
                 </div>
             </div>
-            <button class="noborder n-tx tx-md n-conca clickable flex-center border-r-15 show-xs_md tx-sm"
+            <!-- <button class="noborder n-tx tx-md n-conca clickable flex-center border-r-15 show-xs_md tx-sm"
                 @click="changeProMode"
                 :class="[!pro_mode ? 'n-conca' : 'n-inset']"
 
@@ -126,7 +126,7 @@
                     <i class="fas tx-sm" v-if="pro_mode" > <small> PRO</small></i>
                     <i class="fas tx-sm" v-else > <small> PRO</small></i>
                 </small>
-            </button>
+            </button> -->
             <button class="noborder n-tx tx-md n-conca clickable flex-center border-r-15 show-xs_md tx-sm"
                 v-if="pro_mode"
                         :class="[!auto_mode ? 'n-conca' : 'n-inset']"
@@ -161,6 +161,19 @@
 
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
         </div>
+
+                    <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                            :class="[!pro_mode ? 'n-conca' : 'n-inset']"
+                            v-if="is_playing_test || accs_length"
+                        @click="changeProMode"
+                        style=""
+                    >
+                            <!-- v-show="pro_mode" -->
+                        <span class="pa-2 py-4  opacity-hover-50">
+                            <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> PRO</span></i>
+                            <i class="fas tx-sm"  v-else > <span> PRO</span></i>
+                        </span>
+                    </button>
 
 
 

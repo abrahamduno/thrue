@@ -57,13 +57,39 @@ body {
 @media only screen and (min-width: 769px)
 {
   .tutorial-theme-bg  { 
-    background: linear-gradient(90deg,#ff331100, #ff331177 5%, #00000000 20%
-                                    ,#ff331100 80%, #ff331177 95%, #00000000 );
+    background: linear-gradient(90deg,#ff331100, #ff3311cc 5%, #00000000 20%),
+                linear-gradient(-90deg,#3311ff00, #ff9911cc 5%, #00000000 20%);
+    top: 20%; height: 60vh
   }
   .tutorial-theme-wrapper  { 
-    background: linear-gradient(0deg,#33ff1100, #33ff1177 5%, #00000000 20%
-                                    ,#33ff1100 80%, #33ff1177 95%, #00000000 );
+    background: linear-gradient(0deg,#33ff1100, #33ff11cc 5%, #00000000 20% ),
+                linear-gradient(180deg,#33ff1100, #3311ffcc 5%, #00000000 20% );
+    left: 35%; width: 30vw
   }
+}
+.border-r-1 {
+  border-right: 1px solid #888;
+}
+.border-l-1 {
+  border-left: 1px solid #888;
+}
+.border-r-1-secondary {
+  border-right: 1px solid var(--secondary-color);
+}
+.border-l-1-secondary {
+  border-left: 1px solid var(--secondary-color);
+}
+.border-r-2 {
+  border-right: 2px solid #888;
+}
+.border-l-2 {
+  border-left: 2px solid #888;
+}
+.border-r-2-secondary {
+  border-right: 2px solid var(--secondary-color);
+}
+.border-l-2-secondary {
+  border-left: 2px solid var(--secondary-color);
 }
 .dark-theme  { 
   /*background: url(./../../public/res/5952124.jpg)  no-repeat center center fixed !important;  
@@ -83,9 +109,20 @@ body {
     /*font-size: 12em;*/
     font-weight: 700;
     color: #f5f5f5;
-    text-shadow: 1px 1px 1px #919191,
+    /*text-shadow: 1px 1px 1px #919191,
                   0px 2px 1px #919191,
-                  -1px 3px 1px #919191
+                  -1px 3px 1px #919191*/
+                  
+    text-shadow: 1px 1px 1px #919191,
+        0px 2px 1px #919191,
+        0px 3px 1px #919191,
+        /*-1px 4px 1px #919191,*/
+        /*-1px 5px 1px #919191,*/
+        /*-2px 6px 1px #919191,*/
+    1px 18px 6px rgba(16,16,16,0.4),
+    1px 22px 10px rgba(16,16,16,0.2),
+    1px 25px 35px rgba(16,16,16,0.2)
+    /*,1px 30px 60px rgba(16,16,16,0.4)*/
 }
 
 .dark-theme .n-tx-3d {
