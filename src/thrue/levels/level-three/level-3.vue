@@ -40,7 +40,7 @@
 
 
 <!-- tutorial-theme-bg  -->
-    <div v-if="!pro_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
+    <div v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222; transform: translateY(120px);" 
           class="tx-center n-flat tx-lg  pa-5 border-r-50  "
@@ -119,7 +119,7 @@
               <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
           </small> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
-          <small class="opacity-hover-50 tx-xs">Click "PRO" to hide this</small>
+          <small class="opacity-hover-50 tx-xs">Click "HELP" to hide this</small>
       </h1>
     </div>
 
@@ -209,6 +209,7 @@ export default {
     dark_mode()             { return this.$store.getters.dark_mode },
     pro_mode()             { return this.$store.getters.pro_mode },
     auto_mode()             { return this.$store.getters.auto_mode },
+    pause_mode()             { return this.$store.getters.pause_mode },
 
     current_sub_page()      { return this.$store.getters.current_sub_page },
     current_filter()      { return this.$store.getters.current_filter },
@@ -241,10 +242,10 @@ export default {
         camera: {
           pos: [0, 0, 9],
           rot: [0, 0, 0],
-          fov: 50,
+          fov: 35,
           fovSettings: {
-            mobile: 65,
-            desktop: 50,
+            mobile: 50,
+            desktop: 35,
           },
           minReach: 0.1,
           maxReach: 120,
@@ -271,7 +272,7 @@ export default {
 
       this.p_$set_playerOrbitControl();
       // D5EAF9 // D88223
-      this.scene.fog = new THREE.FogExp2( 0xD5EAF9, 0.015  );
+      this.scene.fog = new THREE.FogExp2( this.dark_mode ? 0xD88223 : 0xD5EAF9, 0.015  );
 
 
       this.add_startLevelBlob()

@@ -24,6 +24,7 @@ const store = createStore({
       isPlayingTest: false,
       darkMode: false,
       proMode: false,
+      pauseMode: true,
       autoMode: false,
       englishMode: true,
 
@@ -99,6 +100,10 @@ const store = createStore({
     setProMode(state, mode) {
       state.proMode = mode
     },
+    setPauseMode(state, mode) {
+      console.log("pauseh")
+      state.pauseMode = mode
+    },
 
     setTestingConnect(state, val) {
       state.isPlayingTest = val
@@ -157,6 +162,9 @@ const store = createStore({
     },
     setProMode(context, mode) {
       context.commit('setProMode', mode);
+    },
+    setPauseMode(context, mode) {
+      context.commit('setPauseMode', mode);
     },
     setDarkMode(context, mode) {
       context.commit('setDarkMode', mode);
@@ -230,6 +238,9 @@ const store = createStore({
     },
     pro_mode(state) {
       return state.proMode
+    },
+    pause_mode(state) {
+      return state.pauseMode
     },
     english_mode(state) {
       return state.englishMode
