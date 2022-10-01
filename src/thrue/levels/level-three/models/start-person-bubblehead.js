@@ -33,6 +33,7 @@ export default {
           object.position.set(...this.mysign_base.pos);
           object.rotation.set(...this.mysign_base.rot);
           this.mysign = object
+          this.mysign.name = "personhead"
           this.scene.add(this.mysign);
         },
         this.onLoadProgress
@@ -43,6 +44,7 @@ export default {
           object.traverse( this.baseStandardMaterial() );
           object.position.set(...this.myobject_base.pos);
           this.myobject = object
+          this.myobject.name = "personbody"
           this.scene.add(this.myobject);
         },
         this.onLoadProgress

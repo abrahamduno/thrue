@@ -102,6 +102,9 @@ export default {
         this.goals.hay++
         this.clickFarm()
       }
+
+            // if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
+
     },
 
     l_$addLight()
@@ -160,9 +163,19 @@ export default {
           object.position.set(0, -50, 0);
           this.mycurrentlevel = object
           this.scene.add(this.mycurrentlevel);
+          this.mycurrentlevel.name = "mycurrentlevel"
 
           this.__addLevelMesh()
       }, this.onLoadProgress );
+    },
+    __staticNPCClickFunction (_npcName)
+    {
+      console.log(_npcName)
+      if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
+      console.log(_npcName,this.INTERSECTED)
+
+      this.p_$localQactions = []
+      this.p_$localQ = null
     },
     __defaultNPCClickFunction (_npcName)
     {
@@ -174,12 +187,15 @@ export default {
       {
         if (_npcName == this.p_$localQ.npcRef)
         {
+          // this.p_$localQactions = []
+          // this.p_$localQ = null
+          // this.$store.dispatch("clearPreQ",{
+          //     id:"0",
+          //   },
+          // )
+        } else {
           this.p_$localQactions = []
           this.p_$localQ = null
-          this.$store.dispatch("clearPreQ",{
-              id:"0",
-            },
-          )
         }
       } else {
         console.log("clicked", this.NPCClickCounter[_npcName], this.NPCBaseContainer[_npcName].npcStat)
@@ -300,6 +316,7 @@ export default {
       npcName = "floorhouse"
       this._$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
         pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
+        click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });
     },

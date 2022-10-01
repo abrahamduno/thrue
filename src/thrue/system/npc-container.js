@@ -37,14 +37,15 @@ export default {
           newClickBox.receiveShadow = true; //default
           newClickBox.position.set(...params.pos)
           if (params.rot) newClickBox.rotation.set(...params.rot)
-          newClickBox.name = params.name
+          // newClickBox.name = params.name
 
           this.NPCContainer[params.name] = newClickBox
           this.NPCAnimationContainer[params.name] = params.animation
           this.NPCBaseContainer[params.name] = params
           this.NPCClickCounter[params.name] = 0
           
-          this.scene.add( newClickBox );
+          this.scene.add( this.NPCContainer[params.name] );
+          this.NPCContainer[params.name].name = params.name
         }
       },
       async _$click_npcContainer()
@@ -153,6 +154,7 @@ export default {
           (object) => {
             object.traverse( this.baseStandardMaterial(_params.color) );
             object.position.set(..._params.pos);
+            object.name = _params.name
             if (_params.rot) object.rotation.set(..._params.rot);
             if (_params.scale) object.scale.set(..._params.scale);
 
@@ -163,6 +165,8 @@ export default {
             
 
             this.scene.add(this.NPCContainer[_params.name]);
+            this.NPCContainer[_params.name].name = _params.name
+            console.log(this.NPCContainer[_params.name])
         }, this.onLoadProgress );
       },
   }

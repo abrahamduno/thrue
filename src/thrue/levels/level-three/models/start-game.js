@@ -38,6 +38,7 @@ export default {
       this.startLevelBlob.receiveShadow = true; //default
       this.startLevelBlob.scale.set(1,1.5,1)
       this.startLevelBlob.position.set(-0.1,0,7.3)
+      this.startLevelBlob.name = "startLevelBlob"
       this.scene.add( this.startLevelBlob );
     },
   }
