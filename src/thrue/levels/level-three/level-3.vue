@@ -134,7 +134,7 @@
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-    <div v-if="(accs_length || is_playing_test) && p_$localQ" style="z-index: 999999;" 
+    <div v-if="(accs_length || is_playing_test) && p_$localQ != null" style="z-index: 999999;" 
         class="   tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
         <div class="flex-column mb-3" v-if="p_$localQ ">
