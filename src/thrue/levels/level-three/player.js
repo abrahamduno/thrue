@@ -100,6 +100,7 @@ export default {
           ]
         })
       }
+      this.p_$localQ.actions = null
       this.p_$localQ = null
     },
     p_$statToAction(stat)

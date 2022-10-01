@@ -193,6 +193,7 @@ export default {
         // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
         if (this.p_$localQ && _npcName == this.p_$localQ.npcRef)
         {
+          this.p_$localQ.actions = null
           this.p_$localQ = null
         } else {
           if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
