@@ -89,53 +89,10 @@
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
-        <!-- <div>PlayerStats</div> -->
         <div class="flex-wrap mb-3" v-if="p_$localQ && p_$localQ.length">
           {{p_$localQ[0].stats}}
         </div>
-        <div class="flex-wrap mb-3" v-if="__player.stats">
-          <span class="flex px-3" style="border-right: 2px solid #777777"
-            :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]"
-          >
-            <span title="Hunger" >
-              <i class="mr-2 fas fa-hamburger" ></i>
-              <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
-            <small
-              
-            > {{__player.stats.hunger}}</small>
-          </span>
-          <span class="flex px-3" 
-            :class="[[__player.stats.hygene > 8 ? 'tx-success':''],[__player.stats.hygene < 4 ? 'tx-error':'']]"
-          >
-            <span title="Hygene">
-              <i class="mr-2 fas fa-shower"></i>
-              <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
-            <small>{{__player.stats.hygene}}</small>
-          </span>
-        </div>
-        <div class="flex-wrap " v-if="__player.stats">
-          <span class="flex px-3" style="border-right: 2px solid #777777"
-            :class="[[__player.stats.fun > 8 ? 'tx-success':''],[__player.stats.fun < 4 ? 'tx-error':'']]"
-          >
-            <span title="Fun">
-              <i class="mr-2 fas fa-smile-beam"></i>
-              <!-- <i class="fas fa-solid fa-pool-8-ball"></i>  --></span>
-            <small>{{__player.stats.fun}}</small>
-          </span>
-          <span class="flex px-3"
-            :class="[[__player.stats.energy > 8 ? 'tx-success':''],[__player.stats.energy < 4 ? 'tx-error':'']]"
-          >
-            <span title="Energy">
-              <i class="mr-2 fas fa-bolt"></i>
-              <!-- <i class="fas fa-solid fa-bolt-lightning"></i> --></span>
-            <small>{{__player.stats.energy}}</small>
-          </span>
-          <!-- <span class="flex mr-3" > <span title="Rotation">Ro:</span> <small>{{__player.rot}}</small> </span> -->
-          <!-- <span class="flex mr-3" > <span title="Rotation">R:</span> <small>{{__player_rot_y}}</small> </span> -->
-          <!-- <span class="flex mr-3" > <span title="Rotation">P:</span> <small>{{__player_pos_z}}</small> </span> -->
-        </div>
-        <!-- <br> -->
-        <!-- <small class="opacity-50">(Scroll Down)</small> -->
+        <stats-bar :player="__player" />
     </h1>
 </template>
 <script>
@@ -153,10 +110,15 @@ import update_animation from "../../system/update_animation.js";
 
 import localScene from "./level-3-scene.js";
 
+import statsBar from "./components/stats-bar.vue";
+
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
-  name: 'level-three',    
+  name: 'level-three',     
+  components: {
+    statsBar,
+  },
   mixins: [
     baseStandardMaterial,
     
