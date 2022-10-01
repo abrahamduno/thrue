@@ -102,11 +102,25 @@ export default {
           if (this.l_$npcList.indexOf(intersects[ 0 ].object.parent.name) != -1)
           {
             // console.log("raycasted a new registered npc")
-            if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
-
+            let lastIntersected = this.INTERSECTED
             this.INTERSECTED = intersects[ 0 ].object;
+
+            if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
             this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
             this.INTERSECTED.material.emissive.setHex( 0xff0000 );
+
+
+            if (this.l_$npcList.indexOf(lastIntersected.parent.name) != -1)
+            {
+              // if ( lastIntersected ) lastIntersected.material.emissive.setHex( lastIntersected.currentHex );
+
+              // lastIntersected = intersects[ 0 ].object;
+              // lastIntersected.currentHex = lastIntersected.material.emissive.getHex();
+              if (lastIntersected.parent.name != this.INTERSECTED.parent.name) 
+              {
+                lastIntersected.material.emissive.setHex( 0x000000 );
+              } 
+            }
           } else {
             // console.log("raycasted a new static object")
             // console.log(this.INTERSECTED)
