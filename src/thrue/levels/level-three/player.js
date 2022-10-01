@@ -41,7 +41,7 @@ export default {
     },
     p_$commitStatAction(statAction,stat)
     {
-      alert(`you want to fix ${stat.stat} ${statAction.action}`)
+      // alert(`you want to fix ${stat.stat} ${statAction.action}`)
       this.$store.dispatch("addToPlayerQ",{
           id:"0",
           

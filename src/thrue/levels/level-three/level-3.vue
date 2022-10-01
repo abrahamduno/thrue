@@ -18,7 +18,7 @@
             
             <div v-for="(qItem, index) in __player.q" 
               class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
-                :class="[index == 0 ? 'n-flat':' opacity-hover-50']"
+                :class="[index == 0 ? 'n-flat pulse-npulse':' opacity-hover-50']"
             >
                 <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
                 {{index > 0 ? p_$statToAction(qItem.action) : p_$parseStatActionLIVE(qItem.action)}}
@@ -42,16 +42,64 @@
 <!-- tutorial-theme-bg  -->
     <div v-if="!pro_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
-      <h1  style="z-index: 999999; background: #222222" 
-          class="tx-center n-flat tx-lg  pa-5 border-r-50 n-tx-3d noclick"
+      <h1  style="z-index: 999999; background: #222222; transform: translateY(120px);" 
+          class="tx-center n-flat tx-lg  pa-5 border-r-50  "
       >
-          <span class="nopointer show-xs_md block " style="height: 100px"></span>
-          <span class="nopointer ">CONTROLS</span>
-          <br>
-          <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Drag the screen <br> to Rotate</span>
-          <span class="nopointer show-xs_md tx-xs  opacity-75 tx-ls-5">Swipe to Rotate</span>
-          <br>
-          <i class="fas rock-nroll fa-hand-point-up"></i>
+          <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
+          <span class="nopointer opacity-75 tx-ls-8">How to Play</span>
+          <!-- <br> -->
+          <hr class="w-100 opacity-25 pa-0 my-2">
+          <div class="opacity-25 nopointer  tx-xs tx-ls-2 w-100 tx-left"><i class="fas fa-arrow-down pl-4 pr-5 "></i>NEEDS</div>
+          <div class="flex-column flex-align-start">
+            <details class=" tx-xs  opacity-75 w-100">
+              <summary class="clickable w-100 flex tx-ls-5 pa-3">
+                <i class="tx-primary fas tx-lg fa-hamburger pr-1"></i> 
+                <span class="n-tx-3d">Hunger</span>
+              </summary>
+              <div class="n-inset py-2 border-r-15">
+                You can check <br> the fridge <br> when hungry
+                <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
+              </div>
+            </details>
+            <details class=" tx-xs  opacity-75 w-100">
+              <summary class="clickable w-100 flex tx-ls-5 pa-3">
+                <i class="tx-primary fas tx-lg fa-shower pr-1"></i> 
+                <span class="n-tx-3d">Hygene</span>
+              </summary>
+              <div class="n-inset py-2 border-r-15">
+                You can take <br> a shower <br> when smelly
+                <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
+              </div>
+            </details>
+            <details class=" tx-xs  opacity-75 w-100">
+              <summary class="clickable w-100 flex tx-ls-5 pa-3">
+                <i class="tx-primary fas tx-lg fa-smile-beam pr-1"></i> 
+                <span class="n-tx-3d">Fun</span>
+              </summary>
+              <div class="n-inset py-2 border-r-15">
+                You can check <br> the mailbox <br> when bored
+                <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
+              </div>
+            </details>
+            <details class=" tx-xs  opacity-75 w-100">
+              <summary class="clickable w-100 flex tx-ls-5 pa-3">
+                <i class="tx-primary fas tx-lg fa-bolt pr-2"></i> 
+                <span class="n-tx-3d">Energy</span>
+              </summary>
+              <div class="n-inset py-2 border-r-15">
+                You can rest <br> in bed <br> when sleepy
+                <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
+              </div>
+            </details>
+          </div>
+          <!-- fas fa-hamburger
+          fas fa-shower
+          fas fa-smile-beam
+          fas fa-bolt -->
+          <!-- <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Drag the screen <br> to Rotate</span> -->
+          <!-- <span class="nopointer show-xs_md tx-xs  opacity-75 tx-ls-5">Swipe to Rotate</span> -->
+          <!-- <br> -->
+          <!-- <i class="fas rock-nroll fa-hand-point-up"></i> -->
           <!-- <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
           <hr class="nopointer w-100 opacity- pa-0 my-2">
           <small class="nopointer  tx-sm flex-column show-md_x">
@@ -71,7 +119,7 @@
               <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
           </small> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
-          <span class="opacity-hover-50 tx-xs">Click "PRO" <br> to hide this</span>
+          <small class="opacity-hover-50 tx-xs">Click "PRO" to hide this</small>
       </h1>
     </div>
 
@@ -86,12 +134,12 @@
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
-    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
+    <div v-if="(accs_length || is_playing_test) && p_$localQ" style="z-index: 999999;" 
+        class="  opacity-75 tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
         <div class="flex-column mb-3" v-if="p_$localQ ">
           <div class=" mb-2 " >
-            <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}}:</span>
+            <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
             <div v-if="p_$localQ.actions.length">
               <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
                 <small class="tx-sm pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
@@ -100,6 +148,11 @@
           </div>
           <div class="opacity-50 mb-2" v-if="!p_$localQ.actions.length">no action</div>
         </div>
+  </div>
+    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
+    >
+
         <stats-bar :player="__player" />
     </h1>
 </template>

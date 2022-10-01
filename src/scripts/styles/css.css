@@ -141,6 +141,8 @@
 .tx-ls-2 {letter-spacing: 2px; }
 .tx-ls-3 {letter-spacing: 3px; }
 .tx-ls-5 {letter-spacing: 5px; }
+.tx-ls-6 {letter-spacing: 6px; }
+.tx-ls-8 {letter-spacing: 8px; }
 .tx-ls-10 {letter-spacing: 10px; }
 .tx-ls-15 {letter-spacing: 15px; }
 .tx-ls-25 {letter-spacing: 25px; }
@@ -336,6 +338,8 @@
 
 
 /* ------------------------------------------ ANIMATING ------------------------------------------ */
+.pulse-npulse { animation: pulsenpulse 2s;  animation-iteration-count: infinite }
+@keyframes pulsenpulse { 0%{ transform: scale(1); } 50%{ transform: scale(.85); } 100%{ transform: scale(1); }   }
 .rock-nroll { animation: rocknroll 2s;  animation-iteration-count: infinite }
 @keyframes rocknroll { 0%{ transform: translateX(15px) rotate(-49deg); } 50% { transform: translateX(-15px) rotate(-95deg); }  100% { transform: translateX(15px) rotate(-49deg); } }
 .spin-spin { animation: spinspin 2s;  animation-iteration-count: infinite }

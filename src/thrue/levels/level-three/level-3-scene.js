@@ -191,27 +191,33 @@ export default {
       let defaultNPCClickFunction = (_npcName) => {
         // alert("You've Clicked "+`${_npcName}`)
         // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-        if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
+        if (this.p_$localQ && _npcName == this.p_$localQ.npcRef)
         {
+          this.p_$localQ = null
+        } else {
+          if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
           {
-            let theStat = this.NPCBaseContainer[_npcName].npcStat
+            {
+              let theStat = this.NPCBaseContainer[_npcName].npcStat
 
-              // if (this.p_$localQ)
-              {
-                this.p_$localQ = {
-                  id:"0",
-                  stat: theStat,
-                  npcRef:_npcName,
+                // if (this.p_$localQ)
+                {
+                  this.p_$localQ = {
+                    id:"0",
+                    stat: theStat,
+                    npcRef:_npcName,
+                  }
+                  this.p_$localQ.actions = this.p_$availableActions(_npcName)
+                  // console.log(this.p_$localQ)
                 }
-                this.p_$localQ.actions = this.p_$availableActions(_npcName)
-                // console.log(this.p_$localQ)
-              }
-              this.NPCContainer[_npcName].rotation.y = 0.5
+                this.NPCContainer[_npcName].rotation.y = 0.5
 
+            }
+            
           }
-          
-          this.NPCClickCounter[_npcName]--
         }
+        this.NPCClickCounter[_npcName]--
+
         // this.NPCContainer[_npcName].position.y = 50;
         // this.NPCContainer[_npcName].visible = false
       }

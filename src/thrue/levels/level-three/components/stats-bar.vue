@@ -4,7 +4,7 @@
         :class="[[player.stats.hunger > 8 ? 'tx-success':''],[player.stats.hunger < 4 ? 'tx-error':'']]"
       >
         <span title="Hunger" >
-          <i class="mr-2 fas fa-hamburger" ></i>
+          <i class="mr-2 fas fa-hamburger"></i>
           <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
         <small
           
