@@ -75,7 +75,7 @@ export default {
       }
       this.p_$localQ = null
     },
-    p_$parseStatAction(stat)
+    p_$statToAction(stat)
     {
       switch(stat)
       {
