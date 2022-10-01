@@ -90,7 +90,10 @@
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
     >
         <div class="flex-wrap mb-3" v-if="p_$localQ && p_$localQ.length">
-          {{p_$localQ[0].stats}}
+          <div class="opacity-50" v-if="!p_$localQ[0].actions.length">no action</div>
+          <div v-for="statAction in p_$localQ[0].actions">
+            {{statAction.name}}
+          </div>
         </div>
         <stats-bar :player="__player" />
     </h1>

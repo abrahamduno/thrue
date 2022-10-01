@@ -105,13 +105,13 @@ export default {
         )
         if (this.__player.q.length)
         {
-        let theStat = this.__player.q[0].stat
-        if (this.NPCBaseContainer[theStat].playerrot)
+        let theNpc = this.__player.q[0].npcRef
+        if (this.NPCBaseContainer[theNpc].playerrot)
         {
           this.myplayer.rotation.set(
-            this._$lerp(this.myplayer.rotation.x,this.NPCBaseContainer[theStat].playerrot[x],0.05*r),
-            this._$lerp(this.myplayer.rotation.y,this.NPCBaseContainer[theStat].playerrot[y],0.05*r),
-            this._$lerp(this.myplayer.rotation.z,this.NPCBaseContainer[theStat].playerrot[z],0.05*r),
+            this._$lerp(this.myplayer.rotation.x,this.NPCBaseContainer[theNpc].playerrot[x],0.05*r),
+            this._$lerp(this.myplayer.rotation.y,this.NPCBaseContainer[theNpc].playerrot[y],0.05*r),
+            this._$lerp(this.myplayer.rotation.z,this.NPCBaseContainer[theNpc].playerrot[z],0.05*r),
           )
           }
         }

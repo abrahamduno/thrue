@@ -178,21 +178,104 @@ export default {
       }, this.onLoadProgress );
       
       // this.addFarm();
+      let npcStat = ""
       let npcName = ""
       this._$init_npcContainer()
-      let defaultNPCFoundFunction = (_npcName) => {
-        alert("You've found "+`${_npcName}`)
-        this.NPCContainer[_npcName].position.y = 50;
-        this.NPCContainer[_npcName].visible = false
-      }
 
       let defaultNPCClickFunction = (_npcName) => {
         // alert("You've Clicked "+`${_npcName}`)
         console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-        if (this.NPCClickCounter[_npcName] == 1)
+        if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
         {
           {
-            let theStat = _npcName
+            let theStat = this.NPCClickCounter[_npcName].npcStat
+
+              if (this.p_$localQ)
+              {
+                this.p_$localQ.push({
+                  id:"0",
+                  actions:[],
+                  npcRef:_npcName,
+                  stats:{
+                    [theStat]: 1,
+                  },
+                })
+                console.log(this.p_$localQ)
+              }
+              this.NPCContainer[_npcName].rotation.y = 0.5
+
+          }
+          
+          this.NPCClickCounter[_npcName]--
+        }
+        // this.NPCContainer[_npcName].position.y = 50;
+        // this.NPCContainer[_npcName].visible = false
+      }
+
+
+      npcName = "1car"
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
+        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
+      });
+
+
+      npcName = "energy"
+      npcStat = "energy"
+      this._$add_npc({name:npcName,obj:"bed.obj",
+        pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
+        click: defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+      npcName = "hygene"
+      npcStat = "hygene"
+      this._$add_npc({name:npcName,obj:"shower.obj",
+        pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
+        click: defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+      npcName = "hunger"
+      npcStat = "hunger"
+      this._$add_npc({name:npcName,obj:"fridge.obj",
+        pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
+        playerrot:[0,Math.PI,0],
+        click: defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+      npcName = "fun"
+      npcStat = "fun"
+      this._$add_npc({name:npcName,obj:"mailbox.obj",
+        pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
+        click: defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+
+      npcName = "floorhouse"
+      this._$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
+        pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
+      //   animation:{type:"sin",path:["y"],value:0.02},
+      });
+    },
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               // this.$store.dispatch("setPlayerStats",{
               //   id:"0",
               //   stats:{
@@ -224,17 +307,6 @@ export default {
 
 
 
-
-              if (this.p_$localQ)
-              {
-                this.p_$localQ.push({
-                  id:"0",
-                  stats:{
-                    [theStat]: 1,
-                  },
-                })
-                console.log(this.p_$localQ)
-              }
               // if (this.NPCBaseContainer[_npcName].playerpos)
               // {
               //   this.$store.dispatch("setPlayerPosition",{
@@ -258,7 +330,6 @@ export default {
               //     ]
               //   })
               // }
-              this.NPCContainer[_npcName].rotation.y = 0.5
 
 
 
@@ -276,49 +347,3 @@ export default {
             // } else {
             //   alert("You are sinnin "+theStat)
             // }
-          }
-          
-          this.NPCClickCounter[_npcName]--
-        }
-        // this.NPCContainer[_npcName].position.y = 50;
-        // this.NPCContainer[_npcName].visible = false
-      }
-
-
-      npcName = "1car"
-      this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
-      });
-
-
-      npcName = "energy"
-      this._$add_npc({name:npcName,obj:"bed.obj",
-        pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
-      });
-      npcName = "hygene"
-      this._$add_npc({name:npcName,obj:"shower.obj",
-        pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
-      });
-      npcName = "hunger"
-      this._$add_npc({name:npcName,obj:"fridge.obj",
-        pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
-        playerrot:[0,Math.PI,0],
-        click: defaultNPCClickFunction,
-      });
-      npcName = "fun"
-      this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
-      });
-
-      npcName = "floorhouse"
-      this._$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
-        pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
-      //   animation:{type:"sin",path:["y"],value:0.02},
-      });
-    },
-  }
-}
