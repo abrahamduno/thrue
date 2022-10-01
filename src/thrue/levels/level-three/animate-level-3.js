@@ -18,16 +18,29 @@ export default {
         {
           // alert("action finished")
           let theStat = this.__player.q[0].stat
+          // console.log(this.__player.q[0])
 
-          if (this.__player.stats[theStat] < 10)
+          let newValue = parseFloat(this.__player.stats[theStat])+this.__player.q[0].value
+          if (newValue <= 10)
           {
             this.$store.dispatch("setPlayerStats",{
               id:"0",
               stats:{
-                [theStat]: parseFloat(this.__player.stats[theStat])+1,
+                [theStat]: parseFloat(this.__player.stats[theStat])+this.__player.q[0].value,
               },
             })
           } else {
+
+            if (newValue > 10)
+            {
+              this.$store.dispatch("setPlayerStats",{
+                id:"0",
+                stats:{
+                  [theStat]: 10,
+                },
+              })
+            } 
+            
             alert("You are sinnin "+theStat)
           }
           this.$store.dispatch("clearFirstInQ",{
@@ -116,7 +129,7 @@ export default {
             )
           }
 
-          if (this.__orbitcontrols)
+          if (this.__orbitcontrols && this.NPCBaseContainer[theNpc].playerpos)
           {
             this.__orbitcontrols.target.set(
               this._$lerp(this.__orbitcontrols.target.x,this.NPCBaseContainer[theNpc].playerpos[0],0.1),
@@ -134,7 +147,7 @@ export default {
 
       const t = document.body.getBoundingClientRect().top;
       this.__scroll = t
-      console.log(this.__scroll)
+      // console.log(this.__scroll)
       // this.__scroll = window.scrollY;
       // if (this.DEBUG) { console.log(t) }
       // let currentScene = 1

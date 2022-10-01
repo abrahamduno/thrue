@@ -17,7 +17,7 @@
           >
             
             <div v-for="(qItem, index) in __player.q" 
-              class="clickable block pa-3 tx-sm flex-column"  style="width: 50px !important" 
+              class="clickable block pa-3 tx-sm flex-column"  style="width: 70px !important" 
                 :class="[index == 0 ? 'n-flat pulse-npulse':' opacity-hover-50']"
             >
                 <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
@@ -135,14 +135,14 @@
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
     <div v-if="(accs_length || is_playing_test) && p_$localQ" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
+        class="   tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
         <div class="flex-column mb-3" v-if="p_$localQ ">
           <div class=" mb-2 " >
             <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
             <div v-if="p_$localQ.actions.length">
               <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
-                <small class="tx-sm pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
+                <small class="tx-xs py-1 pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
               </div>
             </div>
           </div>

@@ -24,13 +24,32 @@ export default {
         case "fridge":
         return [
           {
-            action:"apple",
+            action:"Eat apple",
+            dur: 2500,
             stat:{
               [theStat]: 1,
             },
           },
           {
-            action:"cake",
+            action:"Devour cake",
+            dur: 5000,
+            stat:{
+              [theStat]: 2,
+            },
+          },
+        ]
+        case "shower":
+        return [
+          {
+            action:"Shower with soap",
+            dur: 7500,
+            stat:{
+              [theStat]: 1,
+            },
+          },
+          {
+            action:"Quick shower",
+            dur: 5000,
             stat:{
               [theStat]: 2,
             },
@@ -42,11 +61,19 @@ export default {
     p_$commitStatAction(statAction,stat)
     {
       // alert(`you want to fix ${stat.stat} ${statAction.action}`)
+      // console.log(statAction,stat)
       this.$store.dispatch("addToPlayerQ",{
           id:"0",
           
           q: [
-            { npcRef: stat.npcRef, stat:stat.stat, action:statAction.action, t:Date.now(), d:7500 }
+            {
+              npcRef: stat.npcRef,
+              stat:stat.stat,
+              value:statAction.stat[stat.stat],
+              action:statAction.action,
+              t:Date.now(),
+              d:statAction.dur,
+            }
           ]
         },
       )
@@ -79,16 +106,20 @@ export default {
     {
       switch(stat)
       {
-        case "apple": return "Eat Apple"
-        case "cake": return "Eat Cake"
+        case "Eat apple": return "Eat apple"
+        case "Devour cake": return "Devour cake"
+        case "Shower with soap": return "Shower with soap"
+        case "Quick shower": return "Quick shower"
       }
     },
     p_$parseStatActionLIVE(stat)
     {
       switch(stat)
       {
-        case "apple": return "Eating Apple"
-        case "cake": return "Eating Cake"
+        case "Eat apple": return "Eating Apple"
+        case "Devour cake": return "Devouring cake"
+        case "Shower with soap": return "Soaping"
+        case "Quick shower": return "Showering"
       }
     },
     p_$setOrbitToPlayerPos()

@@ -1,7 +1,7 @@
 <template>
     <div class="flex-wrap mb-3" v-if="player.stats">
       <span class="flex px-3" style="border-right: 2px solid #777777"
-        :class="[[player.stats.hunger > 8 ? 'tx-success':''],[player.stats.hunger < 4 ? 'tx-error':'']]"
+        :class="[[player.stats.hunger > 9 ? 'tx-success':''],[player.stats.hunger < 4 ? 'tx-error':'']]"
       >
         <span title="Hunger" >
           <i class="mr-2 fas fa-hamburger"></i>
@@ -11,7 +11,7 @@
         > {{player.stats.hunger}}</small>
       </span>
       <span class="flex px-3" 
-        :class="[[player.stats.hygene > 8 ? 'tx-success':''],[player.stats.hygene < 4 ? 'tx-error':'']]"
+        :class="[[player.stats.hygene > 9 ? 'tx-success':''],[player.stats.hygene < 4 ? 'tx-error':'']]"
       >
         <span title="Hygene">
           <i class="mr-2 fas fa-shower"></i>
@@ -22,7 +22,7 @@
 
     <div class="flex-wrap " v-if="player.stats">
       <span class="flex px-3" style="border-right: 2px solid #777777"
-        :class="[[player.stats.fun > 8 ? 'tx-success':''],[player.stats.fun < 4 ? 'tx-error':'']]"
+        :class="[[player.stats.fun > 9 ? 'tx-success':''],[player.stats.fun < 4 ? 'tx-error':'']]"
       >
         <span title="Fun">
           <i class="mr-2 fas fa-smile-beam"></i>
@@ -30,7 +30,7 @@
         <small>{{player.stats.fun}}</small>
       </span>
       <span class="flex px-3"
-        :class="[[player.stats.energy > 8 ? 'tx-success':''],[player.stats.energy < 4 ? 'tx-error':'']]"
+        :class="[[player.stats.energy > 9 ? 'tx-success':''],[player.stats.energy < 4 ? 'tx-error':'']]"
       >
         <span title="Energy">
           <i class="mr-2 fas fa-bolt"></i>
