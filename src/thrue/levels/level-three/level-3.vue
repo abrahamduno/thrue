@@ -136,20 +136,29 @@
     </h1>
 
 
-    
-    <div v-if="(accs_length || is_playing_test) && p_$localQ != null" style="z-index: 999999;" 
+
+    <div v-if="(accs_length || is_playing_test) && p_$localQ" style="z-index: 999999;" 
         class="   tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
-      <div class="flex-column mb-3" v-if="p_$p_$localQ != null ">
+      <!-- id:{{p_$localQ.id}}
+      <br>
+      {{p_$localQactions.length}}
+      <br>
+      {{__player.y.length}} -->
+      <!-- <br>
+      {{__player.preQaction}}
+      <br>
+      {{__player.preQactions.length}} -->
+      <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.id">
         <div class=" mb-2 " >
           <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
-          <div v-if="p_$localQ.actions.length">
-            <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
+          <div v-if="p_$localQactions.length">
+            <div v-for="statAction in p_$localQactions" @click="p_$commitStatAction(statAction,p_$localQ)">
               <small class="tx-xs py-1 pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
             </div>
           </div>
         </div>
-        <div class="opacity-50 mb-2" v-if="!p_$localQ.actions.length">no action</div>
+        <div class="opacity-50 mb-2" v-if="!p_$localQactions.length">no action</div>
       </div>
   </div>
 

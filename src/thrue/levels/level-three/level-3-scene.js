@@ -164,6 +164,76 @@ export default {
           this.__addLevelMesh()
       }, this.onLoadProgress );
     },
+    __defaultNPCClickFunction (_npcName)
+    {
+      // alert("You've Clicked "+`${_npcName}`)
+      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+      console.log(this.p_$localQ,_npcName)
+      if (this.p_$localQ != null)
+      {
+        if (_npcName == this.p_$localQ.npcRef)
+        {
+          this.p_$localQactions = []
+          this.p_$localQ = null
+          this.$store.dispatch("clearPreQ",{
+              id:"0",
+            },
+          )
+        }
+      } else {
+        console.log("clicked", this.NPCClickCounter[_npcName], this.NPCBaseContainer[_npcName].npcStat)
+        if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
+        {
+          {
+            let theStat = this.NPCBaseContainer[_npcName].npcStat
+
+              // if (this.p_$localQ)
+              {
+                this.p_$localQ = {
+                  id:"0",
+                  stat: theStat,
+                  npcRef:_npcName,
+                }
+                this.p_$localQactions = this.p_$availableActions(_npcName)
+
+                // this.$store.dispatch("addToPlayerPreQ",{
+                //     preQ: {
+                //       id:"0",
+                //       stat: theStat,
+                //       npcRef:_npcName,
+                //     },
+                //     preQaction: "yes",
+                //     preQactions: this.p_$availableActions(_npcName),
+                //   },
+                // )
+
+                // this.$store.dispatch("addToPlayerY",{
+                //     id:"0",
+                //     t: 0,
+                //     preQ: {
+                //       id:"0",
+                //       stat: theStat,
+                //       npcRef:_npcName,
+                //     },
+                //     preQaction: "yes",
+                //     y: this.p_$availableActions(_npcName),
+                //   },
+                // )
+                
+                // console.log(this.p_$localQ)
+              }
+              this.NPCContainer[_npcName].rotation.y = 0.5
+
+          }
+          
+        }
+      }
+      this.NPCClickCounter[_npcName]--
+
+      // this.NPCContainer[_npcName].position.y = 50;
+      // this.NPCContainer[_npcName].visible = false
+    },
     __addLevelMesh()
     {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
@@ -188,40 +258,6 @@ export default {
       let npcName = ""
       this._$init_npcContainer()
 
-      let defaultNPCClickFunction = (_npcName) => {
-        // alert("You've Clicked "+`${_npcName}`)
-        // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-        if (this.p_$localQ && _npcName == this.p_$localQ.npcRef)
-        {
-          this.p_$localQ.actions = null
-          this.p_$localQ = null
-        } else {
-          if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
-          {
-            {
-              let theStat = this.NPCBaseContainer[_npcName].npcStat
-
-                // if (this.p_$localQ)
-                {
-                  this.p_$localQ = {
-                    id:"0",
-                    stat: theStat,
-                    npcRef:_npcName,
-                  }
-                  this.p_$localQ.actions = this.p_$availableActions(_npcName)
-                  // console.log(this.p_$localQ)
-                }
-                this.NPCContainer[_npcName].rotation.y = 0.5
-
-            }
-            
-          }
-        }
-        this.NPCClickCounter[_npcName]--
-
-        // this.NPCContainer[_npcName].position.y = 50;
-        // this.NPCContainer[_npcName].visible = false
-      }
 
 
       npcName = "1car"
@@ -235,14 +271,14 @@ export default {
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bed.obj",
         pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
+        click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "shower"
       npcStat = "hygene"
       this._$add_npc({name:npcName,obj:"shower.obj",
         pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
+        click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "fridge"
@@ -250,14 +286,14 @@ export default {
       this._$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
         playerrot:[0,Math.PI,0],
-        click: defaultNPCClickFunction,
+        click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
         pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
-        click: defaultNPCClickFunction,
+        click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
 

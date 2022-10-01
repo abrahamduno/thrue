@@ -9,6 +9,7 @@ export default {
   {
     return {
       p_$localQ: null,
+      p_$localQactions: [],
       p_$statList: ["energy","hunger","hygene","fun"]
     }
   },
@@ -100,8 +101,23 @@ export default {
           ]
         })
       }
-      this.p_$localQ.actions = null
+      this.p_$localQactions = []
       this.p_$localQ = null
+
+      // this.$store.dispatch("clearPreQ",{
+      //     id:"0",
+      //   },
+      // )
+      // this.$store.dispatch("clearPreQ",{
+      //     id:"0",
+      //   },
+      // )
+
+      // this.$store.dispatch("clearFirstInY",{
+      //   id:"0",
+      // })
+      // console.log("im",this.p_$localQ)
+      // console.log("im",this.p_$localQ, this.$store.getters.getPlayers[0].preQactions)
     },
     p_$statToAction(stat)
     {
@@ -152,7 +168,11 @@ export default {
         this.$store.dispatch("setPlayer",
           {...{
             id:"0",
+            // preQaction: "",
+            // preQactions: [],
+            // preQ: null,
             q: [],
+            y: [],
             obj: null,
             pos: [0,0,0],
             rot: [0,0,0],

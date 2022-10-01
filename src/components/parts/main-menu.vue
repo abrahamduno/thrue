@@ -237,6 +237,7 @@
             // console.log(englishMode)
             if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
             if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
+            if (pauseMode != null) { this.$store.dispatch("setPauseMode", pauseMode) }
             if (currentLevel != null) { this.$store.dispatch("setCurrentLevel", currentLevel) }
             if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
             if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }

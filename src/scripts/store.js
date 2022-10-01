@@ -36,7 +36,11 @@ const store = createStore({
       players: {
         "0":{
           id: "0",
+          // preQ: null,
+          // preQaction: "",
+          // preQactions: [],
           q: [],
+          // y: [],
           obj: null,
           pos: [0,0,0],
           rot: [0,0,0],
@@ -64,6 +68,41 @@ const store = createStore({
       // state.context.commit('setPlayerRotation', playerData);
       // console.log("newset", state.players[playerData.id])
     },
+    // clearPreQ(state, playerData) {
+    //   // state.players[playerData.id].preQaction  = ""
+    //   state.players[playerData.id].preQactions.shift()
+    //   // console.log(state.players[playerData.id].preQactions)
+    //   // state.players[playerData.id].preQactions.splice(0)
+    //   // console.log(state.players[playerData.id].preQactions)
+    //   // state.players[playerData.id].preQactions = [...state.players[playerData.id].preQactions]
+    //   // let newnew = {preQactions:[]}
+    //   // state.players[playerData.id] = { ...state.players[playerData.id], ...newnew }
+    //   // for (var i = 0; i < state.players[playerData.id].preQactions.length; i++)
+    //   // {
+    //   //   state.players[playerData.id].preQactions[] = Date.now()
+    //   // }
+
+    //   // state.players[playerData.id].preQactions = [...state.players[playerData.id].preQactions]
+    //   // state.players[playerData.id].preQ = null
+    //   console.log(state.players[playerData.id], playerData.id)
+    // },
+    // addToPlayerPreQ(state, playerData) {
+    //   if (!playerData.preQ) return
+    //   state.players[playerData.preQ.id].preQ = {...{}, ...playerData.preQ}
+    //   state.players[playerData.preQ.id].preQactions = [...playerData.preQactions]
+    //   // state.players[playerData.preQ.id].preQaction = playerData.preQaction
+    //   // state.players[playerData.preQ.id].preQaction = "yes"
+    // },
+    // clearFirstInY(state, playerData) {
+    //   for (var i = state.players[playerData.id].y.length - 1; i >= 0; i--) {
+    //     state.players[playerData.id].y.shift(i,1)
+    //   }
+    //   // state.players[playerData.id].y.slice(0); 
+    // },
+    // addToPlayerY(state, playerData) {
+    //   if (!playerData.y) return
+    //   state.players[playerData.id].y = [...state.players[playerData.id].y, ...playerData.y]
+    // },
     clearFirstInQ(state, playerData) {
       state.players[playerData.id].q.shift(); 
       for (var i = 0; i < state.players[playerData.id].q.length; i++)
@@ -153,6 +192,18 @@ const store = createStore({
     clearFirstInQ(context, playerData) {
       context.commit('clearFirstInQ', playerData);
     },
+    // addToPlayerY(context, playerData) {
+    //   context.commit('addToPlayerY', playerData);
+    // },
+    // clearFirstInY(context, playerData) {
+    //   context.commit('clearFirstInY', playerData);
+    // },
+    // clearPreQ(context, playerData) {
+    //   context.commit('clearPreQ', playerData);
+    // },
+    // addToPlayerPreQ(context, playerData) {
+    //   context.commit('addToPlayerPreQ', playerData);
+    // },
 
     setCurrentLevel(context, level) {
       context.commit('setCurrentLevel', level);
