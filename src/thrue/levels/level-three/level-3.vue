@@ -134,21 +134,27 @@
         <!-- <br> -->
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
+
+
+    
     <div v-if="(accs_length || is_playing_test) && p_$localQ != null" style="z-index: 999999;" 
         class="   tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
-        <div class="flex-column mb-3" v-if="p_$localQ ">
-          <div class=" mb-2 " >
-            <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
-            <div v-if="p_$localQ.actions.length">
-              <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
-                <small class="tx-xs py-1 pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
-              </div>
+      <div class="flex-column mb-3" v-if="p_$p_$localQ != null ">
+        <div class=" mb-2 " >
+          <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
+          <div v-if="p_$localQ.actions.length">
+            <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
+              <small class="tx-xs py-1 pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
             </div>
           </div>
-          <div class="opacity-50 mb-2" v-if="!p_$localQ.actions.length">no action</div>
         </div>
+        <div class="opacity-50 mb-2" v-if="!p_$localQ.actions.length">no action</div>
+      </div>
   </div>
+
+
+
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
