@@ -27,7 +27,7 @@ export default {
   ],
   methods:
   {
-    __initLevel()
+    __initLevelScene()
     {
       this.goals = {
         tickets: 0,
@@ -40,7 +40,7 @@ export default {
       this.p_$init_player({pos:[-13,0.25,-4]})
       this.p_$setOrbitToPlayerPos()
     },
-    checkGoals()
+    l_$checkGoals()
     {
       // let input = prompt("Amount",1)
       // let input = prompt("Amount",1)
@@ -50,49 +50,16 @@ export default {
       {
         alert("please wait for game to load")
         return
-        this.YOU_LOSE()
+        this.__YOU_LOSE()
       }
-      if (this.goals.hay < 3)
-      {
-        alert("hay")
-        this.YOU_LOSE()
-        return
-      }
-      if ( !this.NPCClickCounter.Molly
-        || !this.NPCClickCounter.Lucy
-        || !this.NPCClickCounter.Amy
-        || !this.NPCClickCounter.Mia)
-      {
-        alert("Molly Lucy Amy Mia")
-        this.YOU_LOSE()
-        return
-      }
-      if (this.enable_help < 2)
-      {
-        alert("enable_help")
-        this.YOU_LOSE()
-        return
-      }
-
-      this.enable_help++
-      this.show_help = true
-      this.YOU_WIN()
-      setTimeout(() => {
-        localStorage.setItem("currentLevel", JSON.stringify("levelTwo"));
-        this.$store.dispatch("setCurrentLevel", "levelTwo")
-        this.$nextTick(() => {
-          window.location.reload()
-        })
-        // let newMode = !this.auto_mode
-        // this.$store.dispatch("setAutoMode", newMode)
-        
-      },1000)
+      // ... (next scene) | implement go to town ? 
+      this.__YOU_WIN()
     },
-    YOU_WIN()
+    __YOU_WIN()
     {
-      alert("you win")
+      alert("Hello World!")
     },
-    YOU_LOSE()
+    __YOU_LOSE()
     {
       alert("Failed")
     },
@@ -131,22 +98,16 @@ export default {
       }
     },
 
-
-
-    addLight()
+    l_$addLight()
     {
       let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
       let sunintensity = this.dark_mode ? 1.2 : 0.9
       let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
 
-      // this.light4 = new THREE.PointLight( 0xffffff, 0.5, 8 );
-      // this.light4.position.set(-1,2.5,6)
-      // this.scene.add( this.light4 );
-
+      // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       // this.sunlight = new THREE.SpotLight( suncolor );
       this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
       this.sunlight.position.set( -15,9,10 ); //default; light shining from top
-      // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
       this.sunlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
@@ -154,10 +115,6 @@ export default {
       this.sunlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
       this.sunlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
       this.sunlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
-      // this.sunlight.penumbra = 0.9 // default false
-      // this.sunlight.penumbra = 0.9 // default false
-      // this.sunlight.shadow.camera.near = 0.5; // default
-      // this.sunlight.shadow.camera.far = 500; // default
       if (!window.chrome)
       {
         this.sunlight.shadow.mapSize.width = 2048; // default
@@ -166,54 +123,29 @@ export default {
       this.scene.add( this.sunlight );
       this.sunlighTarget = new THREE.Object3D();
       this.scene.add( this.sunlighTarget );
-      // this.sunlighTarget.position.z = -30
-      // this.sunlight.target = this.sunlighTarget
-
       // this.scene.add(new THREE.CameraHelper(this.sunlight.shadow.camera)) 
 
       const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
       this.scene.add( amlight );
-
-
-
-
+      
 
       const roomPositiong = [-16,5,-12]
       const targetroomPositiong = [roomPositiong[0],roomPositiong[1]-5,roomPositiong[2]]
-
       // color, intensity, distance = 0, angle = Math.PI / 3, penumbra = 0, decay = 1
       this.roomlight = new THREE.SpotLight( 0xffdd77, 0.5 );
-      // this.roomlight = new THREE.DirectionalLight( suncolor, sunintensity );
       this.roomlight.position.set( ...roomPositiong ); //default; light shining from top
-      // this.roomlight.position.lookAt( 0,0,0 ); //default; light shining from top
       this.roomlight.castShadow = true; // default false
-      // this.roomlight.distance = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.left = -this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.right = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.bottom = -this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.shadow.camera.top = this.sceneVariables.camera.shadowDistance; // default false
-      // this.roomlight.penumbra = 0.9 // default false
       this.roomlight.penumbra = 0.9 // default false
       this.roomlight.angle = Math.PI/4 // default false
-      // this.roomlight.shadow.camera.near = 0.5; // default
-      // this.roomlight.shadow.camera.far = 500; // default
-      // if (!window.chrome)
-      // {
-      //   this.roomlight.shadow.mapSize.width = 2048; // default
-      //   this.roomlight.shadow.mapSize.height = 2048; // default
-      // }
       this.scene.add( this.roomlight );
       this.roomlightTarget = new THREE.Object3D();
       this.roomlightTarget.position.set( ...targetroomPositiong )
       this.scene.add( this.roomlightTarget );
       this.roomlight.target = this.roomlightTarget
-
-
-
     },
-    addCurrentLevel(  ) {
-      this.__initLevel()
+    l_$addCurrentLevelScene()
+    {
+      this.__initLevelScene()
 
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelthree.obj",

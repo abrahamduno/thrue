@@ -198,7 +198,7 @@ export default {
   },
   methods:
   {
-    initLevel()
+    __initLevel()
     {
       this.scene = null
       this.camera = null
@@ -234,14 +234,14 @@ export default {
         height: null,
       }
 
-      this.setScene();
-      this.$listen_scrollPosition()
+      this.__setScene();
+      this.l_$listen_scrollPosition()
       // this.$animate()
     },
-    setScene()
+    __setScene()
     {
       this._$set_sceneAndCamera();
-      this.addLight()
+      this.l_$addLight()
 
       this._$set_renderer();
       if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
@@ -264,24 +264,24 @@ export default {
       {
         this.$click_startLevelBlob()
       }
-      this.checkGoals() // base-level js
+      this.l_$checkGoals() // base-level js
       // alert("test")
     },
   },
   beforeDestroy() {
     // remove listener again
     window.removeEventListener( 'resize', this._$set_cameraRenderSize );
-    window.removeEventListener("scroll", this.$listen_scrollPosition);
+    window.removeEventListener("scroll", this.l_$listen_scrollPosition);
 
     document.removeEventListener("mousemove", this._$listen_pointerPos);
     document.removeEventListener("click", this._$listen_click);
   },
   mounted()
   {
-    this.initLevel()
+    this.__initLevel()
 
     window.addEventListener( 'resize', this._$set_cameraRenderSize );
-    window.addEventListener("scroll", this.$listen_scrollPosition);
+    window.addEventListener("scroll", this.l_$listen_scrollPosition);
 
     document.addEventListener( 'mousemove', this._$listen_pointerPos );
     document.addEventListener( 'click', this._$listen_click );

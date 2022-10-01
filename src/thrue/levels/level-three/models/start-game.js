@@ -24,7 +24,7 @@ export default {
       await this.$store.dispatch("connectWallet")
       if (!this.mycurrentlevel)
       {
-        this.addCurrentLevel()
+        this.l_$addCurrentLevelScene()
         this.enable_help++
         this.show_help = true
       }
