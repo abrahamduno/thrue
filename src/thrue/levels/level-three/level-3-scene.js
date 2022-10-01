@@ -155,8 +155,11 @@ export default {
           this.mycurrentlevel = object
           this.scene.add(this.mycurrentlevel);
 
-          this.addLevelMesh()
+          this.__addLevelMesh()
       }, this.onLoadProgress );
+    },
+    __addLevelMesh()
+    {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "path3.obj",
         (object) => {
@@ -173,9 +176,7 @@ export default {
           this.scene.add(object);
 
       }, this.onLoadProgress );
-    },
-    addLevelMesh()
-    {
+      
       // this.addFarm();
       let npcName = ""
       this._$init_npcContainer()
