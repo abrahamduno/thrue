@@ -85,13 +85,14 @@ export default {
 
       if (this.NPCContainer)
       {
-        for (var i = 0; i < this.p_$statList.length; i++)
+        for (var i = 0; i < this.l_$npcList.length; i++)
         {
-          const theStat = this.p_$statList[i]
-          if (!this.NPCContainer[theStat]) continue
-          this.NPCContainer[theStat].rotation.x = this._$lerp(this.NPCContainer[theStat].rotation.x,0,0.1)
-          this.NPCContainer[theStat].rotation.y = this._$lerp(this.NPCContainer[theStat].rotation.y,0,0.1)
-          this.NPCContainer[theStat].rotation.z = this._$lerp(this.NPCContainer[theStat].rotation.z,0,0.1)
+          const theNpc = this.l_$npcList[i]
+          if (!this.NPCContainer[theNpc]) continue
+            // console.log(theNpc)
+          this.NPCContainer[theNpc].rotation.x = this._$lerp(this.NPCContainer[theNpc].rotation.x,0,0.1)
+          this.NPCContainer[theNpc].rotation.y = this._$lerp(this.NPCContainer[theNpc].rotation.y,0,0.1)
+          this.NPCContainer[theNpc].rotation.z = this._$lerp(this.NPCContainer[theNpc].rotation.z,0,0.1)
         }
       }
 
@@ -105,14 +106,22 @@ export default {
         )
         if (this.__player.q.length)
         {
-        let theNpc = this.__player.q[0].npcRef
-        if (this.NPCBaseContainer[theNpc].playerrot)
-        {
-          this.myplayer.rotation.set(
-            this._$lerp(this.myplayer.rotation.x,this.NPCBaseContainer[theNpc].playerrot[x],0.05*r),
-            this._$lerp(this.myplayer.rotation.y,this.NPCBaseContainer[theNpc].playerrot[y],0.05*r),
-            this._$lerp(this.myplayer.rotation.z,this.NPCBaseContainer[theNpc].playerrot[z],0.05*r),
-          )
+          let theNpc = this.__player.q[0].npcRef
+          if (this.NPCBaseContainer[theNpc].playerrot)
+          {
+            this.myplayer.rotation.set(
+              this._$lerp(this.myplayer.rotation.x,this.NPCBaseContainer[theNpc].playerrot[x],0.05*r),
+              this._$lerp(this.myplayer.rotation.y,this.NPCBaseContainer[theNpc].playerrot[y],0.05*r),
+              this._$lerp(this.myplayer.rotation.z,this.NPCBaseContainer[theNpc].playerrot[z],0.05*r),
+            )
+          }
+
+          if (this.__orbitcontrols)
+          {
+            this.__orbitcontrols.target.set(
+              this._$lerp(this.__orbitcontrols.target.x,this.NPCBaseContainer[theNpc].playerpos[0],0.1),
+              this._$lerp(this.__orbitcontrols.target.y,this.NPCBaseContainer[theNpc].playerpos[1],0.1),
+              this._$lerp(this.__orbitcontrols.target.z,this.NPCBaseContainer[theNpc].playerpos[2],0.1))
           }
         }
       }

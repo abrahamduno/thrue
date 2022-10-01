@@ -8,7 +8,7 @@ export default {
   data()
   {
     return {
-      p_$localQ: [],
+      p_$localQ: null,
       p_$statList: ["energy","hunger","hygene","fun"]
     }
   },
@@ -16,18 +16,79 @@ export default {
   {
   },
   methods: {
+    p_$availableActions(npc)
+    {
+      let theStat = this.NPCBaseContainer[npc].npcStat
+      switch(npc)
+      {
+        case "fridge":
+        return [
+          {
+            action:"apple",
+            stat:{
+              [theStat]: 1,
+            },
+          },
+          {
+            action:"cake",
+            stat:{
+              [theStat]: 2,
+            },
+          },
+        ]
+      }
+      return []
+    },
     p_$commitStatAction(statAction,stat)
     {
       alert(`you want to fix ${stat.stat} ${statAction.action}`)
+      this.$store.dispatch("addToPlayerQ",{
+          id:"0",
+          
+          q: [
+            { npcRef: stat.npcRef, stat:stat.stat, action:statAction.action, t:Date.now(), d:7500 }
+          ]
+        },
+      )
+
+      if (this.NPCBaseContainer[stat.npcRef].playerpos)
+      {
+        this.$store.dispatch("setPlayerPosition",{
+          id:"0",
+          pos:[
+            this.NPCBaseContainer[stat.npcRef].playerpos[0],
+            this.__player.pos[1],
+            this.NPCBaseContainer[stat.npcRef].playerpos[2]
+          ]
+        })
+      }
+      if (this.NPCBaseContainer[stat.npcRef].playerrot)
+      {
+        this.$store.dispatch("setPlayerRotation",{
+          id:"0",
+          pos:[ 
+            this.__player.pos[0],
+            this.NPCBaseContainer[stat.npcRef].playerrot[1],
+            this.__player.pos[2],
+          ]
+        })
+      }
+      this.p_$localQ = null
     },
-    p_$statToAction(stat)
+    p_$parseStatAction(stat)
     {
       switch(stat)
       {
-        case "hunger": return "Eat Food"
-        case "energy": return "Sleep"
-        case "fun": return "Read Newspaper"
-        case "hygene": return "Take Shower"
+        case "apple": return "Eat Apple"
+        case "cake": return "Eat Cake"
+      }
+    },
+    p_$parseStatActionLIVE(stat)
+    {
+      switch(stat)
+      {
+        case "apple": return "Eating Apple"
+        case "cake": return "Eating Cake"
       }
     },
     p_$setOrbitToPlayerPos()

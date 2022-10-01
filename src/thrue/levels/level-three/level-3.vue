@@ -21,7 +21,7 @@
                 :class="[index == 0 ? 'n-flat':' opacity-hover-50']"
             >
                 <i v-if="index == 0" class="fas fa-circle-notch spin-nback"></i>
-                {{p_$statToAction(qItem.stat)}}
+                {{index > 0 ? p_$statToAction(qItem.action) : p_$parseStatActionLIVE(qItem.action)}}
             </div>
           </span>
         </div>
@@ -89,14 +89,16 @@
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
-        <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.length">
-          <div class="opacity-50" v-if="!p_$localQ[0].actions.length">no action</div>
-          <div class=" mb-2 " v-if="p_$localQ[0].actions.length">
-            <span class="tx-xs opacity-50">Fix {{p_$localQ[0].stat}}:</span>
-            <div v-for="statAction in p_$localQ[0].actions" @click="p_$commitStatAction(statAction,p_$localQ[0])">
-              <small class="tx-sm pa-2 clickable opacity-hover-75">{{statAction.action}}</small>
+        <div class="flex-column mb-3" v-if="p_$localQ ">
+          <div class=" mb-2 " >
+            <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}}:</span>
+            <div v-if="p_$localQ.actions.length">
+              <div v-for="statAction in p_$localQ.actions" @click="p_$commitStatAction(statAction,p_$localQ)">
+                <small class="tx-sm pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>
+              </div>
             </div>
           </div>
+          <div class="opacity-50 mb-2" v-if="!p_$localQ.actions.length">no action</div>
         </div>
         <stats-bar :player="__player" />
     </h1>

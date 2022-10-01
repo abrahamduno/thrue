@@ -25,6 +25,12 @@ export default {
 
     player,
   ],
+  data()
+  {
+    return {
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", ],
+    }
+  },
   methods:
   {
     __initLevelScene()
@@ -190,28 +196,14 @@ export default {
           {
             let theStat = this.NPCBaseContainer[_npcName].npcStat
 
-              if (this.p_$localQ)
+              // if (this.p_$localQ)
               {
-                this.p_$localQ.push({
+                this.p_$localQ = {
                   id:"0",
                   stat: theStat,
-                  actions:[
-                    {
-                      action:"apple",
-                      stat:{
-                        [theStat]: 1,
-                      },
-                    },
-                    {
-                      action:"cake",
-                      stat:{
-                        [theStat]: 2,
-                      },
-                    },
-                  ],
                   npcRef:_npcName,
-                  
-                })
+                }
+                this.p_$localQ.actions = this.p_$availableActions(_npcName)
                 // console.log(this.p_$localQ)
               }
               this.NPCContainer[_npcName].rotation.y = 0.5
@@ -232,21 +224,21 @@ export default {
       });
 
 
-      npcName = "energy"
+      npcName = "bed"
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bed.obj",
         pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
         click: defaultNPCClickFunction,
         npcStat:npcStat,
       });
-      npcName = "hygene"
+      npcName = "shower"
       npcStat = "hygene"
       this._$add_npc({name:npcName,obj:"shower.obj",
         pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
         click: defaultNPCClickFunction,
         npcStat:npcStat,
       });
-      npcName = "hunger"
+      npcName = "fridge"
       npcStat = "hunger"
       this._$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
@@ -254,7 +246,7 @@ export default {
         click: defaultNPCClickFunction,
         npcStat:npcStat,
       });
-      npcName = "fun"
+      npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
         pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
