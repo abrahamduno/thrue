@@ -4,6 +4,41 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
+
+    _$check_clicks(_intersects,_last_intersected=null)
+    {
+      if ( _intersects.length == 0 ) return
+      if (this.l_$npcList.indexOf(_intersects[0].object.parent.name) != -1)
+      {
+        if ( this.INTERSECTED != _intersects[ 0 ].object )
+        {
+        // console.log("mobile clicked a new registered npc")
+          this.INTERSECTED.material.emissive.setHex( 0x00000 );
+          this.INTERSECTED = _intersects[ 0 ].object
+        } else {
+          // this.INTERSECTED = _intersects[ 0 ].object
+          // console.log("mobile clicked a new thing",this.INTERSECTED)
+        }
+      } else {
+        // console.log("mobile clicked static object",this.INTERSECTED,_last_intersected)
+        // this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+        if (_last_intersected)
+        {
+          _last_intersected.material.emissive.setHex( 0x00000 );
+        }
+        this.INTERSECTED = null
+        this.p_$localQactions = []
+        this.p_$localQ = null
+      }
+        // console.log(_intersects)
+      if ( this.INTERSECTED != _intersects[ 0 ].object )
+      {
+        this.INTERSECTED = _intersects[ 0 ].object
+      } else {
+        // this.INTERSECTED = _intersects[ 0 ].object
+        // console.log("mobile clicked a new thing",this.INTERSECTED)
+      }
+    },
     _$mobile_touch_raycaster(reTrace = true,_last_intersected=null) // dont retrace when called from raytracer
     {
       requestAnimationFrame(() => {
@@ -30,36 +65,7 @@ export default {
         {
           if ( this.INTERSECTED)
           {
-            if (this.l_$npcList.indexOf(_intersects[0].object.parent.name) != -1)
-            {
-              if ( this.INTERSECTED != _intersects[ 0 ].object )
-              {
-              // console.log("mobile clicked a new registered npc")
-                this.INTERSECTED.material.emissive.setHex( 0x00000 );
-                this.INTERSECTED = _intersects[ 0 ].object
-              } else {
-                // this.INTERSECTED = _intersects[ 0 ].object
-                // console.log("mobile clicked a new thing",this.INTERSECTED)
-              }
-            } else {
-              // console.log("mobile clicked static object",this.INTERSECTED,_last_intersected)
-              // this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-              if (_last_intersected)
-              {
-                _last_intersected.material.emissive.setHex( 0x00000 );
-              }
-              this.INTERSECTED = null
-              this.p_$localQactions = []
-              this.p_$localQ = null
-            }
-              // console.log(_intersects)
-            if ( this.INTERSECTED != _intersects[ 0 ].object )
-            {
-              this.INTERSECTED = _intersects[ 0 ].object
-            } else {
-              // this.INTERSECTED = _intersects[ 0 ].object
-              // console.log("mobile clicked a new thing",this.INTERSECTED)
-            }
+            this._$check_clicks(_intersects,_last_intersected)
           } else {
 
             // this.INTERSECTED = _intersects[ 0 ].object
@@ -158,18 +164,57 @@ export default {
       const intersects = this.raycaster.intersectObjects( this.scene.children, true ); // 2nd arg recursive?
       if ( intersects.length > 0 )
       {
-        if ( this.INTERSECTED != intersects[ 0 ].object )
+        // if ( this.INTERSECTED != intersects[ 0 ].object )
         {
-          if (this.INTERSECTED && this.l_$npcList.indexOf(this.INTERSECTED.parent.name) != -1)
-          {
-            if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
-          }
+          // if (this.INTERSECTED) console.log(this.l_$npcList.indexOf(this.INTERSECTED.parent.name) )
+
+          let lastIntersected = this.INTERSECTED
           this.INTERSECTED = intersects[ 0 ].object
-        } else {
-        }
+          if (lastIntersected)
+          {
+            if (this.l_$npcList.indexOf(lastIntersected.parent.name) != -1)
+            {
+              // console.log(lastIntersected.parent.name)
+
+              if (this.l_$npcList.indexOf(this.INTERSECTED.parent.name) != -1)
+              {
+                for (var i = 0; i < this.l_$npcList.length; i++)
+                {
+                  const theNpc = this.l_$npcList[i]
+                  if (!this.NPCContainer[theNpc]) continue
+                  // console.log(this.NPCContainer[theNpc].name , this.INTERSECTED.parent.name)
+                  if (this.NPCContainer[theNpc].name == this.INTERSECTED.parent.name) continue
+                  // console.log(this.NPCContainer[theNpc],this.NPCContainer[theNpc].children[0],theNpc)
+                  this.NPCContainer[theNpc].children[0].material.emissive.setHex( 0x000000 );
+                }
+                // console.log(this.l_$npcList.indexOf(lastIntersected.parent.name))
+                // if (this.INTERSECTED != lastIntersected)
+                {
+                  // lastIntersected.material.emissive.setHex( 0x000000 );
+                }
+              }
+            } else {
+              // console.log(this.l_$npcList.indexOf(lastIntersected.parent.name))
+            }
+          }
+          if (this.INTERSECTED)
+          {
+
+            if (this.l_$npcList.indexOf(this.INTERSECTED.parent.name) != -1)
+            {
+              // console.log(this.INTERSECTED)
+              if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( this.INTERSECTED.currentHex );
+
+              this.INTERSECTED = intersects[ 0 ].object;
+              this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+              this.INTERSECTED.material.emissive.setHex( 0xff0000 );
+            }
+          }
+        } 
       } else {
         this.INTERSECTED = null
       }
+      return intersects
     },
     _$set_raycaster()
     {
