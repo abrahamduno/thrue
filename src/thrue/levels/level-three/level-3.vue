@@ -87,12 +87,15 @@
         <!-- <small class="opacity-50">(Scroll Down)</small> -->
     </h1>
     <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat noclick"
+        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
-        <div class="flex-wrap mb-3" v-if="p_$localQ && p_$localQ.length">
+        <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.length">
           <div class="opacity-50" v-if="!p_$localQ[0].actions.length">no action</div>
-          <div v-for="statAction in p_$localQ[0].actions">
-            {{statAction.name}}
+          <div class=" mb-2 " v-if="p_$localQ[0].actions.length">
+            <span class="tx-xs opacity-50">Fix {{p_$localQ[0].stat}}:</span>
+            <div v-for="statAction in p_$localQ[0].actions" @click="p_$commitStatAction(statAction,p_$localQ[0])">
+              <small class="tx-sm pa-2 clickable opacity-hover-75">{{statAction.action}}</small>
+            </div>
           </div>
         </div>
         <stats-bar :player="__player" />

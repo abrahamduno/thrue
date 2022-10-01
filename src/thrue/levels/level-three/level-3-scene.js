@@ -184,23 +184,35 @@ export default {
 
       let defaultNPCClickFunction = (_npcName) => {
         // alert("You've Clicked "+`${_npcName}`)
-        console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+        // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
         if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
         {
           {
-            let theStat = this.NPCClickCounter[_npcName].npcStat
+            let theStat = this.NPCBaseContainer[_npcName].npcStat
 
               if (this.p_$localQ)
               {
                 this.p_$localQ.push({
                   id:"0",
-                  actions:[],
+                  stat: theStat,
+                  actions:[
+                    {
+                      action:"apple",
+                      stat:{
+                        [theStat]: 1,
+                      },
+                    },
+                    {
+                      action:"cake",
+                      stat:{
+                        [theStat]: 2,
+                      },
+                    },
+                  ],
                   npcRef:_npcName,
-                  stats:{
-                    [theStat]: 1,
-                  },
+                  
                 })
-                console.log(this.p_$localQ)
+                // console.log(this.p_$localQ)
               }
               this.NPCContainer[_npcName].rotation.y = 0.5
 

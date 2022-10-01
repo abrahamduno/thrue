@@ -16,6 +16,10 @@ export default {
   {
   },
   methods: {
+    p_$commitStatAction(statAction,stat)
+    {
+      alert(`you want to fix ${stat.stat} ${statAction.action}`)
+    },
     p_$statToAction(stat)
     {
       switch(stat)
