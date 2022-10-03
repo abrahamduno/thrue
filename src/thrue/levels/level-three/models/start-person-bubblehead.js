@@ -13,18 +13,18 @@ export default {
       }
       this.LIVE_OFFSET.mysign = {
         pos:[],
-        x:15,
+        x:27,
         y:2.15,
-        z:-40,
+        z:-45
       }
       this.myobject_base = {
         pos: [0, -2.1, 6],
         rot: [0,0,0],
       }
       this.LIVE_OFFSET.myobject = {
-        x:15,
+        x:27,
         y:0.05,
-        z:-40,
+        z:-45
       }
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "sign3.obj",
