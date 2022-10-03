@@ -223,7 +223,7 @@ export default {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "aplayer.obj",
         (object) => {
-          object.traverse( this.baseStandardMaterial() );
+          object.traverse( this.baseStandardMaterial(0xffffff) );
           this.myplayer = object
           this.scene.add(this.myplayer);
         },

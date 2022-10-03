@@ -287,7 +287,7 @@ export default {
 
       this.p_$set_playerOrbitControl();
       // D5EAF9 // D88223
-      this.scene.fog = new THREE.FogExp2( this.dark_mode ? 0xD88223 : 0xD5EAF9, 0.015  );
+      this.scene.fog = new THREE.FogExp2( this.dark_mode ? 0xA5631B : 0xD5EAF9, 0.015  );
 
 
       this.add_startLevelBlob()
