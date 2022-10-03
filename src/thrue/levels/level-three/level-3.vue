@@ -257,10 +257,10 @@ export default {
         camera: {
           pos: [0, 0, 9],
           rot: [0, 0, 0],
-          fov: 35,
+          fov: 45,
           fovSettings: {
-            mobile: 50,
-            desktop: 35,
+            mobile: 60,
+            desktop: 45,
           },
           minReach: 0.1,
           maxReach: 120,

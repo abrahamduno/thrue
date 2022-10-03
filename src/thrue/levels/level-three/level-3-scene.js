@@ -28,7 +28,7 @@ export default {
   data()
   {
     return {
-      l_$npcList:[ "bed", "shower", "fridge", "mailbox", ],
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", ],
     }
   },
   methods:
@@ -350,6 +350,18 @@ export default {
         pos: [-16.35,this.MIN.y,-12], rot:[0,0,0], color: 0x84A1AA,
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
+      });
+
+
+
+      npcName = "mailboxneigh"
+      npcStat = "fun"
+      this._$add_npc({name:npcName,obj:"mailbox.obj",
+        pos: [-49,this.MIN.y,-53], color: 0xaaaaaa,
+        playerpos: [-49,this.MIN.y,-52],
+        playerrot:[0,-Math.PI,0],
+        click: this.__defaultNPCClickFunction,
+        npcStat:npcStat,
       });
     },
   }

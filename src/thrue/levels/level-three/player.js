@@ -83,6 +83,16 @@ export default {
             },
           },
         ]
+        case "mailboxneigh":
+        return [
+          {
+            action:"Peek neighboors mailbox",
+            dur: 3000,
+            stat:{
+              [theStat]: 3,
+            },
+          },
+        ]
       }
       return []
     },
@@ -139,6 +149,7 @@ export default {
         case "Take a nap": return "Sleeping"
         case "Deep Sleep": return "Dreaming"
         case "Read newspaper": return "Reading newspaper"
+        case "Peek neighboors mailbox": return "Peeking"
       }
     },
     p_$setOrbitToPlayerPos(yFix = 0)
