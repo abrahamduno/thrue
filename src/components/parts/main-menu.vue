@@ -145,6 +145,7 @@
             </div>
         </div>
 
+
         <div class="flex-between flex-align-start n-inset py-2 px-2 show-xs_md " v-show="togglers.menu"> 
             <div class="flex-column tx-xs" >
                 <div class="flex mb-4">
@@ -206,6 +207,29 @@
         </div>
 
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
+        </div>
+        <div class="flex-between flex-align-start n-flat py-2 px-2 show-xs_md " v-show="togglers.menu"> 
+                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('test')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center flex-center">
+                        <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i>
+                        <small class="tx-xs">Continue without Account </small>
+                    </span>
+                </a>
+                <!-- !accs_length -->
+                <a v-if="current_sub_page == 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
+                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
+                        <small class=" tx-sm">Exit Test </small>
+                    </span>
+                </a>
         </div>
 
         <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
