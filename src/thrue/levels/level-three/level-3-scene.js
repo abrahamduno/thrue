@@ -28,7 +28,6 @@ export default {
   data()
   {
     return {
-      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", ],
     }
   },
   methods:
@@ -338,7 +337,7 @@ export default {
       npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-10,this.MIN.y,-9], color: 0xaaaaaa,
+        pos: [-10.5,this.MIN.y,-9], color: 0xaaaaaa,
         playerpos: [-9,this.MIN.y,-9.5],
         playerrot:[0,-Math.PI/3,0],
         click: this.__defaultNPCClickFunction,
@@ -353,12 +352,30 @@ export default {
       });
 
 
+      npcName = "closecornerbush"
+      npcStat = "fun"
+      this._$add_npc({name:npcName,obj:"bush.obj",
+        pos: [-21,this.MIN.y,-38], color: 0x64B650,
+        playerpos: [-19.5,this.MIN.y,-37.5],
+        playerrot:[0,-Math.PI/1.8,0],
+        click: this.__defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+      npcName = "tunnelbush"
+      npcStat = "fun"
+      this._$add_npc({name:npcName,obj:"bush.obj",
+        pos: [6,this.MIN.y,-55], color: 0x64B650,
+        playerpos: [4.5,this.MIN.y,-55],
+        playerrot:[0,Math.PI/2,0],
+        click: this.__defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
 
       npcName = "mailboxneigh"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-49,this.MIN.y,-53], color: 0xaaaaaa,
-        playerpos: [-49,this.MIN.y,-52],
+        pos: [-49,this.MIN.y,-54], color: 0xaaaaaa,
+        playerpos: [-49,this.MIN.y,-53.5],
         playerrot:[0,-Math.PI,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,

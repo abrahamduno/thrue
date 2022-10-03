@@ -10,7 +10,8 @@ export default {
     return {
       p_$localQ: null,
       p_$localQactions: [],
-      p_$statList: ["energy","hunger","hygene","fun"]
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "closecornerbush","tunnelbush"],
+      p_$statList: ["energy","hunger","hygene","fun"],
     }
   },
   computed:
@@ -93,6 +94,24 @@ export default {
             },
           },
         ]
+        case "tunnelbush":
+        case "closecornerbush":
+        return [
+          {
+            action:"Walk to bush",
+            dur: 1000,
+            stat:{
+              [theStat]: 0,
+            },
+          },
+          {
+            action:"Inspect",
+            dur: 6000,
+            stat:{
+              [theStat]: 1,
+            },
+          },
+        ]
       }
       return []
     },
@@ -149,7 +168,9 @@ export default {
         case "Take a nap": return "Sleeping"
         case "Deep Sleep": return "Dreaming"
         case "Read newspaper": return "Reading newspaper"
-        case "Peek neighboors mailbox": return "Peeking"
+        case "Peek neighboors mailbox": return "Peeking neighboors"
+        case "Inspect": return "Checking bush"
+        case "Walk to bush": return "Walking"
       }
     },
     p_$setOrbitToPlayerPos(yFix = 0)
