@@ -26,16 +26,16 @@ export default {
         return [
           {
             action:"Eat apple",
-            dur: 2500,
+            dur: 3500,
             stat:{
               [theStat]: 1,
             },
           },
           {
             action:"Devour cake",
-            dur: 5000,
+            dur: 7500,
             stat:{
-              [theStat]: 2,
+              [theStat]: 3,
             },
           },
         ]
@@ -43,16 +43,33 @@ export default {
         return [
           {
             action:"Shower with soap",
+            dur: 11000,
+            stat:{
+              [theStat]: 4,
+            },
+          },
+          {
+            action:"Quick shower",
             dur: 7500,
+            stat:{
+              [theStat]: 2,
+            },
+          },
+        ]
+        case "bed":
+        return [
+          {
+            action:"Take a nap",
+            dur: 9000,
             stat:{
               [theStat]: 1,
             },
           },
           {
-            action:"Quick shower",
-            dur: 5000,
+            action:"Deep Sleep",
+            dur: 42000,
             stat:{
-              [theStat]: 2,
+              [theStat]:5,
             },
           },
         ]
@@ -79,28 +96,6 @@ export default {
         },
       )
 
-      if (this.NPCBaseContainer[stat.npcRef].playerpos)
-      {
-        this.$store.dispatch("setPlayerPosition",{
-          id:"0",
-          pos:[
-            this.NPCBaseContainer[stat.npcRef].playerpos[0],
-            this.__player.pos[1],
-            this.NPCBaseContainer[stat.npcRef].playerpos[2]
-          ]
-        })
-      }
-      if (this.NPCBaseContainer[stat.npcRef].playerrot)
-      {
-        this.$store.dispatch("setPlayerRotation",{
-          id:"0",
-          pos:[ 
-            this.__player.pos[0],
-            this.NPCBaseContainer[stat.npcRef].playerrot[1],
-            this.__player.pos[2],
-          ]
-        })
-      }
       this.p_$localQactions = []
       this.p_$localQ = null
 
@@ -121,13 +116,7 @@ export default {
     },
     p_$statToAction(stat)
     {
-      switch(stat)
-      {
-        case "Eat apple": return "Eat apple"
-        case "Devour cake": return "Devour cake"
-        case "Shower with soap": return "Shower with soap"
-        case "Quick shower": return "Quick shower"
-      }
+      return stat
     },
     p_$parseStatActionLIVE(stat)
     {
@@ -137,6 +126,8 @@ export default {
         case "Devour cake": return "Devouring cake"
         case "Shower with soap": return "Soaping"
         case "Quick shower": return "Showering"
+        case "Take a nap": return "Sleeping"
+        case "Deep Sleep": return "Dreaming"
       }
     },
     p_$setOrbitToPlayerPos()
@@ -158,7 +149,7 @@ export default {
       this.__orbitcontrols.maxDistance = 40;
 
       this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
-      this.__orbitcontrols.target.set(0,0,5)
+      this.__orbitcontrols.target.set(0,0,5) // init screen (connect / login)
     },
     p_$init_player(_player)
     {

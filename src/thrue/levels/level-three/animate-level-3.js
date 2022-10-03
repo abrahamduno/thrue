@@ -15,11 +15,58 @@ export default {
       // console.log(nowT)
       if (this.__player && this.__player.q.length)
       {
+
+        let theNpc = this.__player.q[0].npcRef
+        if (this.NPCBaseContainer[theNpc].playerpos &&
+            (this.NPCBaseContainer[theNpc].playerpos[0] != this.__player.pos[0]
+            || this.NPCBaseContainer[theNpc].playerpos[2] != this.__player.pos[2]))
+        {
+          // console.log(this.NPCBaseContainer[theNpc])
+          if (this.NPCBaseContainer[theNpc].playerpos)
+          {
+            this.$store.dispatch("setPlayerPosition",{
+              id:"0",
+              pos:[
+                this.NPCBaseContainer[theNpc].playerpos[0],
+                this.__player.pos[1],
+                this.NPCBaseContainer[theNpc].playerpos[2]
+              ]
+            })
+          }
+        }
+        if (this.NPCBaseContainer[theNpc].playerrot && this.NPCBaseContainer[theNpc].playerrot[1])
+        {
+          // console.log(this.NPCBaseContainer[theNpc])
+          if (this.NPCBaseContainer[theNpc].playerrot)
+          {
+            this.$store.dispatch("setPlayerRotation",{
+              id:"0",
+              pos:[
+                this.__player.pos[0],
+                this.NPCBaseContainer[theNpc].playerrot[1],
+                this.__player.pos[2],
+              ]
+            })
+          }
+        }
+        //   if (this.NPCBaseContainer[theNpc].playerrot)
+        //   {
+        //     this.$store.dispatch("setPlayerRotation",{
+        //       id:"0",
+        //       rot:[ 
+        //         this.__player.rot[0],
+        //         this.NPCBaseContainer[theNpc].playerrot[1],
+        //         this.__player.rot[2],
+        //       ]
+        //     })
+        //   }
+        // }
         if (nowT > this.__player.q[0].t+this.__player.q[0].d)
         {
           // alert("action finished")
           let theStat = this.__player.q[0].stat
           // console.log(this.__player.q[0])
+
 
           let newValue = parseFloat(this.__player.stats[theStat])+this.__player.q[0].value
           if (newValue <= 10)

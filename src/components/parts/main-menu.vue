@@ -14,6 +14,34 @@
                         <i class="mr-2 fas fa-external-link-alt"></i> Docs
                     </span>
                 </a>
+                <!-- 
+                v-if="(current_sub_page != 'test' && !is_playing_test) || (current_sub_page == 'test' && !accs_length && !is_playing_test)"
+                 -->
+                 <!-- {{is_playing_test}} -->
+                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('test')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center">
+                        <small class="tx-sm">Continue </small>
+                        <br>
+                        <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i>
+                        <br>
+                        <small class="tx-sm">without Account </small>
+                    </span>
+                </a>
+                <!-- !accs_length -->
+                <a v-if="current_sub_page == 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
+                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
+                        <small class=" tx-sm">Exit Test </small>
+                    </span>
+                </a>
 <!-- 
                 <div class="flex-row ma-2" >
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
@@ -180,21 +208,18 @@
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
         </div>
 
-                    <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
-                            :class="[!pause_mode ? 'n-conca' : 'n-inset']"
-                            v-if="is_playing_test || accs_length"
-                        @click="changePauseMode"
-                        style=""
-                    >
-                            <!-- v-show="pause_mode" -->
-                        <span class="pa-2 py-4  opacity-hover-50">
-                            <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times-circle"></i> HELP</span></i>
-                            <i class="fas tx-sm"  v-else > <span> HELP</span></i>
-                        </span>
-                    </button>
-
-
-
+        <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                :class="[!pause_mode ? 'n-conca' : 'n-inset']"
+                v-if="is_playing_test || accs_length"
+            @click="changePauseMode"
+            style=""
+        >
+                <!-- v-show="pause_mode" -->
+            <span class="pa-2 py-4  opacity-hover-50">
+                <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times-circle"></i> HELP</span></i>
+                <i class="fas tx-sm"  v-else > <span> HELP</span></i>
+            </span>
+        </button>
     </div>
 </template>
 <script>
@@ -213,35 +238,36 @@
             }
         },
         computed: {
-            pause_mode()             { return this.$store.getters.pause_mode },
+            pause_mode()           { return this.$store.getters.pause_mode },
             pro_mode()             { return this.$store.getters.pro_mode },
             dark_mode()            { return this.$store.getters.dark_mode },
             auto_mode()            { return this.$store.getters.auto_mode },
-	        current_level()            { return this.$store.getters.current_level },
+            current_level()        { return this.$store.getters.current_level },
+	        current_sub_page()     { return this.$store.getters.current_sub_page },
 	        english_mode()         { return this.$store.getters.english_mode },
 	        LANG()                 { return this.$store.getters.LANG },
 	        first_acc()            { return this.$store.getters.first_acc },
 	        accs_length()          { return this.$store.getters.accs_length },
-            is_playing_test()          { return this.$store.getters.is_playing_test },
+            is_playing_test()      { return this.$store.getters.is_playing_test },
         },
         created() {
+            let darkMode = JSON.parse(localStorage.getItem("darkMode"))
+            let englishMode = JSON.parse(localStorage.getItem("englishMode"))
             let autoMode = JSON.parse(localStorage.getItem("autoMode"))
             let proMode = JSON.parse(localStorage.getItem("proMode"))
-            // console.log(proMode)
             let pauseMode = JSON.parse(localStorage.getItem("pauseMode"))
-            let darkMode = JSON.parse(localStorage.getItem("darkMode"))
             let currentLevel = JSON.parse(localStorage.getItem("currentLevel"))
-            // console.log(currentLevel)
-            // console.log(darkMode)
-            let englishMode = JSON.parse(localStorage.getItem("englishMode"))
-            // console.log(englishMode)
+            let currentSubPage = JSON.parse(localStorage.getItem("currentSubPage"))
+
+            if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
+            if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
             if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
             if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
             if (pauseMode != null) { this.$store.dispatch("setPauseMode", pauseMode) }
             if (currentLevel != null) { this.$store.dispatch("setCurrentLevel", currentLevel) }
-            if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
-            if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
-            console.table({englishMode,proMode,darkMode,autoMode,pauseMode})
+            if (currentSubPage != null) { this.$store.dispatch("setCurrentSubPage", currentSubPage) }
+
+            console.table({englishMode,darkMode,autoMode,proMode,pauseMode,currentLevel,currentSubPage})
         },
         methods: {
             toggleMenu() {
@@ -267,10 +293,14 @@
                 localStorage.setItem("englishMode", JSON.stringify(newMode));
                 this.$store.dispatch("setEnglishMode", newMode)
             },
-            changeEnglishMode() {
-                let newMode = !this.english_mode
-                localStorage.setItem("englishMode", JSON.stringify(newMode));
-                this.$store.dispatch("setEnglishMode", newMode)
+            // changeCurrentLevel() {
+            //     let newMode = this.current_level
+            //     localStorage.setItem("currentLevel", JSON.stringify(newMode));
+            //     this.$store.dispatch("setCurrentLevel", newMode)
+            // },
+            changeCurrentSubPage(_page) {
+                localStorage.setItem("currentSubPage", JSON.stringify(_page));
+                this.$store.dispatch("setCurrentSubPage", _page)
             },
             changePauseMode() {
                 let newMode = !this.pause_mode

@@ -43,7 +43,7 @@ export default {
         energy: 0,
         fun: 0,
       }
-      this.p_$init_player({pos:[-13,0.25,-4]})
+      this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos()
     },
     l_$checkGoals()
@@ -170,9 +170,9 @@ export default {
     },
     __staticNPCClickFunction (_npcName)
     {
-      console.log(_npcName)
+      // console.log(_npcName)
       if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
-      console.log(_npcName,this.INTERSECTED)
+      // console.log(_npcName,this.INTERSECTED)
 
       this.p_$localQactions = []
       this.p_$localQ = null
@@ -182,7 +182,7 @@ export default {
       // alert("You've Clicked "+`${_npcName}`)
       // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
       // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-      console.log(this.p_$localQ,_npcName)
+      // console.log(this.p_$localQ,_npcName)
       if (this.p_$localQ != null)
       {
         if (_npcName == this.p_$localQ.npcRef)
@@ -261,6 +261,14 @@ export default {
 
       }, this.onLoadProgress );
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "levelthreeg.obj",
+        (object) => {
+          object.traverse( this.baseStandardMaterial(0x51BE48) );
+          object.position.set(0, this.MIN.y, 0);
+          this.scene.add(object);
+
+      }, this.onLoadProgress );
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelthreew.obj",
         (object) => {
           object.traverse( this.wireframeMaterial(0xffffff) );
@@ -278,29 +286,40 @@ export default {
 
       npcName = "1car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-80,this.MIN.y,-72],rot: [0,Math.PI/2,0], color: 0xFFD8BA,
-        animation:{type:"constant",path:["x"],value:0.3,add:[{loop:80}]},
+        pos: [-6.4,this.MIN.y,-120], color: 0xFFD8BA,
+        animation:{type:"constant",path:["z"],value:0.3,add:[{loop:40}]},
+      });
+
+      npcName = "2car"
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [1.5,this.MIN.y,80], color: 0xFFD8BA,
+        animation:{type:"-constant",path:["z"],value:0.25,add:[{loop:-120}]},
+      });
+      npcName = "3car"
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [-0.75,this.MIN.y,40], color: 0xFFD8BA,
+        animation:{type:"-constant",path:["z"],value:0.4,add:[{loop:-150}]},
       });
 
 
       npcName = "bed"
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bed.obj",
-        pos: [-19.7,this.MIN.y+0.25,-10.9], color: 0xaaaaaa,
+        pos: [-19.5,this.MIN.y,-11.6], playerpos: [-17.7,this.MIN.y,-11.6],color: 0xaaaaaa,
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "shower"
       npcStat = "hygene"
       this._$add_npc({name:npcName,obj:"shower.obj",
-        pos: [-20.5,this.MIN.y+0.25,-15.9], color: 0xaaaaaa,
+        pos: [-15.7,this.MIN.y,-8.15], playerpos: [-15.7,this.MIN.y,-9], color: 0xaaaaaa,
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "fridge"
       npcStat = "hunger"
       this._$add_npc({name:npcName,obj:"fridge.obj",
-        pos: [-17,this.MIN.y+0.25,-15.9], playerpos: [-17,this.MIN.y+0.25,-14], color: 0xaaaaaa,
+        pos: [-12.2,this.MIN.y,-15.9], playerpos: [-12.2,this.MIN.y,-14], color: 0xaaaaaa,
         playerrot:[0,Math.PI,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
@@ -308,14 +327,14 @@ export default {
       npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-13,this.MIN.y+0.25,-1.5], color: 0xaaaaaa,
+        pos: [-10,this.MIN.y,-4], color: 0xaaaaaa,
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
 
       npcName = "floorhouse"
-      this._$add_npc({name:npcName,BoxGeometry: [9.1,0.1,8.9],
-        pos: [-16.3,this.MIN.y+0.25,-12], rot:[0,0,0], color: 0x999999,
+      this._$add_npc({name:npcName,BoxGeometry: [9.25,0.1,8.9],
+        pos: [-16.35,this.MIN.y,-12], rot:[0,0,0], color: 0x999999,
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });

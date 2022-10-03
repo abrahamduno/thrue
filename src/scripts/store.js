@@ -11,13 +11,25 @@ const store = createStore({
     var url_string = window.location.href
     var urlparams = (new URL(url_string)).searchParams;
     // console.log("***",url_string, url);
+
     var thepage = urlparams.get("page");
     var thefilter = urlparams.get("filter");
+    if (thepage == null)
+    {
+      let currentSubPage = JSON.parse(localStorage.getItem("currentSubPage"))
+      if (currentSubPage != null) {
+        thepage = currentSubPage
+      } else {
+        thepage = ""        
+      }
+    }
     // console.log("page",thepage);
     return {
       LANG,
 
       currentPseudoPage: "lottery",
+
+
       currentSubPage: thepage,
       currentFilter: thefilter,
       currentLevel: "levelThree",
@@ -130,6 +142,9 @@ const store = createStore({
     setCurrentLevel(state, level) {
       state.currentLevel = level
     },
+    setCurrentSubPage(state, subPage) {
+      state.currentSubPage = subPage
+    },
     setAutoMode(state, mode) {
       state.autoMode = mode
     },
@@ -205,6 +220,9 @@ const store = createStore({
     //   context.commit('addToPlayerPreQ', playerData);
     // },
 
+    setCurrentSubPage(context, subPage) {
+      context.commit('setCurrentSubPage', subPage);
+    },
     setCurrentLevel(context, level) {
       context.commit('setCurrentLevel', level);
     },
@@ -231,9 +249,11 @@ const store = createStore({
     },
 
     connectWallet: async (context) => {
+      // console.log("context.getters.current_sub_page", context.getters.current_sub_page)
       if (context.getters.current_sub_page == "test")
       {
         context.commit('setTestingConnect', true);
+        console.log("context.getters.is_playing_test", context.getters.is_playing_test)
         return
       }
       if (!context.getters.is_metaMask) { alert("Please, Install Metamask.") }

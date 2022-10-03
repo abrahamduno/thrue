@@ -190,7 +190,8 @@ export default {
             {
               // console.log(lastIntersected.parent.name)
 
-              if (this.l_$npcList.indexOf(this.INTERSECTED.parent.name) != -1)
+              // if (this.l_$npcList.indexOf(this.INTERSECTED.parent.name) != -1)
+              if (true)
               {
                 for (var i = 0; i < this.l_$npcList.length; i++)
                 {

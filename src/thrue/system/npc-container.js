@@ -76,8 +76,9 @@ export default {
         let thekeys = Object.keys(this.NPCContainer)
         for (var i = 0; i < thekeys.length; i++)
         {     
-          let element = this.NPCAnimationContainer[thekeys[i]]       
-          if(!element) return
+          let element = this.NPCAnimationContainer[thekeys[i]]
+          // console.log(thekeys[i],element)
+          if(!element) continue
 
           let speed = element.speed ? element.speed : 0.01
           if(element.type == "constant")
@@ -88,6 +89,20 @@ export default {
               if (element.add[0].loop)
               {
                 if (this.NPCContainer[thekeys[i]].position[element.path[0]] > element.add[0].loop)
+                {
+                   this.NPCContainer[thekeys[i]].position[element.path[0]] = this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]] 
+                }
+              }
+            }
+          }
+          if(element.type == "-constant")
+          {
+            this.NPCContainer[thekeys[i]].position[element.path[0]] -= element.value*r
+            if (element.add)
+            {
+              if (element.add[0].loop)
+              {
+                if (this.NPCContainer[thekeys[i]].position[element.path[0]] < element.add[0].loop)
                 {
                    this.NPCContainer[thekeys[i]].position[element.path[0]] = this.NPCBaseContainer[thekeys[i]].pos[{"x":0,"y":1,"z":2}[element.path[0]]] 
                 }
@@ -166,7 +181,8 @@ export default {
 
             this.scene.add(this.NPCContainer[_params.name]);
             this.NPCContainer[_params.name].name = _params.name
-            console.log(this.NPCContainer[_params.name])
+            // console.log(this.NPCContainer[_params.name])
+            console.log(`added npc: ${_params.name}`)
         }, this.onLoadProgress );
       },
   }
