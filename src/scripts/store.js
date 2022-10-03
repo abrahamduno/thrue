@@ -48,11 +48,16 @@ const store = createStore({
       players: {
         "0":{
           id: "0",
-          // preQ: null,
-          // preQaction: "",
-          // preQactions: [],
+          mmrs: {
+            "art": [],
+            "ambitions": [],
+            "school": [],
+            "generations": [],
+            "pets": [],
+            "hazard": [],
+            "supernatural": [],
+          },
           q: [],
-          // y: [],
           obj: null,
           pos: [0,0,0],
           rot: [0,0,0],

@@ -42,8 +42,9 @@
 <!-- tutorial-theme-bg  -->
     <div v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
-      <h1  style="z-index: 999999; background: #222222; transform: translateY(120px);" 
-          class="tx-center n-flat tx-lg  pa-5 border-r-50  "
+      <h1  style="z-index: 999999; background: #222222; transform: translateY(140px);" 
+        v-if="!pro_mode"
+          class="tx-center n-flat tx-lg mt-0 pa-5 border-r-50  "
       >
           <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
           <span class="nopointer opacity-75 tx-ls-8">How to Play</span>
@@ -120,7 +121,70 @@
           </small> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
           <small class="opacity-hover-50 tx-xs">Click "HELP" to hide this</small>
+          <br>
+          <small class="opacity-hover-50 tx-xs">Click "Profile" to see Profile</small>
       </h1>
+
+      <div  style="z-index: 999999; background: #222222; transform: translateY(140px);" 
+        v-if="pro_mode"
+          class="tx-center n-flat tx-lg  pa-5 border-r-50  "
+      >
+          <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
+          <span class="nopointer opacity-75 tx-ls-5">Person Profile</span>
+          <!-- <br> -->
+          <hr class="w-100 opacity-25 pa-0 my-2">
+          <div class="opacity-25 nopointer  tx-xs tx-ls-2 w-100 tx-left"><i class="fas fa-arrow-down pl-4 pr-5 "></i>MEMORIES</div>
+          <div class="flex-column flex-align-start" >
+            <template v-for="(memoryList, category) in __player.mmrs">
+              <details class=" tx-xs  opacity-75 w-100" v-if="memoryList.length">
+                <summary class="clickable w-100 flex tx-ls-5 pa-2" 
+                  
+                >
+                  <i class=" fas tx-lg  " :class="p_$parseMemoryCategoryIcon(category)"></i> 
+                  <span class="n-tx-3d">{{category}}</span>
+                </summary>
+                <ol class=" border-r-15"
+                >
+                  <li v-for="(memory, index) in memoryList" class="tx-start" >
+                    <div>
+                      {{memory.name}}
+                    </div>
+                  </li>
+                  <!-- You can check <br> the fridge <br> when hungry -->
+                  <!-- <hr class="w-100 opacity-25 pa-0 my-2"> -->
+                </ol>
+              </details>
+            </template>
+          </div>
+          <!-- fas fa-hamburger
+          fas fa-shower
+          fas fa-smile-beam
+          fas fa-bolt -->
+          <!-- <span class="nopointer show-md_x tx-xs  opacity-75 tx-ls-5">Drag the screen <br> to Rotate</span> -->
+          <!-- <span class="nopointer show-xs_md tx-xs  opacity-75 tx-ls-5">Swipe to Rotate</span> -->
+          <!-- <br> -->
+          <!-- <i class="fas rock-nroll fa-hand-point-up"></i> -->
+          <!-- <span class="nopointer show-xs_md tx-xs opacity-75  tx-ls-5">Swipe to Move</span>
+          <hr class="nopointer w-100 opacity- pa-0 my-2">
+          <small class="nopointer  tx-sm flex-column show-md_x">
+              <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward</span>
+              <div class="flex">
+                <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> Left</span>
+                <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> Right</span>
+              </div>
+              <span class="tx-ls-3 mx-2" style="color:#33ff11">Backward</span>
+          </small>
+          <small class="nopointer  tx-sm flex-column show-xs_md">
+              <span class="tx-ls-3 mx-2" style="color:#3311ff">Forward <br> ↑</span>
+              <div class="flex">
+                <span class="tx-ls-3 ma-2" style="color:#ff3311">Turn <br> ← <br> Left</span>
+                <span class="tx-ls-3 ma-2" style="color:#ff9911">Turn <br> → <br> Right</span>
+              </div>
+              <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
+          </small> -->
+          <hr class="w-100 opacity-25 pa-0 my-2">
+          <small class="opacity-hover-50 tx-xs">Click "HELP" to hide this</small>
+      </div>
     </div>
 
 
@@ -140,15 +204,6 @@
     <div v-if="(accs_length || is_playing_test) && p_$localQ" style="z-index: 999999;" 
         class="   tx-lg top-50p left-50p pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
     >
-      <!-- id:{{p_$localQ.id}}
-      <br>
-      {{p_$localQactions.length}}
-      <br>
-      {{__player.y.length}} -->
-      <!-- <br>
-      {{__player.preQaction}}
-      <br>
-      {{__player.preQactions.length}} -->
       <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.id">
         <div class=" mb-2 " >
           <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>

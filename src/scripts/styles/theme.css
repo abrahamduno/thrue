@@ -45,6 +45,11 @@ body {
   --tertiary-color-light-2: #ffb0d0;
   --tertiary-color-light-3: #ffcee1;
 
+  --special-color: #FFDE20;
+  --special-color-light-1: #FFDE20;
+  --special-color-light-2: #FFDE20;
+  --special-color-light-3: #FFDE20;
+
   --error-color: #f63540;
   --error-color-light-1: #f64e56;
   --error-color-light-2: #f7788a;
@@ -236,6 +241,8 @@ body {
 .light-theme .tx-error { color: var(--error-color); }
 .light-theme.tx-success,
 .light-theme .tx-success { color: var(--success-color); }
+.light-theme.tx-special,
+.light-theme .tx-special { color: var(--special-color); }
 
 .dark-theme.tx-primary,
 .dark-theme .tx-primary { color: var(--primary-color-light-1); }
@@ -247,6 +254,8 @@ body {
 .dark-theme .tx-error { color: var(--error-color-light-1); }
 .dark-theme.tx-success,
 .dark-theme .tx-success { color: var(--success-color-light-1); }
+.dark-theme.tx-special,
+.dark-theme .tx-special { color: var(--special-color); }
 
 
 .light-theme .border-b-1-primary { box-shadow: 0 2px 1px -1px var(--primary-color-light-1); }

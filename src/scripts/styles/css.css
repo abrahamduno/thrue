@@ -151,6 +151,8 @@
 .word-s-3 {word-spacing: 3px; }
 .word-s-5 {word-spacing: 5px; }
 
+.underline,.underline * { text-decoration: underline #777; }
+.linethrough { text-decoration: line-through }
 .linethrough { text-decoration: line-through }
 .strikethrough { text-decoration: line-through }
 .nodeco { text-decoration: none ; }

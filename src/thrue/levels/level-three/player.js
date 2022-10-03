@@ -174,6 +174,19 @@ export default {
     {
       return stat
     },
+    p_$parseMemoryCategoryIcon(category)
+    {
+      switch(category)
+      {
+        case "art": return "fa-pen pr-3 tx-secondary"
+        case "ambitions": return "fa-book pr-3 tx-success"
+        case "school": return "fa-school pr-1 tx-primary"
+        case "generations": return "fa-tree pr-3 tx-tertiary"
+        case "pets": return "fa-cat pr-2 tx-special"
+        case "hazard": return "fa-bolt pr-4 tx-error"
+        case "supernatural": return "fa-ghost pr-3"
+      }
+    },
     p_$parseStatActionLIVE(stat)
     {
       switch(stat)
@@ -217,14 +230,15 @@ export default {
       let ms = Date.now();
       {
         // unsigned
+        let _mmrs = this.__getRandomMemories(3)
         this.$store.dispatch("setPlayer",
           {...{
             id:"0",
             // preQaction: "",
             // preQactions: [],
             // preQ: null,
+            mmrs: _mmrs,
             q: [],
-            y: [],
             obj: null,
             pos: [0,0,0],
             rot: [0,0,0],
@@ -247,6 +261,26 @@ export default {
         },
         this.onLoadProgress
       );
+    },
+    __getRandomMemories()
+    {
+      return {
+        "art": [{name:"Danced in a play"}],
+        "ambitions": [{name:"Became athlete"}],
+        "school": [{name:"Was bullied"}],
+        "generations": [{name:"Had memorable birthday"}],
+        "pets": [],
+        "hazard": [],
+        "supernatural": [],
+
+        // "art": [],
+        // "ambitions": [],
+        // "school": [],
+        // "generations": [],
+        // "pets": [{name:"Received wished pet"}],
+        // "hazard": [{name:"Was present in storm"}],
+        // "supernatural": [{name:"Saw an UFO"}],
+      }
     },
   }
 }

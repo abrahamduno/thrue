@@ -58,7 +58,7 @@
                 </div> -->
 
                 <div class="flex-row ma-2" >
-                    <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
+                    <button class="noborder n-tx ma-2 tx-sm mb-0  clickable flex-center border-r-15 show-md_x"
                             :class="[!pause_mode ? 'n-conca' : 'n-inset']"
                             v-if="is_playing_test || accs_length"
                         @click="changePauseMode"
@@ -72,6 +72,22 @@
                                 </span>
                             </i>
                             <i class="fas tx-sm"  v-else > <span> HELP</span></i>
+                        </span>
+                    </button>
+                    <button class="noborder n-tx ma-2  tx-sm  clickable flex-center border-r-15 show-md_x"
+                            :class="[!pro_mode ? 'n-conve' : 'n-inset']"
+                            v-if="(is_playing_test || accs_length) && pause_mode"
+                        @click="changeProMode" 
+                        style=""
+                    >
+                        <span class="pa-2 py-4  opacity-hover-50">
+                            <i class="fas tx-sm" v-if="pro_mode" >
+                                <span class="flex-center">
+                                    <i class="fas px-1 tx-lg fa-times-circle"></i><br>
+                                    <span>Close <br> Profile</span>
+                                </span>
+                            </i>
+                            <i class="fas tx-sm"  v-else > <span> Profile</span></i>
                         </span>
                     </button>
                 </div>
@@ -232,18 +248,32 @@
                 </a>
         </div>
 
-        <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
-                :class="[!pause_mode ? 'n-conca' : 'n-inset']"
-                v-if="is_playing_test || accs_length"
-            @click="changePauseMode"
-            style=""
-        >
-                <!-- v-show="pause_mode" -->
-            <span class="pa-2 py-4  opacity-hover-50">
-                <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times-circle"></i> HELP</span></i>
-                <i class="fas tx-sm"  v-else > <span> HELP</span></i>
-            </span>
-        </button>
+        <div class="flex-row ma-2" >
+            <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                    :class="[!pause_mode ? '' : 'n-inset']"
+                    v-if="is_playing_test || accs_length"
+                @click="changePauseMode"
+                style=""
+            >
+                    <!-- v-show="pause_mode" -->
+                <span class="pa-2 py-3  opacity-hover-50">
+                    <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times-circle"></i> HELP</span></i>
+                    <i class="fas tx-sm"  v-else > <span> HELP</span></i>
+                </span>
+            </button>
+            <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                    :class="[!pro_mode ? 'n-conve' : 'n-inset underline']"
+                    v-if="pause_mode && (is_playing_test || accs_length)"
+                @click="changeProMode"
+                style=""
+            >
+                    <!-- v-show="pro_mode" -->
+                <span class="pa-2 py-4  opacity-hover-50">
+                    <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> Close Profile</span></i>
+                    <i class="fas tx-sm"  v-else > <span> Profile</span></i>
+                </span>
+            </button>
+        </div>
     </div>
 </template>
 <script>
