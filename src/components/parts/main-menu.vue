@@ -306,7 +306,7 @@
                 let newMode = !this.pause_mode
                 localStorage.setItem("pauseMode", JSON.stringify(newMode));
                 this.$store.dispatch("setPauseMode", newMode)
-                console.log("asd", newMode)
+                // console.log("asd", newMode)
             },
         },
     }

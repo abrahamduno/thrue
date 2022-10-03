@@ -155,7 +155,7 @@ const store = createStore({
       state.proMode = mode
     },
     setPauseMode(state, mode) {
-      console.log("pauseh")
+      // console.log("pauseh")
       state.pauseMode = mode
     },
 

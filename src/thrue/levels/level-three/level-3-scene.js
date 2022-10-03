@@ -43,8 +43,9 @@ export default {
         energy: 0,
         fun: 0,
       }
+      this.camera.position.set(5,3,-2)
       this.p_$init_player({pos:[-8.5,0,-13]})
-      this.p_$setOrbitToPlayerPos()
+      this.p_$setOrbitToPlayerPos(-1.5)
     },
     l_$checkGoals()
     {
@@ -110,13 +111,13 @@ export default {
     l_$addLight()
     {
       let suncolor = this.dark_mode ? 0xF9B871 : 0xF7E0B0
-      let sunintensity = this.dark_mode ? 1.2 : 0.9
+      this._sunintensity = this.dark_mode ? 1.2 : 0.9
       let ambientintensity = this.dark_mode ? 0x404040 : 0x909090
 
       // this.sunlight.position.lookAt( 0,0,0 ); //default; light shining from top
       // this.sunlight = new THREE.SpotLight( suncolor );
-      this.sunlight = new THREE.DirectionalLight( suncolor, sunintensity );
-      this.sunlight.position.set( -15,9,10 ); //default; light shining from top
+      this.sunlight = new THREE.DirectionalLight( suncolor, this._sunintensity );
+      this.sunlight.position.set( -15,14,10 ); //default; light shining from top
       this.sunlight.castShadow = true; // default false
       this.sunlight.distance = this.sceneVariables.camera.shadowDistance; // default false
       this.sunlight.shadow.camera.far = this.sceneVariables.camera.shadowDistance; // default false
@@ -134,14 +135,14 @@ export default {
       this.scene.add( this.sunlighTarget );
       // this.scene.add(new THREE.CameraHelper(this.sunlight.shadow.camera)) 
 
-      const amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
-      this.scene.add( amlight );
+      this.amlight = new THREE.AmbientLight( ambientintensity ); // soft white light
+      this.scene.add( this.amlight );
       
 
       const roomPositiong = [-16,5,-12]
       const targetroomPositiong = [roomPositiong[0],roomPositiong[1]-5,roomPositiong[2]]
       // color, intensity, distance = 0, angle = Math.PI / 3, penumbra = 0, decay = 1
-      this.roomlight = new THREE.SpotLight( 0xffdd77, 0.5 );
+      this.roomlight = new THREE.SpotLight( 0xffdd77, 0 );
       this.roomlight.position.set( ...roomPositiong ); //default; light shining from top
       this.roomlight.castShadow = true; // default false
       this.roomlight.penumbra = 0.9 // default false
@@ -151,22 +152,6 @@ export default {
       this.roomlightTarget.position.set( ...targetroomPositiong )
       this.scene.add( this.roomlightTarget );
       this.roomlight.target = this.roomlightTarget
-    },
-    l_$addCurrentLevelScene()
-    {
-      this.__initLevelScene()
-
-      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
-        "levelthree.obj",
-        (object) => {
-          object.traverse( this.baseStandardMaterial(0xaaaaaa) );
-          object.position.set(0, -50, 0);
-          this.mycurrentlevel = object
-          this.scene.add(this.mycurrentlevel);
-          this.mycurrentlevel.name = "mycurrentlevel"
-
-          this.__addLevelMesh()
-      }, this.onLoadProgress );
     },
     __staticNPCClickFunction (_npcName)
     {
@@ -250,12 +235,28 @@ export default {
       // this.NPCContainer[_npcName].position.y = 50;
       // this.NPCContainer[_npcName].visible = false
     },
+    l_$addCurrentLevelScene()
+    {
+      this.__initLevelScene()
+
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "levelthree.obj",
+        (object) => {
+          object.traverse( this.baseStandardMaterial(0xd4cac7) );
+          object.position.set(0, -50, 0);
+          this.mycurrentlevel = object
+          this.scene.add(this.mycurrentlevel);
+          this.mycurrentlevel.name = "mycurrentlevel"
+
+          this.__addLevelMesh()
+      }, this.onLoadProgress );
+    },
     __addLevelMesh()
     {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "path3.obj",
         (object) => {
-          object.traverse( this.baseStandardMaterial(0xffffff) );
+          object.traverse( this.baseStandardMaterial(0xaaaaaa) );
           object.position.set(0, this.MIN.y, 0);
           this.scene.add(object);
 
@@ -287,54 +288,66 @@ export default {
       npcName = "1car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
         pos: [-6.4,this.MIN.y,-120], color: 0xFFD8BA,
-        animation:{type:"constant",path:["z"],value:0.3,add:[{loop:40}]},
+        animation:{type:"constant",path:["z"],value:0.3,add:[{loop:90}]},
       });
 
-      npcName = "2car"
-      this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [1.5,this.MIN.y,80], color: 0xFFD8BA,
-        animation:{type:"-constant",path:["z"],value:0.25,add:[{loop:-120}]},
-      });
+      // npcName = "2car"
+      // this._$add_npc({name:npcName,obj:"standardcar.obj",
+      //   pos: [1.5,this.MIN.y,80], color: 0xD8FFBA,
+      //   animation:{type:"-constant",path:["z"],value:0.25,add:[{loop:-120}]},
+      // });
       npcName = "3car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-0.75,this.MIN.y,40], color: 0xFFD8BA,
+        pos: [-0.75,this.MIN.y,40], color: 0xD8BAFF  ,
         animation:{type:"-constant",path:["z"],value:0.4,add:[{loop:-150}]},
       });
 
+      npcName = "4car"
+      this._$add_npc({name:npcName,obj:"standardcar.obj",
+        pos: [-140,this.MIN.y,-44.5], rot:[0,Math.PI/2,0],color: 0xD8FFBA,
+        animation:{type:"constant",path:["x"],value:0.15,add:[{loop:25}]},
+      });
 
       npcName = "bed"
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bed.obj",
-        pos: [-19.5,this.MIN.y,-11.6], playerpos: [-17.7,this.MIN.y,-11.6],color: 0xaaaaaa,
+        pos: [-19.5,this.MIN.y,-11.6],
+        playerpos: [-18.2,this.MIN.y,-11.6],color: 0xdddddd,
+        playerrot:[0,-Math.PI/3,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "shower"
       npcStat = "hygene"
       this._$add_npc({name:npcName,obj:"shower.obj",
-        pos: [-15.7,this.MIN.y,-8.15], playerpos: [-15.7,this.MIN.y,-9], color: 0xaaaaaa,
+        pos: [-15.7,this.MIN.y,-8.15],
+        playerpos: [-15.4,this.MIN.y,-8.2], color: 0xbbbbbb,
+        playerrot:[0,-Math.PI/1.7,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "fridge"
       npcStat = "hunger"
       this._$add_npc({name:npcName,obj:"fridge.obj",
-        pos: [-12.2,this.MIN.y,-15.9], playerpos: [-12.2,this.MIN.y,-14], color: 0xaaaaaa,
-        playerrot:[0,Math.PI,0],
+        pos: [-12.2,this.MIN.y,-15.9],
+        playerpos: [-12.5,this.MIN.y,-14.6], color: 0xe7e7e7,
+        playerrot:[0,Math.PI*0.9,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
       npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-10,this.MIN.y,-4], color: 0xaaaaaa,
+        pos: [-10,this.MIN.y,-9], color: 0xaaaaaa,
+        playerpos: [-9,this.MIN.y,-9.5],
+        playerrot:[0,-Math.PI/3,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });
 
       npcName = "floorhouse"
       this._$add_npc({name:npcName,BoxGeometry: [9.25,0.1,8.9],
-        pos: [-16.35,this.MIN.y,-12], rot:[0,0,0], color: 0x999999,
+        pos: [-16.35,this.MIN.y,-12], rot:[0,0,0], color: 0x84A1AA,
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });

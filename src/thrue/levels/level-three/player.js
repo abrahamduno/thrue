@@ -73,6 +73,16 @@ export default {
             },
           },
         ]
+        case "mailbox":
+        return [
+          {
+            action:"Read newspaper",
+            dur: 6000,
+            stat:{
+              [theStat]: 2,
+            },
+          },
+        ]
       }
       return []
     },
@@ -128,13 +138,14 @@ export default {
         case "Quick shower": return "Showering"
         case "Take a nap": return "Sleeping"
         case "Deep Sleep": return "Dreaming"
+        case "Read newspaper": return "Reading newspaper"
       }
     },
-    p_$setOrbitToPlayerPos()
+    p_$setOrbitToPlayerPos(yFix = 0)
     {
       this.__orbitcontrols.target.set(
         this.__player.pos[0],
-        this.__player.pos[1]-1.5,
+        this.__player.pos[1]+yFix,
         this.__player.pos[2])
     },
     p_$set_playerOrbitControl()

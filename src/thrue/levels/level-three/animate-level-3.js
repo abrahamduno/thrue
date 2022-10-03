@@ -143,7 +143,17 @@ export default {
       {
         this.mycurrentlevel.position.y = this.MIN.y
       }
-
+      if (this.amlight)
+      {
+        if (!this.pause_mode)
+        {
+          this.amlight.intensity = this._$lerp(this.amlight.intensity,this._sunintensity*0.7,0.03)
+          this.roomlight.intensity = this._$lerp(this.roomlight.intensity,0.42,0.03)
+        } else {
+          this.amlight.intensity = this._$lerp(this.amlight.intensity,this._sunintensity,0.03)
+          this.roomlight.intensity = this._$lerp(this.roomlight.intensity,0,0.03)
+        }
+      }
       if (this.NPCContainer)
       {
         for (var i = 0; i < this.l_$npcList.length; i++)
@@ -179,9 +189,10 @@ export default {
 
           if (this.__orbitcontrols && this.NPCBaseContainer[theNpc].playerpos)
           {
+
             this.__orbitcontrols.target.set(
               this._$lerp(this.__orbitcontrols.target.x,this.NPCBaseContainer[theNpc].playerpos[0],0.1),
-              this._$lerp(this.__orbitcontrols.target.y,this.NPCBaseContainer[theNpc].playerpos[1],0.1),
+              this._$lerp(this.__orbitcontrols.target.y,this.NPCBaseContainer[theNpc].playerpos[1]+1.5,0.1),
               this._$lerp(this.__orbitcontrols.target.z,this.NPCBaseContainer[theNpc].playerpos[2],0.1))
           }
         }
