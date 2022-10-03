@@ -10,7 +10,7 @@ export default {
     return {
       p_$localQ: null,
       p_$localQactions: [],
-      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "closecornerbush","tunnelbush"],
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "housebush", "closecornerbush","tunnelbush"],
       p_$statList: ["energy","hunger","hygene","fun"],
     }
   },
@@ -94,6 +94,23 @@ export default {
             },
           },
         ]
+        case "housebush":
+        return [
+          {
+            action:"Eat energy",
+            dur: 5000,
+            stat:{
+              [theStat]: 1,
+            },
+          },
+          {
+            action:"Walk to bush",
+            dur: 1000,
+            stat:{
+              [theStat]: 0,
+            },
+          },
+        ]
         case "tunnelbush":
         case "closecornerbush":
         return [
@@ -171,6 +188,7 @@ export default {
         case "Peek neighboors mailbox": return "Peeking neighboors"
         case "Inspect": return "Checking bush"
         case "Walk to bush": return "Walking"
+        case "Eat energy": return "Eating light"
       }
     },
     p_$setOrbitToPlayerPos(yFix = 0)

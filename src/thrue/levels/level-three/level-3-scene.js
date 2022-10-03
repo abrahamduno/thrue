@@ -269,6 +269,14 @@ export default {
 
       }, this.onLoadProgress );
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
+        "levelthreen.obj",
+        (object) => {
+          object.traverse( this.baseStandardMaterial(0x95875D) );
+          object.position.set(0, this.MIN.y, 0);
+          this.scene.add(object);
+
+      }, this.onLoadProgress );
+      new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
         "levelthreew.obj",
         (object) => {
           object.traverse( this.wireframeMaterial(0xffffff) );
@@ -337,7 +345,7 @@ export default {
       npcName = "mailbox"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"mailbox.obj",
-        pos: [-10.5,this.MIN.y,-9], color: 0xaaaaaa,
+        pos: [-10.5,this.MIN.y,-9], color: 0xeeeeee,
         playerpos: [-9,this.MIN.y,-9.5],
         playerrot:[0,-Math.PI/3,0],
         click: this.__defaultNPCClickFunction,
@@ -349,6 +357,15 @@ export default {
         pos: [-16.35,this.MIN.y,-12], rot:[0,0,0], color: 0x84A1AA,
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
+      });
+      npcName = "housebush"
+      npcStat = "energy"
+      this._$add_npc({name:npcName,obj:"bush.obj",
+        pos: [-11,this.MIN.y,-18], color: 0x64B650, scale:[1,0.65,1],
+        playerpos: [-10.5,this.MIN.y,-16.5],
+        playerrot:[0,-Math.PI/1.2,0],
+        click: this.__defaultNPCClickFunction,
+        npcStat:npcStat,
       });
 
 
@@ -364,7 +381,7 @@ export default {
       npcName = "tunnelbush"
       npcStat = "fun"
       this._$add_npc({name:npcName,obj:"bush.obj",
-        pos: [6,this.MIN.y,-55], color: 0x64B650,
+        pos: [6,this.MIN.y-0.1,-55], color: 0x64B650, scale:[0.6,1.5,0.75],
         playerpos: [4.5,this.MIN.y,-55],
         playerrot:[0,Math.PI/2,0],
         click: this.__defaultNPCClickFunction,
