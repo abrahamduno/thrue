@@ -119,8 +119,8 @@
               </div>
               <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
           </small> -->
-          <hr class="w-100 opacity-25 pa-0 my-2">
-          <small class="opacity-hover-50 tx-xs">Click <i class="fas fa-cogs tx-lg"></i> to hide this</small>
+          <!-- <hr class="w-100 opacity-25 pa-0 my-2">
+          <small class="opacity-hover-50 tx-xs">Click <i class="fas fa-cogs tx-lg"></i> to hide this</small> -->
           <!-- <br> -->
           <!-- <small class="opacity-hover-50 tx-xs">Check Personality in "Profile"</small> -->
           <!-- <small class="opacity-hover-50 tx-xs">Check Personality in "Profile"</small> -->
@@ -183,8 +183,8 @@
               </div>
               <span class="tx-ls-3 mx-2" style="color:#33ff11">↓ <br> Backward</span>
           </small> -->
-          <hr class="w-100 opacity-25 pa-0 my-2">
-          <small class="opacity-hover-50 tx-xs">Click <i class="fas fa-cogs tx-lg"></i> to hide this</small>
+          <!-- <hr class="w-100 opacity-25 pa-0 my-2">
+          <small class="opacity-hover-50 tx-xs">Click <i class="fas fa-cogs tx-lg"></i> to hide this</small> -->
       </div>
     </div>
 
