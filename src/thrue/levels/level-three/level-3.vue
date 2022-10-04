@@ -220,11 +220,13 @@
 
 
     <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75  bottom-0 pos-fixed pa-3 border-r-25 flex-align-start flex-column "
+        class="    bottom-0 pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
 
         <wishes-bar class="mb-3" :player="__player" />
-        <stats-bar class="tx-lg" :player="__player" />
+        <div class="opacity-50">
+          <stats-bar class="tx-lg " :player="__player" />
+        </div>
     </div>
 </template>
 <script>

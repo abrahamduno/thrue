@@ -25,9 +25,10 @@
             <!-- <b class="tx-ls-1">LIFE GOAL</b> -->
             <!-- <i class="mb-1 fas fa-hamburger tx-xl"></i>  -->
             <div  v-if="index >= 1"
-              class="flex pa-3 tx-xs n-flat border-r-15 clickable flex-column tx-center opacity-hover-50 "  style="max-width: 80px" 
+              class="flex-row my-1 pa-3 tx-xs n-flat border-r-15 clickable tx-center opacity-hover-75 "  style="max-width: 80px" 
             >
-              {{wish.name}}
+              <i class="fas mr-2" :class="[wish.icon ? wish.icon : '']"></i>
+              <span>{{wish.name}}</span>
             </div>
           </template>
           </div>

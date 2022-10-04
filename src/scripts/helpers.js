@@ -1,39 +1,46 @@
 import { Contract, providers, utils } from "ethers";
 
-export const categoriesMemories = {
+export const categoriesMemoriesWishes = {
   "art": [
     {
       name: "Dance in a play",
+      icon: "fa-star",
     }
   ],
   "ambitions": [
     {
       name: "Become an athlete",
+      icon: "fa-star",
     }
   ],
   "school": [
     {
       name: "Be bullied",
+      icon: "fa-star",
     }
   ],
   "generations": [
     {
       name: "Have a amemorable birthday",
+      icon: "fa-star",
     }
   ],
   "pets": [
     {
       name: "Receive wished pet",
+      icon: "fa-star",
     }
   ],
   "hazard": [
     {
       name: "Watch a storm",
+      icon: "fa-star",
     }
   ],
   "supernatural": [
     {
       name: "See an UFO",
+      icon: "fa-star",
     }
   ],
 }
@@ -50,12 +57,12 @@ export const memoryCategories = [
 export const generateWish = (categoryIndex,memories) =>
 {
   const catName = memoryCategories[categoryIndex]    
-  if (catName === undefined) return {name:"Research "+catName}
+  if (catName === undefined) return {icon:"fa-book",name:"Search "+catName}
   let categoryMemories = memories[catName]
   let memoryIndex = Math.round( Math.random()*categoryMemories.length )
-  if (!categoriesMemories[catName][memoryIndex]) return {name:"Research "+catName}
+  if (!categoriesMemoriesWishes[catName][memoryIndex]) return {icon:"fa-book",name:"Research "+catName}
 
-  return categoriesMemories[catName][memoryIndex]
+  return categoriesMemoriesWishes[catName][memoryIndex]
 }
 export const getWish = (memories) =>
 {
