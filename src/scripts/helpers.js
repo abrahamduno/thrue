@@ -1,74 +1,82 @@
 import { Contract, providers, utils } from "ethers";
-
 export const categoriesMemoriesWishes = {
+  "ambition": [
+    { name:"Read a full book", icon: "fa-star"},
+  ],
   "art": [
-    {
-      name: "Dance in a play",
-      icon: "fa-star",
-    }
+    { name:"Dance in a play", icon: "fa-star"},
   ],
-  "ambitions": [
-    {
-      name: "Become an athlete",
-      icon: "fa-star",
-    }
+  "hazards": [
+    { name:"Watch a storm", icon: "fa-star"},
   ],
-  "school": [
-    {
-      name: "Be bullied",
-      icon: "fa-star",
-    }
-  ],
-  "generations": [
-    {
-      name: "Have a amemorable birthday",
-      icon: "fa-star",
-    }
+  "logic": [
+    { name: "Learn to play chess", icon: "fa-star"},
   ],
   "pets": [
-    {
-      name: "Receive wished pet",
-      icon: "fa-star",
-    }
+    { name:"Get new pet", icon: "fa-star"},
   ],
-  "hazard": [
-    {
-      name: "Watch a storm",
-      icon: "fa-star",
-    }
+  "social": [
+    { name:"Throw birthday party", icon: "fa-star"},
+    { name:"Bully someone", icon: "fa-star"},
+  ],
+  "sports": [
+    { name:"Play football", icon: "fa-star"},
   ],
   "supernatural": [
-    {
-      name: "See an UFO",
-      icon: "fa-star",
-    }
+    { name:"Read tarot", icon: "fa-star"},
   ],
-}
+};
+
+export const getRandom = function(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+  }
 export const memoryCategories = [
+  "ambition",
   "art",
-  "ambitions",
-  "school",
-  "generations",
+  "hazards",
+  "logic",
   "pets",
-  "hazard",
+  "social",
+  "sports",
   "supernatural",
 ]
 
-export const generateWish = (categoryIndex,memories) =>
+export const generateWish = (category,memories) =>
 {
-  const catName = memoryCategories[categoryIndex]    
-  if (catName === undefined) return {icon:"fa-book",name:"Search "+catName}
-  let categoryMemories = memories[catName]
-  let memoryIndex = Math.round( Math.random()*categoryMemories.length )
-  if (!categoriesMemoriesWishes[catName][memoryIndex]) return {icon:"fa-book",name:"Research "+catName}
+  // console.log("category:",category)
+  let categoryMemories = memories[category]
+  let basecategoryMemories = categoriesMemoriesWishes[category]
+  // console.log("list", basecategoryMemories)
+  let basememoryIndex = Math.floor( Math.random()*basecategoryMemories.length )
+  let mymemoryIndex = Math.floor( Math.random()*categoryMemories.length )
+  return basecategoryMemories[basememoryIndex]
+  // if (!categoryMemories || categoryMemories.length == 0)
+  // {
+  //   console.log("new category")
+  //   return basecategoryMemories[mymemoryIndex]
+  // }
 
-  return categoriesMemoriesWishes[catName][memoryIndex]
+  // console.log("found memory")
+
+
+  // return basecategoryMemories[mymemoryIndex]
 }
 export const getWish = (memories) =>
 {
-  console.log(memories)
-  let randomCategoryIndex = Math.round( Math.random()*memoryCategories.length )
-  return generateWish(randomCategoryIndex,memories)
+  // console.log(memories)
+  let randomCategoryIndex = Math.floor( Math.random()*memoryCategories.length )
+  const catName = memoryCategories[randomCategoryIndex]    
+  return generateWish(catName,memories)
 }
 export const parseTradeDataTokenAmounts = (_tokens, _tradeData) =>
 {

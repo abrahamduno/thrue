@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "../../../scripts/loaders/OrbitControls.js";
 import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
+import { memoryCategories, getRandom } from "../../../scripts/helpers";
 
 const BASE_ASSET_URL = "./res";
 
@@ -178,12 +179,13 @@ export default {
     {
       switch(category)
       {
-        case "art": return "fa-pen pr-3 tx-secondary"
-        case "ambitions": return "fa-book pr-3 tx-success"
-        case "school": return "fa-school pr-1 tx-primary"
-        case "generations": return "fa-tree pr-3 tx-tertiary"
+        case "ambition": return "fa-pen pr-3 tx-secondary"
+        case "art": return "fa-book pr-3 tx-success"
+        case "hazards": return "fa-school pr-1 tx-primary"
+        case "logic": return "fa-tree pr-3 tx-tertiary"
         case "pets": return "fa-cat pr-2 tx-special"
-        case "hazard": return "fa-bolt pr-4 tx-error"
+        case "social": return "fa-bolt pr-4 tx-error"
+        case "sports": return "fa-baseball-ball tx-secondary pr-2"
         case "supernatural": return "fa-ghost pr-3"
       }
     },
@@ -231,7 +233,7 @@ export default {
       {
         // unsigned
         let _mmrs = this.__getRandomMemories()
-        let _wishs = this.__getRandomWishes(_mmrs)
+        let _wishs = [this.__getLifeGoalWish(_mmrs)]
         this.$store.dispatch("setPlayer",
           {...{
             id:"0",
@@ -239,7 +241,18 @@ export default {
             // preQactions: [],
             // preQ: null,
             wishs: _wishs,
-            mmrs: _mmrs,
+            mmrs: {
+              ...{
+                "ambition": [],
+                "art": [],
+                "hazards": [],
+                "logic": [],
+                "pets": [],
+                "social": [],
+                "sports": [],
+                "supernatural": [],
+              },
+              ..._mmrs},
             q: [],
             obj: null,
             pos: [0,0,0],
@@ -264,33 +277,53 @@ export default {
         this.onLoadProgress
       );
     },
-    __getRandomWishes()
+    __getLifeGoalWish()
     {
-      return [
-        {
-          name: "Become a Celebrity Lawer",
-        },
-      ]
+      return {
+        name: "Become a Celebrity Lawer",
+      }
     },
     __getRandomMemories()
     {
-      return {
+      
+      const memoryList = {
+        "ambition": [{name:"Read a full book"}],
         "art": [{name:"Danced in a play"}],
-        "ambitions": [{name:"Became athlete"}],
-        "school": [{name:"Was bullied"}],
-        "generations": [{name:"Had memorable birthday"}],
-        "pets": [],
-        "hazard": [],
-        "supernatural": [],
-
-        // "art": [],
-        // "ambitions": [],
-        // "school": [],
-        // "generations": [],
-        // "pets": [{name:"Received wished pet"}],
-        // "hazard": [{name:"Was present in storm"}],
-        // "supernatural": [{name:"Saw an UFO"}],
+        "hazards": [{name:"Was present in storm"}],
+        "logic": [{name:"Learned to play chess"}],
+        "pets": [{name:"Received wished pet"}],
+        "social": [{name:"Had memorable birthday"},{name:"Was bullied"}],
+        "sports": [{name:"Became cheerleader"}],
+        "supernatural": [{name:"Saw an UFO"}],
       }
+      const randomNumberAmount = 3
+      const randomCategories = getRandom(memoryCategories,randomNumberAmount)
+      console.log(randomCategories)
+      // for (var i = 0; i < randomNumberAmount; i++)
+      // {
+      //   // const aRandomNumber = Math.random()*randomNumberAmount.length
+      //   while (aRandomNumber = Math.random()*randomNumberAmount.length)
+      //   {
+
+      //   }
+      //   // randomNumbers.push()
+      // }
+      // const shuffledMemory = memoryCategories.sort(() => 0.5 - Math.random());
+      // console.log("shuffledMemory",shuffledMemory)
+      // const therandommemories = randomCategories.map((item) => {
+      //   // console.log(item)
+      //   return memoryList[item][0]
+      // })
+      let newMemories = {}
+      for (var i = 0; i < randomCategories.length; i++)
+      {
+        const item = randomCategories[i]
+        const randomIndex = Math.floor(Math.random() * memoryList[item].length)
+        newMemories[item] = [memoryList[item][randomIndex]]
+      }
+
+      // console.log(newMemories)
+      return newMemories
     },
   }
 }
