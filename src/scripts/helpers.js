@@ -1,6 +1,68 @@
 import { Contract, providers, utils } from "ethers";
 
+export const categoriesMemories = {
+  "art": [
+    {
+      name: "Dance in a play",
+    }
+  ],
+  "ambitions": [
+    {
+      name: "Become an athlete",
+    }
+  ],
+  "school": [
+    {
+      name: "Be bullied",
+    }
+  ],
+  "generations": [
+    {
+      name: "Have a amemorable birthday",
+    }
+  ],
+  "pets": [
+    {
+      name: "Receive wished pet",
+    }
+  ],
+  "hazard": [
+    {
+      name: "Watch a storm",
+    }
+  ],
+  "supernatural": [
+    {
+      name: "See an UFO",
+    }
+  ],
+}
+export const memoryCategories = [
+  "art",
+  "ambitions",
+  "school",
+  "generations",
+  "pets",
+  "hazard",
+  "supernatural",
+]
 
+export const generateWish = (categoryIndex,memories) =>
+{
+  const catName = memoryCategories[categoryIndex]    
+  if (catName === undefined) return {name:"Research "+catName}
+  let categoryMemories = memories[catName]
+  let memoryIndex = Math.round( Math.random()*categoryMemories.length )
+  if (!categoriesMemories[catName][memoryIndex]) return {name:"Research "+catName}
+
+  return categoriesMemories[catName][memoryIndex]
+}
+export const getWish = (memories) =>
+{
+  console.log(memories)
+  let randomCategoryIndex = Math.round( Math.random()*memoryCategories.length )
+  return generateWish(randomCategoryIndex,memories)
+}
 export const parseTradeDataTokenAmounts = (_tokens, _tradeData) =>
 {
   // console.log("_tradeData***")

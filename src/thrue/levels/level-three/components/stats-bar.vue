@@ -1,27 +1,27 @@
 <template>
-    <div class="flex-wrap pa-2 n-flat " v-if="player.stats" style="border-radius: 15px 15px 0 0">
-      <span class="flex px-3 pr-4" style="border-right: 2px solid #777777;"
+    <div class="flex-wrap pa-2 n-inset border-r-15 mb-1" v-if="player.stats">
+      <span class="flex px-3" style="border-right: 2px solid #777777"
         :class="[[player.stats.hunger > 9 ? 'tx-success':''],[player.stats.hunger < 4 ? 'tx-error':'']]"
       >
         <span title="Hunger" >
-          <i class="mr-1 fas fa-hamburger"></i>
+          <i class="mr-2 fas fa-hamburger"></i>
           <!-- <i class="fas fa-solid fa-burger"></i>  --></span>
         <small
           
         > {{player.stats.hunger}}</small>
       </span>
-      <span class="flex px-3 pr-2" 
+      <span class="flex px-3" 
         :class="[[player.stats.hygene > 9 ? 'tx-success':''],[player.stats.hygene < 4 ? 'tx-error':'']]"
       >
         <span title="Hygene">
-          <i class="mr-1 fas fa-shower"></i>
+          <i class="mr-2 fas fa-shower"></i>
           <!-- <i class="fas fa-solid fa-soap"></i>  --></span>
         <small>{{player.stats.hygene}}</small>
       </span>
     </div>
 
-    <div class="flex-wrap pa-2 n-flat " v-if="player.stats" style="border-radius: 0 0 15px 15px">
-      <span class="flex px-3" style="border-right: 2px solid #777777;"
+    <div class="flex-wrap pa-2 n-inset border-r-15 " v-if="player.stats">
+      <span class="flex px-3" style="border-right: 2px solid #777777"
         :class="[[player.stats.fun > 9 ? 'tx-success':''],[player.stats.fun < 4 ? 'tx-error':'']]"
       >
         <span title="Fun">

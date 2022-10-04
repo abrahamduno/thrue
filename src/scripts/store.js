@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import { ethers, Contract }  from 'ethers';
 
-import { isMetaMaskInstalled } from './helpers';
+import { isMetaMaskInstalled, getWish } from './helpers';
 import { ABIS, CURRENT_NETWORK } from './constants/index';
 import { LANG } from './constants/lang';
 
@@ -16,6 +16,7 @@ const store = createStore({
     var thefilter = urlparams.get("filter");
     if (thepage == null)
     {
+      // alert(getWishes())
       let currentSubPage = JSON.parse(localStorage.getItem("currentSubPage"))
       if (currentSubPage != null) {
         thepage = currentSubPage
@@ -132,6 +133,22 @@ const store = createStore({
       if (!playerData.q) return
       state.players[playerData.id].q = [...state.players[playerData.id].q, ...playerData.q]
     },
+    fillPlayerGoals(state, playerData) {
+      if (playerData.id === undefined) return
+      
+      // assumes it has alteast one life goal
+      // check if it has short term goals
+      if (state.players[playerData.id].wishs.length >= 4)
+      {
+        // short term goals full
+      } else {
+        let newGoalAmount = 3 - state.players[playerData.id].wishs.length
+        for (var i = newGoalAmount; i >= 0; i--)
+        {
+          state.players[playerData.id].wishs.push(getWish(state.players[playerData.id].mmrs))
+        }
+      }
+    },
     setPlayerStats(state, playerData) {
       if (!playerData.stats) return
       state.players[playerData.id].stats = {...state.players[playerData.id].stats, ...playerData.stats}
@@ -197,6 +214,9 @@ const store = createStore({
   actions: {
     setPlayer(context, playerData) {
       context.commit('setPlayerObject', playerData);
+    },
+    fillPlayerGoals(context, playerData) {
+      context.commit('fillPlayerGoals', playerData);
     },
     setPlayerStats(context, playerData) {
       context.commit('setPlayerStats', playerData);

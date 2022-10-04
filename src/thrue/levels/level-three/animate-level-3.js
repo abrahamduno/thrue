@@ -65,6 +65,15 @@ export default {
         {
           // alert("action finished")
           let theStat = this.__player.q[0].stat
+          // let theNpc = this.__player.q[0].npcRef
+
+          if (theStat == "energy")
+          {
+            this.$store.dispatch("fillPlayerGoals", {
+              id: "0",
+            })
+          }
+
           // console.log(this.__player.q[0])
 
 
