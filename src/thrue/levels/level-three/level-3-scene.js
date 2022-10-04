@@ -250,6 +250,11 @@ export default {
           this.__addLevelMesh()
       }, this.onLoadProgress );
     },
+    __clickedGhost(_npcName)
+    {
+      console.log(this.NPCClickCounter[_npcName])
+      alert("you've found a ghost")
+    },
     __addLevelMesh()
     {
       new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
@@ -291,11 +296,17 @@ export default {
       this._$init_npcContainer()
 
 
+      npcName = "ghost1"
+      this._$add_npc({name:npcName,obj:"aplayer.obj",
+        pos: [-30,this.MIN.y,-144], color: 0x777,
+        animation:{type:"circle",path:["z","x"],value:8,speed:0.005,add:[{rot:"y"}]},
+        click: this.__clickedGhost,
+      });
 
       npcName = "1car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-6.4,this.MIN.y,-120], color: 0xFFD8BA,
-        animation:{type:"constant",path:["z"],value:0.3,add:[{loop:90}]},
+        pos: [-6.4,this.MIN.y,-158], color: 0xFFD8BA,
+        animation:{type:"constant",path:["z"],value:0.3,add:[{loop:27}]},
       });
 
       // npcName = "2car"
@@ -305,8 +316,8 @@ export default {
       // });
       npcName = "3car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
-        pos: [-0.75,this.MIN.y,40], color: 0xD8BAFF  ,
-        animation:{type:"-constant",path:["z"],value:0.4,add:[{loop:-150}]},
+        pos: [-0.75,this.MIN.y,27], color: 0xD8BAFF  ,
+        animation:{type:"-constant",path:["z"],value:0.4,add:[{loop:-158}]},
       });
 
       npcName = "4car"
@@ -394,6 +405,18 @@ export default {
         pos: [-49,this.MIN.y,-54], color: 0xaaaaaa,
         playerpos: [-49,this.MIN.y,-53.5],
         playerrot:[0,-Math.PI,0],
+        click: this.__defaultNPCClickFunction,
+        npcStat:npcStat,
+      });
+
+
+
+      npcName = "closecementerybush"
+      npcStat = "fun"
+      this._$add_npc({name:npcName,obj:"bush.obj",
+        pos: [7,this.MIN.y-1,-95], color: 0x64B650, scale:[1,1.65,2.1],
+        playerpos: [4.5,this.MIN.y,-95],
+        playerrot:[0,Math.PI/3,0],
         click: this.__defaultNPCClickFunction,
         npcStat:npcStat,
       });

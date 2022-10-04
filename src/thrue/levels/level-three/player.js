@@ -11,7 +11,7 @@ export default {
     return {
       p_$localQ: null,
       p_$localQactions: [],
-      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "housebush", "closecornerbush","tunnelbush"],
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "housebush", "closecornerbush","tunnelbush","closecementerybush"],
       p_$statList: ["energy","hunger","hygene","fun"],
     }
   },
@@ -112,6 +112,7 @@ export default {
             },
           },
         ]
+        case "closecementerybush":
         case "tunnelbush":
         case "closecornerbush":
         return [

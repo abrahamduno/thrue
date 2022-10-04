@@ -207,7 +207,7 @@
     >
       <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.id">
         <div class=" mb-2 " >
-          <span class="tx-xs opacity-50">Fix {{p_$localQ.stat}} with:</span>
+          <span class="tx-xs opacity-50">Actions:</span>
           <div v-if="p_$localQactions.length">
             <div v-for="statAction in p_$localQactions" @click="p_$commitStatAction(statAction,p_$localQ)">
               <small class="tx-xs py-1 pa-2 clickable opacity-hover-75 tx-secondary">{{statAction.action}}</small>

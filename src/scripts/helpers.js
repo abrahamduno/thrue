@@ -4,7 +4,7 @@ export const categoriesMemoriesWishes = {
     { name:"Read a full book", icon: "fa-star"},
   ],
   "art": [
-    { name:"Dance in a play", icon: "fa-star"},
+    { name:"Dance to music", icon: "fa-star"},
   ],
   "hazards": [
     { name:"Watch a storm", icon: "fa-star"},
@@ -16,6 +16,7 @@ export const categoriesMemoriesWishes = {
     { name:"Get new pet", icon: "fa-star"},
   ],
   "social": [
+    { name:"Greet neighboor", icon: "fa-star"},
     { name:"Throw birthday party", icon: "fa-star"},
     { name:"Bully someone", icon: "fa-star"},
   ],
@@ -23,7 +24,7 @@ export const categoriesMemoriesWishes = {
     { name:"Play football", icon: "fa-star"},
   ],
   "supernatural": [
-    { name:"Read tarot", icon: "fa-star"},
+    { name:"See ghost", icon: "fa-star"},
   ],
 };
 
