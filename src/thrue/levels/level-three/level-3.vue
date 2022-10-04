@@ -219,12 +219,13 @@
 
 
 
-    <h1 v-if="accs_length || is_playing_test" style="z-index: 999999;" 
-        class="  opacity-75 tx-lg bottom-0 pos-fixed pa-3 ma-2 border-r-50 flex-align-start flex-column n-flat "
+    <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
+        class="  opacity-75  bottom-0 pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
 
-        <stats-bar :player="__player" />
-    </h1>
+        <wishes-bar class="mb-3" :player="__player" />
+        <stats-bar class="tx-lg" :player="__player" />
+    </div>
 </template>
 <script>
 import * as THREE from "three";
@@ -242,6 +243,7 @@ import update_animation from "../../system/update_animation.js";
 import localScene from "./level-3-scene.js";
 
 import statsBar from "./components/stats-bar.vue";
+import wishesBar from "./components/wishes-bar.vue";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -249,6 +251,7 @@ export default {
   name: 'level-three',     
   components: {
     statsBar,
+    wishesBar,
   },
   mixins: [
     baseStandardMaterial,

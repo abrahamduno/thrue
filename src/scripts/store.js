@@ -48,6 +48,7 @@ const store = createStore({
       players: {
         "0":{
           id: "0",
+          wishs: [],
           mmrs: {
             "art": [],
             "ambitions": [],

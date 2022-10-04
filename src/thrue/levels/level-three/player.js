@@ -230,13 +230,15 @@ export default {
       let ms = Date.now();
       {
         // unsigned
-        let _mmrs = this.__getRandomMemories(3)
+        let _mmrs = this.__getRandomMemories()
+        let _wishs = this.__getRandomWishes(_mmrs)
         this.$store.dispatch("setPlayer",
           {...{
             id:"0",
             // preQaction: "",
             // preQactions: [],
             // preQ: null,
+            wishs: _wishs,
             mmrs: _mmrs,
             q: [],
             obj: null,
@@ -261,6 +263,14 @@ export default {
         },
         this.onLoadProgress
       );
+    },
+    __getRandomWishes()
+    {
+      return [
+        {
+          name: "Become a Celebrity Lawer",
+        },
+      ]
     },
     __getRandomMemories()
     {
