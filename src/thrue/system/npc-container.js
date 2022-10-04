@@ -33,8 +33,12 @@ export default {
           const boxGeometry = new THREE.BoxGeometry(...params.BoxGeometry);
           const boxMaterial = new THREE.MeshStandardMaterial( { wireframe: false,color: params.color } );
           let newClickBox = new THREE.Mesh( boxGeometry, boxMaterial );
-          newClickBox.castShadow = true; //default is false
-          newClickBox.receiveShadow = true; //default
+          if (params.light === true)
+          {
+          } else {
+            newClickBox.castShadow = params.shadow; //default is false
+            newClickBox.receiveShadow = params.shadow; //default
+          }
           newClickBox.position.set(...params.pos)
           if (params.rot) newClickBox.rotation.set(...params.rot)
           // newClickBox.name = params.name
@@ -167,7 +171,17 @@ export default {
         new OBJLoader().setPath(BASE_ASSET_URL + "/models/").load(
           _params.obj,
           (object) => {
-            object.traverse( this.baseStandardMaterial(_params.color) );
+            if (_params.light === true)
+            {
+              object.traverse( this.baseLightMaterial(_params.color) );
+              // object.castShadow = _params.shadow; //default is false
+              // object.receiveShadow = _params.shadow; //default
+            } else {
+              object.traverse( this.baseStandardMaterial(_params.color) );
+              object.castShadow = true; //default is false
+              object.receiveShadow = true; //default
+            }
+            
             object.position.set(..._params.pos);
             object.name = _params.name
             if (_params.rot) object.rotation.set(..._params.rot);

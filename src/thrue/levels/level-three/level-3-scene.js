@@ -304,8 +304,8 @@ export default {
       });
       npcName = "storm"
       this._$add_npc({name:npcName,obj:"lightning.obj",
-        pos: [18,this.MIN.y+150,-65], color: 0xffaa33, scale:[1,1,1],
-        animation:{type:"-constant",path:["y"],value:1,add:[{loop:-5}]},
+        pos: [18,this.MIN.y+5000,-65], color: 0xffffff, scale:[1,1,1], light: true,
+        animation:{type:"-constant",path:["y"],value:3,add:[{loop:-5}]},
         click: this.__clickedGhost,
       });
 
