@@ -7,7 +7,7 @@ export const categoriesMemoriesWishes = {
     { name:"Dance to music", icon: "fa-star"},
   ],
   "hazards": [
-    { name:"Watch a storm", icon: "fa-star"},
+    { name:"See lightning", icon: "fa-star"},
   ],
   "logic": [
     { name: "Learn to play chess", icon: "fa-star"},

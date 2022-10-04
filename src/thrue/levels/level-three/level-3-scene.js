@@ -302,12 +302,12 @@ export default {
         animation:{type:"circle",path:["z","x"],value:8,speed:0.005,add:[{rot:"y"}]},
         click: this.__clickedGhost,
       });
-      // npcName = "storm"
-      // this._$add_npc({name:npcName,obj:"rain.obj",
-      //   pos: [0,this.MIN.y,0], color: 0xffffff, scale:[1,1,1],
-      //   animation:{type:"-constant",path:["y"],value:1,add:[{loop:-180}]},
-      //   click: this.__clickedGhost,
-      // });
+      npcName = "storm"
+      this._$add_npc({name:npcName,obj:"lightning.obj",
+        pos: [18,this.MIN.y+150,-65], color: 0xffaa33, scale:[1,1,1],
+        animation:{type:"-constant",path:["y"],value:1,add:[{loop:-5}]},
+        click: this.__clickedGhost,
+      });
 
       npcName = "1car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
