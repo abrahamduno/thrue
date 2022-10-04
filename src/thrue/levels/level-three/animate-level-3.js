@@ -11,7 +11,8 @@ export default {
       
 
       // if ()
-      const nowT = Date.now()
+      const nowT = parseInt(Date.now()/1000)
+      this.UNIX = nowT
       // console.log(nowT)
       if (this.__player && this.__player.q.length)
       {

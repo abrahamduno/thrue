@@ -1,5 +1,5 @@
 <template>
-    <div class="flex-wrap pa-2 n-inset border-r-15 mb-1" v-if="player.stats">
+    <div class="flex-wrap   py-2 n-inset border-r-15 mb-1" v-if="player.stats">
       <span class="flex px-3" style="border-right: 2px solid #777777"
         :class="[[player.stats.hunger > 9 ? 'tx-success':''],[player.stats.hunger < 4 ? 'tx-error':'']]"
       >
@@ -20,7 +20,7 @@
       </span>
     </div>
 
-    <div class="flex-wrap pa-2 n-inset border-r-15 " v-if="player.stats">
+    <div class="flex-wrap py-2 n-inset border-r-15 " v-if="player.stats">
       <span class="flex px-3" style="border-right: 2px solid #777777"
         :class="[[player.stats.fun > 9 ? 'tx-success':''],[player.stats.fun < 4 ? 'tx-error':'']]"
       >

@@ -218,16 +218,22 @@
       </div>
   </div>
 
+    <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
+        class="    top-0 right-0  pos-fixed pa-3 border-r-25 flex-align-start flex-column "
+    >
+        <wishes-bar    :player="__player" />
+
+  </div>
 
 
     <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="    bottom-0 pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
 
-        <wishes-bar class="mb-3" :player="__player" />
-        <div class="opacity-50">
-          <stats-bar class="tx-lg " :player="__player" />
+        <div class="opacity-50 mb-2">
+          <stats-bar   :player="__player" />
         </div>
+        <time-bar ref="timebar"  :player="__player" :UNIX="UNIX"/>
     </div>
 </template>
 <script>
@@ -247,6 +253,7 @@ import localScene from "./level-3-scene.js";
 
 import statsBar from "./components/stats-bar.vue";
 import wishesBar from "./components/wishes-bar.vue";
+import timeBar from "./components/time-bar.vue";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
@@ -254,6 +261,7 @@ export default {
   name: 'level-three',     
   components: {
     statsBar,
+    timeBar,
     wishesBar,
   },
   mixins: [
@@ -273,6 +281,7 @@ export default {
     return {
       enable_help: 0,
       show_help: false,
+      UNIX: 0,
     };
   },
   computed:

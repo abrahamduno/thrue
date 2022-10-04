@@ -27,14 +27,14 @@ export default {
         return [
           {
             action:"Eat apple",
-            dur: 3500,
+            dur: 4,
             stat:{
               [theStat]: 1,
             },
           },
           {
             action:"Devour cake",
-            dur: 7500,
+            dur: 8,
             stat:{
               [theStat]: 3,
             },
@@ -44,14 +44,14 @@ export default {
         return [
           {
             action:"Shower with soap",
-            dur: 11000,
+            dur: 12,
             stat:{
               [theStat]: 4,
             },
           },
           {
             action:"Quick shower",
-            dur: 7500,
+            dur: 8,
             stat:{
               [theStat]: 2,
             },
@@ -61,14 +61,14 @@ export default {
         return [
           {
             action:"Take a nap",
-            dur: 9000,
+            dur: 9,
             stat:{
               [theStat]: 1,
             },
           },
           {
             action:"Deep Sleep",
-            dur: 42000,
+            dur: 42,
             stat:{
               [theStat]:5,
             },
@@ -78,7 +78,7 @@ export default {
         return [
           {
             action:"Read newspaper",
-            dur: 6000,
+            dur: 6,
             stat:{
               [theStat]: 2,
             },
@@ -88,7 +88,7 @@ export default {
         return [
           {
             action:"Peek neighboors mailbox",
-            dur: 3000,
+            dur: 3,
             stat:{
               [theStat]: 3,
             },
@@ -98,14 +98,14 @@ export default {
         return [
           {
             action:"Eat energy",
-            dur: 5000,
+            dur: 5,
             stat:{
               [theStat]: 1,
             },
           },
           {
             action:"Walk to bush",
-            dur: 1000,
+            dur: 1,
             stat:{
               [theStat]: 0,
             },
@@ -116,14 +116,14 @@ export default {
         return [
           {
             action:"Walk to bush",
-            dur: 1000,
+            dur: 1,
             stat:{
               [theStat]: 0,
             },
           },
           {
             action:"Inspect",
-            dur: 6000,
+            dur: 6,
             stat:{
               [theStat]: 1,
             },
@@ -145,7 +145,7 @@ export default {
               stat:stat.stat,
               value:statAction.stat[stat.stat],
               action:statAction.action,
-              t:Date.now(),
+              t:parseInt(Date.now()/1000),
               d:statAction.dur,
             }
           ]
@@ -227,7 +227,7 @@ export default {
     },
     p_$init_player(_player)
     {
-      let ms = Date.now();
+      let ms = parseInt(Date.now()/1000);
       {
         // unsigned
         let _mmrs = this.__getRandomMemories()
