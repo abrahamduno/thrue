@@ -1,16 +1,16 @@
 <template>
-    <div class="flex-wrap pa-1 n-inset border-r-5">
-      <span class="flex px-1 tx-xs flex-center" 
+    <div class="flex-column pa-1 n-inset border-r-5">
+      <span class="flex px-1 tx-sm flex-center" 
       >
         <!-- <span title="Hunger" >
           <i class="mr-2 fas fa-hamburger"></i>
         </span> -->
-        <small > h:{{hoursSince2020}}</small>
+        <!-- <div class="px-1">|</div> -->
+        <small > {{minutesSinceLastHour}}</small>
         <div class="px-1">|</div>
-        <small > m:{{minutesSinceLastHour}}</small>
-        <div class="px-1">|</div>
-        <small > s:{{secondsSinceLastHour}}</small>
+        <small > {{secondsSinceLastHour}}</small>
       </span>
+      <i  class="opacity-75 tx-ls-2 tx-xs"> {{hoursSince2020}}</i>
     </div>
     </div>
 </template>

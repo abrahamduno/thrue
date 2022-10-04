@@ -230,10 +230,10 @@
         class="    bottom-0 pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
 
-        <div class="opacity-50 mb-2">
+        <time-bar ref="timebar"  :player="__player" :UNIX="UNIX"/>
+        <div class="opacity-50 mt-2">
           <stats-bar   :player="__player" />
         </div>
-        <time-bar ref="timebar"  :player="__player" :UNIX="UNIX"/>
     </div>
 </template>
 <script>
