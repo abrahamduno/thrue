@@ -315,11 +315,7 @@ export default {
         animation:{type:"constant",path:["z"],value:0.3,add:[{loop:27}]},
       });
 
-      // npcName = "2car"
-      // this._$add_npc({name:npcName,obj:"standardcar.obj",
-      //   pos: [1.5,this.MIN.y,80], color: 0xD8FFBA,
-      //   animation:{type:"-constant",path:["z"],value:0.25,add:[{loop:-120}]},
-      // });
+
       npcName = "3car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
         pos: [-0.75,this.MIN.y,27], color: 0xD8BAFF  ,
