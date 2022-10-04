@@ -67,11 +67,11 @@
                         <span class="pa-2 py-4  opacity-hover-50">
                             <i class="fas tx-sm" v-if="pause_mode" >
                                 <span>
-                                    HELP
-                                    <i class="fas px-1 tx-lg fa-times-circle"></i>
+                                    <!-- HELP -->
+                                    <i class="fas px-1 tx-lg fa-cogs"></i>
                                 </span>
                             </i>
-                            <i class="fas tx-sm"  v-else > <span> HELP</span></i>
+                            <i class="fas tx-sm"  v-else > <span> <i class="fas fa-cog"></i></span></i>
                         </span>
                     </button>
                     <button class="noborder n-tx ma-2  tx-sm  clickable flex-center border-r-15 show-md_x"
@@ -257,8 +257,8 @@
             >
                     <!-- v-show="pause_mode" -->
                 <span class="pa-2 py-3  opacity-hover-50">
-                    <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times-circle"></i> HELP</span></i>
-                    <i class="fas tx-sm"  v-else > <span> HELP</span></i>
+                    <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-cogs"></i> </span></i>
+                    <i class="fas tx-sm"  v-else > <span> <i class="fas fa-cog"></i> </span></i>
                 </span>
             </button>
             <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
