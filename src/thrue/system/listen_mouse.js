@@ -110,16 +110,26 @@ export default {
             this.INTERSECTED.material.emissive.setHex( 0xff0000 );
 
 
-            if (this.l_$npcList.indexOf(lastIntersected.parent.name) != -1)
-            {
-              // if ( lastIntersected ) lastIntersected.material.emissive.setHex( lastIntersected.currentHex );
+            // if (this.l_$npcList.indexOf(lastIntersected.parent.name) != -1)
+            // {
+            //   // if ( lastIntersected ) lastIntersected.material.emissive.setHex( lastIntersected.currentHex );
 
-              // lastIntersected = intersects[ 0 ].object;
-              // lastIntersected.currentHex = lastIntersected.material.emissive.getHex();
-              if (lastIntersected.parent.name != this.INTERSECTED.parent.name) 
-              {
-                lastIntersected.material.emissive.setHex( 0x000000 );
-              } 
+            //   // lastIntersected = intersects[ 0 ].object;
+            //   // lastIntersected.currentHex = lastIntersected.material.emissive.getHex();
+            //   if (lastIntersected.parent.name != this.INTERSECTED.parent.name) 
+            //   {
+            //     lastIntersected.material.emissive.setHex( 0x000000 );
+            //   } 
+            // }
+            
+            for (var i = 0; i < this.l_$npcList.length; i++)
+            {
+              const theNpc = this.l_$npcList[i]
+              if (!this.NPCContainer[theNpc]) continue
+              // console.log(this.NPCContainer[theNpc].name , this.INTERSECTED.parent.name)
+              if (this.NPCContainer[theNpc].name == this.INTERSECTED.parent.name) continue
+              // console.log(this.NPCContainer[theNpc],this.NPCContainer[theNpc].children[0],theNpc)
+              this.NPCContainer[theNpc].children[0].material.emissive.setHex( 0x000000 );
             }
           } else {
             // console.log("raycasted a new static object")

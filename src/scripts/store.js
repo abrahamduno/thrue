@@ -126,7 +126,7 @@ const store = createStore({
       state.players[playerData.id].q.shift(); 
       for (var i = 0; i < state.players[playerData.id].q.length; i++)
       {
-        state.players[playerData.id].q[i].t = Date.now()
+        state.players[playerData.id].q[i].t = Date.now()/1000
       }
     },
     addToPlayerQ(state, playerData) {
