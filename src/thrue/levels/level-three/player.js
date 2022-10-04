@@ -89,9 +89,16 @@ export default {
         return [
           {
             action:"Peek neighboors mailbox",
-            dur: 3,
+            dur: 4,
             stat:{
-              [theStat]: 3,
+              [theStat]: 2,
+            },
+          },
+          {
+            action:"Steal neighboors mail",
+            dur: 2,
+            stat:{
+              [theStat]: 1,
             },
           },
         ]

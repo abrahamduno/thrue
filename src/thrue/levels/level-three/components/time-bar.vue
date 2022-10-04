@@ -7,7 +7,7 @@
         </span> -->
         <!-- <div class="px-1">|</div> -->
         <small > {{minutesSinceLastHour}}</small>
-        <div class="px-1">|</div>
+        <div class="mb-1" style="padding: 0 3px">:</div>
         <small > {{secondsSinceLastHour}}</small>
       </span>
       <i  class="opacity-75 tx-ls-2 tx-xs"> {{hoursSince2020}}</i>

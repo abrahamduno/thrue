@@ -123,6 +123,7 @@
 .tx-md {font-size: 1em; }
 .tx-sm {font-size: 0.85em; }
 .tx-xs {font-size: 0.55em; }
+.tx-xxs {font-size: 0.35em; }
 
 .tx-center {text-align: center; }
 .tx-end, .tx-right {text-align: right; }
