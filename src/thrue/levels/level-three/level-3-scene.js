@@ -253,7 +253,7 @@ export default {
     __clickedGhost(_npcName)
     {
       console.log(this.NPCClickCounter[_npcName])
-      alert("you've found a ghost")
+      alert("you've found "+_npcName)
     },
     __addLevelMesh()
     {
@@ -298,10 +298,16 @@ export default {
 
       npcName = "ghost1"
       this._$add_npc({name:npcName,obj:"aplayer.obj",
-        pos: [-30,this.MIN.y,-144], color: 0x777,
+        pos: [-30,this.MIN.y,-144], color: 0x777777,
         animation:{type:"circle",path:["z","x"],value:8,speed:0.005,add:[{rot:"y"}]},
         click: this.__clickedGhost,
       });
+      // npcName = "storm"
+      // this._$add_npc({name:npcName,obj:"rain.obj",
+      //   pos: [0,this.MIN.y,0], color: 0xffffff, scale:[1,1,1],
+      //   animation:{type:"-constant",path:["y"],value:1,add:[{loop:-180}]},
+      //   click: this.__clickedGhost,
+      // });
 
       npcName = "1car"
       this._$add_npc({name:npcName,obj:"standardcar.obj",
