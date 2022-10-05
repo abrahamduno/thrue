@@ -241,19 +241,19 @@
 import * as THREE from "three";
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-import set_scene from "../../system/set_scene.js";
-import bloommixin from "../../system/mixin_bloom.js";
-import listen_mouse from "../../system/listen_mouse.js";
-import listen_click from "../../system/listen_click.js";
-import listen_swipe from "../../system/listen_swipe.js";
-import update_animation from "../../system/update_animation.js";
-import npcContainer from "../../system/npc-container.js";
+import set_scene from "../../../system/set_scene.js";
+import bloommixin from "../../../system/mixin_bloom.js";
+import listen_mouse from "../../../system/listen_mouse.js";
+import listen_click from "../../../system/listen_click.js";
+import listen_swipe from "../../../system/listen_swipe.js";
+import update_animation from "../../../system/update_animation.js";
+import npcContainer from "../../../system/npc-container.js";
 
-import createLevel from "./scene/level-create.js";
+import createLevel from "../scene/level-create.js";
 
-import statsBar from "./components/stats-bar.vue";
-import wishesBar from "./components/wishes-bar.vue";
-import timeBar from "./components/time-bar.vue";
+import statsBar from "./parts/stats-bar.vue";
+import wishesBar from "./parts/wishes-bar.vue";
+import timeBar from "./parts/time-bar.vue";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";

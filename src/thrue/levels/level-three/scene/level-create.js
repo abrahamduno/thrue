@@ -5,8 +5,8 @@ import baseStandardMaterial from "../../../../scripts/constants/baseStandardMate
 import animateLevel from "./level-update.js";
 import player from "./player.js";
 
-import startLevelBlob from "./models/start-game.js";
-import startPersonHead from "./models/start-person-bubblehead.js";
+import startLevelBlob from "../models/start-game.js";
+import startPersonHead from "../models/start-person-bubblehead.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
