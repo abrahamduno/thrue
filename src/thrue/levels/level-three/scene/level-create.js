@@ -27,6 +27,66 @@ export default {
   },
   methods:
   {
+    l_$initLevel()
+    {
+      this.scene = null
+      this.camera = null
+      this.__scroll = null
+      
+      this.sceneBreakpoints = {
+        default: [],
+        mobile: [3000, 8500, 9900, 13100, 14400],
+        desktop: [2400, 4200, 12900, 16100, 18400],
+      }
+      this.MIN = {
+        y:-4,
+      }
+      this.LIVE_OFFSET = {}
+      this.OFFSET = {}
+      this.sceneVariables = {
+        camera: {
+          pos: [0, 0, 9],
+          rot: [0, 0, 0],
+          fov: 45,
+          fovSettings: {
+            mobile: 60,
+            desktop: 45,
+          },
+          minReach: 0.1,
+          maxReach: 120,
+          shadowDistance: 85,
+        },
+      }
+      this.renderer = null
+      this.DOM = {
+        ratio: null,
+        height: null,
+      }
+
+      this.__setScene();
+      this.l_$listen_scrollPosition()
+      // this.$animate()
+    },
+    __setScene()
+    {
+      this._$set_sceneAndCamera();
+      this.l_$addLight()
+
+      this._$set_renderer();
+      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
+
+      this.p_$set_playerOrbitControl();
+      // D5EAF9 // D88223
+      this.scene.fog = new THREE.FogExp2( this.dark_mode ? 0xA5631B : 0xD5EAF9, 0.015  );
+
+
+      this.add_startLevelBlob()
+      this.add_personBubbleHead()
+
+
+      this._$set_raycaster();
+      this._$set_swipe()
+    },
     __initLevelScene()
     {
       this.goals = {
@@ -40,61 +100,6 @@ export default {
       this.camera.position.set(5,3,-2)
       this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos(-1.5)
-    },
-    l_$checkGoals()
-    {
-      // let input = prompt("Amount",1)
-      // let input = prompt("Amount",1)
-      console.log("this.enable_help",this.enable_help)
-
-      if (!this.goals)
-      {
-        alert("please wait for game to load")
-        return
-        this.__YOU_LOSE()
-      }
-      // ... (next scene) | implement go to town ? 
-      this.__YOU_WIN()
-    },
-    __YOU_WIN()
-    {
-      alert("Hello World!")
-    },
-    __YOU_LOSE()
-    {
-      alert("Failed")
-    },
-
-
-
-    clickedLevelHelp()
-    {
-      // this.enable_help++
-      this.show_help = false
-      // alert("clickHelp: "+this.enable_help)
-    },
-    _$click_currentLevel()
-    {
-      // this.checkNavigationClick()
-      // this.__orbitcontrols.update();
-
-      this.$click_startLevelBlob()
-
-      // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
-      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
-      {
-        this.clickedBubbleHeadHead()
-      }
-      
-
-      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
-      {
-        this.goals.hay++
-        this.clickFarm()
-      }
-
-            // if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
-
     },
 
     l_$addLight()
@@ -142,88 +147,6 @@ export default {
       this.scene.add( this.roomlightTarget );
       this.roomlight.target = this.roomlightTarget
     },
-    __staticNPCClickFunction (_npcName)
-    {
-      // console.log(_npcName)
-      if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
-      // console.log(_npcName,this.INTERSECTED)
-
-      this.p_$localQactions = []
-      this.p_$localQ = null
-    },
-    __defaultNPCClickFunction (_npcName)
-    {
-      // alert("You've Clicked "+`${_npcName}`)
-      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
-      // console.log(this.p_$localQ,_npcName)
-      if (this.p_$localQ != null)
-      {
-        if (_npcName == this.p_$localQ.npcRef)
-        {
-          // this.p_$localQactions = []
-          // this.p_$localQ = null
-          // this.$store.dispatch("clearPreQ",{
-          //     id:"0",
-          //   },
-          // )
-        } else {
-          this.p_$localQactions = []
-          this.p_$localQ = null
-        }
-      } else {
-        console.log("clicked", this.NPCClickCounter[_npcName], this.NPCBaseContainer[_npcName].npcStat)
-        if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
-        {
-          {
-            let theStat = this.NPCBaseContainer[_npcName].npcStat
-
-              // if (this.p_$localQ)
-              {
-                this.p_$localQ = {
-                  id:"0",
-                  stat: theStat,
-                  npcRef:_npcName,
-                }
-                this.p_$localQactions = this.p_$availableActions(_npcName)
-
-                // this.$store.dispatch("addToPlayerPreQ",{
-                //     preQ: {
-                //       id:"0",
-                //       stat: theStat,
-                //       npcRef:_npcName,
-                //     },
-                //     preQaction: "yes",
-                //     preQactions: this.p_$availableActions(_npcName),
-                //   },
-                // )
-
-                // this.$store.dispatch("addToPlayerY",{
-                //     id:"0",
-                //     t: 0,
-                //     preQ: {
-                //       id:"0",
-                //       stat: theStat,
-                //       npcRef:_npcName,
-                //     },
-                //     preQaction: "yes",
-                //     y: this.p_$availableActions(_npcName),
-                //   },
-                // )
-                
-                // console.log(this.p_$localQ)
-              }
-              this.NPCContainer[_npcName].rotation.y = 0.5
-
-          }
-          
-        }
-      }
-      this.NPCClickCounter[_npcName]--
-
-      // this.NPCContainer[_npcName].position.y = 50;
-      // this.NPCContainer[_npcName].visible = false
-    },
     l_$addCurrentLevelScene()
     {
       this.__initLevelScene()
@@ -239,11 +162,6 @@ export default {
 
           this.__addLevelMesh()
       }, this.onLoadProgress );
-    },
-    __clickedGhost(_npcName)
-    {
-      console.log(this.NPCClickCounter[_npcName])
-      alert("you've found "+_npcName)
     },
     __addLevelMesh()
     {
@@ -415,92 +333,3 @@ export default {
     },
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              // this.$store.dispatch("setPlayerStats",{
-              //   id:"0",
-              //   stats:{
-              //     [theStat]: parseFloat(this.__player.stats[theStat])+1,
-              //   },
-              // })
-              // this.$store.dispatch("addToPlayerQ",{
-              //     id:"0",
-              //     q: [
-              //       { stat:theStat, t:Date.now(), d:7500 }
-              //     ]
-              //   },
-              // )
-
-              // this.NPCContainer[_npcName].rotation.x = 0.2
-              // this.__orbitcontrols.target.set(this.NPCContainer[_npcName].position.x,this.NPCContainer[_npcName].position.y,this.NPCContainer[_npcName].position.z)
-
-              // console.table({newPosX,newPosZ})
-              // this.NPCBaseContainer[_npcName].playerpos
-              // this.NPCBaseContainer[_npcName].playerrot
-
-
-
-
-
-
-
-
-
-
-
-              // if (this.NPCBaseContainer[_npcName].playerpos)
-              // {
-              //   this.$store.dispatch("setPlayerPosition",{
-              //     id:"0",
-              //     pos:[
-              //       this.NPCBaseContainer[_npcName].playerpos[0],
-              //       this.__player.pos[1],
-              //       this.NPCBaseContainer[_npcName].playerpos[2]
-              //     ]
-              //   })
-              //   this.__orbitcontrols.target.set(...this.NPCBaseContainer[_npcName].playerpos)
-              // }
-              // if (this.NPCBaseContainer[_npcName].playerrot)
-              // {
-              //   this.$store.dispatch("setPlayerRotation",{
-              //     id:"0",
-              //     pos:[ 
-              //       this.__player.pos[0],
-              //       this.NPCBaseContainer[_npcName].playerrot[1],
-              //       this.__player.pos[2],
-              //     ]
-              //   })
-              // }
-
-
-
-
-
-
-
-
-
-
-
-              // this.NPCContainer[_npcName].rotation.z = 0.2
-            // if (this.__player.stats[theStat] < 10)
-            // {
-            // } else {
-            //   alert("You are sinnin "+theStat)
-            // }

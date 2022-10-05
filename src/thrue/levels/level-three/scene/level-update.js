@@ -4,6 +4,162 @@ const x = 0, y = 1, z = 2
 export default {
   methods:
   {
+
+    __clickedGhost(_npcName)
+    {
+      console.log(this.NPCClickCounter[_npcName])
+      alert("you've found "+_npcName)
+    },
+    __staticNPCClickFunction (_npcName)
+    {
+      // console.log(_npcName)
+      if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
+      // console.log(_npcName,this.INTERSECTED)
+
+      this.p_$localQactions = []
+      this.p_$localQ = null
+    },
+    __defaultNPCClickFunction (_npcName)
+    {
+      // alert("You've Clicked "+`${_npcName}`)
+      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+      // console.log(`${_npcName} (${this.NPCClickCounter[_npcName]})`)
+      // console.log(this.p_$localQ,_npcName)
+      if (this.p_$localQ != null)
+      {
+        if (_npcName == this.p_$localQ.npcRef)
+        {
+          // this.p_$localQactions = []
+          // this.p_$localQ = null
+          // this.$store.dispatch("clearPreQ",{
+          //     id:"0",
+          //   },
+          // )
+        } else {
+          this.p_$localQactions = []
+          this.p_$localQ = null
+        }
+      } else {
+        console.log("clicked", this.NPCClickCounter[_npcName], this.NPCBaseContainer[_npcName].npcStat)
+        if (this.NPCClickCounter[_npcName] == 1 && this.NPCBaseContainer[_npcName].npcStat)
+        {
+          {
+            let theStat = this.NPCBaseContainer[_npcName].npcStat
+
+              // if (this.p_$localQ)
+              {
+                this.p_$localQ = {
+                  id:"0",
+                  stat: theStat,
+                  npcRef:_npcName,
+                }
+                this.p_$localQactions = this.p_$availableActions(_npcName)
+
+                // this.$store.dispatch("addToPlayerPreQ",{
+                //     preQ: {
+                //       id:"0",
+                //       stat: theStat,
+                //       npcRef:_npcName,
+                //     },
+                //     preQaction: "yes",
+                //     preQactions: this.p_$availableActions(_npcName),
+                //   },
+                // )
+
+                // this.$store.dispatch("addToPlayerY",{
+                //     id:"0",
+                //     t: 0,
+                //     preQ: {
+                //       id:"0",
+                //       stat: theStat,
+                //       npcRef:_npcName,
+                //     },
+                //     preQaction: "yes",
+                //     y: this.p_$availableActions(_npcName),
+                //   },
+                // )
+                
+                // console.log(this.p_$localQ)
+              }
+              this.NPCContainer[_npcName].rotation.y = 0.5
+
+          }
+          
+        }
+      }
+      this.NPCClickCounter[_npcName]--
+
+      // this.NPCContainer[_npcName].position.y = 50;
+      // this.NPCContainer[_npcName].visible = false
+    },
+
+
+    
+    l_$checkGoals()
+    {
+      // let input = prompt("Amount",1)
+      // let input = prompt("Amount",1)
+      console.log("this.enable_help",this.enable_help)
+
+      if (!this.goals)
+      {
+        alert("please wait for game to load")
+        return
+        // this.__YOU_LOSE()
+      }
+      // ... (next scene) | implement go to town ? 
+      this.__YOU_WIN()
+    },
+    __YOU_WIN()
+    {
+      alert("Hello World!")
+    },
+    __YOU_LOSE()
+    {
+      alert("Failed")
+    },
+
+
+
+    clickedLevelHelp()
+    {
+      // this.enable_help++
+      this.show_help = false
+      // alert("clickHelp: "+this.enable_help)
+    },
+    _$click_currentLevel()
+    {
+      // this.checkNavigationClick()
+      // this.__orbitcontrols.update();
+
+      this.$click_startLevelBlob()
+
+      // INTERSECTED = MOUSE POINTER HOVERING OVER OBJECT from raycaster
+      if(this.INTERSECTED && this.mysign && this.INTERSECTED == this.mysign.children[0])
+      {
+        this.clickedBubbleHeadHead()
+      }
+      
+
+      if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
+      {
+        this.goals.hay++
+        this.clickFarm()
+      }
+
+            // if ( this.INTERSECTED ) this.INTERSECTED.material.emissive.setHex( 0x000000 );
+
+    },
+
+    clickedBubbleHeadHead(  ) {
+      console.log("clickk")
+      if (!this.mycurrentlevel)
+      {
+        this.$click_startLevelBlob()
+      }
+      this.l_$checkGoals() // base-level js
+      // alert("test")
+    },
     _$animate_main()
     {
       this.__orbitcontrols.update()

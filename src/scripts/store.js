@@ -280,7 +280,7 @@ const store = createStore({
       if (context.getters.current_sub_page == "test")
       {
         context.commit('setTestingConnect', true);
-        console.log("context.getters.is_playing_test", context.getters.is_playing_test)
+        // console.log("context.getters.is_playing_test", context.getters.is_playing_test)
         return
       }
       if (!context.getters.is_metaMask) { alert("Please, Install Metamask.") }

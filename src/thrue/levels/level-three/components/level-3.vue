@@ -307,75 +307,6 @@ export default {
   },
   methods:
   {
-    __initLevel()
-    {
-      this.scene = null
-      this.camera = null
-      this.__scroll = null
-      
-      this.sceneBreakpoints = {
-        default: [],
-        mobile: [3000, 8500, 9900, 13100, 14400],
-        desktop: [2400, 4200, 12900, 16100, 18400],
-      }
-      this.MIN = {
-        y:-4,
-      }
-      this.LIVE_OFFSET = {}
-      this.OFFSET = {}
-      this.sceneVariables = {
-        camera: {
-          pos: [0, 0, 9],
-          rot: [0, 0, 0],
-          fov: 45,
-          fovSettings: {
-            mobile: 60,
-            desktop: 45,
-          },
-          minReach: 0.1,
-          maxReach: 120,
-          shadowDistance: 85,
-        },
-      }
-      this.renderer = null
-      this.DOM = {
-        ratio: null,
-        height: null,
-      }
-
-      this.__setScene();
-      this.l_$listen_scrollPosition()
-      // this.$animate()
-    },
-    __setScene()
-    {
-      this._$set_sceneAndCamera();
-      this.l_$addLight()
-
-      this._$set_renderer();
-      if (this.current_filter == "bloom") { this._$set_bloomRenderer() }
-
-      this.p_$set_playerOrbitControl();
-      // D5EAF9 // D88223
-      this.scene.fog = new THREE.FogExp2( this.dark_mode ? 0xA5631B : 0xD5EAF9, 0.015  );
-
-
-      this.add_startLevelBlob()
-      this.add_personBubbleHead()
-
-
-      this._$set_raycaster();
-      this._$set_swipe()
-    },
-    clickedBubbleHeadHead(  ) {
-      console.log("clickk")
-      if (!this.mycurrentlevel)
-      {
-        this.$click_startLevelBlob()
-      }
-      this.l_$checkGoals() // base-level js
-      // alert("test")
-    },
   },
   beforeDestroy() {
     // remove listener again
@@ -387,7 +318,7 @@ export default {
   },
   mounted()
   {
-    this.__initLevel()
+    this.l_$initLevel()
 
     window.addEventListener( 'resize', this._$set_cameraRenderSize );
     window.addEventListener("scroll", this.l_$listen_scrollPosition);

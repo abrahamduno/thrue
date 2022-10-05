@@ -196,7 +196,7 @@ export default {
             this.scene.add(this.NPCContainer[_params.name]);
             this.NPCContainer[_params.name].name = _params.name
             // console.log(this.NPCContainer[_params.name])
-            console.log(`added npc: ${_params.name}`)
+            // console.log(`added npc: ${_params.name}`)
         }, this.onLoadProgress );
       },
   }

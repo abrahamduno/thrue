@@ -306,7 +306,7 @@ export default {
       }
       const randomNumberAmount = 3
       const randomCategories = getRandom(memoryCategories,randomNumberAmount)
-      console.log(randomCategories)
+      // console.log(randomCategories)
       // for (var i = 0; i < randomNumberAmount; i++)
       // {
       //   // const aRandomNumber = Math.random()*randomNumberAmount.length
