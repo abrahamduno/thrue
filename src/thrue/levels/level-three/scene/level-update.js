@@ -209,8 +209,10 @@ export default {
           }
         }
       }
-      
-      this.animate_ticketer()
+      if (this.animate_ticketer)
+      {
+        this.animate_ticketer()
+      }
     },
     l_$listen_scrollPosition(e)
     {

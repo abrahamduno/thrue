@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { OrbitControls } from "../../../scripts/loaders/OrbitControls.js";
-import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
-import { memoryCategories, getRandom } from "../../../scripts/helpers";
+import { OBJLoader } from "../../../../scripts/loaders/OBJLoader.js";
+import { OrbitControls } from "../../../../scripts/loaders/OrbitControls.js";
+import { memoryCategories, getRandom } from "../../../../scripts/helpers";
 
 const BASE_ASSET_URL = "./res";
 

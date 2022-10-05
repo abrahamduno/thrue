@@ -1,29 +1,24 @@
 import * as THREE from "three";
-import { OBJLoader } from "../../../scripts/loaders/OBJLoader.js";
+import { OBJLoader } from "../../../../scripts/loaders/OBJLoader.js";
+import baseStandardMaterial from "../../../../scripts/constants/baseStandardMaterial.js";
 
-import npcContainer from "../../system/npc-container.js";
+import animateLevel from "./level-update.js";
 import player from "./player.js";
 
-import animateLevelThree from "./animate-level-3.js";
 import startLevelBlob from "./models/start-game.js";
 import startPersonHead from "./models/start-person-bubblehead.js";
-
-import ticketer from "../../models/ticketer.obj.js";
-import farm from "../../models/farm.obj.js";
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";
 export default {
   mixins: [
-    npcContainer,
+    baseStandardMaterial,
 
-    animateLevelThree,
+    animateLevel,
+    player,
+
     startLevelBlob,
     startPersonHead,
-    ticketer,
-    farm,
-
-    player,
   ],
   data()
   {
@@ -91,11 +86,6 @@ export default {
         this.clickedBubbleHeadHead()
       }
       
-      if(this.ticketer && this.INTERSECTED && this.INTERSECTED == this.ticketer.children[0])
-      {
-        this.goals.tickets++
-        this.clickTicketer()
-      }
 
       if(this.myfarm && this.INTERSECTED && this.INTERSECTED == this.myfarm.children[0])
       {
