@@ -22,123 +22,11 @@ export default {
     p_$availableActions(npc)
     {
       let theStat = this.NPCBaseContainer[npc].npcStat
-      switch(npc)
+      if (this.baseNpcActionList[npc] && this.baseNpcActionList[npc].length)
       {
-        case "fridge":
-        return [
-          {
-            action:"Eat apple",
-            dur: 4,
-            stat:{
-              [theStat]: 1,
-            },
-          },
-          {
-            action:"Devour cake",
-            dur: 8,
-            stat:{
-              [theStat]: 3,
-            },
-          },
-        ]
-        case "shower":
-        return [
-          {
-            action:"Shower with soap",
-            dur: 12,
-            stat:{
-              [theStat]: 4,
-            },
-          },
-          {
-            action:"Quick shower",
-            dur: 8,
-            stat:{
-              [theStat]: 2,
-            },
-          },
-        ]
-        case "bed":
-        return [
-          {
-            action:"Take a nap",
-            dur: 9,
-            stat:{
-              [theStat]: 1,
-            },
-          },
-          {
-            action:"Deep Sleep",
-            dur: 42,
-            stat:{
-              [theStat]:5,
-            },
-          },
-        ]
-        case "mailbox":
-        return [
-          {
-            action:"Read newspaper",
-            dur: 6,
-            stat:{
-              [theStat]: 2,
-            },
-          },
-        ]
-        case "mailboxneigh":
-        return [
-          {
-            action:"Peek neighboors mailbox",
-            dur: 4,
-            stat:{
-              [theStat]: 2,
-            },
-          },
-          {
-            action:"Steal neighboors mail",
-            dur: 2,
-            stat:{
-              [theStat]: 1,
-            },
-          },
-        ]
-        case "housebush":
-        return [
-          {
-            action:"Eat energy",
-            dur: 5,
-            stat:{
-              [theStat]: 1,
-            },
-          },
-          {
-            action:"Walk to bush",
-            dur: 1,
-            stat:{
-              [theStat]: 0,
-            },
-          },
-        ]
-        case "closecementerybush":
-        case "tunnelbush":
-        case "closecornerbush":
-        return [
-          {
-            action:"Walk to bush",
-            dur: 1,
-            stat:{
-              [theStat]: 0,
-            },
-          },
-          {
-            action:"Inspect",
-            dur: 6,
-            stat:{
-              [theStat]: 1,
-            },
-          },
-        ]
+        return this.baseNpcActionList[npc]
       }
+      
       return []
     },
     p_$commitStatAction(statAction,stat)
@@ -182,37 +70,6 @@ export default {
     p_$statToAction(stat)
     {
       return stat
-    },
-    p_$parseMemoryCategoryIcon(category)
-    {
-      switch(category)
-      {
-        case "ambition": return "fa-pen pr-3 tx-secondary"
-        case "art": return "fa-book pr-3 tx-success"
-        case "hazards": return "fa-school pr-1 tx-primary"
-        case "logic": return "fa-tree pr-3 tx-tertiary"
-        case "pets": return "fa-cat pr-2 tx-special"
-        case "social": return "fa-bolt pr-4 tx-error"
-        case "sports": return "fa-baseball-ball tx-secondary pr-2"
-        case "supernatural": return "fa-ghost pr-3"
-      }
-    },
-    p_$parseStatActionLIVE(stat)
-    {
-      switch(stat)
-      {
-        case "Eat apple": return "Eating Apple"
-        case "Devour cake": return "Devouring cake"
-        case "Shower with soap": return "Soaping"
-        case "Quick shower": return "Showering"
-        case "Take a nap": return "Sleeping"
-        case "Deep Sleep": return "Dreaming"
-        case "Read newspaper": return "Reading newspaper"
-        case "Peek neighboors mailbox": return "Peeking neighboors"
-        case "Inspect": return "Checking bush"
-        case "Walk to bush": return "Walking"
-        case "Eat energy": return "Eating light"
-      }
     },
     p_$setOrbitToPlayerPos(yFix = 0)
     {

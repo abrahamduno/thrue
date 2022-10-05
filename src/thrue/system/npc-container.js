@@ -6,6 +6,42 @@ const BASE_ASSET_URL = "./res";
 export default {
   data () {
     return {
+      baseNpcActionList: {
+        "fridge":[
+          {action:"Eat apple", dur: 4, stat:{hunger: 1, }, },
+          {action:"Devour cake", dur: 8, stat:{hunger: 3, }, },
+        ],
+        "shower":[
+          {action:"Shower with soap", dur: 12, stat:{hygene: 4, }, },
+          {action:"Quick shower", dur: 8, stat:{hygene: 2, }, },
+        ],
+        "bed":[
+          {action:"Take a nap", dur: 9, stat:{energy: 1, }, },
+          {action:"Deep Sleep", dur: 42, stat:{energy:5, }, },
+        ],
+        "mailbox":[
+          {action:"Read newspaper", dur: 6, stat:{fun: 2, }, },
+        ],
+        "mailboxneigh":[
+          {action:"Peek neighboors mailbox", dur: 4, stat:{fun: 2, }, },
+          {action:"Steal neighboors mail", dur: 2, stat:{fun: 1, }, },
+        ],
+        "housebush":[
+          {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
+          {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
+        ],
+        "closecementerybush":[
+          {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
+        ],
+        "tunnelbush":[
+          {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
+          {action:"Inspect", dur: 6, stat:{fun: 1, }, },
+        ],
+        "closecornerbush":[
+          {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
+          {action:"Inspect", dur: 6, stat:{fun: 1, }, },
+        ],
+      },
       baseNpc: {
         BoxGeometry: [1, 1, 1],
         pos: [1, 1, 1],
@@ -14,6 +50,37 @@ export default {
     }
   },
   methods: {
+      p_$parseMemoryCategoryIcon(category)
+      {
+        switch(category)
+        {
+          case "ambition": return "fa-pen pr-3 tx-secondary"
+          case "art": return "fa-book pr-3 tx-success"
+          case "hazards": return "fa-school pr-1 tx-primary"
+          case "logic": return "fa-tree pr-3 tx-tertiary"
+          case "pets": return "fa-cat pr-2 tx-special"
+          case "social": return "fa-bolt pr-4 tx-error"
+          case "sports": return "fa-baseball-ball tx-secondary pr-2"
+          case "supernatural": return "fa-ghost pr-3"
+        }
+      },
+      p_$parseStatActionLIVE(stat)
+      {
+        switch(stat)
+        {
+          case "Eat apple": return "Eating Apple"
+          case "Devour cake": return "Devouring cake"
+          case "Shower with soap": return "Soaping"
+          case "Quick shower": return "Showering"
+          case "Take a nap": return "Sleeping"
+          case "Deep Sleep": return "Dreaming"
+          case "Read newspaper": return "Reading newspaper"
+          case "Peek neighboors mailbox": return "Peeking neighboors"
+          case "Inspect": return "Checking bush"
+          case "Walk to bush": return "Walking"
+          case "Eat energy": return "Eating light"
+        }
+      },
       _$init_npcContainer()
       {
         this.NPCClickCounter = {}
