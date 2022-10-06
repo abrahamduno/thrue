@@ -318,7 +318,7 @@ export default {
   },
   mounted()
   {
-    this.l_$initLevel()
+    this.l_$createLevel()
 
     window.addEventListener( 'resize', this._$set_cameraRenderSize );
     window.addEventListener("scroll", this.l_$listen_scrollPosition);
