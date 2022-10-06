@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../../../scripts/loaders/OBJLoader.js";
-import { OrbitControls } from "../../../../scripts/loaders/OrbitControls.js";
 import { memoryCategories, getRandom } from "../../../../scripts/helpers";
 
 const BASE_ASSET_URL = "./res";
@@ -77,20 +76,6 @@ export default {
         this.__player.pos[0],
         this.__player.pos[1]+yFix,
         this.__player.pos[2])
-    },
-    p_$set_playerOrbitControl()
-    {
-      this.__orbitcontrols = new OrbitControls( this.camera, this.renderer.domElement );
-      this.__orbitcontrols.listenToKeyEvents( window ); // optional
-
-      this.__orbitcontrols.enablePan = false
-      this.__orbitcontrols.screenSpacePanning = false;
-
-      this.__orbitcontrols.minDistance = 5;
-      this.__orbitcontrols.maxDistance = 40;
-
-      this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
-      this.__orbitcontrols.target.set(0,0,5) // init screen (connect / login)
     },
     p_$init_player(_player)
     {

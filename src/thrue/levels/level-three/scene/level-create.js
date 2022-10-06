@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OBJLoader } from "../../../../scripts/loaders/OBJLoader.js";
+import { OrbitControls } from "../../../../scripts/loaders/OrbitControls.js";
 import baseStandardMaterial from "../../../../scripts/constants/baseStandardMaterial.js";
 
 import animateLevel from "./level-update.js";
@@ -86,6 +87,20 @@ export default {
 
       this._$set_raycaster();
       this._$set_swipe()
+    },
+    p_$set_playerOrbitControl()
+    {
+      this.__orbitcontrols = new OrbitControls( this.camera, this.renderer.domElement );
+      this.__orbitcontrols.listenToKeyEvents( window ); // optional
+
+      this.__orbitcontrols.enablePan = false
+      this.__orbitcontrols.screenSpacePanning = false;
+
+      this.__orbitcontrols.minDistance = 5;
+      this.__orbitcontrols.maxDistance = 40;
+
+      this.__orbitcontrols.maxPolarAngle = Math.PI / 2;
+      this.__orbitcontrols.target.set(0,0,5) // init screen (connect / login)
     },
     __initLevelScene()
     {
