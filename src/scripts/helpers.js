@@ -1,6 +1,84 @@
 import { Contract, providers, utils } from "ethers";
+export const categoriesMemoriesWishes = {
+  "ambition": [
+    { name:"Read a full book", icon: "fa-star"},
+  ],
+  "art": [
+    { name:"Dance to music", icon: "fa-star"},
+  ],
+  "hazards": [
+    { name:"See lightning", icon: "fa-star"},
+  ],
+  "logic": [
+    { name: "Learn to play chess", icon: "fa-star"},
+  ],
+  "pets": [
+    { name:"Get new pet", icon: "fa-star"},
+  ],
+  "social": [
+    { name:"Greet neighboor", icon: "fa-star"},
+    { name:"Throw birthday party", icon: "fa-star"},
+    { name:"Bully someone", icon: "fa-star"},
+  ],
+  "sports": [
+    { name:"Play football", icon: "fa-star"},
+  ],
+  "supernatural": [
+    { name:"See ghost", icon: "fa-star"},
+  ],
+};
+
+export const getRandom = function(arr, n) {
+    var result = new Array(n),
+        len = arr.length,
+        taken = new Array(len);
+    if (n > len)
+        throw new RangeError("getRandom: more elements taken than available");
+    while (n--) {
+        var x = Math.floor(Math.random() * len);
+        result[n] = arr[x in taken ? taken[x] : x];
+        taken[x] = --len in taken ? taken[len] : len;
+    }
+    return result;
+  }
+export const memoryCategories = [
+  "ambition",
+  "art",
+  "hazards",
+  "logic",
+  "pets",
+  "social",
+  "sports",
+  "supernatural",
+]
+
+export const generateWish = (category,memories) =>
+{
+  // console.log("category:",category)
+  let categoryMemories = memories[category]
+  let basecategoryMemories = categoriesMemoriesWishes[category]
+  // console.log("list", basecategoryMemories)
+  let basememoryIndex = Math.floor( Math.random()*basecategoryMemories.length )
+  let mymemoryIndex = Math.floor( Math.random()*categoryMemories.length )
+  return basecategoryMemories[basememoryIndex]
+  // if (!categoryMemories || categoryMemories.length == 0)
+  // {
+  //   console.log("new category")
+  //   return basecategoryMemories[mymemoryIndex]
+  // }
+
+  // console.log("found memory")
 
 
+  // return basecategoryMemories[mymemoryIndex]
+}
+export const getWish = (memories) =>
+{
+  // console.log(memories)
+  let randomCategoryIndex = Math.floor( Math.random()*memoryCategories.length )
+  const catName = memoryCategories[randomCategoryIndex]    
+  return generateWish(catName,memories)
+}
 export const parseTradeDataTokenAmounts = (_tokens, _tradeData) =>
 {
   // console.log("_tradeData***")

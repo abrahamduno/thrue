@@ -6,7 +6,7 @@ export default {
     {
       this.startLevelBlob.position.y =
         this._$lerp(this.startLevelBlob.position.y,Math.sin(this.__timer*0.05)*0.07+(
-        (this.accs_length ||this.is_playing_test ) ? 25 : +0.6
+        (this.accs_length ||this.is_playing_test ) ? 55 : +0.6
          ),0.02)
       // this.startLevelBlob.rotation.z = -Math.sin(this.__timer*0.02)*0.35
       // this.startLevelBlob.rotation.x = Math.sin(this.__timer*0.01)*0.15
@@ -24,7 +24,7 @@ export default {
       await this.$store.dispatch("connectWallet")
       if (!this.mycurrentlevel)
       {
-        this.addCurrentLevel()
+        this.l_$addCurrentLevelScene()
         this.enable_help++
         this.show_help = true
       }
@@ -38,6 +38,7 @@ export default {
       this.startLevelBlob.receiveShadow = true; //default
       this.startLevelBlob.scale.set(1,1.5,1)
       this.startLevelBlob.position.set(-0.1,0,7.3)
+      this.startLevelBlob.name = "startLevelBlob"
       this.scene.add( this.startLevelBlob );
     },
   }

@@ -18,7 +18,7 @@ export default {
         };
       } else {
         params = {
-          exposure: 0.02, bloomStrength: 0.08, bloomThreshold: 0, bloomRadius: 0
+          exposure: 0.025, bloomStrength: 0.17, bloomThreshold: 0, bloomRadius: 0
         };
       }
 

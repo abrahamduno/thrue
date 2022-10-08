@@ -14,7 +14,35 @@
                         <i class="mr-2 fas fa-external-link-alt"></i> Docs
                     </span>
                 </a>
-
+                <!-- 
+                v-if="(current_sub_page != 'test' && !is_playing_test) || (current_sub_page == 'test' && !accs_length && !is_playing_test)"
+                 -->
+                 <!-- {{is_playing_test}} -->
+                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('test')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center">
+                        <small class="tx-sm">Continue </small>
+                        <br>
+                        <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i>
+                        <br>
+                        <small class="tx-sm">without Account </small>
+                    </span>
+                </a>
+                <!-- !accs_length -->
+                <a v-if="current_sub_page == 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
+                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
+                        <small class=" tx-sm">Exit Test </small>
+                    </span>
+                </a>
+<!-- 
                 <div class="flex-row ma-2" >
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!pro_mode ? 'n-conca' : 'n-inset']"
@@ -22,10 +50,44 @@
                         @click="changeProMode"
                         style=""
                     >
-                            <!-- v-show="pro_mode" -->
                         <span class="pa-2 py-4  opacity-hover-50">
                             <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> PRO</span></i>
                             <i class="fas tx-sm"  v-else > <span> PRO</span></i>
+                        </span>
+                    </button>
+                </div> -->
+
+                <div class="flex-row flex-justify-start ma-2" >
+                    <button class="noborder n-tx mr-2 tx-sm mb-0  clickable flex-center border-r-15 show-md_x"
+                            :class="[!pause_mode ? 'n-conca' : 'n-inset']"
+                            v-if="is_playing_test || accs_length"
+                        @click="changePauseMode"
+                        style=""
+                    >
+                        <span class="pa-2 py-4  opacity-hover-50">
+                            <i class="fas tx-sm" v-if="pause_mode" >
+                                <span>
+                                    <!-- HELP -->
+                                    <i class="fas tx-lg fa-cogs"></i>
+                                </span>
+                            </i>
+                            <i class="fas px-1 tx-sm"  v-else > <span> <i class="fas fa-cog"></i></span></i>
+                        </span>
+                    </button>
+                    <button class="noborder n-tx   tx-sm  clickable flex-center border-r-15 show-md_x"
+                            :class="[!pro_mode ? 'n-conve' : 'n-inset']"
+                            v-if="(is_playing_test || accs_length) && pause_mode"
+                        @click="changeProMode" 
+                        style=""
+                    >
+                        <span class="pa-2 py-4  opacity-hover-50">
+                            <i class="fas tx-sm" v-if="pro_mode" >
+                                <span class="flex-center">
+                                    <i class="fas px-1 tx-lg fa-times-circle"></i><br>
+                                    <span> Profile</span>
+                                </span>
+                            </i>
+                            <i class="fas tx-sm"  v-else > <span> Profile</span></i>
                         </span>
                     </button>
                 </div>
@@ -38,10 +100,9 @@
 
 
 
-            <div class="flex-column-r flex-md_x-row flex-align-start" >
+            <div class="flex-column-r flex-md_x-row flex-align-start" v-if="!accs_length && !is_playing_test">
 
 
-                <div class="flex-row ma-2" >
                     <!-- <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!pro_mode ? 'n-conca' : 'n-inset']"
                             v-show="!pro_mode"
@@ -53,6 +114,7 @@
                             <i class="fas tx-sm"  v-else > <span> PRO</span></i>
                         </span>
                     </button> -->
+                <!-- <div class="flex-row ma-2" >
 
                     <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-md_x"
                             :class="[!auto_mode ? 'n-conca' : 'n-inset']"
@@ -64,7 +126,7 @@
                             <i class="fas tx-sm"  v-else > <small> auto</small></i>
                         </span>
                     </button>
-                </div>
+                </div> -->
 
                 <button class="noborder n-tx tx-sm n-conca clickable flex-center border-r-15 mt-3 mr-3"
                     @click="changeNightMode"
@@ -98,6 +160,7 @@
                 <span class="tx-ls-3 pl-1"></span>
             </div>
         </div>
+
 
         <div class="flex-between flex-align-start n-inset py-2 px-2 show-xs_md " v-show="togglers.menu"> 
             <div class="flex-column tx-xs" >
@@ -161,22 +224,56 @@
 
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
         </div>
+        <div class="flex-between flex-align-start n-flat py-2 px-2 show-xs_md " v-show="togglers.menu"> 
+                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('test')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center flex-center">
+                        <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i>
+                        <small class="tx-xs">Continue without Account </small>
+                    </span>
+                </a>
+                <!-- !accs_length -->
+                <a v-if="current_sub_page == 'test' && !is_playing_test"
+                    @click="changeCurrentSubPage('')"
+                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    style="border-radius: 0 30px 30px 0"
+                >
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
+                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
+                        <small class=" tx-sm">Exit Test </small>
+                    </span>
+                </a>
+        </div>
 
-                    <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
-                            :class="[!pro_mode ? 'n-conca' : 'n-inset']"
-                            v-if="is_playing_test || accs_length"
-                        @click="changeProMode"
-                        style=""
-                    >
-                            <!-- v-show="pro_mode" -->
-                        <span class="pa-2 py-4  opacity-hover-50">
-                            <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> PRO</span></i>
-                            <i class="fas tx-sm"  v-else > <span> PRO</span></i>
-                        </span>
-                    </button>
-
-
-
+        <div class="flex-row flex-justify-end ma-2" >
+            <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                    :class="[!pro_mode ? 'n-conve' : 'n-inset underline']"
+                    v-if="pause_mode && (is_playing_test || accs_length)"
+                @click="changeProMode"
+                style=""
+            >
+                    <!-- v-show="pro_mode" -->
+                <span class="pa-2 py-4  opacity-hover-50">
+                    <i class="fas tx-sm" v-if="pro_mode" > <span> <i class="fas fa-times-circle"></i> Close Profile</span></i>
+                    <i class="fas tx-sm"  v-else > <span> Profile</span></i>
+                </span>
+            </button>
+            <button class="noborder n-tx ma-2 tx-sm  clickable flex-center border-r-15 show-xs_md"
+                    :class="[!pause_mode ? '' : 'n-inset']"
+                    v-if="is_playing_test || accs_length"
+                @click="changePauseMode"
+                style=""
+            >
+                    <!-- v-show="pause_mode" -->
+                <span class="pa-2 py-3  opacity-hover-50">
+                    <i class="fas tx-sm" v-if="pause_mode" > <span> <i class="fas fa-times"></i> </span></i>
+                    <i class="fas tx-sm"  v-else > <span> <i class="fas fa-cog"></i> </span></i>
+                </span>
+            </button>
+        </div>
     </div>
 </template>
 <script>
@@ -195,32 +292,36 @@
             }
         },
         computed: {
+            pause_mode()           { return this.$store.getters.pause_mode },
             pro_mode()             { return this.$store.getters.pro_mode },
             dark_mode()            { return this.$store.getters.dark_mode },
             auto_mode()            { return this.$store.getters.auto_mode },
-	        current_level()            { return this.$store.getters.current_level },
+            current_level()        { return this.$store.getters.current_level },
+	        current_sub_page()     { return this.$store.getters.current_sub_page },
 	        english_mode()         { return this.$store.getters.english_mode },
 	        LANG()                 { return this.$store.getters.LANG },
 	        first_acc()            { return this.$store.getters.first_acc },
 	        accs_length()          { return this.$store.getters.accs_length },
-            is_playing_test()          { return this.$store.getters.is_playing_test },
+            is_playing_test()      { return this.$store.getters.is_playing_test },
         },
         created() {
+            let darkMode = JSON.parse(localStorage.getItem("darkMode"))
+            let englishMode = JSON.parse(localStorage.getItem("englishMode"))
             let autoMode = JSON.parse(localStorage.getItem("autoMode"))
             let proMode = JSON.parse(localStorage.getItem("proMode"))
-            // console.log(proMode)
-            let darkMode = JSON.parse(localStorage.getItem("darkMode"))
+            let pauseMode = JSON.parse(localStorage.getItem("pauseMode"))
             let currentLevel = JSON.parse(localStorage.getItem("currentLevel"))
-            // console.log(currentLevel)
-            // console.log(darkMode)
-            let englishMode = JSON.parse(localStorage.getItem("englishMode"))
-            // console.log(englishMode)
-            if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
-            if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
-            if (currentLevel != null) { this.$store.dispatch("setCurrentLevel", currentLevel) }
+            let currentSubPage = JSON.parse(localStorage.getItem("currentSubPage"))
+
             if (darkMode != null) { this.$store.dispatch("setDarkMode", darkMode) }
             if (englishMode != null) { this.$store.dispatch("setEnglishMode", englishMode) }
-            console.table({englishMode,proMode,darkMode})
+            if (autoMode != null) { this.$store.dispatch("setAutoMode", autoMode) }
+            if (proMode != null) { this.$store.dispatch("setProMode", proMode) }
+            if (pauseMode != null) { this.$store.dispatch("setPauseMode", pauseMode) }
+            if (currentLevel != null) { this.$store.dispatch("setCurrentLevel", currentLevel) }
+            if (currentSubPage != null) { this.$store.dispatch("setCurrentSubPage", currentSubPage) }
+
+            console.table({englishMode,darkMode,autoMode,proMode,pauseMode,currentLevel,currentSubPage})
         },
         methods: {
             toggleMenu() {
@@ -245,6 +346,21 @@
                 let newMode = !this.english_mode
                 localStorage.setItem("englishMode", JSON.stringify(newMode));
                 this.$store.dispatch("setEnglishMode", newMode)
+            },
+            // changeCurrentLevel() {
+            //     let newMode = this.current_level
+            //     localStorage.setItem("currentLevel", JSON.stringify(newMode));
+            //     this.$store.dispatch("setCurrentLevel", newMode)
+            // },
+            changeCurrentSubPage(_page) {
+                localStorage.setItem("currentSubPage", JSON.stringify(_page));
+                this.$store.dispatch("setCurrentSubPage", _page)
+            },
+            changePauseMode() {
+                let newMode = !this.pause_mode
+                localStorage.setItem("pauseMode", JSON.stringify(newMode));
+                this.$store.dispatch("setPauseMode", newMode)
+                // console.log("asd", newMode)
             },
         },
     }

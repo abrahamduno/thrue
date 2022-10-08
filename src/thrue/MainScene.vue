@@ -4,7 +4,7 @@
 <script>
 import levelOne from "./levels/level-one/level-1.vue"
 import levelTwo from "./levels/level-two/level-2.vue"
-import levelThree from "./levels/level-three/level-3.vue"
+import levelThree from "./levels/level-three/components/level-3.vue"
 
 const BASE_URL = "http://localhost:3000/";
 const BASE_ASSET_URL = "./res";

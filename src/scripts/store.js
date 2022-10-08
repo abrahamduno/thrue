@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import { ethers, Contract }  from 'ethers';
 
-import { isMetaMaskInstalled } from './helpers';
+import { isMetaMaskInstalled, getWish } from './helpers';
 import { ABIS, CURRENT_NETWORK } from './constants/index';
 import { LANG } from './constants/lang';
 
@@ -11,19 +11,33 @@ const store = createStore({
     var url_string = window.location.href
     var urlparams = (new URL(url_string)).searchParams;
     // console.log("***",url_string, url);
+
     var thepage = urlparams.get("page");
     var thefilter = urlparams.get("filter");
+    if (thepage == null)
+    {
+      // alert(getWishes())
+      let currentSubPage = JSON.parse(localStorage.getItem("currentSubPage"))
+      if (currentSubPage != null) {
+        thepage = currentSubPage
+      } else {
+        thepage = ""        
+      }
+    }
     // console.log("page",thepage);
     return {
       LANG,
 
       currentPseudoPage: "lottery",
+
+
       currentSubPage: thepage,
       currentFilter: thefilter,
       currentLevel: "levelThree",
       isPlayingTest: false,
       darkMode: false,
       proMode: false,
+      pauseMode: true,
       autoMode: false,
       englishMode: true,
 
@@ -35,6 +49,17 @@ const store = createStore({
       players: {
         "0":{
           id: "0",
+          wishs: [],
+          mmrs: {
+            "ambition": [],
+            "art": [],
+            "hazards": [],
+            "logic": [],
+            "pets": [],
+            "social": [],
+            "sports": [],
+            "supernatural": [],
+          },
           q: [],
           obj: null,
           pos: [0,0,0],
@@ -63,16 +88,67 @@ const store = createStore({
       // state.context.commit('setPlayerRotation', playerData);
       // console.log("newset", state.players[playerData.id])
     },
+    // clearPreQ(state, playerData) {
+    //   // state.players[playerData.id].preQaction  = ""
+    //   state.players[playerData.id].preQactions.shift()
+    //   // console.log(state.players[playerData.id].preQactions)
+    //   // state.players[playerData.id].preQactions.splice(0)
+    //   // console.log(state.players[playerData.id].preQactions)
+    //   // state.players[playerData.id].preQactions = [...state.players[playerData.id].preQactions]
+    //   // let newnew = {preQactions:[]}
+    //   // state.players[playerData.id] = { ...state.players[playerData.id], ...newnew }
+    //   // for (var i = 0; i < state.players[playerData.id].preQactions.length; i++)
+    //   // {
+    //   //   state.players[playerData.id].preQactions[] = Date.now()
+    //   // }
+
+    //   // state.players[playerData.id].preQactions = [...state.players[playerData.id].preQactions]
+    //   // state.players[playerData.id].preQ = null
+    //   console.log(state.players[playerData.id], playerData.id)
+    // },
+    // addToPlayerPreQ(state, playerData) {
+    //   if (!playerData.preQ) return
+    //   state.players[playerData.preQ.id].preQ = {...{}, ...playerData.preQ}
+    //   state.players[playerData.preQ.id].preQactions = [...playerData.preQactions]
+    //   // state.players[playerData.preQ.id].preQaction = playerData.preQaction
+    //   // state.players[playerData.preQ.id].preQaction = "yes"
+    // },
+    // clearFirstInY(state, playerData) {
+    //   for (var i = state.players[playerData.id].y.length - 1; i >= 0; i--) {
+    //     state.players[playerData.id].y.shift(i,1)
+    //   }
+    //   // state.players[playerData.id].y.slice(0); 
+    // },
+    // addToPlayerY(state, playerData) {
+    //   if (!playerData.y) return
+    //   state.players[playerData.id].y = [...state.players[playerData.id].y, ...playerData.y]
+    // },
     clearFirstInQ(state, playerData) {
       state.players[playerData.id].q.shift(); 
       for (var i = 0; i < state.players[playerData.id].q.length; i++)
       {
-        state.players[playerData.id].q[i].t = Date.now()
+        state.players[playerData.id].q[i].t = Date.now()/1000
       }
     },
     addToPlayerQ(state, playerData) {
       if (!playerData.q) return
       state.players[playerData.id].q = [...state.players[playerData.id].q, ...playerData.q]
+    },
+    fillPlayerGoals(state, playerData) {
+      if (playerData.id === undefined) return
+      
+      // assumes it has alteast one life goal
+      // check if it has short term goals
+      if (state.players[playerData.id].wishs.length >= 4)
+      {
+        // short term goals full
+      } else {
+        let newGoalAmount = 3 - state.players[playerData.id].wishs.length
+        for (var i = newGoalAmount; i >= 0; i--)
+        {
+          state.players[playerData.id].wishs.push(getWish(state.players[playerData.id].mmrs))
+        }
+      }
     },
     setPlayerStats(state, playerData) {
       if (!playerData.stats) return
@@ -90,6 +166,9 @@ const store = createStore({
     setCurrentLevel(state, level) {
       state.currentLevel = level
     },
+    setCurrentSubPage(state, subPage) {
+      state.currentSubPage = subPage
+    },
     setAutoMode(state, mode) {
       state.autoMode = mode
     },
@@ -98,6 +177,10 @@ const store = createStore({
     },
     setProMode(state, mode) {
       state.proMode = mode
+    },
+    setPauseMode(state, mode) {
+      // console.log("pauseh")
+      state.pauseMode = mode
     },
 
     setTestingConnect(state, val) {
@@ -133,6 +216,9 @@ const store = createStore({
     setPlayer(context, playerData) {
       context.commit('setPlayerObject', playerData);
     },
+    fillPlayerGoals(context, playerData) {
+      context.commit('fillPlayerGoals', playerData);
+    },
     setPlayerStats(context, playerData) {
       context.commit('setPlayerStats', playerData);
     },
@@ -148,7 +234,22 @@ const store = createStore({
     clearFirstInQ(context, playerData) {
       context.commit('clearFirstInQ', playerData);
     },
+    // addToPlayerY(context, playerData) {
+    //   context.commit('addToPlayerY', playerData);
+    // },
+    // clearFirstInY(context, playerData) {
+    //   context.commit('clearFirstInY', playerData);
+    // },
+    // clearPreQ(context, playerData) {
+    //   context.commit('clearPreQ', playerData);
+    // },
+    // addToPlayerPreQ(context, playerData) {
+    //   context.commit('addToPlayerPreQ', playerData);
+    // },
 
+    setCurrentSubPage(context, subPage) {
+      context.commit('setCurrentSubPage', subPage);
+    },
     setCurrentLevel(context, level) {
       context.commit('setCurrentLevel', level);
     },
@@ -157,6 +258,9 @@ const store = createStore({
     },
     setProMode(context, mode) {
       context.commit('setProMode', mode);
+    },
+    setPauseMode(context, mode) {
+      context.commit('setPauseMode', mode);
     },
     setDarkMode(context, mode) {
       context.commit('setDarkMode', mode);
@@ -172,9 +276,11 @@ const store = createStore({
     },
 
     connectWallet: async (context) => {
+      // console.log("context.getters.current_sub_page", context.getters.current_sub_page)
       if (context.getters.current_sub_page == "test")
       {
         context.commit('setTestingConnect', true);
+        // console.log("context.getters.is_playing_test", context.getters.is_playing_test)
         return
       }
       if (!context.getters.is_metaMask) { alert("Please, Install Metamask.") }
@@ -230,6 +336,9 @@ const store = createStore({
     },
     pro_mode(state) {
       return state.proMode
+    },
+    pause_mode(state) {
+      return state.pauseMode
     },
     english_mode(state) {
       return state.englishMode

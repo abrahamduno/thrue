@@ -41,6 +41,7 @@ export default {
 
 			this._$animate_main()
 			this._$animate_npcContainer(this.__timer)
+			// console.log("asd")
 			this._$animate_currentLevel()
 
 			// ANIMATE PRIZE TEXT WAITING FOR BLOCKCHAIN

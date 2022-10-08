@@ -123,6 +123,7 @@
 .tx-md {font-size: 1em; }
 .tx-sm {font-size: 0.85em; }
 .tx-xs {font-size: 0.55em; }
+.tx-xxs {font-size: 0.35em; }
 
 .tx-center {text-align: center; }
 .tx-end, .tx-right {text-align: right; }
@@ -141,6 +142,8 @@
 .tx-ls-2 {letter-spacing: 2px; }
 .tx-ls-3 {letter-spacing: 3px; }
 .tx-ls-5 {letter-spacing: 5px; }
+.tx-ls-6 {letter-spacing: 6px; }
+.tx-ls-8 {letter-spacing: 8px; }
 .tx-ls-10 {letter-spacing: 10px; }
 .tx-ls-15 {letter-spacing: 15px; }
 .tx-ls-25 {letter-spacing: 25px; }
@@ -149,6 +152,8 @@
 .word-s-3 {word-spacing: 3px; }
 .word-s-5 {word-spacing: 5px; }
 
+.underline,.underline * { text-decoration: underline #777; }
+.linethrough { text-decoration: line-through }
 .linethrough { text-decoration: line-through }
 .strikethrough { text-decoration: line-through }
 .nodeco { text-decoration: none ; }
@@ -336,6 +341,10 @@
 
 
 /* ------------------------------------------ ANIMATING ------------------------------------------ */
+.pulse-npulse { animation: pulsenpulse 2s;  animation-iteration-count: infinite }
+@keyframes pulsenpulse { 0%{ transform: scale(1); } 50%{ transform: scale(.85); } 100%{ transform: scale(1); }   }
+.rock-nroll { animation: rocknroll 2s;  animation-iteration-count: infinite }
+@keyframes rocknroll { 0%{ transform: translateX(15px) rotate(-49deg); } 50% { transform: translateX(-15px) rotate(-95deg); }  100% { transform: translateX(15px) rotate(-49deg); } }
 .spin-spin { animation: spinspin 2s;  animation-iteration-count: infinite }
 @keyframes spinspin { 0%{ transform: rotate(90deg); } 100% { transform: rotate(450deg); } }
 .spin-nback { animation: spinnback 4s;  animation-iteration-count: infinite }
