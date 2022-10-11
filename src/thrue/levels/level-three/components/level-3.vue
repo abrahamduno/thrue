@@ -47,7 +47,8 @@
           class="tx-center n-flat tx-lg mt-0 pa-5 border-r-50  "
       >
           <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
-          <span class="nopointer opacity-75 tx-ls-8">How to Play</span>
+          <span class="nopointer opacity-50 tx-ls-2">How to Play</span>
+          <span class="clickable opacity-hover-50 pl-4 tx-ls-8" @click="changePauseMode">X</span>
           <!-- <br> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
           <div class="opacity-25 nopointer  tx-xs tx-ls-2 w-100 tx-left"><i class="fas fa-arrow-down pl-4 pr-5 "></i>NEEDS</div>
@@ -307,6 +308,12 @@ export default {
   },
   methods:
   {
+    changePauseMode() {
+        let newMode = !this.pause_mode
+        localStorage.setItem("pauseMode", JSON.stringify(newMode));
+        this.$store.dispatch("setPauseMode", newMode)
+        // console.log("asd", newMode)
+    },
   },
   beforeDestroy() {
     // remove listener again
