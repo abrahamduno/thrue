@@ -21,7 +21,7 @@ const store = createStore({
       if (currentSubPage != null) {
         thepage = currentSubPage
       } else {
-        thepage = ""        
+        thepage = "test"        
       }
     }
     // console.log("page",thepage);
