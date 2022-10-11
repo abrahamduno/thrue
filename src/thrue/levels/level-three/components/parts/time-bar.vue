@@ -12,7 +12,6 @@
       </span>
       <i  class="opacity-75 tx-ls-2 tx-xs"> {{hoursSince2020}}</i>
     </div>
-    </div>
 </template>
 <script>
 
