@@ -56,7 +56,7 @@
             <details class=" tx-xs  opacity-75 w-100">
               <summary class="clickable w-100 flex tx-ls-5 pa-3">
                 <i class="tx-primary fas tx-lg fa-hamburger pr-1"></i> 
-                <span class="n-tx-3d">Hunger</span>
+                <span class="n-tx-3d">Protein</span>
               </summary>
               <div class="n-inset py-2 border-r-15">
                 You can check <br> the fridge <br> when hungry
@@ -209,7 +209,7 @@
     >
       <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.id">
         <div class=" mb-2 " >
-          <span class="tx-xs opacity-50">Actions:</span>
+          <span class="tx-xs opacity-50">{{p_$localQ.npcRef.replace("-"," ")}}</span>
           <div v-if="p_$localQactions.length">
             <div v-for="statAction in p_$localQactions" @click="p_$commitStatAction(statAction,p_$localQ)">
               <small class="tx-xs py-1 pa-2 clickable show-md_x opacity-hover-75 tx-secondary">{{statAction.action}}</small>

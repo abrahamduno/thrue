@@ -152,6 +152,8 @@ export default {
     },
 
     clickedBubbleHeadHead(  ) {
+      alert("READ ME! \nClick n Drag to Rotate \nClick Green to Play")
+      return
       console.log("clickk")
       if (!this.mycurrentlevel)
       {

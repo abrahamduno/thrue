@@ -26,7 +26,7 @@ export default {
           {action:"Peek neighboors mailbox", dur: 4, stat:{fun: 2, }, },
           {action:"Steal neighboors mail", dur: 2, stat:{fun: 1, }, },
         ],
-        "housebush":[
+        "House-Bush":[
           {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
           {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
         ],

@@ -167,7 +167,7 @@ export default {
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });
-      npcName = "housebush"
+      npcName = "House-Bush"
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bush.obj",
         pos: [-11,this.MIN.y,-18], color: 0x64B650, scale:[1,0.65,1],
