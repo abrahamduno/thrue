@@ -6,7 +6,7 @@
     <tx-card v-show="false" ref="targetAllowance" :props="forms.targetAllowance" />
     <!-- methods -->
     <tx-card v-show="false" :props="forms.addTargetAllowance" class="flex-column mt-3" />
-    
+
 
     <div v-show="togglers.showMore" class="flex-column n-inset border-r-50 mx-2 pa-6" style="transform: translateY(-15px);">
 
@@ -99,6 +99,11 @@
                 CURRENT_NETWORK,
                 ABIS,
 
+                values: {
+                    dai_balance_of: null,
+                    dai_dao_allowance: null,
+                }, 
+
                 loading: false,
                 loadings: {
                     daiBalanceOfAndAllowance: false,
@@ -143,10 +148,7 @@
                             "1": {placeholder:"amount",label:`value: '',`,value: '', type: "uint256" },
                         },
                     },
-                },  
-                values: {
-                    dai_balance_of: null,
-                },  
+                },   
             }
         },
         computed: {
@@ -171,7 +173,7 @@
                 {
                     await this.trigger_daiBalanceOfAndAllowance()
 
-                    this.$emit("update_myAccount", { data: {
+                    this.$emit("update_values", { data: {
                         dai_balance_of: this.values.dai_balance_of,
                         dai_dao_allowance: this.values.dai_dao_allowance,
                     }})      
@@ -188,6 +190,7 @@
                     this.loadings.daiBalanceOfAndAllowance = true
                     this.$emit("update_loading", {key: "daiBalanceOfAndAllowance", value: true, })
 
+                    // calling getters
                     await this.$refs.DAIBalanceOf.execute()
                     this.values.dai_balance_of = this.$refs.DAIBalanceOf._parsedResult
                     await this.$refs.targetAllowance.execute()
