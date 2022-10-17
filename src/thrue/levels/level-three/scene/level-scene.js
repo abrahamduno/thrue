@@ -32,6 +32,12 @@ export default {
         fun: 0,
       }
       this.camera.position.set(5,3,-2)
+      if (this.accs_length)
+      {
+        console.log("first connected acc", this.first_acc)
+      } else {
+        console.log("playing test acc")
+      }
       this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos(-1.5)
     },

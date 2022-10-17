@@ -1,5 +1,5 @@
 <template>
-    <div  class="w-100 pos-fixed z-999">
+    <div  class="w-100 pos-fixed  " style="z-index: 1">
 
         <div class="flex-between flex-align-start show-md_x"> 
 
@@ -18,7 +18,7 @@
                 v-if="(current_sub_page != 'test' && !is_playing_test) || (current_sub_page == 'test' && !accs_length && !is_playing_test)"
                  -->
                  <!-- {{is_playing_test}} -->
-                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                <a v-if="!accs_length && (current_sub_page != 'test' && !is_playing_test)"
                     @click="changeCurrentSubPage('test')"
                     class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
                     style="border-radius: 0 30px 30px 0"
@@ -26,8 +26,8 @@
                     <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center">
                         <small class="tx-sm">Continue </small>
                         <br>
-                        <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i>
-                        <br>
+                        <!-- <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i> -->
+                        <!-- <br> -->
                         <small class="tx-sm">without Account </small>
                     </span>
                 </a>
@@ -225,13 +225,13 @@
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
         </div>
         <div class="flex-between flex-align-start n-flat py-2 px-2 show-xs_md " v-show="togglers.menu"> 
-                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                <a v-if="!accs_length && (current_sub_page != 'test' && !is_playing_test)"
                     @click="changeCurrentSubPage('test')"
                     class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
                     style="border-radius: 0 30px 30px 0"
                 >
                     <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center flex-center">
-                        <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i>
+                        <!-- <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i> -->
                         <small class="tx-xs">Continue without Account </small>
                     </span>
                 </a>
