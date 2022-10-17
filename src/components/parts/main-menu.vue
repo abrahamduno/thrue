@@ -28,7 +28,7 @@
                         <br>
                         <!-- <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i> -->
                         <!-- <br> -->
-                        <small class="tx-sm">without Account </small>
+                        <small class="tx-sm"> without <br> Account </small>
                     </span>
                 </a>
                 <!-- !accs_length -->
@@ -232,7 +232,7 @@
                 >
                     <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center flex-center">
                         <!-- <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i> -->
-                        <small class="tx-xs">Continue without Account </small>
+                        <small class="tx-xs">Continue <br> without <br> Account </small>
                     </span>
                 </a>
                 <!-- !accs_length -->

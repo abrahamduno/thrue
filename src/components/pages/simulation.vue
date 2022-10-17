@@ -1,8 +1,6 @@
 <template>
 <div class="flex-column w-100" >
 
-    <tx-card v-show="false" ref="addFullTargetAllowance" :props="form.addFullTargetAllowance" />
-
     <div class="py-8" > </div>
     <div class="flex-column flex-lg_x-row pt-8 flex-1 w-100 ">
         <simulation-player-stats ref="currentRound" @update_loading="update_loading" class="z-50 "
@@ -30,7 +28,6 @@
     import { ethers } from 'ethers';
 
     import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
-    import txCard from "../parts/tx-card.vue";
     import simulationPlayerStats from "./simulation/simulation-player-stats.vue";
 
     import loadTextWithValue from "../../thrue/models/text-value.js";
@@ -40,8 +37,6 @@
         name: 'simulation',     
         mixins: [loadTextWithValue, loadTextSignup],
         components: {
-            txCard,
-
             simulationPlayerStats,
         },
         data() {
@@ -50,14 +45,15 @@
                 ABIS,
 
                 values: {
-                    
                     dai_balance_of: null,
                     dai_dao_allowance: null,
+                    player_birthunix: null,
                 },
 
                 loading: false,
                 loadings: {
                     daiBalanceOfAndAllowance: false,
+                    createPlayer: false,
                 },
 
                 form: {
@@ -98,24 +94,7 @@
             {
                 this.values.dai_balance_of = msg.data.dai_balance_of
                 this.values.dai_dao_allowance = msg.data.dai_dao_allowance
-                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
-            },
-            async execute_addFullTargetAllowance()
-            {
-                if (this.loadings.signup) return
-                this.loadings.signup = true
-                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
-
-                try {
-                    let tx = await this.$refs.addFullTargetAllowance.execute()
-                    let updatetx = await this.$refs.myAccount.triggersend_daiBalanceOfAndAllowance()
-                } catch (error) {
-                    console.log("failed call", error)
-                    window.location.reload()
-                }
-
-                this.loadings.signup = false
-                this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
+                // this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
             },
 
         },

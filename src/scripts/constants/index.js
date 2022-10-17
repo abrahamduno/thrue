@@ -2,11 +2,13 @@
 import * as TheOpenLottoDAO from './TheOpenLottoDAO.json';
 import * as TheOpenLotto from './TheOpenLotto.json';
 import * as VRFv2Consumer from './VRFv2Consumer.json';
+import * as TheOpenSimulation from './TheOpenSimulation.json';
 
 export const ABIS = {
   DAO: TheOpenLottoDAO.abi,
   LOTTO: TheOpenLotto.abi,
   RESOLVER: VRFv2Consumer.abi,
+  SIMULATION: TheOpenSimulation.abi,
 
   ERC20: [
     'function owner() external view returns (address)',
@@ -29,6 +31,7 @@ export const polygonNetwork = {
   RESOLVER_ADDRESS: '0x4C5f09D239E11896ed4B21e5BEba0DE9D777eEbD',
   LOTTO_ADDRESS: '0x9ea7574d0E7A2cd3A041eCfe29F97AeF71E47b93',
   DAO_ADDRESS: '0x1b9aD45fc26ee4f3Ae0A6D2bb5d2B31733f5E83E',
+  SIMULATION_ADDRESS: '0xd05c4fd5e73ea26dc19291677d949b7230ae5e2a',
 
   MULTICALL_ADDRESS: '0x275617327c958bD06b5D6b871E7f491D76113dd8',
 };
@@ -44,6 +47,7 @@ export const localNetwork = {
   RESOLVER_ADDRESS: '0x5866c15DC432dA5cc3928E06d2E510A738963669',
   LOTTO_ADDRESS: '0x6c652937623b816343F2ba32c8d840F6cDaE0820',
   DAO_ADDRESS: '0x50C48f8C651191405644Ed03C8B9373b3531B338',
+  SIMULATION_ADDRESS: '0xd05c4fd5e73ea26dc19291677d949b7230ae5e2a',
   
   MULTICALL_ADDRESS: '0xFEfDf422efD090902aE513483DF31c420Dca7691',
 };

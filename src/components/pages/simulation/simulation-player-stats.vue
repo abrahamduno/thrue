@@ -4,13 +4,15 @@
     <!-- getters -->
     <tx-card v-show="false" ref="DAIBalanceOf" :props="forms.DAIBalanceOf" />
     <tx-card v-show="false" ref="targetAllowance" :props="forms.targetAllowance" />
+    <tx-card v-show="false" ref="getPlayer_birthunix" :props="forms.getPlayer_birthunix" />
     <!-- methods -->
-    <tx-card v-show="false" :props="forms.addTargetAllowance" class="flex-column mt-3" />
+    <tx-card v-show="false" ref="createPlayer" :props="forms.createPlayer" class="flex-column mt-3" />
 
 
     <div v-show="togglers.showMore" class="flex-column n-inset border-r-50 mx-2 pa-6" style="transform: translateY(-15px);">
 
         <div class="flex-column tx-xs px-2" >
+
             <div class="tx-sm" style="min-width: 170px">
                 <a :href="'http://polygonscan.com/address/'+first_acc.address" target="_blank"
                     class="tx-lg py-2 n-tx flex-between w-100 opacity-hover-50"
@@ -38,6 +40,19 @@
                     {{LANG.amenu_contactUs}}
                 </a>
             </div>
+
+            <hr class="w-100 opacity-10" v-if="values.player_birthunix" >
+
+            <span v-if="values.player_birthunix"  class="my-2">
+                <span class="flex-column">
+                    <span class="opacity-50 tx-ls-3">
+                        Player Since:
+                    </span>
+                    <b>
+                        {{values._parsed_player_birthunix}}
+                    </b>
+                </span>
+            </span>
 
         </div>
     </div>
@@ -76,6 +91,12 @@
         </div>
 
         <span v-if="!loadings.daiBalanceOfAndAllowance">{{values.dai_balance_of}} DAI</span>
+        <span v-if="!loadings.daiBalanceOfAndAllowance && !values.player_birthunix" 
+            @click="triggerCreatePlayer"
+            class="mt-3 n-flat px-2 py-1 border-r-10 clickable opacity-hover-50"
+                >
+            Create Player
+        </span>
 
     </div>
 
@@ -94,6 +115,7 @@
         components: {
             txCard,
         },
+        props: ["_loadings", "_values"],
         data() {
             return {
                 CURRENT_NETWORK,
@@ -102,11 +124,14 @@
                 values: {
                     dai_balance_of: null,
                     dai_dao_allowance: null,
+                    player_birthunix: null,
+                    _parsed_player_birthunix: null,
                 }, 
 
                 loading: false,
                 loadings: {
                     daiBalanceOfAndAllowance: false,
+                    createPlayer: false,
                 },
                 togglers: {
                     showMore: false,
@@ -137,15 +162,25 @@
                             "1": {placeholder:"",label:`value: CURRENT_NETWORK.DAO_ADDRESS`,value: CURRENT_NETWORK.DAO_ADDRESS, type: "address" },
                         },
                     },
-                    addTargetAllowance: {
-                        title: 'Sign Smart Contract',
-                        abi: ABIS.ERC20,
-                        address: CURRENT_NETWORK.BASE_USD_ADDRESS,
-                        function: 'approve',
-                        res_type: 'uint256',
+                    getPlayer_birthunix: {
+                        title: 'getDeadline ',
+                        abi: ABIS.SIMULATION,
+                        address: CURRENT_NETWORK.SIMULATION_ADDRESS,
+                        function: 'players',
+                        res_type: 'struct.birthunix.timestamp',
+                        call_only: true,                        
                         form_args: {
-                            "0": {placeholder:"",label:`value: CURRENT_NETWORK.DAO_ADDRESS`,value: CURRENT_NETWORK.DAO_ADDRESS, type: "address" },
-                            "1": {placeholder:"amount",label:`value: '',`,value: '', type: "uint256" },
+                            "0": {placeholder:"",label:`value: "",`,value: "", type: "address" },
+                        },
+                    },
+                    createPlayer: {
+                        title: 'createPlayer',
+                        abi: ABIS.SIMULATION,
+                        address: CURRENT_NETWORK.SIMULATION_ADDRESS,
+                        function: 'createPlayer',
+                        form_args: {
+                            "0": {placeholder:"",label:`value: CURRENT_NETWORK.DAO_ADDRESS`,value: CURRENT_NETWORK.SIMULATION_ADDRESS, type: "address" },
+                            "1": {placeholder:"amount",label:`value: '',`,value: '', type: "string" },
                         },
                     },
                 },   
@@ -161,47 +196,63 @@
         {
             this.forms.DAIBalanceOf.form_args["0"].value = this.first_acc.address
             this.forms.targetAllowance.form_args["0"].value = this.first_acc.address
+            this.forms.getPlayer_birthunix.form_args["0"].value = this.first_acc.address
 
-            await this.triggersend_daiBalanceOfAndAllowance()
+            await this.trigger_daiBalanceOfAndAllowance()
         },
         methods: {
             parseDecimals,
             shortAddress,
-            triggersend_daiBalanceOfAndAllowance()
+            async triggerCreatePlayer()
             {
-                return new Promise(async (resolve,reject) =>
-                {
-                    await this.trigger_daiBalanceOfAndAllowance()
-
-                    this.$emit("update_values", { data: {
-                        dai_balance_of: this.values.dai_balance_of,
-                        dai_dao_allowance: this.values.dai_dao_allowance,
-                    }})      
-                    
-                    resolve(true)
-                })
+                await this.execute_createPlayer()
             },
-            trigger_daiBalanceOfAndAllowance()
+            async trigger_daiBalanceOfAndAllowance()
+            {
+                await this.execute_daiBalanceOfAndAllowance()
+
+                this.$emit("update_values", { data: {
+                    dai_balance_of: this.values.dai_balance_of,
+                    dai_dao_allowance: this.values.dai_dao_allowance,
+                }})      
+            },
+            async execute_createPlayer()
+            {
+                if (this.loadings.daiBalanceOfAndAllowance) return
+                if (this.loadings.createPlayer) return
+
+                this.loadings.createPlayer = true
+                this.$emit("update_loading", {key: "createPlayer", value: this.loadings.createPlayer, })
+
+                this.forms.createPlayer.form_args["1"].value = "test"
+                await this.$refs.createPlayer.execute()
+                await this.$refs.getPlayer_birthunix.execute()
+                this.values.player_birthunix = parseInt(this.$refs.getPlayer_birthunix.theResult.birthunix.toString())
+
+                this.loadings.createPlayer = false
+                this.$emit("update_loading", {key: "createPlayer", value: this.loadings.createPlayer, })
+            },
+            async execute_daiBalanceOfAndAllowance()
             {
                 if (this.loadings.daiBalanceOfAndAllowance) return
 
-                return new Promise(async (resolve,reject) =>
-                {
-                    this.loadings.daiBalanceOfAndAllowance = true
-                    this.$emit("update_loading", {key: "daiBalanceOfAndAllowance", value: true, })
+                this.loadings.daiBalanceOfAndAllowance = true
+                this.$emit("update_loading", {key: "daiBalanceOfAndAllowance", value: this.loadings.daiBalanceOfAndAllowance, })
 
-                    // calling getters
-                    await this.$refs.DAIBalanceOf.execute()
-                    this.values.dai_balance_of = this.$refs.DAIBalanceOf._parsedResult
-                    await this.$refs.targetAllowance.execute()
-                    this.values.dai_dao_allowance = this.$refs.targetAllowance._parsedResult
+                // calling getters
+                await this.$refs.DAIBalanceOf.execute()
+                this.values.dai_balance_of = this.$refs.DAIBalanceOf._parsedResult
+                await this.$refs.targetAllowance.execute()
+                this.values.dai_dao_allowance = this.$refs.targetAllowance._parsedResult
+                await this.$refs.getPlayer_birthunix.execute()
+                console.log("this.$refs.getPlayer_birthunix.theResult", this.$refs.getPlayer_birthunix.theResult)
+                this.values.player_birthunix = parseInt(this.$refs.getPlayer_birthunix.theResult.birthunix.toString())
+                this.values._parsed_player_birthunix = this.$refs.getPlayer_birthunix._parsedResult
 
-                    this.loadings.daiBalanceOfAndAllowance = false
-                    this.$emit("update_loading", {key: "daiBalanceOfAndAllowance", value: false, })
-
-                    resolve(true)
-                })
+                this.loadings.daiBalanceOfAndAllowance = false
+                this.$emit("update_loading", {key: "daiBalanceOfAndAllowance", value: this.loadings.daiBalanceOfAndAllowance, })
             },
+
         },
     }
 </script>
