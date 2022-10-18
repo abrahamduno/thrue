@@ -26,7 +26,7 @@ export default {
       this.goals = {
         tickets: 0,
         hay: 0,
-        hunger: 0,
+        protein: 0,
         hygene: 0,
         energy: 0,
         fun: 0,
@@ -34,10 +34,14 @@ export default {
       this.camera.position.set(5,3,-2)
       if (this.accs_length)
       {
-        console.log("first connected acc", this.first_acc)
-        console.log("first connected acc", this.first_acc)
+        
+        // console.log("this.__player", this.__player)
+        // console.log("first connected acc", this.first_acc)
+        // console.log("first connected acc", this.first_acc)
       } else {
-        console.log("playing test acc")
+        // console.log("this.__player", this.__player)
+        // console.log("playing test acc")
+        
       }
       this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos(-1.5)
@@ -150,7 +154,7 @@ export default {
         npcStat:npcStat,
       });
       npcName = "fridge"
-      npcStat = "hunger"
+      npcStat = "protein"
       this._$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-12.2,this.MIN.y,-15.9],
         playerpos: [-12.5,this.MIN.y,-14.6], color: 0xe7e7e7,

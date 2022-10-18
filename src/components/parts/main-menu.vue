@@ -36,7 +36,7 @@
                     style="border-radius: 0 30px 30px 0"
                 >
                     <span class=" pa-2 flex-center opacity-hover-50 tx-center flex-column tx-xs">
-                        <i :class="current_sub_page != 'test' ? 'fa-toggle-on' : 'fa-toggle-off'" class="fas  tx-xxl"></i>
+                        <i :class="current_sub_page != 'test' ? 'fa-toggle-on tx-success' : 'fa-toggle-off'" class="fas  tx-xxl"></i>
                         <br>
                         <small class="">{{current_sub_page != 'test' ? 'Play On-Chain' : 'Play Off-Chain' }}</small>
                     </span>

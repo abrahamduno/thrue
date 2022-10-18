@@ -268,6 +268,10 @@
                 {
                     return Object.keys(altResult).join(", ")
                 }
+                if (altResType == "array")
+                {
+                    // ?
+                }
 
                 return altResult
             },
@@ -439,8 +443,13 @@
                         // console.log ("this._parsedArgs")
                         // console.log (this._parsedArgs)
                         let aTx = await theContract[this.form.functionName].apply(this, _args)
-                        let aResult = await aTx.wait()
-                        resolve(aResult)
+                        if (!this.props.get_only)
+                        {
+                            let aResult = await aTx.wait()
+                            resolve(aResult)
+                        } else {
+                            resolve(aTx)
+                        }
                     } catch (error)
                     {
                         reject(error)

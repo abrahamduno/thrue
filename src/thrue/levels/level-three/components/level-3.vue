@@ -10,8 +10,6 @@
 
     <div  class=" pos-fixed z-999 pa-2  bottom-0 right-0  border-r-15 flex-align-start flex-column  " v-if="accs_length || is_playing_test" >
 
-        <!-- <div>PlayerStats</div> -->
-            <!-- :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]" -->
         <div class="flex-wrap pa-1 n-flat border-r-15" v-if="__player.q">
           <span class="flex-column " 
           >
@@ -224,6 +222,7 @@
     <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="    top-0 right-0  pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
+
         <wishes-bar    :player="__player" />
 
   </div>
@@ -281,6 +280,7 @@ export default {
   data()
   {
     return {
+      selectedPlayer: "0",
       enable_help: 0,
       show_help: false,
       UNIX: 0,
@@ -302,7 +302,7 @@ export default {
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
 
-    __player()      { return this.$store.getters.getPlayers[0] },
+    __player()      { return this.$store.getters.getPlayers[this.selectedPlayer] },
     __player_rot_y()      { return !this.__player || !this.__player.rot ? 0 : parseFloat(this.__player.rot[1].toFixed(2)) },
     __player_pos_z()      { return !this.__player || !this.__player.pos ? 0 : parseFloat(this.__player.pos[2].toFixed(2)) },
 

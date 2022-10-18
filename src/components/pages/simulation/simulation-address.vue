@@ -200,10 +200,10 @@
                         address: CURRENT_NETWORK.SIMULATION_ADDRESS,
                         function: 'addPlayerEnergy',
                         form_args: {
-                            "0": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
-                            "1": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
-                            "2": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
-                            "3": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
+                            "0": {placeholder:"",label:`value: "",`,value: 123, type: "uint" },
+                            "1": {placeholder:"",label:`value: "",`,value: 99, type: "uint" },
+                            "2": {placeholder:"",label:`value: "",`,value: 66, type: "uint" },
+                            "3": {placeholder:"",label:`value: "",`,value: 15, type: "uint" },
                         },
                     },
                 },   
@@ -301,7 +301,7 @@
                 await this.$refs.targetAllowance.execute()
                 this.values.dai_dao_allowance = this.$refs.targetAllowance._parsedResult
                 await this.$refs.getPlayer_birthunix.execute()
-                console.log("this.$refs.getPlayer_birthunix.theResult", this.$refs.getPlayer_birthunix.theResult)
+                // console.log("this.$refs.getPlayer_birthunix.theResult", this.$refs.getPlayer_birthunix.theResult)
                 this.values.player_birthunix = parseInt(this.$refs.getPlayer_birthunix.theResult.birthunix.toString())
                 this.values._parsed_player_birthunix = this.$refs.getPlayer_birthunix._parsedResult
 

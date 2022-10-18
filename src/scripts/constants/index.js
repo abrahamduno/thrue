@@ -61,19 +61,19 @@ export const CURRENT_NETWORK = polygonNetwork;
 export const STATE_CONSTANTS = {
   "energy": {
     title:"Energy",
-    iconClass:"fas fa-hamburger",
+    iconClass:"fas fa-bolt",
   },
   "fun": {
     title:"Fun",
-    iconClass:"fas fa-shower",
+    iconClass:"fas fa-smile-beam",
   },
   "hygene": {
     title:"Hygene",
-    iconClass:"fas fa-smile-beam",
+    iconClass:"fas fa-shower",
   },
   "protein": {
     title:"Protein",
-    iconClass:"fas fa-bolt",
+    iconClass:"fas fa-hamburger",
   },
 };
 export const STATUS_CONSTANTS = {

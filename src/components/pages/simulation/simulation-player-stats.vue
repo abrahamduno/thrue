@@ -3,6 +3,7 @@
 
     <!-- getters -->
      <tx-card v-show="false" ref="getPlayer_energy" :props="forms.getPlayer_energy" />
+     <tx-card v-show="false" ref="getPlayer_legacy" :props="forms.getPlayer_legacy" />
     <!-- methods -->
     <tx-card v-show="false" ref="createPlayer" :props="forms.createPlayer" class="flex-column mt-3" />
 
@@ -49,9 +50,14 @@
                 </span>
             </div>
 
-            <span v-if="values.wishes"  class="my-2">
-                <span class="flex-column">
-                    wishes
+            <span v-show="false" v-if="values.memories"  class="my-2">
+                Wishes
+                <span class="flex-center" v-for="wish in values.memories">
+                    <template v-if="wish.isWish">
+                        {{wish.thoughtCat}}
+                        <div class="pa-1">|</div>
+                        {{wish.thoughtIndex}}
+                    </template>
                 </span>
             </span>
 
@@ -118,6 +124,7 @@
 </template>
 
 <script>
+    import { ethers, Contract }  from 'ethers';
     import { ABIS, CURRENT_NETWORK, STATE_LIST, STATUS_LIST, STATUS_CONSTANTS, STATE_CONSTANTS } from '../../../scripts/constants/index';
     import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../../scripts/helpers';
 
@@ -139,7 +146,7 @@
                 STATUS_CONSTANTS,
 
                 values: {
-                    wishes: null,
+                    memories: null,
                     globalState: null,
                     status: null,
                 }, 
@@ -174,6 +181,16 @@
                         call_only: true,                        
                         form_args: {
                             "0": {placeholder:"",label:`value: "",`,value: "", type: "address" },
+                        },
+                    },
+                    getPlayer_legacy: {
+                        title: 'get state energy ',
+                        abi: ABIS.SIMULATION,
+                        address: CURRENT_NETWORK.SIMULATION_ADDRESS,
+                        function: 'getMyLegacy',
+                        res_type: 'array.struct',
+                        get_only: true,
+                        form_args: {
                         },
                     },
                     createPlayer: {
@@ -226,6 +243,9 @@
                 this.$emit("update_values", { data: {
                     dai_balance_of: this.values.dai_balance_of,
                     dai_dao_allowance: this.values.dai_dao_allowance,
+                    memories: this.values.memories,
+                    status: this.values.status,
+                    globalState: this.values.globalState,
                 }})      
             },
             async execute_statsStateStatus()
@@ -237,9 +257,9 @@
 
                 // calling getters
                 await this.$refs.getPlayer_energy.execute()
-                console.log("_energy.theResult status", this.$refs.getPlayer_energy.theResult.status)
+                // console.log("_energy.theResult status", this.$refs.getPlayer_energy.theResult.status)
                 this.values.status = this.$refs.getPlayer_energy.theResult.status
-                console.log("_energy.theResult state", this.$refs.getPlayer_energy.theResult.globalState)
+                // console.log("_energy.theResult state", this.$refs.getPlayer_energy.theResult.globalState)
                 this.values.status = {
                     focus: this.$refs.getPlayer_energy.theResult.status._focus,
                     process: this.$refs.getPlayer_energy.theResult.status._process,
@@ -251,6 +271,20 @@
                     hygene: this.$refs.getPlayer_energy.theResult.globalState.hygene,
                     protein: this.$refs.getPlayer_energy.theResult.globalState.protein,
                 }
+
+                await this.$refs.getPlayer_legacy.execute()
+                // console.log("memories theResult", this.$refs.getPlayer_legacy.theResult)
+                this.values.memories = this.$refs.getPlayer_legacy.theResult.map((item) => {
+                    return {
+                        // isStatusStateDependant: parseInt(item.isStatusStateDependant.toString()),
+                        birthunix: 1000*parseInt(10**18*parseFloat(ethers.utils.formatEther(item.birthunix).toString())),
+                        isStatusStateDependant: item.isStatusStateDependant,
+                        thoughtCat: item.thoughtCat,
+                        thoughtIndex: 1000*parseInt(10**18*parseFloat(ethers.utils.formatEther(item.thoughtIndex).toString())),
+                        isWish: item.isWish,
+                    }
+                })
+
 
                 this.loadings.statsStateStatus = false
                 this.$emit("update_loading", {key: "statsStateStatus", value: this.loadings.statsStateStatus, })

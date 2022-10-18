@@ -237,7 +237,7 @@ export default {
 
 
           let newValue = parseFloat(this.__player.stats[theStat])+this.__player.q[0].value
-          if (newValue <= 10)
+          if (newValue <= 255)
           {
             this.$store.dispatch("setPlayerStats",{
               id:"0",
@@ -247,12 +247,12 @@ export default {
             })
           } else {
 
-            if (newValue > 10)
+            if (newValue > 255)
             {
               this.$store.dispatch("setPlayerStats",{
                 id:"0",
                 stats:{
-                  [theStat]: 10,
+                  [theStat]: 255,
                 },
               })
             } 

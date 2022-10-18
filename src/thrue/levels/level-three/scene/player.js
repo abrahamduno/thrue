@@ -11,7 +11,7 @@ export default {
       p_$localQ: null,
       p_$localQactions: [],
       l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "House-Bush", "closecornerbush","tunnelbush","closecementerybush"],
-      p_$statList: ["energy","hunger","hygene","fun"],
+      p_$statList: ["energy","protein","hygene","fun"],
     }
   },
   computed:
@@ -109,10 +109,10 @@ export default {
             rot: [0,0,0],
             scale: [1,1,1],
             stats: {
-              hunger: 3,
-              hygene: 8,
-              energy: 9,
-              fun: 5,
+              protein: parseInt(Math.random()*255),
+              hygene: parseInt(Math.random()*255),
+              energy: parseInt(Math.random()*255),
+              fun: parseInt(Math.random()*255),
             },
           },..._player}
         )

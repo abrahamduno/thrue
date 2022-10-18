@@ -59,6 +59,9 @@
                     dai_dao_allowance: null,
                     player_birthunix: null,
                     _parsed_player_birthunix: null,
+                    memories: null,
+                    globalState: null,
+                    status: null,
                 },
 
                 loading: false,
@@ -124,7 +127,48 @@
                 if (msg.data._parsed_player_birthunix)
                 { this.values._parsed_player_birthunix = msg.data._parsed_player_birthunix }
 
+                if (msg.data.memories)
+                { this.values.memories = msg.data.memories }
+
+                if (msg.data.status)
+                { this.values.status = msg.data.status }
+
+                if (msg.data.globalState)
+                { this.values.globalState = msg.data.globalState }
+
                 // this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
+
+                // console.log("wishes", this.values.memories ? this.values.memories.filter(item => item.isWish) : [])
+                
+                this.$store.dispatch("setPlayer",
+                  {
+                    id:this.first_acc.address,
+                    // preQaction: "",
+                    // preQactions: [],
+                    // preQ: null,
+                    wishs: this.values.memories ? this.values.memories.filter(item => item.isWish) : [],
+                    mmrs: {
+                        "ambition": [],
+                        "art": [],
+                        "hazards": [],
+                        "logic": [],
+                        "pets": [],
+                        "social": [],
+                        "sports": [],
+                        "supernatural": [],
+                    },
+                    q: [],
+                    obj: null,
+                    pos: [0,0,0],
+                    rot: [0,0,0],
+                    scale: [1,1,1],
+                    stats: this.values.globalState,
+                  }
+                )
+                this.$nextTick(() => {
+                    this.$parent.$parent.$refs.scene.$refs.level.selectedPlayer = this.first_acc.address
+                })
+
             },
 
         },

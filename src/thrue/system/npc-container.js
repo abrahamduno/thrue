@@ -8,8 +8,8 @@ export default {
     return {
       baseNpcActionList: {
         "fridge":[
-          {action:"Eat apple", dur: 4, stat:{hunger: 1, }, },
-          {action:"Devour cake", dur: 8, stat:{hunger: 3, }, },
+          {action:"Eat apple", dur: 4, stat:{protein: 1, }, },
+          {action:"Devour cake", dur: 8, stat:{protein: 3, }, },
         ],
         "shower":[
           {action:"Shower with soap", dur: 12, stat:{hygene: 4, }, },
