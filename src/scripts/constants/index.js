@@ -96,5 +96,32 @@ export const STATUS_CONSTANTS = {
     iconClass:"fas fa-bolt",
   },
 };
+export const MEMORY_CATEGORY_CONSTANTS = {
+  "supernatural": {
+    title: "Supernatural",
+  }, 
+  "ambition": {
+    title: "Ambition",
+  }, 
+  "art": {
+    title: "Art",
+  }, 
+  "hazards": {
+    title: "Hazards",
+  }, 
+  "logic": {
+    title: "Logic",
+  }, 
+  "pets": {
+    title: "Pets",
+  }, 
+  "social": {
+    title: "Social",
+  }, 
+  "sports": {
+    title: "Sports",
+  }
+};
+export const MEMORY_CATEGORY_LIST = [ "supernatural", "ambition", "art", "hazards", "logic", "pets", "social", "sports", ];
 export const STATE_LIST = [ "energy", "fun", "hygene", "protein" ];
 export const STATUS_LIST = [ "focus", "process", "action" ];

@@ -16,17 +16,22 @@
           <div 
             class="flex-center my-1 pa-3 tx-xs n-flat border-r-15 clickable tx-center opacity-hover-75 "  style="max-width: 80px" 
           >
-            <i class="fas mr-2" :class="[wish.icon ? wish.icon : '']"></i>
-            <span>{{wish.name}}</span>
-            <span>{{wish.title}}</span>
-            <span>{{wish.thoughtCat}}</span>
-            <span class="pa-1">|</span>
-            <span>{{wish.thoughtIndex}}</span>
-            <span class="pa-1">|</span>
-            <!-- <span>{{wish.isStatusStateDependant}}</span> -->
-            <span v-if="wish.isStatusStateDependant < 100">status</span>
-            <span v-if="wish.isStatusStateDependant >= 100 && wish.isStatusStateDependant < 200 ">state</span>
-            <span v-if="wish.isStatusStateDependant >= 200 ">both</span>
+            <span>
+              {{MEMORY_CATEGORY_LIST[wish.thoughtCat]}}
+
+              <!-- <i class="fas mr-2" :class="[wish.icon ? wish.icon : '']"></i> -->
+              <!-- <span>{{wish.name}}</span> -->
+              <!-- <span>{{wish.title}}</span> -->
+              <!-- <span class="pa-1">|</span> -->
+              <b class="pa-1">{{wish.thoughtIndex}}</b>
+              <!-- <span class="pa-1">|</span> -->
+              <!-- <span>{{wish.isStatusStateDependant}}</span> -->
+            </span>
+            <div class="flex-column pa-1">
+              <span v-if="wish.isStatusStateDependant < 100">status</span>
+              <span v-if="wish.isStatusStateDependant >= 100 && wish.isStatusStateDependant < 200 ">state</span>
+              <span v-if="wish.isStatusStateDependant >= 200 ">both</span>
+            </div>
 
           </div>
         </template>
@@ -34,12 +39,14 @@
     </details>
 </template>
 <script>
+import { MEMORY_CATEGORY_LIST } from '../../../../../scripts/constants/index';
 
 export default {
     props: ["player"],
     data()
     {
         return {
+          MEMORY_CATEGORY_LIST,
         };
     },
 }
