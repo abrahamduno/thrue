@@ -40,7 +40,7 @@
 
 
 <!-- tutorial-theme-bg  -->
-    <div v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
+    <div v-show="is_playing_test" v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222; transform: translateY(140px);" 
         v-if="!pro_mode"

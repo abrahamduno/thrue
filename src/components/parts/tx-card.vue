@@ -264,6 +264,10 @@
                     let resssult = this.formatDate(new Date(1000*parseInt(10**18*parseFloat(ethers.utils.formatEther(altResult).toString()))))
                     return `${resssult[5]} ${resssult[2]}, ${resssult[3]}:${resssult[4]} - ${resssult[6]} ${resssult[0]}`
                 }
+                if (altResType == "struct")
+                {
+                    return Object.keys(altResult).join(", ")
+                }
 
                 return altResult
             },

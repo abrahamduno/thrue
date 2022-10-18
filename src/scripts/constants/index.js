@@ -57,3 +57,19 @@ export const localNetwork = {
 // export const CURRENT_NETWORK = maticNetwork;
 export const CURRENT_NETWORK = polygonNetwork;
 // export const CURRENT_NETWORK = localNetwork;
+
+export const STATE_CONSTANTS = {
+  "energy": {
+    title:"Energy",
+  },
+  "fun": {
+    title:"Fun",
+  },
+  "hygene": {
+    title:"Hygene",
+  },
+  "protein": {
+    title:"Protein",
+  },
+};
+export const STATE_LIST = [ "energy", "fun", "hygene", "protein" ];

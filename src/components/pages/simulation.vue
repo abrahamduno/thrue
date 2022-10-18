@@ -2,8 +2,11 @@
 <div class="flex-column w-100" >
 
     <div class="py-8" > </div>
-    <div class="flex-column flex-lg_x-row pt-8 flex-1 w-100 ">
-        <simulation-player-stats ref="currentRound" @update_loading="update_loading" class="z-50 "
+    
+    <div class="flex-column flex-lg_x-row pt-8 flex-1 w-100 "
+        v-show="pause_mode && (accs_length || is_playing_test)">
+        <simulation-address v-if=""
+            ref="simulationAddress" @update_loading="update_loading" class="z-50 "
             @update_values="update_values" :_loadings="loadings" :_values="values"
         />
 
@@ -13,6 +16,11 @@
         <div v-if="!dark_mode" style="width: 2px; background: black;" class="py-100 block opacity-10 show-xs_md" > </div>
 
         <div style="height: 80px" class="show-md_lg"> </div>
+
+        <simulation-player-stats v-if="values.player_birthunix"
+            ref="playerStats" @update_loading="update_loading" class="z-50 "
+            @update_values="update_values" :_loadings="loadings" :_values="values"
+        />
 
     </div>
 
@@ -28,6 +36,7 @@
     import { ethers } from 'ethers';
 
     import { ABIS, CURRENT_NETWORK } from '../../scripts/constants/index';
+    import simulationAddress from "./simulation/simulation-address.vue";
     import simulationPlayerStats from "./simulation/simulation-player-stats.vue";
 
     import loadTextWithValue from "../../thrue/models/text-value.js";
@@ -37,6 +46,7 @@
         name: 'simulation',     
         mixins: [loadTextWithValue, loadTextSignup],
         components: {
+            simulationAddress,
             simulationPlayerStats,
         },
         data() {
@@ -48,11 +58,13 @@
                     dai_balance_of: null,
                     dai_dao_allowance: null,
                     player_birthunix: null,
+                    _parsed_player_birthunix: null,
                 },
 
                 loading: false,
                 loadings: {
                     daiBalanceOfAndAllowance: false,
+                    statsStateStatus: false,
                     createPlayer: false,
                 },
 
@@ -81,19 +93,36 @@
             pro_mode()              { return this.$store.getters.pro_mode },
             current_sub_page()      { return this.$store.getters.current_sub_page },
 
+            is_playing_test()      { return this.$store.getters.is_playing_test },
+            pause_mode()             { return this.$store.getters.pause_mode },
         },
         async mounted()
         {
         },
         methods: {
+            changeProMode() {
+                let newMode = !this.pro_mode
+                localStorage.setItem("proMode", JSON.stringify(newMode));
+                this.$store.dispatch("setProMode", newMode)
+            },
             update_loading(msg)
             {
                 this.loadings[msg.key] = msg.value
             },
             async update_values(msg)
             {
-                this.values.dai_balance_of = msg.data.dai_balance_of
-                this.values.dai_dao_allowance = msg.data.dai_dao_allowance
+                if (msg.data.dai_balance_of)
+                { this.values.dai_balance_of = msg.data.dai_balance_of }
+
+                if (msg.data.dai_dao_allowance)
+                { this.values.dai_dao_allowance = msg.data.dai_dao_allowance }
+
+                if (msg.data.player_birthunix)
+                { this.values.player_birthunix = msg.data.player_birthunix }
+
+                if (msg.data._parsed_player_birthunix)
+                { this.values._parsed_player_birthunix = msg.data._parsed_player_birthunix }
+
                 // this.$store.dispatch("setNewBlock", {key:"values",...this.values,...this.loadings})
             },
 
