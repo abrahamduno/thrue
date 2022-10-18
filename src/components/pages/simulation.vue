@@ -66,6 +66,7 @@
                     daiBalanceOfAndAllowance: false,
                     statsStateStatus: false,
                     createPlayer: false,
+                    addEnergy: false,
                 },
 
                 form: {

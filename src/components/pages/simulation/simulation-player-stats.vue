@@ -7,41 +7,55 @@
     <tx-card v-show="false" ref="createPlayer" :props="forms.createPlayer" class="flex-column mt-3" />
 
 
-    <div v-show="pro_mode" class="flex-column n-inset border-r-50 mx-2 pa-6" style="transform: translateY(-15px);">
+    <div v-show="pro_mode" class="flex-column n-inset border-r-5 mx-2 pa-6" style="transform: translateY(-15px);">
 
         <div class="flex-column tx-xs px-2" >
 
     
-            <div class="tx-sm" style="min-width: 170px">
-                <a href="https://thrue.gitbook.io/thrue/" target="_blank"
-                    class="tx-lg py-2 n-tx flex-between w-100 opacity-hover-50"
-                >
-                    <i class="fa fa-book "></i>
-                    <!-- Rules of the game -->
-                    {{LANG.amenu_rules}}
-                </a>
-            </div>
 
-            <!-- <hr class="w-100 opacity-10" > -->
-
-            <span v-if="values.globalState"  class="my-2 w-100">
+            <span v-if="values.globalState"  class="mb-3 w-100">
                 <span class="flex-column ">
                     <span v-for="state in STATE_LIST" class="flex-between w-100">
-                        <div class="">{{STATE_CONSTANTS[state].title}}</div>
+                        <div class="flex">
+                            <i :class="STATE_CONSTANTS[state].iconClass" class="opacity-50 tx-lg mr-2"></i>
+                            <div class="">{{STATE_CONSTANTS[state].title}}</div>
+                        </div>
                         <div class="tx-lg">{{values.globalState[state]}}</div>
                     </span>
                 </span>
             </span>
+
+            <!-- <hr class="w-100 opacity-10" > -->
+
+            <div class="flex-row mb-4" v-if="values.status">
+                <span v-for="status in STATUS_LIST" class="flex-column px-2">
+                    <!-- <i :class="STATUS_CONSTANTS[status].iconClass" class="opacity-50"></i> -->
+                    <span class=" opacity-50">{{STATUS_CONSTANTS[status].title}}</span>
+                    <div class="flex-column">
+                        <b >
+                            {{values.status[status][0] > 127 ? STATUS_CONSTANTS[status].over : STATUS_CONSTANTS[status].under}}
+                        </b >
+                        <div  class="flex">
+                            {{values.status[status][0]}}
+                            <span class="opacity-50 px-1">|</span>
+                            <span class="opacity-75">{{values.status[status][1]}}</span>
+                            
+                        </div >
+                        <!-- <div v-for="(statsStatus, index) in values.status[status]" class=" pl-1">
+                            {{index ? "Force" : "Spectrum"}}:
+                            {{statsStatus}}
+                        </div> -->
+                    </div>
+                </span>
+            </div>
+
             <span v-if="values.wishes"  class="my-2">
                 <span class="flex-column">
                     wishes
                 </span>
             </span>
-            <span v-if="values.wishes"  class="my-2">
-                <span class="flex-column">
-                    wishes
-                </span>
-            </span>
+
+
 
         </div>
     </div>
@@ -61,21 +75,41 @@
                 <div @click="trigger_statsStateStatus" 
                     class=" clickable pa-2  border-r-50 n-flat" 
                 >
-                    <i :class="[loadings.daiBalanceOfAndAllowance ? 'spin-nback' : 'fa-redo']" class="fas fa-circle-notch"></i>
+                    <i :class="[loadings.statsStateStatus ? 'spin-nback' : 'fa-redo']" class="fas fa-circle-notch"></i>
                 </div>
                 <div @click="changePauseMode"
                     class=" clickable py-1 pa-2 border-r-50 n-flat" 
                 >
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-times opacity-50"></i>
                 </div>
             </div>
         </div>
 
         <!-- <hr class="w-100 opacity-10"> -->
 
-        <h6 class="tx-ls-1 opacity-50  my-0 tx-center">STATS </h6> 
-        <h4 class="tx-ls-3 my-2 tx-center">{{shortAddress(first_acc.address)}} </h4>
+        <div v-if="loadings.statsStateStatus" class="flex-column opacity-75">
+            <i class="fas fa-circle-notch spin-nback"></i>
+            <span class="opacity-75 tx-xs tx-center mt-1">{{LANG.loading}} <br> Player Stats</span>
+        </div>
 
+        <h6 class="tx-ls-1 opacity-50   my-0 tx-center">STATS </h6> 
+
+        <span v-if="!loadings.statsStateStatus && values.globalState"  class="my-2 w-100">
+            <span class="flex-column">
+                <div class="flex-row ">
+                    <span v-for="state in STATE_LIST" class="flex-center px-2">
+                        <div class=" ">{{values.globalState[state]}}</div>
+                    </span>
+                </div>
+                <div class="flex-column ">
+                    <span v-for="status in STATUS_LIST" class="flex-column px-2">
+                        <div class="flex ">
+                            <div v-for="statsStatus in values.status[status]" class="px-3">{{statsStatus}}</div>
+                        </div>
+                    </span>
+                </div>
+            </span>
+        </span>
 
     </div>
 
@@ -84,7 +118,7 @@
 </template>
 
 <script>
-    import { ABIS, CURRENT_NETWORK, STATE_LIST, STATE_CONSTANTS } from '../../../scripts/constants/index';
+    import { ABIS, CURRENT_NETWORK, STATE_LIST, STATUS_LIST, STATUS_CONSTANTS, STATE_CONSTANTS } from '../../../scripts/constants/index';
     import { parseDecimals, ERROR_HELPER, shortAddress, shortAddressSpaced } from '../../../scripts/helpers';
 
     import txCard from "../../parts/tx-card.vue";
@@ -99,8 +133,10 @@
             return {
                 CURRENT_NETWORK,
                 ABIS,
+                STATUS_LIST,
                 STATE_LIST,
                 STATE_CONSTANTS,
+                STATUS_CONSTANTS,
 
                 values: {
                     wishes: null,
@@ -204,6 +240,11 @@
                 console.log("_energy.theResult status", this.$refs.getPlayer_energy.theResult.status)
                 this.values.status = this.$refs.getPlayer_energy.theResult.status
                 console.log("_energy.theResult state", this.$refs.getPlayer_energy.theResult.globalState)
+                this.values.status = {
+                    focus: this.$refs.getPlayer_energy.theResult.status._focus,
+                    process: this.$refs.getPlayer_energy.theResult.status._process,
+                    action: this.$refs.getPlayer_energy.theResult.status._action,
+                }
                 this.values.globalState = {
                     energy: this.$refs.getPlayer_energy.theResult.globalState.energy,
                     fun: this.$refs.getPlayer_energy.theResult.globalState.fun,

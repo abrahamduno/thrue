@@ -61,15 +61,40 @@ export const CURRENT_NETWORK = polygonNetwork;
 export const STATE_CONSTANTS = {
   "energy": {
     title:"Energy",
+    iconClass:"fas fa-hamburger",
   },
   "fun": {
     title:"Fun",
+    iconClass:"fas fa-shower",
   },
   "hygene": {
     title:"Hygene",
+    iconClass:"fas fa-smile-beam",
   },
   "protein": {
     title:"Protein",
+    iconClass:"fas fa-bolt",
+  },
+};
+export const STATUS_CONSTANTS = {
+  "focus": {
+    title:"Focus",
+    under: "Intuition",
+    over: "Senses",
+    iconClass:"fas fa-shower",
+  },
+  "process": {
+    title:"Process",
+    under: "Feelings",
+    over: "Logic",
+    iconClass:"fas fa-smile-beam",
+  },
+  "action": {
+    title:"Action",
+    under: "Inwards",
+    over: "Outwards",
+    iconClass:"fas fa-bolt",
   },
 };
 export const STATE_LIST = [ "energy", "fun", "hygene", "protein" ];
+export const STATUS_LIST = [ "focus", "process", "action" ];

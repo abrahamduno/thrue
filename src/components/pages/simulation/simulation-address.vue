@@ -7,9 +7,9 @@
     <tx-card v-show="false" ref="getPlayer_birthunix" :props="forms.getPlayer_birthunix" />
     <!-- methods -->
     <tx-card v-show="false" ref="createPlayer" :props="forms.createPlayer" class="flex-column mt-3" />
+    <tx-card v-show="false" ref="addEnergy" :props="forms.addEnergy" class="flex-column mt-3" />
 
-
-    <div v-show="pro_mode" class="flex-column n-inset border-r-50 mx-2 pa-6" style="transform: translateY(-15px);">
+    <div v-show="pro_mode" class="flex-column n-inset border-r-5 mx-2 pa-6" style="transform: translateY(-15px);">
 
         <div class="flex-column tx-xs px-2" >
 
@@ -20,6 +20,15 @@
                     <i class="fa fa-file "></i>
                     <!-- Transaction history -->
                     {{LANG.amenu_txs}}
+                </a>
+            </div>
+            <div class="tx-sm" style="min-width: 170px">
+                <a href="https://thrue.gitbook.io/thrue/" target="_blank"
+                    class="tx-lg py-2 n-tx flex-between w-100 opacity-hover-50"
+                >
+                    <i class="fa fa-book "></i>
+                    <!-- Rules of the game -->
+                    {{LANG.amenu_rules}}
                 </a>
             </div>
             <!-- <div class="tx-sm" style="min-width: 170px">
@@ -34,7 +43,7 @@
 
             <hr class="w-100 opacity-10" v-if="values.player_birthunix" >
 
-            <span v-if="values.player_birthunix"  class="my-2">
+            <span v-if="values.player_birthunix"  class="my-2 mb-6">
                 <span class="flex-column">
                     <span class="opacity-50 tx-ls-3 pb-2">
                         Player Since:
@@ -68,7 +77,7 @@
                 <div @click="changePauseMode"
                     class=" clickable py-1 pa-2 border-r-50 n-flat" 
                 >
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-times opacity-50"></i>
                 </div>
             </div>
         </div>
@@ -76,7 +85,7 @@
         <!-- <hr class="w-100 opacity-10"> -->
 
         <h6 class="tx-ls-1 opacity-50  my-0 tx-center">ADDRESS </h6> 
-        <h4 class="tx-ls-3 my-2 tx-center">{{shortAddress(first_acc.address)}} </h4>
+        <h4 class="tx-ls-3 mt-2  mb-0 tx-center">{{shortAddress(first_acc.address)}} </h4>
 
         <div v-if="loadings.daiBalanceOfAndAllowance" class="flex-column opacity-75">
             <i class="fas fa-circle-notch spin-nback"></i>
@@ -84,11 +93,19 @@
         </div>
 
         <span v-if="!loadings.daiBalanceOfAndAllowance">{{values.dai_balance_of}} DAI</span>
+
+
         <span v-if="!loadings.daiBalanceOfAndAllowance && !values.player_birthunix" 
             @click="triggerCreatePlayer"
-            class="mt-3 n-flat px-2 py-1 border-r-10 clickable opacity-hover-50"
+            class="mt-3 n-flat px-3 py-2 border-r-10 clickable opacity-hover-50"
                 >
             Create Player
+        </span>
+        <span v-if="!loadings.daiBalanceOfAndAllowance && values.player_birthunix" 
+            @click="triggerAddEnergy"
+            class="mt-3 n-flat px-3 py-2 border-r-10 clickable opacity-hover-50"
+                >
+            Add Energy
         </span>
 
     </div>
@@ -125,6 +142,7 @@
                 loadings: {
                     daiBalanceOfAndAllowance: false,
                     createPlayer: false,
+                    addEnergy: false,
                 },
                 togglers: {
                     showMore: false,
@@ -176,6 +194,18 @@
                             "1": {placeholder:"amount",label:`value: '',`,value: '', type: "string" },
                         },
                     },
+                    addEnergy: {
+                        title: 'addPlayerEnergy',
+                        abi: ABIS.SIMULATION,
+                        address: CURRENT_NETWORK.SIMULATION_ADDRESS,
+                        function: 'addPlayerEnergy',
+                        form_args: {
+                            "0": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
+                            "1": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
+                            "2": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
+                            "3": {placeholder:"",label:`value: "",`,value: "0", type: "uint" },
+                        },
+                    },
                 },   
             }
         },
@@ -209,6 +239,10 @@
                 localStorage.setItem("proMode", JSON.stringify(newMode));
                 this.$store.dispatch("setProMode", newMode)
             },
+            async triggerAddEnergy()
+            {
+                await this.execute_addEnergy()
+            },
             async triggerCreatePlayer()
             {
                 await this.execute_createPlayer()
@@ -223,6 +257,20 @@
                     player_birthunix: this.values.player_birthunix,
                     _parsed_player_birthunix: this.values._parsed_player_birthunix,
                 }})      
+            },
+            async execute_addEnergy()
+            {
+                if (this.loadings.daiBalanceOfAndAllowance) return
+                if (this.loadings.createPlayer) return
+                if (this.loadings.addEnergy) return
+
+                this.loadings.addEnergy = true
+                this.$emit("update_loading", {key: "addEnergy", value: this.loadings.addEnergy, })
+
+                await this.$refs.addEnergy.execute()
+
+                this.loadings.addEnergy = false
+                this.$emit("update_loading", {key: "addEnergy", value: this.loadings.addEnergy, })
             },
             async execute_createPlayer()
             {
