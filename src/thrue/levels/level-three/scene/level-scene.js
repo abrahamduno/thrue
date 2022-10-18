@@ -35,6 +35,7 @@ export default {
       if (this.accs_length)
       {
         console.log("first connected acc", this.first_acc)
+        console.log("first connected acc", this.first_acc)
       } else {
         console.log("playing test acc")
       }

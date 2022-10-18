@@ -152,7 +152,7 @@ export default {
     },
 
     clickedBubbleHeadHead(  ) {
-      alert("READ ME! \nClick n Drag to Rotate \nClick Green to Play")
+      alert("Click Green to Start")
       return
       console.log("clickk")
       if (!this.mycurrentlevel)
