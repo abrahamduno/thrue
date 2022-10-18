@@ -201,9 +201,15 @@
                         function: 'addPlayerEnergy',
                         form_args: {
                             "0": {placeholder:"",label:`value: "",`,value: 123, type: "uint" },
-                            "1": {placeholder:"",label:`value: "",`,value: 99, type: "uint" },
-                            "2": {placeholder:"",label:`value: "",`,value: 66, type: "uint" },
-                            "3": {placeholder:"",label:`value: "",`,value: 15, type: "uint" },
+                            "1": {placeholder:"",label:`value: "",`,value: 201, type: "uint" },
+                            "2": {placeholder:"",label:`value: "",`,value: 112, type: "uint" },
+                            "3": {placeholder:"",label:`value: "",`,value: 24, type: "uint" },
+
+
+                            // "0": {placeholder:"",label:`value: "",`,value: 0, type: "uint" },
+                            // "1": {placeholder:"",label:`value: "",`,value: 0, type: "uint" },
+                            // "2": {placeholder:"",label:`value: "",`,value: 0, type: "uint" },
+                            // "3": {placeholder:"",label:`value: "",`,value: 104, type: "uint" },
                         },
                     },
                 },   

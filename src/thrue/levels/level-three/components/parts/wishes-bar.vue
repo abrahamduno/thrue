@@ -23,7 +23,10 @@
             <span class="pa-1">|</span>
             <span>{{wish.thoughtIndex}}</span>
             <span class="pa-1">|</span>
-            <span>{{wish.isStatusStateDependant}}</span>
+            <!-- <span>{{wish.isStatusStateDependant}}</span> -->
+            <span v-if="wish.isStatusStateDependant < 100">status</span>
+            <span v-if="wish.isStatusStateDependant >= 100 && wish.isStatusStateDependant < 200 ">state</span>
+            <span v-if="wish.isStatusStateDependant >= 200 ">both</span>
 
           </div>
         </template>
