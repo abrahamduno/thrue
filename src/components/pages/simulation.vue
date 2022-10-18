@@ -5,7 +5,7 @@
     
     <div class="flex-column flex-lg_x-row pt-8 flex-1 w-100 "
         v-show="pause_mode && (accs_length || is_playing_test)">
-        <simulation-address v-if=""
+        <simulation-address 
             ref="simulationAddress" @update_loading="update_loading" class="z-50 "
             @update_values="update_values" :_loadings="loadings" :_values="values"
         />
