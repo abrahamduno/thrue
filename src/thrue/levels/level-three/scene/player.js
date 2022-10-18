@@ -33,7 +33,7 @@ export default {
       // alert(`you want to fix ${stat.stat} ${statAction.action}`)
       // console.log(statAction,stat)
       this.$store.dispatch("addToPlayerQ",{
-          id:"0",
+          id:this.selectedPlayer,
           
           q: [
             {
@@ -52,16 +52,16 @@ export default {
       this.p_$localQ = null
 
       // this.$store.dispatch("clearPreQ",{
-      //     id:"0",
+      //     id:this.selectedPlayer,
       //   },
       // )
       // this.$store.dispatch("clearPreQ",{
-      //     id:"0",
+      //     id:this.selectedPlayer,
       //   },
       // )
 
       // this.$store.dispatch("clearFirstInY",{
-      //   id:"0",
+      //   id:this.selectedPlayer,
       // })
       // console.log("im",this.p_$localQ)
       // console.log("im",this.p_$localQ, this.$store.getters.getPlayers[0].preQactions)
@@ -86,7 +86,7 @@ export default {
         let _wishs = [this.__getLifeGoalWish(_mmrs)]
         this.$store.dispatch("setPlayer",
           {...{
-            id:"0",
+            id:this.selectedPlayer,
             // preQaction: "",
             // preQactions: [],
             // preQ: null,
