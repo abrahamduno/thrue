@@ -99,27 +99,82 @@ export const STATUS_CONSTANTS = {
 export const MEMORY_CATEGORY_CONSTANTS = {
   "supernatural": {
     title: "Supernatural",
+    memories: [
+      {
+        title: "Supernatural",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "ambition": {
     title: "Ambition",
+    memories: [
+      {
+        title: "Get A Job",
+        npcRef: "mailbox",
+      }
+    ],
   }, 
   "art": {
     title: "Art",
+    memories: [
+      {
+        title: "Art",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "hazards": {
     title: "Hazards",
+    memories: [
+      {
+        title: "Hazards",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "logic": {
     title: "Logic",
+    memories: [
+      {
+        title: "Logic",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "pets": {
     title: "Pets",
+    memories: [
+      {
+        title: "Pets",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "social": {
     title: "Social",
+    memories: [
+      {
+        title: "Social",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }, 
   "sports": {
     title: "Sports",
+    memories: [
+      {
+        title: "Sports",
+        npcRef: "bed",
+        statRef: "energy",
+      }
+    ],
   }
 };
 export const MEMORY_CATEGORY_LIST = [ "supernatural", "ambition", "art", "hazards", "logic", "pets", "social", "sports", ];
