@@ -195,6 +195,7 @@
                         },
                     },
                     addEnergy: {
+                        DEBUG: true,                        
                         title: 'addPlayerEnergy',
                         abi: ABIS.SIMULATION,
                         address: CURRENT_NETWORK.SIMULATION_ADDRESS,
@@ -273,7 +274,24 @@
                 this.loadings.addEnergy = true
                 this.$emit("update_loading", {key: "addEnergy", value: this.loadings.addEnergy, })
 
-                await this.$refs.addEnergy.execute()
+                try {
+                    console.log("executing addEnergy")
+
+                    let aSingleInput = prompt("0")
+                    if (aSingleInput)
+                    {
+                      this.forms.addEnergy.form_args["0"].value = aSingleInput
+                      aSingleInput = prompt("1")
+                      this.forms.addEnergy.form_args["1"].value = aSingleInput
+                      aSingleInput = prompt("2")
+                      this.forms.addEnergy.form_args["2"].value = aSingleInput
+                      aSingleInput = prompt("3")
+                      this.forms.addEnergy.form_args["3"].value = aSingleInput
+
+                    await this.$refs.addEnergy.execute()
+                    }
+                } catch (err) {
+                }
 
                 this.loadings.addEnergy = false
                 this.$emit("update_loading", {key: "addEnergy", value: this.loadings.addEnergy, })

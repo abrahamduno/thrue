@@ -84,6 +84,25 @@ export default {
         // unsigned
         let _mmrs = this.__getRandomMemories()
         let _wishs = [this.__getLifeGoalWish(_mmrs)]
+        let theStats = {}
+        if (!this.accs_length)
+        {
+          theStats = {
+              protein: parseInt(Math.random()*255),
+              hygene: parseInt(Math.random()*255),
+              energy: parseInt(Math.random()*255),
+              fun: parseInt(Math.random()*255),
+            }
+        } else {
+
+          theStats = {
+              protein: 1,
+              hygene: 1,
+              energy: 1,
+              fun: 1,
+            }
+        }
+
         this.$store.dispatch("setPlayer",
           {...{
             id:this.selectedPlayer,
@@ -108,12 +127,7 @@ export default {
             pos: [0,0,0],
             rot: [0,0,0],
             scale: [1,1,1],
-            stats: {
-              protein: parseInt(Math.random()*255),
-              hygene: parseInt(Math.random()*255),
-              energy: parseInt(Math.random()*255),
-              fun: parseInt(Math.random()*255),
-            },
+            stats: theStats,
           },..._player}
         )
       }

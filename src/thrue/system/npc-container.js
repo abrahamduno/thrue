@@ -27,7 +27,7 @@ export default {
           {action:"Steal neighboors mail", dur: 2, stat:{fun: 1, }, },
         ],
         "House-Bush":[
-          {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
+          // {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
           {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
         ],
         "closecementerybush":[
@@ -78,7 +78,7 @@ export default {
           case "Peek neighboors mailbox": return "Peeking neighboors"
           case "Inspect": return "Checking bush"
           case "Walk to bush": return "Walking"
-          case "Eat energy": return "Eating light"
+          // case "Eat energy": return "Eating light"
         }
       },
       _$init_npcContainer()

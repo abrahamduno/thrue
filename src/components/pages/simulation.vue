@@ -160,7 +160,7 @@
                         },
                         q: [],
                         obj: null,
-                        pos: [0,0,0],
+                        pos: [-18200 / 1000,0,-11600 / 1000],
                         rot: [0,0,0],
                         scale: [1,1,1],
                         stats: this.values.globalState,

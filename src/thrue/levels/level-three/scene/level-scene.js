@@ -43,7 +43,7 @@ export default {
         // console.log("playing test acc")
         
       }
-      this.p_$init_player({pos:[-8.5,0,-13]})
+        this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos(-1.5)
     },
     l_$addCurrentLevelScene()

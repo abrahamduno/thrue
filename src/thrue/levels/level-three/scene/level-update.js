@@ -162,7 +162,7 @@ export default {
       this.l_$checkGoals() // base-level js
       // alert("test")
     },
-    _$animate_main()
+    async _$animate_main()
     {
       this.__orbitcontrols.update()
       // let ms = Date.now();
@@ -262,6 +262,26 @@ export default {
           this.$store.dispatch("clearFirstInQ",{
             id:this.selectedPlayer,
           })
+
+            console.log("consuming "+theStat)
+          if (theStat == "energy")
+          {
+            console.log("saving to blockchain ?")
+            if (this.$parent.$parent.$refs.dom.$refs.simulation)
+            {
+              console.log("trying tx")
+              try {
+                // let aSingleInput = prompt("0")
+                // if (aSingleInput)
+                {
+                  await this.$parent.$parent.$refs.dom.$refs.simulation.$refs.simulationAddress.execute_addEnergy()
+                  // window.location.reload()
+                }
+              } catch (err) {
+
+              }
+            }
+          }
         }
       }
       // console.log(ms);
