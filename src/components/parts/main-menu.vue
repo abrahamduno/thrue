@@ -7,7 +7,7 @@
 
             <div class="flex-start show-md_x" >
                 <a class="nodeco letter-s-3 noborder n-tx tx-md n-flat clickable flex-column"
-                    href="https://gamearteesan.gitbook.io/arteesan/"  target="_blank"
+                    href="https://thrue.gitbook.io/thrue/tutorials/examples"  target="_blank"
                     style="border-radius: 0 30px 30px 0"
                 >
                     <span class="pa-2 opacity-hover-50">
@@ -168,7 +168,7 @@
                 </div>
                 <div>
                     <a class="nodeco letter-s-3 noborder n-tx tx-md n-flat clickable flex-column"
-                        href="https://gamearteesan.gitbook.io/arteesan/"  target="_blank"
+                        href="https://thrue.gitbook.io/thrue/tutorials/examples"  target="_blank"
                         style="border-radius: 0 30px 30px 0"
                     >
 
