@@ -32,7 +32,7 @@ export default {
           // this.p_$localQactions = []
           // this.p_$localQ = null
           // this.$store.dispatch("clearPreQ",{
-          //     id:"0",
+          //     id:this.selectedPlayer,
           //   },
           // )
         } else {
@@ -49,7 +49,7 @@ export default {
               // if (this.p_$localQ)
               {
                 this.p_$localQ = {
-                  id:"0",
+                  id:this.selectedPlayer,
                   stat: theStat,
                   npcRef:_npcName,
                 }
@@ -57,7 +57,7 @@ export default {
 
                 // this.$store.dispatch("addToPlayerPreQ",{
                 //     preQ: {
-                //       id:"0",
+                //       id:this.selectedPlayer,
                 //       stat: theStat,
                 //       npcRef:_npcName,
                 //     },
@@ -67,10 +67,10 @@ export default {
                 // )
 
                 // this.$store.dispatch("addToPlayerY",{
-                //     id:"0",
+                //     id:this.selectedPlayer,
                 //     t: 0,
                 //     preQ: {
-                //       id:"0",
+                //       id:this.selectedPlayer,
                 //       stat: theStat,
                 //       npcRef:_npcName,
                 //     },
@@ -152,6 +152,8 @@ export default {
     },
 
     clickedBubbleHeadHead(  ) {
+      alert("Click Green to Start")
+      return
       console.log("clickk")
       if (!this.mycurrentlevel)
       {
@@ -160,7 +162,7 @@ export default {
       this.l_$checkGoals() // base-level js
       // alert("test")
     },
-    _$animate_main()
+    async _$animate_main()
     {
       this.__orbitcontrols.update()
       // let ms = Date.now();
@@ -182,7 +184,7 @@ export default {
           if (this.NPCBaseContainer[theNpc].playerpos)
           {
             this.$store.dispatch("setPlayerPosition",{
-              id:"0",
+              id:this.selectedPlayer,
               pos:[
                 this.NPCBaseContainer[theNpc].playerpos[0],
                 this.__player.pos[1],
@@ -197,7 +199,7 @@ export default {
           if (this.NPCBaseContainer[theNpc].playerrot)
           {
             this.$store.dispatch("setPlayerRotation",{
-              id:"0",
+              id:this.selectedPlayer,
               pos:[
                 this.__player.pos[0],
                 this.NPCBaseContainer[theNpc].playerrot[1],
@@ -209,7 +211,7 @@ export default {
         //   if (this.NPCBaseContainer[theNpc].playerrot)
         //   {
         //     this.$store.dispatch("setPlayerRotation",{
-        //       id:"0",
+        //       id:this.selectedPlayer,
         //       rot:[ 
         //         this.__player.rot[0],
         //         this.NPCBaseContainer[theNpc].playerrot[1],
@@ -235,22 +237,22 @@ export default {
 
 
           let newValue = parseFloat(this.__player.stats[theStat])+this.__player.q[0].value
-          if (newValue <= 10)
+          if (newValue <= 255)
           {
             this.$store.dispatch("setPlayerStats",{
-              id:"0",
+              id:this.selectedPlayer,
               stats:{
                 [theStat]: parseFloat(this.__player.stats[theStat])+this.__player.q[0].value,
               },
             })
           } else {
 
-            if (newValue > 10)
+            if (newValue > 255)
             {
               this.$store.dispatch("setPlayerStats",{
-                id:"0",
+                id:this.selectedPlayer,
                 stats:{
-                  [theStat]: 10,
+                  [theStat]: 255,
                 },
               })
             } 
@@ -258,8 +260,28 @@ export default {
             alert("You are sinnin "+theStat)
           }
           this.$store.dispatch("clearFirstInQ",{
-            id:"0",
+            id:this.selectedPlayer,
           })
+
+            console.log("consuming "+theStat)
+          if (theStat == "energy")
+          {
+            console.log("saving to blockchain ?")
+            if (this.$parent.$parent.$refs.dom.$refs.simulation)
+            {
+              console.log("trying tx")
+              try {
+                // let aSingleInput = prompt("0")
+                // if (aSingleInput)
+                {
+                  await this.$parent.$parent.$refs.dom.$refs.simulation.$refs.simulationAddress.execute_addEnergy()
+                  // window.location.reload()
+                }
+              } catch (err) {
+
+              }
+            }
+          }
         }
       }
       // console.log(ms);
@@ -460,7 +482,7 @@ export default {
     //   }
     //   // console.table({newPosX,newPosZ})
     //   this.$store.dispatch("setPlayerPosition",{
-    //     id:"0",
+    //     id:this.selectedPlayer,
     //     pos:[
     //       this.__player.pos[x]+(newPosX*-1),
     //       this.__player.pos[y],
@@ -519,7 +541,7 @@ export default {
     //   }
     //   // console.table({newPosX,newPosZ})
     //   this.$store.dispatch("setPlayerPosition",{
-    //     id:"0",
+    //     id:this.selectedPlayer,
     //     pos:[
     //       this.__player.pos[x]+newPosX,
     //       this.__player.pos[y],
@@ -556,7 +578,7 @@ export default {
     //     //   if (this.__player && this.__pointer.x > -0.6 && this.__pointer.x < 0.6)
     //     //   {
     //     //     this.$store.dispatch("setPlayerPosition",{
-    //     //       id:"0",
+    //     //       id:this.selectedPlayer,
     //     //       pos:[
     //     //         this.__player.pos[x],
     //     //         this.__player.pos[y],
@@ -577,7 +599,7 @@ export default {
     //           this.camera.rotation.y = -Math.PI - ((Math.PI - this.camera.rotation.y))
     //         }
     //         this.$store.dispatch("setPlayerRotation",{
-    //           id:"0",
+    //           id:this.selectedPlayer,
     //           rot:[
     //             this.__player.rot[x],
     //             newRotY,
@@ -598,7 +620,7 @@ export default {
     //         }
     //         console.log("newRotY2",newRotY)
     //         this.$store.dispatch("setPlayerRotation",{
-    //           id:"0",
+    //           id:this.selectedPlayer,
     //           rot:[
     //             this.__player.rot[x],
     //             newRotY,

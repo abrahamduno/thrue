@@ -264,6 +264,14 @@
                     let resssult = this.formatDate(new Date(1000*parseInt(10**18*parseFloat(ethers.utils.formatEther(altResult).toString()))))
                     return `${resssult[5]} ${resssult[2]}, ${resssult[3]}:${resssult[4]} - ${resssult[6]} ${resssult[0]}`
                 }
+                if (altResType == "struct")
+                {
+                    return Object.keys(altResult).join(", ")
+                }
+                if (altResType == "array")
+                {
+                    // ?
+                }
 
                 return altResult
             },
@@ -435,8 +443,13 @@
                         // console.log ("this._parsedArgs")
                         // console.log (this._parsedArgs)
                         let aTx = await theContract[this.form.functionName].apply(this, _args)
-                        let aResult = await aTx.wait()
-                        resolve(aResult)
+                        if (!this.props.get_only)
+                        {
+                            let aResult = await aTx.wait()
+                            resolve(aResult)
+                        } else {
+                            resolve(aTx)
+                        }
                     } catch (error)
                     {
                         reject(error)

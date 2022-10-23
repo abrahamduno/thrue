@@ -10,8 +10,8 @@ export default {
     return {
       p_$localQ: null,
       p_$localQactions: [],
-      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "housebush", "closecornerbush","tunnelbush","closecementerybush"],
-      p_$statList: ["energy","hunger","hygene","fun"],
+      l_$npcList:[ "bed", "shower", "fridge", "mailbox", "mailboxneigh", "House-Bush", "closecornerbush","tunnelbush","closecementerybush"],
+      p_$statList: ["energy","protein","hygene","fun"],
     }
   },
   computed:
@@ -33,7 +33,7 @@ export default {
       // alert(`you want to fix ${stat.stat} ${statAction.action}`)
       // console.log(statAction,stat)
       this.$store.dispatch("addToPlayerQ",{
-          id:"0",
+          id:this.selectedPlayer,
           
           q: [
             {
@@ -52,16 +52,16 @@ export default {
       this.p_$localQ = null
 
       // this.$store.dispatch("clearPreQ",{
-      //     id:"0",
+      //     id:this.selectedPlayer,
       //   },
       // )
       // this.$store.dispatch("clearPreQ",{
-      //     id:"0",
+      //     id:this.selectedPlayer,
       //   },
       // )
 
       // this.$store.dispatch("clearFirstInY",{
-      //   id:"0",
+      //   id:this.selectedPlayer,
       // })
       // console.log("im",this.p_$localQ)
       // console.log("im",this.p_$localQ, this.$store.getters.getPlayers[0].preQactions)
@@ -84,9 +84,28 @@ export default {
         // unsigned
         let _mmrs = this.__getRandomMemories()
         let _wishs = [this.__getLifeGoalWish(_mmrs)]
+        let theStats = {}
+        if (!this.accs_length)
+        {
+          theStats = {
+              protein: parseInt(Math.random()*255),
+              hygene: parseInt(Math.random()*255),
+              energy: parseInt(Math.random()*255),
+              fun: parseInt(Math.random()*255),
+            }
+        } else {
+
+          theStats = {
+              protein: 1,
+              hygene: 1,
+              energy: 1,
+              fun: 1,
+            }
+        }
+
         this.$store.dispatch("setPlayer",
           {...{
-            id:"0",
+            id:this.selectedPlayer,
             // preQaction: "",
             // preQactions: [],
             // preQ: null,
@@ -108,12 +127,7 @@ export default {
             pos: [0,0,0],
             rot: [0,0,0],
             scale: [1,1,1],
-            stats: {
-              hunger: 3,
-              hygene: 8,
-              energy: 9,
-              fun: 5,
-            },
+            stats: theStats,
           },..._player}
         )
       }

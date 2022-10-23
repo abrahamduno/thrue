@@ -10,8 +10,6 @@
 
     <div  class=" pos-fixed z-999 pa-2  bottom-0 right-0  border-r-15 flex-align-start flex-column  " v-if="accs_length || is_playing_test" >
 
-        <!-- <div>PlayerStats</div> -->
-            <!-- :class="[[__player.stats.hunger > 8 ? 'tx-success':''],[__player.stats.hunger < 4 ? 'tx-error':'']]" -->
         <div class="flex-wrap pa-1 n-flat border-r-15" v-if="__player.q">
           <span class="flex-column " 
           >
@@ -40,14 +38,15 @@
 
 
 <!-- tutorial-theme-bg  -->
-    <div v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
+    <div v-show="is_playing_test" v-if="pause_mode && (accs_length || is_playing_test)" class="pos-fixed w-100 flex-center"
       >
       <h1  style="z-index: 999999; background: #222222; transform: translateY(140px);" 
         v-if="!pro_mode"
           class="tx-center n-flat tx-lg mt-0 pa-5 border-r-50  "
       >
           <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
-          <span class="nopointer opacity-75 tx-ls-8">How to Play</span>
+          <span class="nopointer opacity-50 tx-ls-2">How to Play</span>
+          <span class="clickable opacity-hover-50 pl-4 tx-ls-8" @click="changePauseMode">X</span>
           <!-- <br> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
           <div class="opacity-25 nopointer  tx-xs tx-ls-2 w-100 tx-left"><i class="fas fa-arrow-down pl-4 pr-5 "></i>NEEDS</div>
@@ -55,7 +54,7 @@
             <details class=" tx-xs  opacity-75 w-100">
               <summary class="clickable w-100 flex tx-ls-5 pa-3">
                 <i class="tx-primary fas tx-lg fa-hamburger pr-1"></i> 
-                <span class="n-tx-3d">Hunger</span>
+                <span class="n-tx-3d">Protein</span>
               </summary>
               <div class="n-inset py-2 border-r-15">
                 You can check <br> the fridge <br> when hungry
@@ -131,7 +130,8 @@
           class="tx-center n-flat tx-lg  pa-5 border-r-50  "
       >
           <!-- <span class="nopointer show-xs_md block " style="height: 100px"></span> -->
-          <span class="nopointer opacity-75 tx-ls-5">Person Profile</span>
+          <span class="nopointer opacity-75 tx-ls-5">My Profile</span>
+          <span class="clickable opacity-hover-50 pl-4 tx-ls-8" @click="changeProMode">X</span>
           <!-- <br> -->
           <hr class="w-100 opacity-25 pa-0 my-2">
           <div class="opacity-25 nopointer  tx-xs tx-ls-2 w-100 tx-left"><i class="fas fa-arrow-down pl-4 pr-5 "></i>MEMORIES</div>
@@ -207,7 +207,7 @@
     >
       <div class="flex-column mb-3" v-if="p_$localQ && p_$localQ.id">
         <div class=" mb-2 " >
-          <span class="tx-xs opacity-50">Actions:</span>
+          <span class="tx-xs opacity-50">{{p_$localQ.npcRef.replace("-"," ")}}</span>
           <div v-if="p_$localQactions.length">
             <div v-for="statAction in p_$localQactions" @click="p_$commitStatAction(statAction,p_$localQ)">
               <small class="tx-xs py-1 pa-2 clickable show-md_x opacity-hover-75 tx-secondary">{{statAction.action}}</small>
@@ -222,6 +222,7 @@
     <div v-if="accs_length || is_playing_test" style="z-index: 999999;" 
         class="    top-0 right-0  pos-fixed pa-3 border-r-25 flex-align-start flex-column "
     >
+
         <wishes-bar    :player="__player" />
 
   </div>
@@ -279,6 +280,7 @@ export default {
   data()
   {
     return {
+      selectedPlayer: "0",
       enable_help: 0,
       show_help: false,
       UNIX: 0,
@@ -300,13 +302,24 @@ export default {
     current_filter()      { return this.$store.getters.current_filter },
     valuesBlock()             { return this.$store.getters.getBlock("values") },
 
-    __player()      { return this.$store.getters.getPlayers[0] },
+    __player()      { return this.$store.getters.getPlayers[this.selectedPlayer] },
     __player_rot_y()      { return !this.__player || !this.__player.rot ? 0 : parseFloat(this.__player.rot[1].toFixed(2)) },
     __player_pos_z()      { return !this.__player || !this.__player.pos ? 0 : parseFloat(this.__player.pos[2].toFixed(2)) },
 
   },
   methods:
   {
+    changePauseMode() {
+        let newMode = !this.pause_mode
+        localStorage.setItem("pauseMode", JSON.stringify(newMode));
+        this.$store.dispatch("setPauseMode", newMode)
+        // console.log("asd", newMode)
+    },
+    changeProMode() {
+        let newMode = !this.pro_mode
+        localStorage.setItem("proMode", JSON.stringify(newMode));
+        this.$store.dispatch("setProMode", newMode)
+    },
   },
   beforeDestroy() {
     // remove listener again

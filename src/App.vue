@@ -1,6 +1,6 @@
 <template>
     <div :class="!!dark_mode ? 'dark-theme' : 'light-theme'" class="main-body n-bg n-tx w-100">
-        <main-menu  style="z-index: 99999" />
+        <main-menu />
         <main-scene ref="scene" />
         <main-dom ref="dom" @animate="animate" />
     </div>

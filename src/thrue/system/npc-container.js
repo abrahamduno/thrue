@@ -8,8 +8,8 @@ export default {
     return {
       baseNpcActionList: {
         "fridge":[
-          {action:"Eat apple", dur: 4, stat:{hunger: 1, }, },
-          {action:"Devour cake", dur: 8, stat:{hunger: 3, }, },
+          {action:"Eat apple", dur: 4, stat:{protein: 1, }, },
+          {action:"Devour cake", dur: 8, stat:{protein: 3, }, },
         ],
         "shower":[
           {action:"Shower with soap", dur: 12, stat:{hygene: 4, }, },
@@ -26,8 +26,8 @@ export default {
           {action:"Peek neighboors mailbox", dur: 4, stat:{fun: 2, }, },
           {action:"Steal neighboors mail", dur: 2, stat:{fun: 1, }, },
         ],
-        "housebush":[
-          {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
+        "House-Bush":[
+          // {action:"Eat energy", dur: 5, stat:{energy: 1, }, },
           {action:"Walk to bush", dur: 1, stat:{fun: 0, }, },
         ],
         "closecementerybush":[
@@ -78,7 +78,7 @@ export default {
           case "Peek neighboors mailbox": return "Peeking neighboors"
           case "Inspect": return "Checking bush"
           case "Walk to bush": return "Walking"
-          case "Eat energy": return "Eating light"
+          // case "Eat energy": return "Eating light"
         }
       },
       _$init_npcContainer()

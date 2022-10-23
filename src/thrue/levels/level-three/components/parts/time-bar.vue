@@ -2,9 +2,6 @@
     <div class="flex-column pa-1 n-inset border-r-5">
       <span class="flex px-1 tx-sm flex-center" 
       >
-        <!-- <span title="Hunger" >
-          <i class="mr-2 fas fa-hamburger"></i>
-        </span> -->
         <!-- <div class="px-1">|</div> -->
         <small > {{minutesSinceLastHour}}</small>
         <div class="mb-1" style="padding: 0 3px">:</div>

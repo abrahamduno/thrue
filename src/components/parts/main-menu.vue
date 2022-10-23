@@ -1,5 +1,5 @@
 <template>
-    <div  class="w-100 pos-fixed z-999">
+    <div  class="w-100 pos-fixed  " style="z-index: 1">
 
         <div class="flex-between flex-align-start show-md_x"> 
 
@@ -7,10 +7,10 @@
 
             <div class="flex-start show-md_x" >
                 <a class="nodeco letter-s-3 noborder n-tx tx-md n-flat clickable flex-column"
-                    href="https://gamearteesan.gitbook.io/arteesan/"  target="_blank"
+                    href="https://thrue.gitbook.io/thrue/tutorials/examples"  target="_blank"
                     style="border-radius: 0 30px 30px 0"
                 >
-                    <span class="px-5 pb-4 pt-3 opacity-hover-50">
+                    <span class="pa-2 opacity-hover-50">
                         <i class="mr-2 fas fa-external-link-alt"></i> Docs
                     </span>
                 </a>
@@ -18,28 +18,27 @@
                 v-if="(current_sub_page != 'test' && !is_playing_test) || (current_sub_page == 'test' && !accs_length && !is_playing_test)"
                  -->
                  <!-- {{is_playing_test}} -->
-                <a v-if="current_sub_page != 'test' && !is_playing_test"
+                <!-- <a v-if="!accs_length && (current_sub_page != 'test' && !is_playing_test)"
                     @click="changeCurrentSubPage('test')"
-                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                    class="nodeco  noborder n-tx tx-md n-flat  clickable flex-column"
                     style="border-radius: 0 30px 30px 0"
                 >
-                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center">
-                        <small class="tx-sm">Continue </small>
+                    <span class="pa-2 opacity-hover-50 tx-center tx-xs">
+                        <i class="fas fa-toggle-on tx-xxl"></i>
                         <br>
-                        <i class="opacity-50 fas fa-user-alt-slash tx-xxl"></i>
-                        <br>
-                        <small class="tx-sm">without Account </small>
+                        <small class="">Play On-Chain </small>
                     </span>
-                </a>
+                </a> -->
                 <!-- !accs_length -->
-                <a v-if="current_sub_page == 'test' && !is_playing_test"
-                    @click="changeCurrentSubPage('')"
-                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+                <a v-if="!is_playing_test && !accs_length"
+                    @click="changeCurrentSubPage(current_sub_page == 'test' ? '' : 'test')"
+                    class="nodeco  noborder n-tx tx-md n-flat clickable flex-column mt-3"
                     style="border-radius: 0 30px 30px 0"
                 >
-                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
-                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
-                        <small class=" tx-sm">Exit Test </small>
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center flex-column tx-xs">
+                        <i :class="current_sub_page != 'test' ? 'fa-toggle-on tx-success' : 'fa-toggle-off'" class="fas  tx-xxl"></i>
+                        <br>
+                        <small class="">{{current_sub_page != 'test' ? 'Play On-Chain' : 'Play Off-Chain' }}</small>
                     </span>
                 </a>
 <!-- 
@@ -169,11 +168,11 @@
                 </div>
                 <div>
                     <a class="nodeco letter-s-3 noborder n-tx tx-md n-flat clickable flex-column"
-                        href="https://gamearteesan.gitbook.io/arteesan/"  target="_blank"
+                        href="https://thrue.gitbook.io/thrue/tutorials/examples"  target="_blank"
                         style="border-radius: 0 30px 30px 0"
                     >
 
-                        <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-sm">
+                        <span class="pa-2 opacity-hover-50 tx-sm">
                             <i class="mr-2 fas fa-external-link-alt tx-lg"></i> Docs
                         </span>
                     </a>
@@ -224,26 +223,17 @@
 
         <div class="flex-between flex-align-start n-flat py-2 show-xs_md" v-show="togglers.menu"> 
         </div>
-        <div class="flex-between flex-align-start n-flat py-2 px-2 show-xs_md " v-show="togglers.menu"> 
-                <a v-if="current_sub_page != 'test' && !is_playing_test"
-                    @click="changeCurrentSubPage('test')"
-                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
+        <div class="flex-between flex-align-start n-flat  show-xs_md " v-show="togglers.menu"> 
+
+                <a v-if="!is_playing_test && !accs_length"
+                    @click="changeCurrentSubPage(current_sub_page == 'test' ? '' : 'test')"
+                    class="nodeco  noborder n-tx tx-md n-flat clickable flex-column "
                     style="border-radius: 0 30px 30px 0"
                 >
-                    <span class="px-5 pb-4 pt-3 opacity-hover-50 tx-center flex-center">
-                        <i class="opacity-50 fas fa-user-alt-slash tx-lg mr-2"></i>
-                        <small class="tx-xs">Continue without Account </small>
-                    </span>
-                </a>
-                <!-- !accs_length -->
-                <a v-if="current_sub_page == 'test' && !is_playing_test"
-                    @click="changeCurrentSubPage('')"
-                    class="nodeco  noborder n-tx tx-md n-flat my-3 clickable flex-column"
-                    style="border-radius: 0 30px 30px 0"
-                >
-                    <span class=" pa-2 flex-center opacity-hover-50 tx-center">
-                        <i class="mr-1 opacity-50 fas fa-times-circle "></i>
-                        <small class=" tx-sm">Exit Test </small>
+                    <span class=" pa-2 flex-center opacity-hover-50 tx-center flex-column tx-xs">
+                        <i :class="current_sub_page != 'test' ? 'fa-toggle-on' : 'fa-toggle-off'" class="fas  tx-xxl"></i>
+                        <br>
+                        <small class="">{{current_sub_page != 'test' ? 'Play On-Chain' : 'Play Off-Chain' }}</small>
                     </span>
                 </a>
         </div>

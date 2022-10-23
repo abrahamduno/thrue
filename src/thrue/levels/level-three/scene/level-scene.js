@@ -26,13 +26,24 @@ export default {
       this.goals = {
         tickets: 0,
         hay: 0,
-        hunger: 0,
+        protein: 0,
         hygene: 0,
         energy: 0,
         fun: 0,
       }
       this.camera.position.set(5,3,-2)
-      this.p_$init_player({pos:[-8.5,0,-13]})
+      if (this.accs_length)
+      {
+        
+        // console.log("this.__player", this.__player)
+        // console.log("first connected acc", this.first_acc)
+        // console.log("first connected acc", this.first_acc)
+      } else {
+        // console.log("this.__player", this.__player)
+        // console.log("playing test acc")
+        
+      }
+        this.p_$init_player({pos:[-8.5,0,-13]})
       this.p_$setOrbitToPlayerPos(-1.5)
     },
     l_$addCurrentLevelScene()
@@ -143,7 +154,7 @@ export default {
         npcStat:npcStat,
       });
       npcName = "fridge"
-      npcStat = "hunger"
+      npcStat = "protein"
       this._$add_npc({name:npcName,obj:"fridge.obj",
         pos: [-12.2,this.MIN.y,-15.9],
         playerpos: [-12.5,this.MIN.y,-14.6], color: 0xe7e7e7,
@@ -167,7 +178,7 @@ export default {
         click: this.__staticNPCClickFunction,
       //   animation:{type:"sin",path:["y"],value:0.02},
       });
-      npcName = "housebush"
+      npcName = "House-Bush"
       npcStat = "energy"
       this._$add_npc({name:npcName,obj:"bush.obj",
         pos: [-11,this.MIN.y,-18], color: 0x64B650, scale:[1,0.65,1],

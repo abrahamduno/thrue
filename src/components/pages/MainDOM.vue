@@ -24,23 +24,10 @@
                     </h1>
                 </div>
             </div>
-            <div v-if="accs_length">
-                <theblock h="24" />
-                <div v-if="hasStarted">
-                    <theblock h="10" />
-                </div>
-            </div>
 
-            <lotto ref="lotto" v-if="accs_length" />
-            <div v-if="hasStarted && accs_length">
-                <theblock h="11" />
-                <!-- <theblock h="1" /> -->
-            </div>
+            <simulation ref="simulation" v-if="accs_length" />
+            <!-- <lotto ref="lotto" v-if="accs_length" /> -->
 
-            <div v-if="hasStarted && accs_length">
-                <theblock h="10" />
-                <!-- <theblock h="1" /> -->
-            </div>
         </div>
 
     </div>
@@ -50,6 +37,7 @@
 
 <script>
     import lotto from "./lotto.vue";
+    import simulation from "./simulation.vue";
     import theblock from "../parts/block.vue";
 
 
@@ -57,6 +45,7 @@
         name: 'main-dom',     
         components: {
             lotto,
+            simulation,
             theblock,
 
         },

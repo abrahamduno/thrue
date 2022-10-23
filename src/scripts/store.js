@@ -21,7 +21,7 @@ const store = createStore({
       if (currentSubPage != null) {
         thepage = currentSubPage
       } else {
-        thepage = ""        
+        thepage = "test"        
       }
     }
     // console.log("page",thepage);
@@ -66,7 +66,7 @@ const store = createStore({
           rot: [0,0,0],
           scale: [1,1,1],
           stats: {
-            hunger: -1,
+            protein: -1,
             hygene: -1,
             energy: -1,
             fun: -1,
@@ -292,7 +292,7 @@ const store = createStore({
       })
       if(typeof accs == "undefined") { console.log("Unlock or Connect Wallet and try Again...")}
       for (var i = 0; i < accs.length; i++) {
-        console.log(accs[i])
+        // console.log(accs[i])
         context.commit('addAccount', accs[i]);
       }
     },
