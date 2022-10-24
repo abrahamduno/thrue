@@ -10,8 +10,18 @@ Developed by Abraham Duno | Thrue is an Open Source Blockchain-Based 3D Browser 
 * Css.css
 
 ## Features ##
-* Blockchain integration with three.js
-*All contracts are inside the "backend"*
+### Gameplay ###
+* Serverless gameplay 
+	* Play a test game without connecting to the blockchain (add "?page=test" to url)
+### 3D Models ###
+* 3D Text Smart Contract Value Rendering
+	* Supported formats are JSON.
+	* Supported global antialiasing
+	* *All contracts are inside the "backend" folder*
+### 3D Graphics ###
+* Two renderers available
+	* Three.js WebGLRenderer
+	* Postprocessing UnrealBloomPass (add "?filter=bloom" to url)
 
 
 - - - -
