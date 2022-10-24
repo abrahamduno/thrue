@@ -22,6 +22,10 @@ Developed by Abraham Duno | Thrue is an Open Source Blockchain-Based 3D Browser 
 * Two renderers available
 	* Three.js WebGLRenderer
 	* Postprocessing UnrealBloomPass (add "?filter=bloom" to url)
+* Real-time lighting:
+	* Renders real time shadows by default
+    	* Supports Directional, Point, Spot, and Ambient lights.
+* Depth fog with an adjustable attenuation
 
 
 - - - -
